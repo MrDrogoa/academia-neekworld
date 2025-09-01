@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 RESET INMEDIATO - Accesibilidad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f44336;
+            color: white;
+            text-align: center;
+            font-size: 16px !important;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 15px;
+            display: block;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            background: #cc3333;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .success {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+            font-size: 18px;
+        }
+        .instructions {
+            background: #2196F3;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #f44336;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+        .step {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 5px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 RESET INMEDIATO</h1>
+        
+        <div class="instructions">
+            <strong>⚠️ PROBLEMA:</strong> El texto está muy grande y no puedes usar la aplicación.
+            <br><br>
+            <strong>✅ SOLUCIÓN:</strong> Este botón limpiará TODO y volverá la aplicación a la normalidad.
+        </div>
+
+        <button class="btn" onclick="resetearCompleto()">
+            🔄 RESETEAR AHORA - VOLVER A NORMAL
+        </button>
+
+        <div class="success" id="mensaje">
+            <h2>✅ ¡ÉXITO!</h2>
+            <p>Todas las configuraciones han sido eliminadas.</p>
+            <p><strong>SIGUIENTE PASO:</strong> Ve a tu aplicación y presiona F5 para recargar.</p>
+        </div>
+
+        <div class="list">
+            <h3>📋 Pasos después del reset:</h3>
+            <div class="step">
+                <strong>1.</strong> Haz clic en el botón rojo de arriba
+            </div>
+            <div class="step">
+                <strong>2.</strong> Cuando aparezca el mensaje verde, ve a la aplicación
+            </div>
+            <div class="step">
+                <strong>3.</strong> Presiona <kbd>F5</kbd> o <kbd>Ctrl+F5</kbd> para recargar
+            </div>
+            <div class="step">
+                <strong>4.</strong> ¡La aplicación debería verse normal otra vez!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function resetearCompleto() {
+            console.log('🚨 INICIANDO RESET COMPLETO DE EMERGENCIA...')
+            
+            // Limpiar ABSOLUTAMENTE TODO relacionado con accesibilidad
+            const allKeys = Object.keys(localStorage)
+            const accessibilityKeys = allKeys.filter(key => 
+                key.includes('accessibility') || 
+                key.includes('theme') || 
+                key.includes('contrast') || 
+                key.includes('text') || 
+                key.includes('motion') || 
+                key.includes('focus')
+            )
+            
+            // Eliminar keys específicos
+            const specificKeys = [
+                'accessibility-theme',
+                'accessibility-high-contrast', 
+                'accessibility-text-size',
+                'accessibility-reduced-motion',
+                'accessibility-enhanced-focus',
+                'vuetify-theme',
+                'theme-preference'
+            ]
+            
+            const allKeysToDelete = [...accessibilityKeys, ...specificKeys]
+            
+            allKeysToDelete.forEach(key => {
+                localStorage.removeItem(key)
+                console.log(`🗑️ ELIMINADO: ${key}`)
+            })
+            
+            // Limpiar TODAS las clases CSS posibles
+            const root = document.documentElement
+            const body = document.body
+            
+            const allPossibleClasses = [
+                // Clases de texto
+                'text-scale-80', 'text-scale-90', 'text-scale-100',
+                'text-scale-110', 'text-scale-120', 'text-scale-130',
+                'large-text-mode', 'large-text-mode-xs', 'large-text-mode-sm',
+                'large-text-mode-lg', 'large-text-mode-xl', 'large-text-mode-xxl',
+                
+                // Clases de accesibilidad
+                'high-contrast-mode',
+                'reduced-motion-mode', 
+                'enhanced-focus-mode',
+                'dark-theme',
+                'light-theme',
+                
+                // Clases de Vuetify
+                'v-theme--dark',
+                'v-theme--light'
+            ]
+            
+            allPossibleClasses.forEach(className => {
+                root.classList.remove(className)
+                body.classList.remove(className)
+                document.querySelector('html')?.classList.remove(className)
+                console.log(`🧹 REMOVIDA CLASE: ${className}`)
+            })
+            
+            // Limpiar TODAS las variables CSS posibles
+            const cssVariables = [
+                '--text-scale-factor',
+                '--accessibility-text-scale',
+                '--v-theme-primary',
+                '--v-theme-secondary',
+                '--v-theme-background',
+                '--v-theme-surface',
+                '--focus-color',
+                '--focus-width'
+            ]
+            
+            cssVariables.forEach(variable => {
+                root.style.removeProperty(variable)
+                console.log(`🎨 REMOVIDA VARIABLE CSS: ${variable}`)
+            })
+            
+            // Forzar reseteo de fuentes
+            root.style.fontSize = '16px'
+            body.style.fontSize = '16px'
+            
+            console.log('✅ RESET COMPLETO TERMINADO')
+            
+            // Mostrar mensaje de éxito
+            document.getElementById('mensaje').style.display = 'block'
+            
+            // Cambiar el botón
+            const btn = document.querySelector('.btn')
+            btn.textContent = '✅ ¡COMPLETADO! Ahora recarga la app con F5'
+            btn.style.background = '#4CAF50'
+            btn.disabled = true
+            
+            // Scroll al mensaje
+            document.getElementById('mensaje').scrollIntoView({ behavior: 'smooth' })
+        }
+        
+        // Auto-ejecutar al cargar (para casos extremos)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚨 Página de reset cargada - Lista para usar')
+        })
+    </script>
+</body>
+</html>

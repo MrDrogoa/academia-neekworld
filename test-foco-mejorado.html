@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Foco Mejorado</title>
+    <style>
+        /* Variables de foco por tema */
+        .enhanced-focus-mode {
+            --enhanced-focus-color: #2196F3;
+            --enhanced-focus-width: 4px;
+            --enhanced-focus-offset: 3px;
+            --enhanced-focus-shadow: rgba(33, 150, 243, 0.4);
+            --enhanced-focus-bg: rgba(33, 150, 243, 0.1);
+            --enhanced-focus-zindex: 1000;
+        }
+
+        /* FOCO GENERAL - Base para todos los elementos */
+        .enhanced-focus-mode *:focus,
+        .enhanced-focus-mode *:focus-visible {
+            outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+            outline-offset: var(--enhanced-focus-offset) !important;
+            box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+            z-index: var(--enhanced-focus-zindex) !important;
+            position: relative !important;
+        }
+
+        /* BOTONES - Foco mejorado con efectos visuales */
+        .enhanced-focus-mode button:focus {
+            outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+            outline-offset: var(--enhanced-focus-offset) !important;
+            box-shadow: 
+                0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+                0 4px 12px rgba(0, 0, 0, 0.3) !important;
+            transform: scale(1.05) translateY(-2px) !important;
+            z-index: var(--enhanced-focus-zindex) !important;
+            transition: all 0.2s ease-in-out !important;
+        }
+
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .toggle-button {
+            background-color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .active {
+            background-color: #FF9800 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Test Foco Mejorado</h1>
+        
+        <div class="test-section">
+            <h2>Control de Estado</h2>
+            <button id="toggleFocus" class="toggle-button">Activar Foco Mejorado</button>
+            <p id="status">Estado: <strong>Desactivado</strong></p>
+        </div>
+
+        <div class="test-section">
+            <h2>Elementos de Prueba</h2>
+            <p><strong>Instrucciones:</strong> Usa Tab para navegar entre los elementos y observar el foco.</p>
+            
+            <button>Botón 1</button>
+            <button>Botón 2</button>
+            <button>Botón 3</button>
+            
+            <br><br>
+            
+            <input type="text" placeholder="Campo de texto" />
+            <br><br>
+            
+            <a href="#" onclick="return false;">Enlace de prueba</a>
+            
+            <br><br>
+            
+            <select>
+                <option>Opción 1</option>
+                <option>Opción 2</option>
+                <option>Opción 3</option>
+            </select>
+        </div>
+
+        <div class="test-section">
+            <h2>Información de Debug</h2>
+            <p>Clase en body: <span id="bodyClass">-</span></p>
+            <p>Clase en html: <span id="htmlClass">-</span></p>
+            <p>CSS Variables activas: <span id="cssVars">-</span></p>
+        </div>
+    </div>
+
+    <script>
+        let isEnhanced = false;
+        const toggleButton = document.getElementById('toggleFocus');
+        const statusElement = document.getElementById('status');
+        const bodyClassElement = document.getElementById('bodyClass');
+        const htmlClassElement = document.getElementById('htmlClass');
+        const cssVarsElement = document.getElementById('cssVars');
+
+        function updateDebugInfo() {
+            bodyClassElement.textContent = document.body.className || 'ninguna';
+            htmlClassElement.textContent = document.documentElement.className || 'ninguna';
+            
+            if (isEnhanced) {
+                const computedStyle = getComputedStyle(document.documentElement);
+                const focusColor = computedStyle.getPropertyValue('--enhanced-focus-color');
+                const focusWidth = computedStyle.getPropertyValue('--enhanced-focus-width');
+                cssVarsElement.textContent = `Color: ${focusColor}, Width: ${focusWidth}`;
+            } else {
+                cssVarsElement.textContent = 'No activas';
+            }
+        }
+
+        toggleButton.addEventListener('click', () => {
+            isEnhanced = !isEnhanced;
+            
+            if (isEnhanced) {
+                document.body.classList.add('enhanced-focus-mode');
+                document.documentElement.classList.add('enhanced-focus-mode');
+                toggleButton.textContent = 'Desactivar Foco Mejorado';
+                toggleButton.classList.add('active');
+                statusElement.innerHTML = 'Estado: <strong style="color: green;">Activado</strong>';
+            } else {
+                document.body.classList.remove('enhanced-focus-mode');
+                document.documentElement.classList.remove('enhanced-focus-mode');
+                toggleButton.textContent = 'Activar Foco Mejorado';
+                toggleButton.classList.remove('active');
+                statusElement.innerHTML = 'Estado: <strong style="color: red;">Desactivado</strong>';
+            }
+            
+            updateDebugInfo();
+        });
+
+        // Actualizar info inicial
+        updateDebugInfo();
+
+        // Log para debugging
+        console.log('🎯 Test de Foco Mejorado iniciado');
+        console.log('Presiona Tab para navegar y prueba el botón de toggle');
+    </script>
+</body>
+</html>

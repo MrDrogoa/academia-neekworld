@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Servicio Neekworld</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .course-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+            background: #f9f9f9;
+        }
+        .category {
+            background: #007bff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .level {
+            background: #28a745;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+        .price {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 18px;
+        }
+        .filters {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        select, input {
+            padding: 8px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌍 Prueba de Cursos Neekworld</h1>
+    
+    <div class="filters">
+        <h3>Filtros</h3>
+        <input type="text" id="search" placeholder="Buscar cursos..." />
+        <select id="categoryFilter">
+            <option value="">Todas las categorías</option>
+        </select>
+        <select id="levelFilter">
+            <option value="">Todos los niveles</option>
+            <option value="Principiante">Principiante</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Avanzado">Avanzado</option>
+        </select>
+        <button onclick="loadCourses()">Recargar Cursos</button>
+    </div>
+
+    <div id="loading" style="display: none;">
+        <p>🔄 Cargando cursos...</p>
+    </div>
+
+    <div id="coursesContainer">
+        <!-- Los cursos se cargarán aquí -->
+    </div>
+
+    <script type="module">
+        // Simulación del servicio de Neekworld
+        class MockNeekworldService {
+            getMockNeekworldCourses() {
+                return [
+                    // === CURSOS REALES DE NEEKWORLD ===
+                    {
+                        id: 14,
+                        title: 'CONSTRUCCIÓN DE INSTRUMENTOS DE EVALUACIÓN',
+                        description: 'Aprende a construir instrumentos de evaluación efectivos y válidos para el contexto educativo actual.',
+                        category: 'Educación y Pedagogía',
+                        instructor: 'Especialista en Evaluación Educativa',
+                        level: 'Intermedio',
+                        duration: '40 horas',
+                        price: 150000,
+                        originalPrice: 180000
+                    },
+                    {
+                        id: 13,
+                        title: 'NEUROCIENCIAS APLICADA A LA EDUCACIÓN',
+                        description: 'Descubre cómo aplicar los conocimientos de neurociencias para mejorar los procesos de enseñanza y aprendizaje.',
+                        category: 'Educación y Pedagogía',
+                        instructor: 'Dr. en Neurociencias Educativas',
+                        level: 'Avanzado',
+                        duration: '50 horas',
+                        price: 150000,
+                        originalPrice: 180000
+                    },
+                    {
+                        id: 12,
+                        title: 'FORMACIÓN DE JEFES UTP Y SUS EQUIPOS TÉCNICOS',
+                        description: 'Formación especializada para jefes de Unidades Técnico Pedagógicas y sus equipos de trabajo.',
+                        category: 'Educación y Pedagogía',
+                        instructor: 'Experto en Gestión Pedagógica',
+                        level: 'Avanzado',
+                        duration: '60 horas',
+                        price: 150000,
+                        originalPrice: 180000
+                    },
+                    {
+                        id: 11,
+                        title: 'Autismo',
+                        description: 'Comprende las características del autismo y aprende estrategias efectivas de intervención educativa.',
+                        category: 'Educación y Pedagogía',
+                        instructor: 'Especialista en Educación Especial',
+                        level: 'Intermedio',
+                        duration: '35 horas',
+                        price: 120000,
+                        originalPrice: 144000
+                    },
+                    {
+                        id: 9,
+                        title: 'IA para docentes',
+                        description: 'Aprende a integrar la Inteligencia Artificial en tus prácticas docentes de manera efectiva y ética.',
+                        category: 'Educación y Pedagogía',
+                        instructor: 'Especialista en IA Educativa',
+                        level: 'Principiante',
+                        duration: '25 horas',
+                        price: 70000,
+                        originalPrice: 84000
+                    },
+                    {
+                        id: 10,
+                        title: 'INTRODUCCIÓN PRÁCTICA A GNU/LINUX',
+                        description: 'Domina los fundamentos del sistema operativo GNU/Linux con un enfoque práctico y profesional.',
+                        category: 'Tecnología y Herramientas Digitales',
+                        instructor: 'Administrador de Sistemas Linux',
+                        level: 'Intermedio',
+                        duration: '45 horas',
+                        price: 150000,
+                        originalPrice: 180000
+                    },
+                    {
+                        id: 7,
+                        title: 'Curso de Excel Básico',
+                        description: 'Aprende las funciones básicas de Excel para mejorar tu productividad en el trabajo.',
+                        category: 'Tecnología y Herramientas Digitales',
+                        instructor: 'Especialista en Office',
+                        level: 'Principiante',
+                        duration: '20 horas',
+                        price: 50000,
+                        originalPrice: 60000
+                    },
+                    
+                    // === CURSOS FICTICIOS COMPLEMENTARIOS ===
+                    {
+                        id: 'comp_001',
+                        title: 'Desarrollo Web Full Stack con React y Node.js',
+                        description: 'Conviértete en desarrollador full stack creando aplicaciones web completas y modernas.',
+                        category: 'Tecnología y Herramientas Digitales',
+                        instructor: 'Ing. Roberto Vargas',
+                        level: 'Intermedio',
+                        duration: '80 horas',
+                        price: 129900,
+                        originalPrice: 179900
+                    },
+                    {
+                        id: 'comp_002',
+                        title: 'Marketing Digital y Redes Sociales',
+                        description: 'Domina las estrategias de marketing digital y gestión de redes sociales para empresas.',
+                        category: 'Marketing',
+                        instructor: 'Mg. Valentina Cruz',
+                        level: 'Principiante',
+                        duration: '40 horas',
+                        price: 69900,
+                        originalPrice: 89900
+                    }
+                ];
+            }
+
+            async getCourses() {
+                console.log('🔍 Obteniendo cursos desde servicio simulado...');
+                const courses = this.getMockNeekworldCourses();
+                console.log(`✅ ${courses.length} cursos obtenidos`);
+                return { success: true, courses };
+            }
+        }
+
+        const neekworldService = new MockNeekworldService();
+        let allCourses = [];
+        let filteredCourses = [];
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CL', {
+                style: 'currency',
+                currency: 'CLP'
+            }).format(amount);
+        }
+
+        function renderCourses(courses) {
+            const container = document.getElementById('coursesContainer');
+            
+            if (courses.length === 0) {
+                container.innerHTML = '<p>No se encontraron cursos con los filtros aplicados.</p>';
+                return;
+            }
+
+            container.innerHTML = courses.map(course => `
+                <div class="course-card">
+                    <div class="category">${course.category}</div>
+                    <h3>${course.title}</h3>
+                    <p>${course.description}</p>
+                    <p><strong>Instructor:</strong> ${course.instructor}</p>
+                    <p><strong>Duración:</strong> ${course.duration} <span class="level">${course.level}</span></p>
+                    <div class="price">${formatCurrency(course.price)}</div>
+                    <small style="text-decoration: line-through; color: #666;">
+                        ${formatCurrency(course.originalPrice)}
+                    </small>
+                </div>
+            `).join('');
+        }
+
+        function populateFilters() {
+            const categories = [...new Set(allCourses.map(c => c.category))];
+            const categoryFilter = document.getElementById('categoryFilter');
+            
+            categoryFilter.innerHTML = '<option value="">Todas las categorías</option>' +
+                categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const levelFilter = document.getElementById('levelFilter').value;
+
+            filteredCourses = allCourses.filter(course => {
+                const matchesSearch = !search || 
+                    course.title.toLowerCase().includes(search) ||
+                    course.description.toLowerCase().includes(search) ||
+                    course.instructor.toLowerCase().includes(search);
+                
+                const matchesCategory = !categoryFilter || course.category === categoryFilter;
+                const matchesLevel = !levelFilter || course.level === levelFilter;
+
+                return matchesSearch && matchesCategory && matchesLevel;
+            });
+
+            console.log(`🔍 Filtros aplicados: ${filteredCourses.length} de ${allCourses.length} cursos`);
+            renderCourses(filteredCourses);
+        }
+
+        async function loadCourses() {
+            document.getElementById('loading').style.display = 'block';
+            
+            try {
+                const result = await neekworldService.getCourses();
+                
+                if (result.success) {
+                    allCourses = result.courses;
+                    filteredCourses = [...allCourses];
+                    
+                    console.log('📊 Categorías disponibles:', [...new Set(allCourses.map(c => c.category))]);
+                    
+                    populateFilters();
+                    renderCourses(filteredCourses);
+                } else {
+                    document.getElementById('coursesContainer').innerHTML = 
+                        '<p style="color: red;">Error al cargar los cursos</p>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('coursesContainer').innerHTML = 
+                    '<p style="color: red;">Error al cargar los cursos: ' + error.message + '</p>';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('search').addEventListener('input', applyFilters);
+        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+        document.getElementById('levelFilter').addEventListener('change', applyFilters);
+
+        // Cargar cursos al iniciar
+        window.loadCourses = loadCourses;
+        loadCourses();
+    </script>
+</body>
+</html>

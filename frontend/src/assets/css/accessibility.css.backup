@@ -1,0 +1,1529 @@
+/* =========================================
+   ESTILOS GLOBALES DE ACCESIBILIDAD
+   Academia Virtual - Sistema Completo
+   ========================================= */
+
+/* Variables CSS para accesibilidad */
+:root {
+  --text-scale-factor: 1;
+  --accessibility-text-scale: 1;
+  --focus-color: #2196F3;
+  --focus-width: 3px;
+}
+
+/* =========================================
+   SISTEMA DE ESCALADO DE TEXTO - VERSIÓN SIMPLIFICADA
+   ========================================= */
+
+/* Variables de escalado */
+html.text-scale-80 {
+  --accessibility-text-scale: 0.8;
+}
+
+html.text-scale-90 {
+  --accessibility-text-scale: 0.9;
+}
+
+html.text-scale-100 {
+  --accessibility-text-scale: 1;
+}
+
+html.text-scale-110 {
+  --accessibility-text-scale: 1.1;
+}
+
+html.text-scale-120 {
+  --accessibility-text-scale: 1.2;
+}
+
+html.text-scale-130 {
+  --accessibility-text-scale: 1.3;
+}
+
+/* ESCALADO DIRECTO - ENFOQUE SIMPLE */
+/* Aplicar a TODOS los elementos de texto excepto exclusiones específicas */
+html.text-scale-80 *,
+html.text-scale-90 *,
+html.text-scale-100 *,
+html.text-scale-110 *,
+html.text-scale-120 *,
+html.text-scale-130 * {
+  font-size: calc(1em * var(--accessibility-text-scale)) !important;
+}
+
+/* EXCLUSIONES ESPECÍFICAS - Reestablecer tamaño original */
+html[class*="text-scale-"] .v-app-bar,
+html[class*="text-scale-"] .v-app-bar *,
+html[class*="text-scale-"] .navbar-title,
+html[class*="text-scale-"] .accessibility-menu,
+html[class*="text-scale-"] .accessibility-menu *,
+html[class*="text-scale-"] .v-icon,
+html[class*="text-scale-"] .mdi,
+html[class*="text-scale-"] i[class*="mdi"],
+html[class*="text-scale-"] .material-icons,
+html[class*="text-scale-"] [class*="icon"] {
+  font-size: inherit !important;
+}
+
+/* REGLAS ESPECÍFICAS PARA ELEMENTOS COMUNES CON VALORES CALCULADOS DIRECTOS */
+html.text-scale-80 p { font-size: 12.8px !important; } /* 16px * 0.8 */
+html.text-scale-80 h1 { font-size: 25.6px !important; } /* 32px * 0.8 */
+html.text-scale-80 h2 { font-size: 19.2px !important; } /* 24px * 0.8 */
+html.text-scale-80 h3 { font-size: 16px !important; } /* 20px * 0.8 */
+html.text-scale-80 .v-btn { font-size: 11.2px !important; } /* 14px * 0.8 */
+
+html.text-scale-90 p { font-size: 14.4px !important; } /* 16px * 0.9 */
+html.text-scale-90 h1 { font-size: 28.8px !important; } /* 32px * 0.9 */
+html.text-scale-90 h2 { font-size: 21.6px !important; } /* 24px * 0.9 */
+html.text-scale-90 h3 { font-size: 18px !important; } /* 20px * 0.9 */
+html.text-scale-90 .v-btn { font-size: 12.6px !important; } /* 14px * 0.9 */
+
+html.text-scale-100 p { font-size: 16px !important; } /* Normal */
+html.text-scale-100 h1 { font-size: 32px !important; } /* Normal */
+html.text-scale-100 h2 { font-size: 24px !important; } /* Normal */
+html.text-scale-100 h3 { font-size: 20px !important; } /* Normal */
+html.text-scale-100 .v-btn { font-size: 14px !important; } /* Normal */
+
+html.text-scale-110 p { font-size: 17.6px !important; } /* 16px * 1.1 */
+html.text-scale-110 h1 { font-size: 35.2px !important; } /* 32px * 1.1 */
+html.text-scale-110 h2 { font-size: 26.4px !important; } /* 24px * 1.1 */
+html.text-scale-110 h3 { font-size: 22px !important; } /* 20px * 1.1 */
+html.text-scale-110 .v-btn { font-size: 15.4px !important; } /* 14px * 1.1 */
+
+html.text-scale-120 p { font-size: 19.2px !important; } /* 16px * 1.2 */
+html.text-scale-120 h1 { font-size: 38.4px !important; } /* 32px * 1.2 */
+html.text-scale-120 h2 { font-size: 28.8px !important; } /* 24px * 1.2 */
+html.text-scale-120 h3 { font-size: 24px !important; } /* 20px * 1.2 */
+html.text-scale-120 .v-btn { font-size: 16.8px !important; } /* 14px * 1.2 */
+
+html.text-scale-130 p { font-size: 20.8px !important; } /* 16px * 1.3 */
+html.text-scale-130 h1 { font-size: 41.6px !important; } /* 32px * 1.3 */
+html.text-scale-130 h2 { font-size: 31.2px !important; } /* 24px * 1.3 */
+html.text-scale-130 h3 { font-size: 26px !important; } /* 20px * 1.3 */
+html.text-scale-130 .v-btn { font-size: 18.2px !important; } /* 14px * 1.3 */
+
+/* VUETIFY SPECIFIC COMPONENTS */
+html.text-scale-110 .v-card-title { font-size: 22px !important; }
+html.text-scale-110 .v-card-text { font-size: 17.6px !important; }
+html.text-scale-110 .v-list-item-title { font-size: 17.6px !important; }
+html.text-scale-110 .v-text-field input { font-size: 17.6px !important; }
+
+html.text-scale-120 .v-card-title { font-size: 24px !important; }
+html.text-scale-120 .v-card-text { font-size: 19.2px !important; }
+html.text-scale-120 .v-list-item-title { font-size: 19.2px !important; }
+html.text-scale-120 .v-text-field input { font-size: 19.2px !important; }
+
+/* =========================================
+   MODO ALTO CONTRASTE - REDISEÑADO
+   ========================================= */
+.high-contrast-mode {
+  /* Variables de alto contraste para Vuetify */
+  --v-theme-primary: #000000 !important;
+  --v-theme-secondary: #ffffff !important;
+  --v-theme-background: #ffffff !important;
+  --v-theme-surface: #ffffff !important;
+  --v-theme-on-primary: #ffffff !important;
+  --v-theme-on-secondary: #000000 !important;
+  --v-theme-on-surface: #000000 !important;
+  --v-theme-on-background: #000000 !important;
+  --focus-color: #ff0000 !important;
+}
+
+/* Aplicación general de alto contraste */
+.high-contrast-mode .v-application {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Contenedores principales */
+.high-contrast-mode .v-main,
+.high-contrast-mode .router-view,
+.high-contrast-mode .home-view,
+.high-contrast-mode .home-page,
+.high-contrast-mode .v-container,
+.high-contrast-mode .v-row,
+.high-contrast-mode .v-col {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* BOTONES - Configuración correcta para visibilidad */
+.high-contrast-mode .v-btn {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+  font-weight: bold !important;
+}
+
+.high-contrast-mode .v-btn:hover {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode .v-btn--variant-elevated {
+  background-color: white !important;
+  color: black !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Botones personalizados de la aplicación */
+.high-contrast-mode .btn {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.high-contrast-mode .btn:hover {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid black !important;
+  text-decoration: none !important;
+}
+
+/* Botones primarios */
+.high-contrast-mode .v-btn--variant-flat,
+.high-contrast-mode .btn-primary {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode .v-btn--variant-flat:hover,
+.high-contrast-mode .btn-primary:hover {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+}
+
+/* Botones secundarios */
+.high-contrast-mode .btn-secondary {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode .btn-secondary:hover {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* Botones como links (router-link) */
+.high-contrast-mode a.btn {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+.high-contrast-mode a.btn:hover {
+  background-color: black !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.high-contrast-mode a.btn-primary {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode a.btn-primary:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* CARDS y contenedores */
+.high-contrast-mode .v-card,
+.high-contrast-mode .v-sheet,
+.high-contrast-mode .feature-card {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* NAVEGACIÓN */
+.high-contrast-mode .v-app-bar {
+  background-color: white !important;
+  color: black !important;
+  border-bottom: 3px solid black !important;
+}
+
+.high-contrast-mode .v-navigation-drawer {
+  background-color: white !important;
+  color: black !important;
+  border-right: 3px solid black !important;
+}
+
+/* LISTAS */
+.high-contrast-mode .v-list {
+  background-color: white !important;
+  color: black !important;
+}
+
+.high-contrast-mode .v-list-item {
+  color: black !important;
+  background-color: white !important;
+  border-bottom: 1px solid black !important;
+}
+
+.high-contrast-mode .v-list-item:hover {
+  background-color: #f0f0f0 !important;
+  color: black !important;
+}
+
+.high-contrast-mode .v-list-item--active {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* TEXTO - Asegurar legibilidad */
+.high-contrast-mode h1, 
+.high-contrast-mode h2, 
+.high-contrast-mode h3, 
+.high-contrast-mode h4, 
+.high-contrast-mode h5, 
+.high-contrast-mode h6,
+.high-contrast-mode p, 
+.high-contrast-mode span, 
+.high-contrast-mode div {
+  color: black !important;
+}
+
+/* HOME PAGE - Elementos específicos */
+.high-contrast-mode .hero-section {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode .hero-title,
+.high-contrast-mode .hero-subtitle {
+  color: black !important;
+  text-shadow: none !important;
+}
+
+.high-contrast-mode .features-section {
+  background-color: white !important;
+  color: black !important;
+}
+
+.high-contrast-mode .section-title {
+  color: black !important;
+}
+
+.high-contrast-mode .feature-card h3,
+.high-contrast-mode .feature-card p {
+  color: black !important;
+}
+
+.high-contrast-mode .feature-icon {
+  color: black !important;
+  background-color: white !important;
+  border: 2px solid black !important;
+  border-radius: 50% !important;
+  padding: 10px !important;
+}
+
+/* CTA Section con contraste invertido */
+.high-contrast-mode .cta-section {
+  background-color: black !important;
+  color: white !important;
+  border: 3px solid black !important;
+}
+
+.high-contrast-mode .cta-section h2,
+.high-contrast-mode .cta-section p {
+  color: white !important;
+}
+
+.high-contrast-mode .cta-section .v-btn {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid white !important;
+}
+
+.high-contrast-mode .cta-section .v-btn:hover {
+  background-color: #f0f0f0 !important;
+  color: black !important;
+}
+
+/* FOOTER con alto contraste */
+.high-contrast-mode .footer,
+.high-contrast-mode footer {
+  background-color: black !important;
+  color: white !important;
+  border-top: 3px solid white !important;
+}
+
+.high-contrast-mode .footer-text {
+  color: white !important;
+}
+
+.high-contrast-mode .footer-link {
+  color: yellow !important;
+  background-color: black !important;
+  text-decoration: underline !important;
+  padding: 2px 4px !important;
+  border: 1px solid yellow !important;
+}
+
+.high-contrast-mode .footer-link:hover {
+  background-color: yellow !important;
+  color: black !important;
+  border: 1px solid yellow !important;
+}
+
+/* FORMULARIOS */
+.high-contrast-mode .v-text-field input,
+.high-contrast-mode .v-textarea textarea,
+.high-contrast-mode .v-select__selection {
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid black !important;
+}
+
+.high-contrast-mode .v-text-field .v-field__outline {
+  --v-field-border-color: black !important;
+  border-width: 2px !important;
+}
+
+/* SWITCHES y controles */
+.high-contrast-mode .v-switch .v-selection-control__input {
+  color: black !important;
+}
+
+.high-contrast-mode .v-switch .v-switch__track {
+  background-color: white !important;
+  border: 2px solid black !important;
+}
+
+.high-contrast-mode .v-switch .v-switch__thumb {
+  background-color: black !important;
+}
+
+/* MENÚS y overlays */
+.high-contrast-mode .v-menu .v-overlay__content,
+.high-contrast-mode .v-tooltip .v-overlay__content {
+  background-color: white !important;
+  color: black !important;
+  border: 3px solid black !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* REGLAS FINALES DE ESPECIFICIDAD - Asegurar que se apliquen todos los estilos */
+
+/* Asegurar que los iconos sean visibles */
+.high-contrast-mode .v-icon {
+  color: black !important;
+}
+
+.high-contrast-mode .v-app-bar .v-icon,
+.high-contrast-mode .v-navigation-drawer .v-icon {
+  color: black !important;
+}
+
+.high-contrast-mode .footer .v-icon {
+  color: white !important;
+}
+
+/* Asegurar que los elementos de lista sean legibles */
+.high-contrast-mode .v-list-item-title,
+.high-contrast-mode .v-list-item-subtitle {
+  color: black !important;
+}
+
+/* Asegurar que los campos de formulario funcionen */
+.high-contrast-mode .v-field__input,
+.high-contrast-mode .v-field__append-inner,
+.high-contrast-mode .v-field__prepend-inner {
+  color: black !important;
+}
+
+/* Contenido de texto general */
+.high-contrast-mode .v-card-text,
+.high-contrast-mode .v-card-title,
+.high-contrast-mode .v-card-subtitle {
+  color: black !important;
+  background-color: white !important;
+}
+
+/* =========================================
+   MODO TEMA CLARO/OSCURO - REDISEÑADO
+   ========================================= */
+
+/* TEMA CLARO - Configuración completa */
+.v-theme--light {
+  --v-theme-background: #ffffff !important;
+  --v-theme-surface: #ffffff !important;
+  --v-theme-on-background: #000000 !important;
+  --v-theme-on-surface: #000000 !important;
+  --focus-color: #1976D2 !important;
+}
+
+.v-theme--light .v-application {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--light .v-main {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+.v-theme--light .v-card {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.v-theme--light .v-app-bar {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.v-theme--light .v-navigation-drawer {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--light .v-list-item {
+  color: #000000 !important;
+}
+
+.v-theme--light .v-btn {
+  color: #000000 !important;
+}
+
+/* HOME PAGE - Tema Claro */
+.v-theme--light .home-page {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+.v-theme--light .hero-section {
+  background-color: #2A3B5F !important;
+  color: #ffffff !important;
+}
+
+.v-theme--light .features-section {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--light .feature-card {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.v-theme--light .cta-section {
+  background-color: #FFA500 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--light .footer {
+  background-color: #2a3b5f !important;
+  color: #f5f5f5 !important;
+}
+
+/* TEMA OSCURO - Configuración completa */
+.v-theme--dark {
+  --v-theme-background: #121212 !important;
+  --v-theme-surface: #1E1E1E !important;
+  --v-theme-on-background: #ffffff !important;
+  --v-theme-on-surface: #ffffff !important;
+  --focus-color: #64B5F6 !important;
+}
+
+.v-theme--dark .v-application {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .v-main {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .v-card {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--dark .v-app-bar {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #404040 !important;
+}
+
+.v-theme--dark .v-navigation-drawer {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .v-list-item {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .v-list-item:hover {
+  background-color: #2D2D2D !important;
+}
+
+.v-theme--dark .v-btn {
+  color: #ffffff !important;
+}
+
+/* HOME PAGE - Tema Oscuro */
+.v-theme--dark .home-page {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .hero-section {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--dark .hero-title,
+.v-theme--dark .hero-subtitle {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .features-section {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .feature-card {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--dark .feature-card h3,
+.v-theme--dark .feature-card p {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .section-title {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .cta-section {
+  background-color: #2D2D2D !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--dark .cta-section h2,
+.v-theme--dark .cta-section p {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .footer {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border-top: 1px solid #404040 !important;
+}
+
+.v-theme--dark .footer-text {
+  color: #ffffff !important;
+}
+
+.v-theme--dark .footer-link {
+  color: #ffa500 !important;
+}
+
+.v-theme--dark .footer-link:hover {
+  color: #ffffff !important;
+}
+
+/* BOTONES - Tema específico */
+.v-theme--light .btn-primary {
+  background-color: #2E8B57 !important;
+  color: #ffffff !important;
+}
+
+.v-theme--light .btn-secondary {
+  background-color: #2A3B5F !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .btn-primary {
+  background-color: #4CAF50 !important;
+  color: #000000 !important;
+}
+
+.v-theme--dark .btn-secondary {
+  background-color: #616161 !important;
+  color: #ffffff !important;
+}
+
+/* FORMULARIOS - Tema específico */
+.v-theme--light .v-text-field input {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--dark .v-text-field input {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+}
+
+/* OVERLAYS Y MENÚS - Tema específico */
+.v-theme--light .v-menu .v-overlay__content {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.v-theme--dark .v-menu .v-overlay__content {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--light .v-tooltip .v-overlay__content {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  color: #ffffff !important;
+}
+
+.v-theme--dark .v-tooltip .v-overlay__content {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #000000 !important;
+}
+
+/* ICONOS - Tema específico */
+.v-theme--light .v-icon {
+  color: #000000 !important;
+}
+
+.v-theme--dark .v-icon {
+  color: #ffffff !important;
+}
+
+/* Iconos específicos en la navegación */
+.v-theme--light .v-app-bar .v-icon {
+  color: #000000 !important;
+}
+
+.v-theme--dark .v-app-bar .v-icon {
+  color: #ffffff !important;
+}
+
+/* FEATURE ICONS específicos para Home */
+.v-theme--light .feature-icon {
+  color: #2E8B57 !important;
+}
+
+.v-theme--dark .feature-icon {
+  color: #4CAF50 !important;
+}
+
+/* MENÚ DE ACCESIBILIDAD - Tema específico */
+.v-theme--light .accessibility-menu {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.v-theme--dark .accessibility-menu {
+  background-color: #1E1E1E !important;
+  color: #ffffff !important;
+  border: 1px solid #404040 !important;
+}
+
+/* Switches en el menú de accesibilidad */
+.v-theme--light .v-switch .v-switch__track {
+  background-color: #e0e0e0 !important;
+}
+
+.v-theme--light .v-switch .v-switch__thumb {
+  background-color: #ffffff !important;
+}
+
+.v-theme--dark .v-switch .v-switch__track {
+  background-color: #404040 !important;
+}
+
+.v-theme--dark .v-switch .v-switch__thumb {
+  background-color: #ffffff !important;
+}
+
+/* Botón de accesibilidad en navbar */
+.v-theme--light .accessibility-controls .v-btn {
+  background-color: transparent !important;
+  color: #000000 !important;
+}
+
+.v-theme--dark .accessibility-controls .v-btn {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Estados activos del botón de accesibilidad */
+.v-theme--light .accessibility-active {
+  background-color: rgba(46, 139, 87, 0.1) !important;
+  color: #2E8B57 !important;
+}
+
+.v-theme--dark .accessibility-active {
+  background-color: rgba(76, 175, 80, 0.1) !important;
+  color: #4CAF50 !important;
+}
+
+/* =========================================
+   FOCO MEJORADO - REDISEÑADO COMPLETO
+   ========================================= */
+
+/* Variables de foco por tema */
+.enhanced-focus-mode {
+  --enhanced-focus-color: #2196F3;
+  --enhanced-focus-width: 4px;
+  --enhanced-focus-offset: 3px;
+  --enhanced-focus-shadow: rgba(33, 150, 243, 0.4);
+  --enhanced-focus-bg: rgba(33, 150, 243, 0.1);
+  --enhanced-focus-zindex: 1000;
+}
+
+/* Variables específicas por tema */
+.enhanced-focus-mode.v-theme--light {
+  --enhanced-focus-color: #1976D2;
+  --enhanced-focus-shadow: rgba(25, 118, 210, 0.4);
+  --enhanced-focus-bg: rgba(25, 118, 210, 0.1);
+}
+
+.enhanced-focus-mode.v-theme--dark {
+  --enhanced-focus-color: #64B5F6;
+  --enhanced-focus-shadow: rgba(100, 181, 246, 0.4);
+  --enhanced-focus-bg: rgba(100, 181, 246, 0.1);
+}
+
+.enhanced-focus-mode.high-contrast-mode {
+  --enhanced-focus-color: #FF0000;
+  --enhanced-focus-width: 6px;
+  --enhanced-focus-offset: 4px;
+  --enhanced-focus-shadow: rgba(255, 0, 0, 0.6);
+  --enhanced-focus-bg: rgba(255, 255, 0, 0.3);
+}
+
+/* FOCO GENERAL - Base para todos los elementos */
+.enhanced-focus-mode *:focus,
+.enhanced-focus-mode *:focus-visible {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+  position: relative !important;
+}
+
+/* BOTONES - Foco mejorado con efectos visuales */
+.enhanced-focus-mode .v-btn:focus,
+.enhanced-focus-mode .v-btn:focus-visible {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transform: scale(1.05) translateY(-2px) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.enhanced-focus-mode .btn:focus,
+.enhanced-focus-mode .btn-primary:focus,
+.enhanced-focus-mode .btn-secondary:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  transform: scale(1.05) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+/* NAVEGACIÓN - Lista items con foco mejorado */
+.enhanced-focus-mode .v-list-item:focus,
+.enhanced-focus-mode .v-list-item:focus-visible {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    inset 4px 0 0 var(--enhanced-focus-color) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+  transform: translateX(8px) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.enhanced-focus-mode .v-navigation-drawer .v-list-item:focus {
+  background-color: var(--enhanced-focus-bg) !important;
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: 2px !important;
+  border-left: 6px solid var(--enhanced-focus-color) !important;
+  transform: translateX(4px) !important;
+}
+
+.enhanced-focus-mode .v-app-bar .v-list-item:focus {
+  background-color: var(--enhanced-focus-bg) !important;
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  border-bottom: 4px solid var(--enhanced-focus-color) !important;
+}
+
+/* CARDS - Foco mejorado con elevación */
+.enhanced-focus-mode .v-card:focus,
+.enhanced-focus-mode .v-card:focus-within,
+.enhanced-focus-mode .feature-card:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* FORMULARIOS - Campos de entrada con foco visible */
+.enhanced-focus-mode .v-text-field:focus-within,
+.enhanced-focus-mode .v-textarea:focus-within,
+.enhanced-focus-mode .v-select:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+.enhanced-focus-mode .v-text-field input:focus,
+.enhanced-focus-mode .v-textarea textarea:focus {
+  outline: none !important;
+  box-shadow: 
+    inset 0 0 0 2px var(--enhanced-focus-color),
+    0 0 8px var(--enhanced-focus-shadow) !important;
+}
+
+.enhanced-focus-mode .v-field:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+}
+
+/* SWITCHES Y CONTROLES - Foco mejorado */
+.enhanced-focus-mode .v-switch:focus-within,
+.enhanced-focus-mode .v-checkbox:focus-within,
+.enhanced-focus-mode .v-radio:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  padding: 4px !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+.enhanced-focus-mode .v-switch__thumb:focus {
+  box-shadow: 
+    0 0 0 4px var(--enhanced-focus-color),
+    0 0 12px var(--enhanced-focus-shadow) !important;
+  transform: scale(1.2) !important;
+}
+
+/* MENÚS Y OVERLAYS - Foco visible en elementos desplegables */
+.enhanced-focus-mode .v-menu .v-list-item:focus,
+.enhanced-focus-mode .v-select__menu .v-list-item:focus {
+  background-color: var(--enhanced-focus-bg) !important;
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: 1px !important;
+  box-shadow: inset 0 0 0 2px var(--enhanced-focus-color) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+.enhanced-focus-mode .v-overlay--active:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+}
+
+/* LINKS Y NAVEGACIÓN - Enlaces con foco mejorado */
+.enhanced-focus-mode a:focus,
+.enhanced-focus-mode .router-link-active:focus,
+.enhanced-focus-mode .footer-link:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  text-decoration: underline !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+/* HOME PAGE - Elementos específicos con foco mejorado */
+.enhanced-focus-mode .hero-section .btn:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 6px 20px rgba(0, 0, 0, 0.3) !important;
+  transform: scale(1.1) translateY(-3px) !important;
+}
+
+.enhanced-focus-mode .feature-icon:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  transform: scale(1.2) rotate(5deg) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+}
+
+.enhanced-focus-mode .cta-section .btn:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 8px 25px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(1.08) translateY(-4px) !important;
+}
+
+/* ICONOS - Foco mejorado para iconos interactivos */
+.enhanced-focus-mode .v-icon:focus,
+.enhanced-focus-mode .mdi:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  border-radius: 50% !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  padding: 8px !important;
+  transform: scale(1.2) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+  z-index: var(--enhanced-focus-zindex) !important;
+}
+
+/* ACCESSIBILITY MENU - Foco mejorado para controles de accesibilidad */
+.enhanced-focus-mode .accessibility-menu:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+.enhanced-focus-mode .accessibility-controls .v-btn:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+}
+
+/* NAVEGACIÓN TECLADO - Skip links y navegación avanzada */
+.enhanced-focus-mode .skip-link:focus {
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  background-color: var(--enhanced-focus-color) !important;
+  color: white !important;
+  padding: 12px 20px !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  z-index: 9999 !important;
+  outline: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(1.05) !important;
+}
+
+/* TABLAS - Foco mejorado para elementos de tabla */
+.enhanced-focus-mode .v-table tbody tr:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+}
+
+.enhanced-focus-mode .v-data-table__tr:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+}
+
+/* BREADCRUMBS - Navegación con foco mejorado */
+.enhanced-focus-mode .v-breadcrumbs-item:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  border-radius: 4px !important;
+  padding: 4px 8px !important;
+}
+
+/* TABS - Pestañas con foco mejorado */
+.enhanced-focus-mode .v-tab:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px var(--enhanced-focus-shadow) !important;
+}
+
+/* CHIPS - Elementos chip con foco */
+.enhanced-focus-mode .v-chip:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow) !important;
+}
+
+/* DIALOGS - Modales con foco mejorado */
+.enhanced-focus-mode .v-dialog:focus-within {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  box-shadow: 
+    0 0 0 calc(var(--enhanced-focus-width) + var(--enhanced-focus-offset)) var(--enhanced-focus-shadow),
+    0 16px 48px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* EXPANSIÓN PANELS - Elementos expandibles */
+.enhanced-focus-mode .v-expansion-panel-title:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  background-color: var(--enhanced-focus-bg) !important;
+}
+
+/* STEPPER - Pasos con foco mejorado */
+.enhanced-focus-mode .v-stepper-item:focus {
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  outline-offset: var(--enhanced-focus-offset) !important;
+  transform: scale(1.05) !important;
+}
+
+/* COMBINACIONES ESPECIALES - Alto contraste + Foco mejorado */
+.enhanced-focus-mode.high-contrast-mode *:focus {
+  outline: 6px solid #FF0000 !important;
+  outline-offset: 4px !important;
+  box-shadow: 
+    0 0 0 10px rgba(255, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 0, 0.8) !important;
+  background-color: rgba(255, 255, 0, 0.3) !important;
+}
+
+.enhanced-focus-mode.high-contrast-mode .v-btn:focus {
+  background-color: yellow !important;
+  color: black !important;
+  border: 6px solid red !important;
+  outline: 6px solid #FF0000 !important;
+  box-shadow: 
+    0 0 0 12px rgba(255, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  transform: scale(1.1) translateY(-4px) !important;
+}
+
+/* ANIMACIONES REDUCIDAS - Compatibilidad */
+.enhanced-focus-mode.reduced-motion-mode *:focus {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.enhanced-focus-mode.reduced-motion-mode .v-btn:focus,
+.enhanced-focus-mode.reduced-motion-mode .v-card:focus,
+.enhanced-focus-mode.reduced-motion-mode .v-list-item:focus {
+  transform: none !important;
+}
+
+/* MOBILE - Foco mejorado para dispositivos táctiles */
+@media (max-width: 768px) {
+  .enhanced-focus-mode *:focus {
+    --enhanced-focus-width: 6px;
+    --enhanced-focus-offset: 4px;
+  }
+  
+  .enhanced-focus-mode .v-btn:focus {
+    transform: scale(1.08) !important;
+  }
+  
+  .enhanced-focus-mode .v-list-item:focus {
+    transform: translateX(12px) !important;
+  }
+}
+
+/* =========================================
+   INTEGRACIÓN ALTO CONTRASTE + FOCO MEJORADO
+   ========================================= */
+
+/* Especial para alto contraste + enfoque mejorado - ACTUALIZADO */
+.high-contrast-mode.enhanced-focus-mode *:focus {
+  outline: 6px solid #FF0000 !important;
+  outline-offset: 4px !important;
+  box-shadow: 
+    0 0 0 10px rgba(255, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 0, 0.8) !important;
+  background-color: rgba(255, 255, 0, 0.3) !important;
+}
+
+.high-contrast-mode.enhanced-focus-mode .v-btn:focus {
+  background-color: yellow !important;
+  color: black !important;
+  border: 6px solid red !important;
+  outline: 6px solid #FF0000 !important;
+  box-shadow: 
+    0 0 0 12px rgba(255, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  transform: scale(1.1) translateY(-4px) !important;
+}
+
+/* =========================================
+   ANIMACIONES MEJORADAS POR DEFECTO
+   ========================================= */
+
+/* Animaciones más notorias para demostrar la función "Reducir Animaciones" */
+.v-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.v-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+.v-card {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.v-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15) !important;
+}
+
+.v-list-item {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.v-list-item:hover {
+  transform: translateX(8px) !important;
+  background-color: rgba(33, 150, 243, 0.08) !important;
+}
+
+.v-navigation-drawer {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.v-menu .v-overlay__content {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: menuSlideIn 0.3s ease-out !important;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.v-icon {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.v-icon:hover {
+  transform: rotate(5deg) scale(1.1) !important;
+}
+
+/* =========================================
+   REDUCCIÓN DE ANIMACIONES
+   ========================================= */
+
+/* Mensaje visual cuando está activo el modo reducir animaciones */
+.reduced-motion-mode::before {
+  content: "🚫 Animaciones reducidas";
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  background: #ff9800;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Deshabilitar todas las animaciones y transformaciones */
+.reduced-motion-mode *,
+.reduced-motion-mode *::before,
+.reduced-motion-mode *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+  transform: none !important;
+}
+
+.reduced-motion-mode .v-btn:hover,
+.reduced-motion-mode .v-card:hover,
+.reduced-motion-mode .v-list-item:hover,
+.reduced-motion-mode .v-icon:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.reduced-motion-mode .v-menu .v-overlay__content {
+  animation: none !important;
+}
+/* Respetar preferencias del sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   MEJORAS GENERALES DE ACCESIBILIDAD
+   ========================================= */
+
+/* Tooltips mejorados */
+.v-tooltip .v-overlay__content {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+  font-size: 14px !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  max-width: 300px !important;
+  text-align: center !important;
+  line-height: 1.4 !important;
+}
+
+/* Mejorar contraste en modo oscuro */
+.v-theme--dark .v-tooltip .v-overlay__content {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: black !important;
+}
+
+/* Espaciado mejorado para elementos interactivos */
+.v-btn {
+  min-height: 44px !important;
+  min-width: 44px !important;
+}
+
+.v-list-item {
+  min-height: 48px !important;
+  padding: 8px 16px !important;
+}
+
+/* Mejorar visibilidad de elementos seleccionados */
+.v-list-item--active {
+  background-color: rgba(var(--v-theme-primary), 0.2) !important;
+  border-left: 4px solid rgb(var(--v-theme-primary)) !important;
+}
+
+/* =========================================
+   RESPONSIVE - MÓVILES
+   ========================================= */
+@media (max-width: 768px) {
+  /* Aumentar tamaño de elementos táctiles en móviles */
+  .v-btn {
+    min-height: 48px !important;
+    padding: 8px 16px !important;
+  }
+  
+  .v-list-item {
+    min-height: 52px !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* =========================================
+   APLICACIÓN FORZADA A HOME Y FOOTER
+   ========================================= */
+
+/* ALTO CONTRASTE - Aplicación específica y forzada */
+.high-contrast-mode .home-page,
+.high-contrast-mode .home-view,
+.high-contrast-mode .home-page .hero-section,
+.high-contrast-mode .home-page .features-section,
+.high-contrast-mode .home-page .feature-card,
+.high-contrast-mode .home-page .hero-content {
+  background-color: white !important;
+  color: black !important;
+}
+
+.high-contrast-mode .home-page .hero-title,
+.high-contrast-mode .home-page .hero-subtitle,
+.high-contrast-mode .home-page .section-title,
+.high-contrast-mode .home-page .feature-card h3,
+.high-contrast-mode .home-page .feature-card p {
+  color: black !important;
+}
+
+.high-contrast-mode .home-page .cta-section {
+  background-color: black !important;
+  color: white !important;
+}
+
+.high-contrast-mode .home-page .cta-section h2,
+.high-contrast-mode .home-page .cta-section p {
+  color: white !important;
+}
+
+.high-contrast-mode .footer,
+.high-contrast-mode .footer * {
+  background-color: black !important;
+  color: white !important;
+}
+
+.high-contrast-mode .footer-link {
+  color: yellow !important;
+}
+
+/* TEXTO ESCALADO - Aplicación a Home */
+html[class*="text-scale-"] .home-page h1,
+html[class*="text-scale-"] .home-page h2,
+html[class*="text-scale-"] .home-page h3,
+html[class*="text-scale-"] .home-page p,
+html[class*="text-scale-"] .footer p,
+html[class*="text-scale-"] .footer a {
+  font-size: calc(1em * var(--text-scale-factor)) !important;
+}
+
+/* ENFOQUE MEJORADO - Aplicación específica */
+.enhanced-focus-mode .home-page .btn:focus,
+.enhanced-focus-mode .footer a:focus {
+  outline: 4px solid var(--focus-color) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 7px rgba(33, 150, 243, 0.4) !important;
+  z-index: 1000 !important;
+}
+
+/* REDUCCIÓN DE ANIMACIONES - Para Home */
+.reduced-motion-mode .home-page *,
+.reduced-motion-mode .footer * {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+  .v-btn {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 12px !important;
+  }
+  
+  .v-list-item {
+    min-height: 56px !important;
+    padding: 12px 16px !important;
+  }
+  
+  /* Mejorar espaciado del menú de accesibilidad */
+  .v-card .v-card-text {
+    padding: 20px !important;
+  }
+  
+  /* Asegurar que el texto sea legible en móviles */
+  html[class*="text-scale-"] {
+    font-size: calc(16px * var(--text-scale-factor)) !important;
+  }
+}
+
+/* =========================================
+   ESTADOS DE HOVER Y FOCUS
+   ========================================= */
+
+/* Mejorar estados hover */
+.v-btn:hover:not(:disabled) {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.2s ease !important;
+}
+
+.reduced-motion-mode .v-btn:hover:not(:disabled) {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Estados de carga mejorados */
+.v-btn--loading {
+  pointer-events: none !important;
+  opacity: 0.7 !important;
+}
+
+/* =========================================
+   COMPATIBILIDAD CON TEMAS VUETIFY
+   ========================================= */
+
+/* Asegurar que los temas personalizados funcionen correctamente */
+.v-theme--light {
+  --focus-color: #1976D2;
+  --enhanced-focus-color: #1976D2;
+}
+
+.v-theme--dark {
+  --focus-color: #64B5F6;
+  --enhanced-focus-color: #64B5F6;
+}
+
+/* Mejorar contraste en tarjetas */
+.v-theme--dark .v-card {
+  background-color: #2D2D2D !important;
+  border: 1px solid #404040 !important;
+}
+
+.v-theme--light .v-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E0E0E0 !important;
+}
+
+/* =========================================
+   MEJORAS ESPECÍFICAS PARA NAVEGACIÓN
+   ========================================= */
+
+/* Mejorar navegación por teclado - integrado con foco mejorado */
+.v-navigation-drawer .v-list-item:focus {
+  background-color: rgba(var(--v-theme-primary), 0.1) !important;
+}
+
+/* Override cuando foco mejorado está activo */
+.enhanced-focus-mode .v-navigation-drawer .v-list-item:focus {
+  background-color: var(--enhanced-focus-bg) !important;
+  outline: var(--enhanced-focus-width) solid var(--enhanced-focus-color) !important;
+  border-left: 6px solid var(--enhanced-focus-color) !important;
+}
+
+/* Indicador visual para elementos activos */
+.v-navigation-drawer .v-list-item--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: rgb(var(--v-theme-primary));
+}
+
+/* Mejorar indicador cuando foco mejorado está activo */
+.enhanced-focus-mode .v-navigation-drawer .v-list-item--active:focus::before {
+  width: 8px;
+  background-color: var(--enhanced-focus-color);
+}
+
+/* =========================================
+   PRINT STYLES
+   ========================================= */
+@media print {
+  /* Asegurar buena impresión */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  .v-btn,
+  .v-navigation-drawer,
+  .accessibility-controls {
+    display: none !important;
+  }
+}

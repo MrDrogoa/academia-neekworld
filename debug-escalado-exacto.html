@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Escalado Text - Vue Simulation</title>
+    <style>
+        /* EXACTO MISMO CSS QUE EN LA APP */
+        :root {
+            --accessibility-text-scale: 1;
+        }
+
+        .text-scale-80 {
+            --accessibility-text-scale: 0.8;
+        }
+
+        .text-scale-90 {
+            --accessibility-text-scale: 0.9;
+        }
+
+        .text-scale-100 {
+            --accessibility-text-scale: 1;
+        }
+
+        .text-scale-110 {
+            --accessibility-text-scale: 1.1;
+        }
+
+        .text-scale-120 {
+            --accessibility-text-scale: 1.2;
+        }
+
+        .text-scale-130 {
+            --accessibility-text-scale: 1.3;
+        }
+
+        /* Test con exacto mismo selector que en accessibility.css */
+        html.text-scale-80 body p,
+        html.text-scale-90 body p,
+        html.text-scale-100 body p,
+        html.text-scale-110 body p,
+        html.text-scale-120 body p,
+        html.text-scale-130 body p {
+            font-size: calc(1em * var(--accessibility-text-scale)) !important;
+            border: 2px solid red !important; /* Debug visual */
+            background: yellow !important; /* Debug visual */
+        }
+
+        /* Test selectores específicos para Vuetify components simulados */
+        html.text-scale-80 .v-application .v-card-text,
+        html.text-scale-90 .v-application .v-card-text,
+        html.text-scale-100 .v-application .v-card-text,
+        html.text-scale-110 .v-application .v-card-text,
+        html.text-scale-120 .v-application .v-card-text,
+        html.text-scale-130 .v-application .v-card-text {
+            font-size: calc(1rem * var(--accessibility-text-scale)) !important;
+            border: 2px solid blue !important; /* Debug visual */
+            background: lightblue !important; /* Debug visual */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        .test-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .v-application {
+            background: #f5f5f5;
+            padding: 10px;
+        }
+
+        .v-card-text {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: black;
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <div>HTML class: <span id="html-class">ninguna</span></div>
+        <div>Body class: <span id="body-class">ninguna</span></div>
+        <div>CSS Variable: <span id="css-var">1</span></div>
+        <div>Computed font-size: <span id="computed-size">--</span></div>
+    </div>
+
+    <h1>Debug Escalado de Texto - Simulación Exacta</h1>
+    
+    <div class="test-container">
+        <h2>Párrafo de prueba</h2>
+        <p id="test-p">Este párrafo debería cambiar de tamaño cuando se apliquen las clases. Tiene border rojo y fondo amarillo cuando funciona.</p>
+        
+        <div class="v-application">
+            <div class="v-card-text" id="test-vuetify">
+                Este es un componente Vuetify simulado (.v-card-text). Debería tener border azul y fondo azul claro cuando funciona.
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button onclick="applyScale('text-scale-100')">100%</button>
+        <button onclick="applyScale('text-scale-110')">110%</button>
+        <button onclick="applyScale('text-scale-120')">120%</button>
+        <button onclick="applyScale('text-scale-130')">130%</button>
+        <button onclick="clearScale()">Clear</button>
+    </div>
+
+    <script>
+        function updateDebugInfo() {
+            const html = document.documentElement;
+            const body = document.body;
+            const testP = document.getElementById('test-p');
+            
+            document.getElementById('html-class').textContent = html.className || 'ninguna';
+            document.getElementById('body-class').textContent = body.className || 'ninguna';
+            
+            const computedStyle = getComputedStyle(html);
+            const cssVar = computedStyle.getPropertyValue('--accessibility-text-scale');
+            document.getElementById('css-var').textContent = cssVar || '1';
+            
+            const computedFontSize = getComputedStyle(testP).fontSize;
+            document.getElementById('computed-size').textContent = computedFontSize;
+        }
+
+        function applyScale(className) {
+            const html = document.documentElement;
+            const body = document.body;
+            
+            // Limpiar clases anteriores
+            html.className = html.className.replace(/text-scale-\w+/g, '');
+            body.className = body.className.replace(/text-scale-\w+/g, '');
+            
+            // Aplicar nueva clase (simulando exactamente lo que hace useAccessibility.js)
+            html.classList.add(className);
+            body.classList.add(className);
+            
+            console.log(`Aplicada clase: ${className} al html y body`);
+            updateDebugInfo();
+        }
+
+        function clearScale() {
+            const html = document.documentElement;
+            const body = document.body;
+            
+            html.className = html.className.replace(/text-scale-\w+/g, '');
+            body.className = body.className.replace(/text-scale-\w+/g, '');
+            
+            console.log('Clases removidas');
+            updateDebugInfo();
+        }
+
+        // Update debug info en cada cambio
+        setInterval(updateDebugInfo, 500);
+        updateDebugInfo();
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Accesibilidad - Emergencia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            display: block;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #cc3333;
+        }
+        .success {
+            background: #44ff44;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 Reset de Emergencia - Accesibilidad</h1>
+        
+        <div class="info">
+            <strong>Problema:</strong> El texto se agrandó demasiado y no puedes usar la aplicación normalmente.
+            <br><br>
+            <strong>Solución:</strong> Este botón limpiará todas las configuraciones de accesibilidad.
+        </div>
+
+        <button class="btn" onclick="resetearTodo()">
+            🔄 RESETEAR TODO A NORMAL
+        </button>
+
+        <div class="success" id="mensaje">
+            ✅ ¡Configuraciones reseteadas! Ahora recarga la página de la aplicación (F5)
+        </div>
+
+        <div style="margin-top: 30px; font-size: 14px; color: #666;">
+            <p><strong>Qué hace este botón:</strong></p>
+            <ul style="text-align: left;">
+                <li>Limpia todas las configuraciones guardadas</li>
+                <li>Resetea el tamaño de texto a 100%</li>
+                <li>Desactiva alto contraste</li>
+                <li>Restaura tema claro</li>
+                <li>Desactiva todas las opciones de accesibilidad</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function resetearTodo() {
+            console.log('🚨 Iniciando reset de emergencia...')
+            
+            // Limpiar todo el localStorage relacionado con accesibilidad
+            const keys = [
+                'accessibility-theme',
+                'accessibility-high-contrast', 
+                'accessibility-text-size',
+                'accessibility-reduced-motion',
+                'accessibility-enhanced-focus'
+            ]
+            
+            keys.forEach(key => {
+                localStorage.removeItem(key)
+                console.log(`🗑️ Eliminado: ${key}`)
+            })
+            
+            // Limpiar clases CSS del documento
+            const root = document.documentElement
+            const body = document.body
+            
+            // Clases de texto
+            const textClasses = [
+                'text-scale-80', 'text-scale-90', 'text-scale-100',
+                'text-scale-110', 'text-scale-120', 'text-scale-130'
+            ]
+            
+            // Otras clases de accesibilidad
+            const accessibilityClasses = [
+                'high-contrast-mode',
+                'reduced-motion-mode', 
+                'enhanced-focus-mode'
+            ]
+            
+            const allClasses = [...textClasses, ...accessibilityClasses]
+            
+            allClasses.forEach(className => {
+                root.classList.remove(className)
+                body.classList.remove(className)
+                console.log(`🧹 Removida clase: ${className}`)
+            })
+            
+            // Resetear variables CSS
+            root.style.removeProperty('--text-scale-factor')
+            root.style.removeProperty('--accessibility-text-scale')
+            
+            console.log('✅ Reset completo realizado')
+            
+            // Mostrar mensaje de éxito
+            document.getElementById('mensaje').style.display = 'block'
+            
+            // Cambiar texto del botón
+            const btn = document.querySelector('.btn')
+            btn.textContent = '✅ ¡RESETEADO! Ahora recarga la app'
+            btn.style.background = '#44ff44'
+            btn.style.color = 'black'
+        }
+    </script>
+</body>
+</html>

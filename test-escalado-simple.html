@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Escalado de Texto</title>
+    <style>
+        /* Variables CSS para escalado dinámico */
+        :root {
+            --accessibility-text-scale: 1;
+        }
+
+        .text-scale-110 {
+            --accessibility-text-scale: 1.1;
+        }
+
+        .text-scale-120 {
+            --accessibility-text-scale: 1.2;
+        }
+
+        /* ELEMENTOS DE TEXTO PRINCIPALES */
+        html[class*="text-scale-"] p,
+        html[class*="text-scale-"] span:not(.v-icon):not(.mdi):not([class*="icon"]),
+        html[class*="text-scale-"] div:not(.v-icon):not(.mdi):not([class*="icon"]),
+        html[class*="text-scale-"] h1,
+        html[class*="text-scale-"] h2,
+        html[class*="text-scale-"] h3,
+        html[class*="text-scale-"] button {
+            font-size: calc(1em * var(--accessibility-text-scale)) !important;
+            border: 2px solid red; /* Para debug visual */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .test-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Escalado de Texto</h1>
+    
+    <div class="test-container">
+        <h2>Sin escalado (100%)</h2>
+        <p>Este es un párrafo de prueba normal.</p>
+        <h3>Título H3 normal</h3>
+        <div>Un div con texto</div>
+        <button>Botón de prueba</button>
+    </div>
+
+    <div class="test-container text-scale-110">
+        <h2>Con escalado 110%</h2>
+        <p>Este párrafo debería ser 10% más grande.</p>
+        <h3>Título H3 escalado</h3>
+        <div>Un div con texto escalado</div>
+        <button>Botón escalado</button>
+    </div>
+
+    <div class="test-container text-scale-120">
+        <h2>Con escalado 120%</h2>
+        <p>Este párrafo debería ser 20% más grande.</p>
+        <h3>Título H3 escalado</h3>
+        <div>Un div con texto escalado</div>
+        <button>Botón escalado</button>
+    </div>
+
+    <script>
+        console.log('Test de escalado cargado');
+        
+        // Agregar clase al html para simular el comportamiento de Vue
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM cargado, verificando escalado...');
+            
+            // Simular cambio de clase como lo hace Vue
+            setTimeout(() => {
+                document.documentElement.className = 'text-scale-110';
+                console.log('Aplicada clase text-scale-110 al html');
+            }, 1000);
+            
+            setTimeout(() => {
+                document.documentElement.className = 'text-scale-120';
+                console.log('Aplicada clase text-scale-120 al html');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Final - Escalado de Texto</title>
+    <link rel="stylesheet" href="./src/assets/css/accessibility.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .controls {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            border: 2px solid #ddd;
+        }
+        
+        .btn {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1e5f3f;
+        }
+        
+        .btn.active {
+            background: #ff6b35;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+        
+        .test-content {
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+        }
+        
+        .status {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card-text {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        h1 { font-size: 32px; color: #2E8B57; margin-bottom: 20px; }
+        h2 { font-size: 24px; color: #444; margin: 20px 0 15px 0; }
+        h3 { font-size: 20px; color: #666; margin: 15px 0 10px 0; }
+        p { font-size: 16px; color: #333; margin: 10px 0; }
+        
+        /* Simulación de clases Vuetify */
+        .v-btn {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .v-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .v-card-title {
+            padding: 16px;
+            font-size: 20px;
+            font-weight: 500;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .v-card-text {
+            padding: 16px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔍 Test Final - Sistema de Escalado de Texto</h1>
+        
+        <div class="controls">
+            <h3>Controles de Escalado:</h3>
+            <button class="btn" onclick="applyScale('text-scale-80')">80% - Pequeño</button>
+            <button class="btn" onclick="applyScale('text-scale-90')">90% - Reducido</button>
+            <button class="btn active" onclick="applyScale('text-scale-100')">100% - Normal</button>
+            <button class="btn" onclick="applyScale('text-scale-110')">110% - Aumentado</button>
+            <button class="btn" onclick="applyScale('text-scale-120')">120% - Grande</button>
+            <button class="btn" onclick="applyScale('text-scale-130')">130% - Muy Grande</button>
+        </div>
+        
+        <div class="status" id="status">
+            Estado actual: Esperando selección...
+        </div>
+        
+        <div class="test-content">
+            <h2>📄 Contenido de Prueba</h2>
+            
+            <p>Este es un párrafo de prueba con texto normal. Debería cambiar de tamaño cuando apliques diferentes escalas usando los botones de arriba.</p>
+            
+            <h3>Lista de elementos a verificar:</h3>
+            <ul>
+                <li>Párrafos normales (como este)</li>
+                <li>Títulos H1, H2, H3</li>
+                <li>Botones de Vuetify</li>
+                <li>Contenido de cards</li>
+                <li>Texto de formularios</li>
+            </ul>
+            
+            <div class="card v-card">
+                <div class="card-title v-card-title">Título de Tarjeta</div>
+                <div class="card-text v-card-text">
+                    Este es el contenido de una tarjeta simulando el componente v-card de Vuetify. 
+                    El texto debería escalar correctamente según la configuración seleccionada.
+                </div>
+            </div>
+            
+            <h3>Botones de prueba:</h3>
+            <button class="v-btn">Botón Vuetify Simulado</button>
+            <button class="btn">Botón HTML Normal</button>
+            
+            <h3>Información técnica:</h3>
+            <div class="status">
+                <strong>Clase HTML actual:</strong> <span id="current-class">text-scale-100</span><br>
+                <strong>Variable CSS:</strong> <span id="css-variable">1</span><br>
+                <strong>Font-size computado (p):</strong> <span id="computed-size">16px</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScale = 'text-scale-100';
+        
+        function applyScale(scaleClass) {
+            console.log(`🎯 Aplicando escala: ${scaleClass}`);
+            
+            // Remover todas las clases de escala anteriores
+            const scaleClasses = ['text-scale-80', 'text-scale-90', 'text-scale-100', 'text-scale-110', 'text-scale-120', 'text-scale-130'];
+            scaleClasses.forEach(cls => {
+                document.documentElement.classList.remove(cls);
+                document.body.classList.remove(cls);
+            });
+            
+            // Aplicar nueva clase
+            document.documentElement.classList.add(scaleClass);
+            document.body.classList.add(scaleClass);
+            currentScale = scaleClass;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Actualizar información
+            updateStatus();
+            
+            console.log(`✅ Escala aplicada: ${scaleClass}`);
+            console.log(`🏷️ Clases en HTML: ${document.documentElement.className}`);
+        }
+        
+        function updateStatus() {
+            const statusElement = document.getElementById('status');
+            const classElement = document.getElementById('current-class');
+            const variableElement = document.getElementById('css-variable');
+            const computedElement = document.getElementById('computed-size');
+            
+            // Actualizar clase actual
+            classElement.textContent = currentScale;
+            
+            // Obtener variable CSS
+            const computedStyle = window.getComputedStyle(document.documentElement);
+            const cssVariable = computedStyle.getPropertyValue('--accessibility-text-scale').trim();
+            variableElement.textContent = cssVariable || 'No definida';
+            
+            // Obtener tamaño computado
+            const testP = document.querySelector('p');
+            if (testP) {
+                const pStyle = window.getComputedStyle(testP);
+                computedElement.textContent = pStyle.fontSize;
+            }
+            
+            // Actualizar estado
+            const percentage = currentScale.replace('text-scale-', '') + '%';
+            statusElement.innerHTML = `✅ Estado actual: <strong>${percentage}</strong> - Clase: <strong>${currentScale}</strong>`;
+        }
+        
+        // Verificar al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Página cargada, verificando sistema...');
+            updateStatus();
+            
+            // Aplicar escala por defecto
+            applyScale('text-scale-100');
+        });
+        
+        // Debug automático cada 2 segundos
+        setInterval(() => {
+            const computedStyle = window.getComputedStyle(document.documentElement);
+            const variable = computedStyle.getPropertyValue('--accessibility-text-scale');
+            console.log(`🔍 Variable CSS actual: ${variable}`);
+            console.log(`🏷️ Clases HTML: ${document.documentElement.className}`);
+        }, 2000);
+    </script>
+</body>
+</html>

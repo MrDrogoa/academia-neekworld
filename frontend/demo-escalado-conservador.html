@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo: Escalado Conservador de Texto</title>
+    <link rel="stylesheet" href="./src/assets/css/accessibility.css">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        /* Simular estructura de Vuetify */
+        .v-application {
+            background: #f5f5f5;
+        }
+        
+        .v-app-bar {
+            background: #2E8B57;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .v-toolbar-title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        
+        .v-btn {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0 4px;
+            transition: background 0.3s;
+        }
+        
+        .v-btn:hover {
+            background: #1e5f3f;
+        }
+        
+        .v-btn.secondary {
+            background: #6c757d;
+        }
+        
+        .v-main {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .v-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        
+        .v-card-title {
+            padding: 16px 24px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 18px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .v-card-text {
+            padding: 24px;
+        }
+        
+        .v-text-field {
+            margin-bottom: 16px;
+        }
+        
+        .v-text-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #495057;
+        }
+        
+        .v-text-field input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .v-text-field input:focus {
+            outline: none;
+            border-color: #2E8B57;
+        }
+        
+        .content-area {
+            background: white;
+            padding: 32px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .controls-panel {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 280px;
+            background: white;
+            border: 2px solid #2E8B57;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .controls-panel h3 {
+            margin: 0 0 16px 0;
+            color: #2E8B57;
+            font-size: 16px;
+        }
+        
+        .scale-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .scale-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .scale-btn.normal { background: #6c757d; color: white; }
+        .scale-btn.small-inc { background: #28a745; color: white; }
+        .scale-btn.medium-inc { background: #ffc107; color: black; }
+        .scale-btn.large-inc { background: #dc3545; color: white; }
+        .scale-btn.active { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        
+        .status-panel {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .highlight-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .warning-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        h1 { color: #2E8B57; margin-bottom: 16px; }
+        h2 { color: #495057; margin: 24px 0 16px 0; }
+        h3 { color: #6c757d; margin: 20px 0 12px 0; }
+        p { line-height: 1.6; margin-bottom: 16px; color: #333; }
+        
+        .example-nav {
+            background: #495057;
+            padding: 12px 24px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .example-nav .v-btn {
+            background: transparent;
+            border: 1px solid #fff;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body class="v-application">
+    <!-- Simulación de App Bar -->
+    <div class="v-app-bar">
+        <div class="v-toolbar-title">🎓 Academia Virtual - Demo Escalado</div>
+        <div>
+            <button class="v-btn">Inicio</button>
+            <button class="v-btn">Cursos</button>
+            <button class="v-btn">Perfil</button>
+        </div>
+    </div>
+    
+    <!-- Panel de controles -->
+    <div class="controls-panel">
+        <h3>🔍 Control de Escalado</h3>
+        <div class="scale-buttons">
+            <button class="scale-btn normal active" onclick="applyScale('text-scale-100')">100% Normal</button>
+            <button class="scale-btn small-inc" onclick="applyScale('text-scale-110')">110% Pequeño</button>
+            <button class="scale-btn medium-inc" onclick="applyScale('text-scale-120')">120% Medio</button>
+            <button class="scale-btn large-inc" onclick="applyScale('text-scale-130')">130% Grande</button>
+        </div>
+        <div class="status-panel">
+            <strong>Estado:</strong> <span id="current-status">Normal (100%)</span><br>
+            <strong>Elementos que cambian:</strong> Solo contenido de texto<br>
+            <strong>Elementos que NO cambian:</strong> Botones, navegación, títulos de cards
+        </div>
+    </div>
+    
+    <!-- Contenido principal -->
+    <main class="v-main">
+        <div class="content-area">
+            <h1>Bienvenido a Academia Virtual</h1>
+            <p>Este es un ejemplo de cómo funciona el escalado conservador de texto. Solo el contenido principal cambia de tamaño, mientras que los elementos de navegación y UI mantienen sus proporciones originales.</p>
+            
+            <div class="highlight-box">
+                <h3>✅ Elementos que SÍ cambian de tamaño:</h3>
+                <p>• Párrafos de contenido como este</p>
+                <p>• Títulos principales (H1, H2) dentro del contenido</p>
+                <p>• Texto de campos de entrada</p>
+                <p>• Contenido dentro de .v-card-text</p>
+            </div>
+            
+            <div class="warning-box">
+                <h3>🚫 Elementos que NO cambian de tamaño:</h3>
+                <p>• Botones de navegación y acciones</p>
+                <p>• Títulos de cards (.v-card-title)</p>
+                <p>• Barras de navegación y menús</p>
+                <p>• Iconos y elementos de interfaz</p>
+            </div>
+        </div>
+        
+        <div class="demo-grid">
+            <div class="v-card">
+                <div class="v-card-title">
+                    📚 Título de Card (NO cambia)
+                </div>
+                <div class="v-card-text">
+                    <h2>Curso de JavaScript</h2>
+                    <p>Este párrafo SÍ cambia de tamaño porque está dentro del contenido de la card. Es texto de contenido que debe ser escalable para mejorar la legibilidad.</p>
+                    
+                    <div class="v-text-field">
+                        <label>Campo de entrada (el texto SÍ cambia):</label>
+                        <input type="text" placeholder="Escribe aquí...">
+                    </div>
+                    
+                    <button class="v-btn">Inscribirse (NO cambia)</button>
+                    <button class="v-btn secondary">Ver más (NO cambia)</button>
+                </div>
+            </div>
+            
+            <div class="v-card">
+                <div class="v-card-title">
+                    🎯 Información Importante (NO cambia)
+                </div>
+                <div class="v-card-text">
+                    <h2>Características del Sistema</h2>
+                    <p>El escalado conservador garantiza que la usabilidad se mantenga intacta. Los botones, menús y elementos de navegación conservan sus tamaños para evitar problemas de diseño.</p>
+                    
+                    <h3>Beneficios:</h3>
+                    <p>• Mejor legibilidad del contenido</p>
+                    <p>• Diseño responsive mantenido</p>
+                    <p>• Navegación consistente</p>
+                    <p>• Experiencia de usuario mejorada</p>
+                    
+                    <div class="example-nav">
+                        <button class="v-btn">Botón 1</button>
+                        <button class="v-btn">Botón 2</button>
+                        <button class="v-btn">Botón 3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <h2>Formulario de Ejemplo</h2>
+            <p>Los campos de entrada también escalan para mejorar la accesibilidad:</p>
+            
+            <div class="v-text-field">
+                <label>Nombre completo:</label>
+                <input type="text" placeholder="Tu nombre aquí">
+            </div>
+            
+            <div class="v-text-field">
+                <label>Correo electrónico:</label>
+                <input type="email" placeholder="ejemplo@correo.com">
+            </div>
+            
+            <button class="v-btn">Enviar (NO cambia)</button>
+            <button class="v-btn secondary">Cancelar (NO cambia)</button>
+        </div>
+    </main>
+    
+    <script>
+        let currentScale = 'text-scale-100';
+        
+        function applyScale(scaleClass) {
+            console.log(`🎯 Aplicando escalado: ${scaleClass}`);
+            
+            // Remover clases anteriores
+            const scaleClasses = ['text-scale-80', 'text-scale-90', 'text-scale-100', 'text-scale-110', 'text-scale-120', 'text-scale-130'];
+            scaleClasses.forEach(cls => {
+                document.documentElement.classList.remove(cls);
+                document.body.classList.remove(cls);
+            });
+            
+            // Aplicar nueva clase
+            document.documentElement.classList.add(scaleClass);
+            document.body.classList.add(scaleClass);
+            currentScale = scaleClass;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.scale-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Actualizar estado
+            const percentage = scaleClass.replace('text-scale-', '');
+            const statusText = {
+                '100': 'Normal (100%)',
+                '110': 'Pequeño aumento (110%)',
+                '120': 'Aumento medio (120%)',
+                '130': 'Aumento grande (130%)'
+            };
+            
+            document.getElementById('current-status').textContent = statusText[percentage] || percentage + '%';
+            
+            console.log(`✅ Escalado aplicado: ${percentage}%`);
+            
+            // Verificar resultados
+            setTimeout(verifyResults, 500);
+        }
+        
+        function verifyResults() {
+            console.log('🔍 Verificando resultados...');
+            
+            // Verificar párrafo de contenido
+            const contentP = document.querySelector('.v-card-text p');
+            if (contentP) {
+                const fontSize = window.getComputedStyle(contentP).fontSize;
+                console.log(`📝 Párrafo de contenido: ${fontSize}`);
+            }
+            
+            // Verificar botón (NO debe cambiar)
+            const btn = document.querySelector('.v-btn');
+            if (btn) {
+                const fontSize = window.getComputedStyle(btn).fontSize;
+                console.log(`🔘 Botón: ${fontSize} (debe ser ~14px)`);
+            }
+            
+            // Verificar título de card (NO debe cambiar)
+            const cardTitle = document.querySelector('.v-card-title');
+            if (cardTitle) {
+                const fontSize = window.getComputedStyle(cardTitle).fontSize;
+                console.log(`🏷️ Título de card: ${fontSize} (debe ser ~18px)`);
+            }
+        }
+        
+        // Aplicar escala inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            applyScale('text-scale-100');
+        });
+    </script>
+</body>
+</html>

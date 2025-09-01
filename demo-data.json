@@ -1,0 +1,22 @@
+﻿{
+  "users": [
+    {
+      "email": "admin@academia.com",
+      "password": "Admin123!",
+      "name": "Administrador",
+      "role": "admin"
+    },
+    {
+      "email": "profesor@academia.com",
+      "password": "Profesor123!",
+      "name": "Juan Profesor",
+      "role": "teacher"
+    },
+    {
+      "email": "estudiante@academia.com",
+      "password": "Estudiante123!",
+      "name": "Maria Estudiante",
+      "role": "student"
+    }
+  ]
+}

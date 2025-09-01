@@ -1,0 +1,197 @@
+/* Import variables first */
+@import './variables.scss';
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos globales */
+body {
+  font-family: $font-primary;
+  background-color: $color-background;
+  color: $color-text;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  font-size: $font-size-base;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  color: $color-primary;
+  line-height: 1.2;
+  margin: 0 0 0.5em 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    text-decoration: underline;
+    color: darken($color-primary, 10%);
+  }
+}
+
+/* Common utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Margin utilities */
+.mt-1 { margin-top: 4px !important; }
+.mt-2 { margin-top: 8px !important; }
+.mt-3 { margin-top: 12px !important; }
+.mt-4 { margin-top: 16px !important; }
+.mt-5 { margin-top: 20px !important; }
+.mt-6 { margin-top: 24px !important; }
+
+.mb-1 { margin-bottom: 4px !important; }
+.mb-2 { margin-bottom: 8px !important; }
+.mb-3 { margin-bottom: 12px !important; }
+.mb-4 { margin-bottom: 16px !important; }
+.mb-5 { margin-bottom: 20px !important; }
+.mb-6 { margin-bottom: 24px !important; }
+
+.ms-1 { margin-left: 4px !important; }
+.ms-2 { margin-left: 8px !important; }
+.ms-3 { margin-left: 12px !important; }
+.ms-4 { margin-left: 16px !important; }
+
+.me-1 { margin-right: 4px !important; }
+.me-2 { margin-right: 8px !important; }
+.me-3 { margin-right: 12px !important; }
+.me-4 { margin-right: 16px !important; }
+
+/* Display utilities */
+.d-flex { display: flex !important; }
+.justify-space-between { justify-content: space-between !important; }
+.align-center { align-items: center !important; }
+.text-center { text-align: center !important; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-base;
+  text-align: center;
+  text-decoration: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: $color-light;
+  border-color: $color-primary;
+  
+  &:hover {
+    background-color: darken($color-primary, 10%);
+    border-color: darken($color-primary, 10%);
+  }
+}
+
+.btn-secondary {
+  background-color: $color-secondary;
+  color: $color-light;
+  border-color: $color-secondary;
+  
+  &:hover {
+    background-color: darken($color-secondary, 10%);
+    border-color: darken($color-secondary, 10%);
+  }
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: $spacing-sm;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $color-dark;
+  background-color: $color-light;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba($color-primary, 0.25);
+  }
+}
+
+/* Alerts */
+.alert {
+  position: relative;
+  padding: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-md;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+/* Dashboard styles */
+.dashboard-card {
+  margin-bottom: 20px;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Add box shadow to all cards */
+.v-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.v-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px);
+}
+
+/* Make sure buttons have proper spacing */
+.v-btn {
+  text-transform: none !important; /* Prevents all-caps button text */
+}
+
+/* Fix icon alignment in buttons */
+.v-btn .v-icon {
+  margin-right: 4px;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CSS Accesibilidad</title>
+    <style>
+        /* Copiar las clases CSS de accesibilidad para probar */
+        :root {
+            --text-scale-factor: 1;
+        }
+
+        .text-scale-80 { --text-scale-factor: 0.8; }
+        .text-scale-90 { --text-scale-factor: 0.9; }
+        .text-scale-100 { --text-scale-factor: 1; }
+        .text-scale-110 { --text-scale-factor: 1.1; }
+        .text-scale-120 { --text-scale-factor: 1.2; }
+        .text-scale-130 { --text-scale-factor: 1.3; }
+
+        html[class*="text-scale-"] * {
+            font-size: calc(1em * var(--text-scale-factor)) !important;
+        }
+
+        .high-contrast-mode {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        .high-contrast-mode * {
+            background-color: white !important;
+            color: black !important;
+            border-color: black !important;
+        }
+
+        .enhanced-focus-mode *:focus {
+            outline: 3px solid #2196F3 !important;
+            outline-offset: 2px !important;
+        }
+
+        .reduced-motion-mode * {
+            animation-duration: 0.001ms !important;
+            transition-duration: 0.001ms !important;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .test-button {
+            padding: 10px 20px;
+            margin: 10px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .test-text {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de CSS de Accesibilidad</h1>
+    
+    <div class="test-text">
+        <p>Este es un texto de prueba para verificar el escalado de fuentes.</p>
+        <button class="test-button" onclick="testTextSize()">Probar Tamaño de Texto</button>
+        <button class="test-button" onclick="testHighContrast()">Probar Alto Contraste</button>
+        <button class="test-button" onclick="testFocus()">Probar Foco Mejorado</button>
+        <button class="test-button" onclick="reset()">Reset</button>
+    </div>
+
+    <div id="status" style="margin-top: 20px; padding: 10px; background: #f0f0f0;">
+        <strong>Estado actual:</strong> <span id="current-status">Normal</span>
+    </div>
+
+    <script>
+        let currentScale = 100;
+        
+        function testTextSize() {
+            const html = document.documentElement;
+            // Remover clases existentes
+            html.classList.remove('text-scale-80', 'text-scale-90', 'text-scale-100', 'text-scale-110', 'text-scale-120', 'text-scale-130');
+            
+            // Ciclar entre tamaños
+            currentScale += 10;
+            if (currentScale > 130) currentScale = 80;
+            
+            html.classList.add(`text-scale-${currentScale}`);
+            updateStatus(`Texto al ${currentScale}%`);
+            console.log(`Aplicando clase: text-scale-${currentScale}`);
+        }
+        
+        function testHighContrast() {
+            const html = document.documentElement;
+            html.classList.toggle('high-contrast-mode');
+            updateStatus(html.classList.contains('high-contrast-mode') ? 'Alto contraste activado' : 'Alto contraste desactivado');
+        }
+        
+        function testFocus() {
+            const html = document.documentElement;
+            html.classList.toggle('enhanced-focus-mode');
+            updateStatus(html.classList.contains('enhanced-focus-mode') ? 'Foco mejorado activado' : 'Foco mejorado desactivado');
+        }
+        
+        function reset() {
+            const html = document.documentElement;
+            html.classList.remove('text-scale-80', 'text-scale-90', 'text-scale-100', 'text-scale-110', 'text-scale-120', 'text-scale-130', 'high-contrast-mode', 'enhanced-focus-mode');
+            html.classList.add('text-scale-100');
+            currentScale = 100;
+            updateStatus('Normal (reset)');
+        }
+        
+        function updateStatus(status) {
+            document.getElementById('current-status').textContent = status;
+        }
+        
+        // Inicializar
+        reset();
+    </script>
+</body>
+</html>

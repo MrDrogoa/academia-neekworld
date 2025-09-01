@@ -1,0 +1,49 @@
+// Prueba simple para verificar el servicio de Neekworld
+const API_URL = 'https://neekworld.cl/NW/course/'
+
+async function testNeekworldAPI() {
+  console.log('🔍 Probando conexión directa a Neekworld...')
+  
+  try {
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      },
+      mode: 'no-cors' // Para evitar CORS en pruebas
+    })
+    
+    console.log('Status:', response.status)
+    console.log('Response type:', response.type)
+    
+    if (response.type === 'opaque') {
+      console.log('⚠️ Respuesta opaca - CORS bloqueado, pero la URL es accesible')
+      console.log('✅ La API existe y responde')
+    }
+    
+  } catch (error) {
+    console.error('❌ Error:', error.message)
+  }
+  
+  // Simular datos para la demo
+  console.log('\n📚 Datos simulados para la demo:')
+  const mockCourses = [
+    {
+      id: 'nw_001',
+      title: 'Metodologías de Enseñanza Digital',
+      category: 'Educación y Pedagogía',
+      level: 'Intermedio'
+    },
+    {
+      id: 'nw_005',
+      title: 'Desarrollo Web Full Stack',
+      category: 'Tecnología y Herramientas Digitales',
+      level: 'Intermedio'
+    }
+  ]
+  
+  console.table(mockCourses)
+}
+
+testNeekworldAPI()
