@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <div class="login-container">
-      <h1>Iniciar Sesión</h1>
+      <h1>Ingresar</h1>
       <form @submit.prevent="handleLogin">
         <div class="form-group">
           <label for="email">Correo Electrónico</label>
@@ -14,7 +14,7 @@
             placeholder="Ingrese su correo electrónico"
           />
         </div>
-        
+
         <div class="form-group">
           <label for="password">Contraseña</label>
           <div class="password-input">
@@ -26,39 +26,39 @@
               required
               placeholder="Ingrese su contraseña"
             />
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="toggle-password"
               @click="showPassword = !showPassword"
             >
-              {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+              {{ showPassword ? "Ocultar" : "Mostrar" }}
             </button>
           </div>
         </div>
-        
+
         <div v-if="errorMessage" class="alert alert-danger" role="alert">
           {{ errorMessage }}
         </div>
-        
-        <button
-          type="submit"
-          class="btn btn-primary"
-          :disabled="isLoading"
-        >
+
+        <button type="submit" class="btn btn-primary" :disabled="isLoading">
           {{ isLoading ? "Iniciando sesión..." : "Iniciar Sesión" }}
         </button>
       </form>
-      
+
       <div class="links">
-        <router-link to="/forgot-password">¿Olvidaste tu contraseña?</router-link>
-        <router-link to="/register">¿No tienes una cuenta? Regístrate aquí</router-link>
+        <router-link to="/forgot-password"
+          >¿Olvidaste tu contraseña?</router-link
+        >
+        <router-link to="/register"
+          >¿No tienes una cuenta? Regístrate aquí</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "LoginView",
@@ -71,34 +71,37 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isLoading', 'getError', 'isAuthenticated']),
+    ...mapGetters(["isLoading", "getError", "isAuthenticated"]),
     isLoading() {
       return this.isLoading;
-    }
+    },
   },
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(["login"]),
     async handleLogin() {
       this.errorMessage = "";
-      
+
       try {
         await this.login({
           email: this.email,
-          password: this.password
+          password: this.password,
         });
-        
+
         // Redirect to dashboard after successful login
-        this.$router.push('/dashboard');
+        this.$router.push("/dashboard");
       } catch (error) {
         console.error("Error en el inicio de sesión:", error);
-        
+
         // Display appropriate error message
         if (error.response?.status === 401) {
-          this.errorMessage = "Credenciales incorrectas. Por favor, intenta nuevamente.";
+          this.errorMessage =
+            "Credenciales incorrectas. Por favor, intenta nuevamente.";
         } else if (error.response?.status === 404) {
-          this.errorMessage = "Usuario no encontrado. Verifica tu correo electrónico.";
+          this.errorMessage =
+            "Usuario no encontrado. Verifica tu correo electrónico.";
         } else {
-          this.errorMessage = this.getError || "Error al iniciar sesión. Inténtalo nuevamente.";
+          this.errorMessage =
+            this.getError || "Error al iniciar sesión. Inténtalo nuevamente.";
         }
       }
     },
@@ -106,9 +109,9 @@ export default {
   // If already authenticated, redirect to dashboard
   created() {
     if (this.isAuthenticated) {
-      this.$router.push('/dashboard');
+      this.$router.push("/dashboard");
     }
-  }
+  },
 };
 </script>
 
@@ -183,7 +186,7 @@ label {
   padding: 0 15px;
   background: none;
   border: none;
-  color: #2E8B57;
+  color: #2e8b57;
   cursor: pointer;
   font-size: 14px;
 }
@@ -229,7 +232,7 @@ label {
 }
 
 .links a {
-  color: #2E8B57;
+  color: #2e8b57;
   text-decoration: none;
 }
 

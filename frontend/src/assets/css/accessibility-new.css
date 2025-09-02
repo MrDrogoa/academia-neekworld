@@ -6,7 +6,7 @@
 /* Variables CSS para accesibilidad */
 :root {
   --accessibility-text-scale: 1;
-  --focus-color: #2196F3;
+  --focus-color: #2196f3;
   --focus-width: 3px;
 }
 
@@ -51,61 +51,157 @@ html.text-scale-130 *:not(.v-icon):not(.mdi):not([class*="icon"]) {
 }
 
 /* REGLAS ESPECÍFICAS PARA ELEMENTOS COMUNES CON VALORES DIRECTOS */
-html.text-scale-80 p { font-size: 12.8px !important; }
-html.text-scale-80 h1 { font-size: 25.6px !important; }
-html.text-scale-80 h2 { font-size: 19.2px !important; }
-html.text-scale-80 h3 { font-size: 16px !important; }
-html.text-scale-80 .v-btn { font-size: 11.2px !important; }
-html.text-scale-80 .v-card-title { font-size: 16px !important; }
-html.text-scale-80 .v-card-text { font-size: 12.8px !important; }
+html.text-scale-80 p {
+  font-size: 12.8px !important;
+}
+html.text-scale-80 h1 {
+  font-size: 25.6px !important;
+}
+html.text-scale-80 h2 {
+  font-size: 19.2px !important;
+}
+html.text-scale-80 h3 {
+  font-size: 16px !important;
+}
+html.text-scale-80 .v-btn {
+  font-size: 11.2px !important;
+}
+html.text-scale-80 .v-card-title {
+  font-size: 16px !important;
+}
+html.text-scale-80 .v-card-text {
+  font-size: 12.8px !important;
+}
 
-html.text-scale-90 p { font-size: 14.4px !important; }
-html.text-scale-90 h1 { font-size: 28.8px !important; }
-html.text-scale-90 h2 { font-size: 21.6px !important; }
-html.text-scale-90 h3 { font-size: 18px !important; }
-html.text-scale-90 .v-btn { font-size: 12.6px !important; }
-html.text-scale-90 .v-card-title { font-size: 18px !important; }
-html.text-scale-90 .v-card-text { font-size: 14.4px !important; }
+html.text-scale-90 p {
+  font-size: 14.4px !important;
+}
+html.text-scale-90 h1 {
+  font-size: 28.8px !important;
+}
+html.text-scale-90 h2 {
+  font-size: 21.6px !important;
+}
+html.text-scale-90 h3 {
+  font-size: 18px !important;
+}
+html.text-scale-90 .v-btn {
+  font-size: 12.6px !important;
+}
+html.text-scale-90 .v-card-title {
+  font-size: 18px !important;
+}
+html.text-scale-90 .v-card-text {
+  font-size: 14.4px !important;
+}
 
-html.text-scale-100 p { font-size: 16px !important; }
-html.text-scale-100 h1 { font-size: 32px !important; }
-html.text-scale-100 h2 { font-size: 24px !important; }
-html.text-scale-100 h3 { font-size: 20px !important; }
-html.text-scale-100 .v-btn { font-size: 14px !important; }
-html.text-scale-100 .v-card-title { font-size: 20px !important; }
-html.text-scale-100 .v-card-text { font-size: 16px !important; }
+html.text-scale-100 p {
+  font-size: 16px !important;
+}
+html.text-scale-100 h1 {
+  font-size: 32px !important;
+}
+html.text-scale-100 h2 {
+  font-size: 24px !important;
+}
+html.text-scale-100 h3 {
+  font-size: 20px !important;
+}
+html.text-scale-100 .v-btn {
+  font-size: 14px !important;
+}
+html.text-scale-100 .v-card-title {
+  font-size: 20px !important;
+}
+html.text-scale-100 .v-card-text {
+  font-size: 16px !important;
+}
 
-html.text-scale-110 p { font-size: 17.6px !important; }
-html.text-scale-110 h1 { font-size: 35.2px !important; }
-html.text-scale-110 h2 { font-size: 26.4px !important; }
-html.text-scale-110 h3 { font-size: 22px !important; }
-html.text-scale-110 .v-btn { font-size: 15.4px !important; }
-html.text-scale-110 .v-card-title { font-size: 22px !important; }
-html.text-scale-110 .v-card-text { font-size: 17.6px !important; }
+html.text-scale-110 p {
+  font-size: 17.6px !important;
+}
+html.text-scale-110 h1 {
+  font-size: 35.2px !important;
+}
+html.text-scale-110 h2 {
+  font-size: 26.4px !important;
+}
+html.text-scale-110 h3 {
+  font-size: 22px !important;
+}
+html.text-scale-110 .v-btn {
+  font-size: 15.4px !important;
+}
+html.text-scale-110 .v-card-title {
+  font-size: 22px !important;
+}
+html.text-scale-110 .v-card-text {
+  font-size: 17.6px !important;
+}
 
-html.text-scale-120 p { font-size: 19.2px !important; }
-html.text-scale-120 h1 { font-size: 38.4px !important; }
-html.text-scale-120 h2 { font-size: 28.8px !important; }
-html.text-scale-120 h3 { font-size: 24px !important; }
-html.text-scale-120 .v-btn { font-size: 16.8px !important; }
-html.text-scale-120 .v-card-title { font-size: 24px !important; }
-html.text-scale-120 .v-card-text { font-size: 19.2px !important; }
+html.text-scale-120 p {
+  font-size: 19.2px !important;
+}
+html.text-scale-120 h1 {
+  font-size: 38.4px !important;
+}
+html.text-scale-120 h2 {
+  font-size: 28.8px !important;
+}
+html.text-scale-120 h3 {
+  font-size: 24px !important;
+}
+html.text-scale-120 .v-btn {
+  font-size: 16.8px !important;
+}
+html.text-scale-120 .v-card-title {
+  font-size: 24px !important;
+}
+html.text-scale-120 .v-card-text {
+  font-size: 19.2px !important;
+}
 
-html.text-scale-130 p { font-size: 20.8px !important; }
-html.text-scale-130 h1 { font-size: 41.6px !important; }
-html.text-scale-130 h2 { font-size: 31.2px !important; }
-html.text-scale-130 h3 { font-size: 26px !important; }
-html.text-scale-130 .v-btn { font-size: 18.2px !important; }
-html.text-scale-130 .v-card-title { font-size: 26px !important; }
-html.text-scale-130 .v-card-text { font-size: 20.8px !important; }
+html.text-scale-130 p {
+  font-size: 20.8px !important;
+}
+html.text-scale-130 h1 {
+  font-size: 41.6px !important;
+}
+html.text-scale-130 h2 {
+  font-size: 31.2px !important;
+}
+html.text-scale-130 h3 {
+  font-size: 26px !important;
+}
+html.text-scale-130 .v-btn {
+  font-size: 18.2px !important;
+}
+html.text-scale-130 .v-card-title {
+  font-size: 26px !important;
+}
+html.text-scale-130 .v-card-text {
+  font-size: 20.8px !important;
+}
 
 /* VUETIFY COMPONENTS ESPECÍFICOS */
-html.text-scale-110 .v-list-item-title { font-size: 17.6px !important; }
-html.text-scale-110 .v-text-field input { font-size: 17.6px !important; }
-html.text-scale-120 .v-list-item-title { font-size: 19.2px !important; }
-html.text-scale-120 .v-text-field input { font-size: 19.2px !important; }
-html.text-scale-130 .v-list-item-title { font-size: 20.8px !important; }
-html.text-scale-130 .v-text-field input { font-size: 20.8px !important; }
+html.text-scale-110 .v-list-item-title {
+  font-size: 17.6px !important;
+}
+html.text-scale-110 .v-text-field input {
+  font-size: 17.6px !important;
+}
+html.text-scale-120 .v-list-item-title {
+  font-size: 19.2px !important;
+}
+html.text-scale-120 .v-text-field input {
+  font-size: 19.2px !important;
+}
+html.text-scale-130 .v-list-item-title {
+  font-size: 20.8px !important;
+}
+html.text-scale-130 .v-text-field input {
+  font-size: 20.8px !important;
+}
 
 /* ===== EXCLUSIONES - NO ESCALAR ===== */
 /* NAVBAR - Mantener tamaño original */
@@ -127,60 +223,60 @@ html[class*="text-scale-"] [class*="icon"] {
 .high-contrast-mode {
   --v-theme-background: #000000 !important;
   --v-theme-surface: #000000 !important;
-  --v-theme-primary: #FFFF00 !important;
-  --v-theme-secondary: #00FFFF !important;
-  --v-theme-on-background: #FFFFFF !important;
-  --v-theme-on-surface: #FFFFFF !important;
+  --v-theme-primary: #ffff00 !important;
+  --v-theme-secondary: #00ffff !important;
+  --v-theme-on-background: #ffffff !important;
+  --v-theme-on-surface: #ffffff !important;
   --v-theme-on-primary: #000000 !important;
-  --v-theme-error: #FF0000 !important;
-  --v-theme-success: #00FF00 !important;
-  --v-theme-warning: #FFFF00 !important;
-  --v-theme-info: #00FFFF !important;
+  --v-theme-error: #ff0000 !important;
+  --v-theme-success: #00ff00 !important;
+  --v-theme-warning: #ffff00 !important;
+  --v-theme-info: #00ffff !important;
 }
 
 .high-contrast-mode {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-mode .v-application {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-mode .v-main {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-mode .v-card {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
 }
 
 .high-contrast-mode .v-btn {
   border: 2px solid currentColor !important;
   background-color: #000000 !important;
-  color: #FFFF00 !important;
+  color: #ffff00 !important;
 }
 
 .high-contrast-mode .v-btn:hover {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
 .high-contrast-mode .v-text-field input,
 .high-contrast-mode .v-select__selection,
 .high-contrast-mode .v-textarea textarea {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   background-color: #000000 !important;
-  border: 2px solid #FFFFFF !important;
+  border: 2px solid #ffffff !important;
 }
 
 .high-contrast-mode .v-app-bar {
   background-color: #000000 !important;
-  border-bottom: 3px solid #FFFFFF !important;
+  border-bottom: 3px solid #ffffff !important;
 }
 
 .high-contrast-mode .v-list {
@@ -188,18 +284,18 @@ html[class*="text-scale-"] [class*="icon"] {
 }
 
 .high-contrast-mode .v-list-item {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   border-bottom: 1px solid #333333 !important;
 }
 
 .high-contrast-mode .v-list-item:hover {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
 .high-contrast-mode .v-navigation-drawer {
   background-color: #000000 !important;
-  border-right: 3px solid #FFFFFF !important;
+  border-right: 3px solid #ffffff !important;
 }
 
 /* =========================================
@@ -293,57 +389,57 @@ html[class*="text-scale-"] [class*="icon"] {
    ========================================= */
 .v-theme--dark {
   --v-theme-background: #121212 !important;
-  --v-theme-surface: #1E1E1E !important;
-  --v-theme-primary: #4CAF50 !important;
+  --v-theme-surface: #1e1e1e !important;
+  --v-theme-primary: #4caf50 !important;
   --v-theme-secondary: #616161 !important;
-  --v-theme-on-background: #FFFFFF !important;
-  --v-theme-on-surface: #FFFFFF !important;
+  --v-theme-on-background: #ffffff !important;
+  --v-theme-on-surface: #ffffff !important;
 }
 
 .v-theme--dark .v-application {
   background-color: #121212 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .v-theme--dark .v-main {
   background-color: #121212 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .v-theme--dark .v-card {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
 }
 
 .v-theme--dark .v-app-bar {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
 }
 
 .v-theme--dark .v-navigation-drawer {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
 }
 
 /* =========================================
    MODO CLARO MEJORADO
    ========================================= */
 .v-theme--light {
-  --v-theme-background: #FFFFFF !important;
-  --v-theme-surface: #FFFFFF !important;
-  --v-theme-primary: #2E8B57 !important;
+  --v-theme-background: #ffffff !important;
+  --v-theme-surface: #ffffff !important;
+  --v-theme-primary: #2e8b57 !important;
   --v-theme-secondary: #424242 !important;
   --v-theme-on-background: #000000 !important;
   --v-theme-on-surface: #000000 !important;
 }
 
 .v-theme--light .v-application {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
 }
 
 .v-theme--light .v-main {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
 }
 

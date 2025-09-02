@@ -3,9 +3,9 @@
     <div class="navbar-container">
       <NavbarBrand />
 
-      <NavbarLinks 
-        :isLoggedIn="isLoggedIn" 
-        :userRole="userRole" 
+      <NavbarLinks
+        :isLoggedIn="isLoggedIn"
+        :userRole="userRole"
         :isMenuOpen="mobileMenuOpen"
       />
 
@@ -13,30 +13,30 @@
       <div class="navbar-right">
         <!-- Shopping Cart (for all users) -->
         <ShoppingCart class="mr-2" />
-        
+
         <!-- Real-time Notifications (only for logged in users) -->
-        <RealTimeNotifications 
-          v-if="isLoggedIn" 
+        <RealTimeNotifications
+          v-if="isLoggedIn"
           :userRole="userRole"
           @new-notification="handleNewNotification"
           @notification-read="handleNotificationRead"
           @all-notifications-read="handleAllNotificationsRead"
           class="mr-2"
         />
-        
+
         <!-- User Menu -->
-        <UserMenu 
-          v-if="isLoggedIn" 
-          :userName="userName" 
-          :userRole="userRole" 
+        <UserMenu
+          v-if="isLoggedIn"
+          :userName="userName"
+          :userRole="userRole"
           :isOpen="userMenuOpen"
-          @toggle="toggleUserMenu" 
+          @toggle="toggleUserMenu"
           @logout="handleLogout"
         />
-        
+
         <!-- Login/Register buttons -->
         <AuthButtons v-else />
-        
+
         <!-- Mobile menu toggle -->
         <MobileMenuButton @toggle="toggleMobileMenu" />
       </div>
@@ -45,17 +45,17 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import NavbarBrand from './navbar/NavbarBrand.vue';
-import NavbarLinks from './navbar/NavbarLinks.vue';
-import UserMenu from './navbar/UserMenu.vue';
-import AuthButtons from './navbar/AuthButtons.vue';
-import MobileMenuButton from './navbar/MobileMenuButton.vue';
-import RealTimeNotifications from './dashboard/RealTimeNotifications.vue';
-import ShoppingCart from './ShoppingCart.vue';
+import { mapGetters, mapActions } from "vuex";
+import NavbarBrand from "./navbar/NavbarBrand.vue";
+import NavbarLinks from "./navbar/NavbarLinks.vue";
+import UserMenu from "./navbar/UserMenu.vue";
+import AuthButtons from "./navbar/AuthButtons.vue";
+import MobileMenuButton from "./navbar/MobileMenuButton.vue";
+import RealTimeNotifications from "./dashboard/RealTimeNotifications.vue";
+import ShoppingCart from "./ShoppingCart.vue";
 
 export default {
-  name: 'NavbarComponent',
+  name: "NavbarComponent",
   components: {
     NavbarBrand,
     NavbarLinks,
@@ -63,7 +63,7 @@ export default {
     AuthButtons,
     MobileMenuButton,
     RealTimeNotifications,
-    ShoppingCart
+    ShoppingCart,
   },
   data() {
     return {
@@ -72,20 +72,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([
-      'isAuthenticated',
-      'getUser',
-      'userRole'
-    ]),
+    ...mapGetters(["isAuthenticated", "getUser", "userRole"]),
     isLoggedIn() {
       return this.isAuthenticated;
     },
     userName() {
-      return this.getUser?.name || localStorage.getItem('name') || 'Usuario';
-    }
+      return this.getUser?.name || localStorage.getItem("name") || "Usuario";
+    },
   },
   methods: {
-    ...mapActions(['logout', 'fetchUserProfile']),
+    ...mapActions(["logout", "fetchUserProfile"]),
     toggleMobileMenu() {
       this.mobileMenuOpen = !this.mobileMenuOpen;
       if (this.mobileMenuOpen) {
@@ -102,41 +98,47 @@ export default {
     async handleLogout() {
       await this.logout();
       this.closeMenus();
-      this.$router.push('/');
+      this.$router.push("/");
     },
     handleNewNotification(notification) {
       // Maneja las nuevas notificaciones en tiempo real
-      console.log('Nueva notificación recibida:', notification);
+      console.log("Nueva notificación recibida:", notification);
       // Aquí podrías actualizar un store global de notificaciones
     },
     handleNotificationRead(notificationId) {
       // Maneja cuando se marca una notificación como leída
-      console.log('Notificación marcada como leída:', notificationId);
+      console.log("Notificación marcada como leída:", notificationId);
     },
     handleAllNotificationsRead() {
       // Maneja cuando se marcan todas las notificaciones como leídas
-      console.log('Todas las notificaciones marcadas como leídas');
-    }
+      console.log("Todas las notificaciones marcadas como leídas");
+    },
   },
   mounted() {
     // Cargar datos del usuario si está autenticado
     if (this.isAuthenticated && !this.getUser) {
       this.fetchUserProfile();
     }
-    
+
     // Cerrar menús cuando se hace clic fuera
-    document.addEventListener('click', (e) => {
-      const userMenu = this.$el.querySelector('.user-menu');
-      const mobileMenu = this.$el.querySelector('.navbar-links');
-      
-      if (userMenu && !userMenu.contains(e.target) && 
-          !e.target.classList.contains('user-button')) {
+    document.addEventListener("click", (e) => {
+      const userMenu = this.$el.querySelector(".user-menu");
+      const mobileMenu = this.$el.querySelector(".navbar-links");
+
+      if (
+        userMenu &&
+        !userMenu.contains(e.target) &&
+        !e.target.classList.contains("user-button")
+      ) {
         this.userMenuOpen = false;
       }
-      
-      if (mobileMenu && !mobileMenu.contains(e.target) && 
-          !e.target.classList.contains('mobile-menu-btn') && 
-          window.innerWidth <= 768) {
+
+      if (
+        mobileMenu &&
+        !mobileMenu.contains(e.target) &&
+        !e.target.classList.contains("mobile-menu-btn") &&
+        window.innerWidth <= 768
+      ) {
         this.mobileMenuOpen = false;
       }
     });
@@ -145,8 +147,8 @@ export default {
     // Actualizar cuando cambie la ruta
     $route() {
       this.closeMenus();
-    }
-  }
+    },
+  },
 };
 </script>
 
