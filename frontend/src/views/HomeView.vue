@@ -1,26 +1,86 @@
 <template>
   <div class="home-page home-view">
     <section class="hero-section">
-      <div class="hero-image-container">
-        <img :src="ImgHero" alt="img-hero" class="hero-image" />
-      </div>
-      <div class="hero-content">
-        <h1 class="hero-title">Bienvenido a la Academia Virtual</h1>
-        <p class="hero-subtitle">
-          Potencia tus conocimientos con nuestros cursos diseñados por expertos
-        </p>
-        <div class="hero-buttons">
-          <router-link to="/courses" class="btn btn-primary"
-            >Explorar Cursos</router-link
+      <div class="container-fluid px-4">
+        <div class="row justify-content-center align-items-center">
+          <!-- Imagen - En pantallas grandes a la izquierda, en móviles arriba -->
+          <div
+            class="col-12 col-md-6 order-1 order-md-1 text-center mb-4 mb-md-0"
           >
-          <button
-            v-if="!user.isAuthenticated"
-            @click="openAuthDialog('register')"
-            class="btn btn-secondary"
-          >
-            Registrarse Gratis
-          </button>
+            <div class="hero-image-container">
+              <img
+                :src="ImgHero"
+                alt="img-hero"
+                class="hero-image img-fluid rounded-3"
+              />
+            </div>
+          </div>
+
+          <!-- Contenido - En pantallas grandes a la derecha, en móviles abajo -->
+          <div class="col-12 col-md-6 order-2 order-md-2">
+            <div class="hero-content px-3 px-md-4 position-relative">
+              <h1
+                class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 text-center text-md-start"
+              >
+                Academia Digital de NeekWorld
+              </h1>
+              <p
+                class="hero-subtitle w-75 m-auto mb-4 text-center text-md-start"
+              >
+                "Aprende en línea, a tu ritmo y desde cualquier lugar, con
+                cursos diseñados para adaptarse a tu estilo de vida."
+              </p>
+              <!-- Iconos de características -->
+              <div class="feature-icon-1 opacity-75 position-absolute">
+                <FontAwesomeIcon icon="fa-solid fa-award" class="fs-1" />
+              </div>
+              <div class="feature-icon-2 opacity-75 position-absolute">
+                <FontAwesomeIcon icon=" fa-solid fa-scissors" class="fs-2" />
+              </div>
+              <div class="feature-icon-3 opacity-75 position-absolute">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-graduation-cap"
+                  class="fs-2 text-success"
+                />
+              </div>
+              <div class="feature-icon-4 opacity-75 position-absolute">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-ruler"
+                  class="fs-2 text-info"
+                />
+              </div>
+              <div
+                class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start"
+              >
+                <router-link
+                  to="/courses"
+                  class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-medium"
+                >
+                  Cursos
+                </router-link>
+                <button
+                  v-if="!user.isAuthenticated"
+                  @click="openAuthDialog('register')"
+                  class="btn btn-secondary border-0 rounded-4 px-4 py-3 fw-medium"
+                >
+                  Regístrate
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- <div>
+          <FontAwesomeIcon icon="fa-solid fa-lightbulb" />
+        </div>
+        <div>
+          <FontAwesomeIcon icon="fa-solid fa-scissors" />
+        </div>
+        <div>
+          <FontAwesomeIcon icon="fa-solid fa-ruler" />
+        </div>
+        <div>
+          <FontAwesomeIcon icon="fa-solid fa-graduation-cap" />
+        </div> -->
       </div>
     </section>
 
@@ -206,30 +266,17 @@ export default {
 /* ===== ESTILOS BASE RESPONSIVE AL TEMA ===== */
 .home-page {
   font-family: "Montserrat", sans-serif;
-  transition: all 0.3s ease;
+  background-color: #f8f9fa;
 }
 
 /* ===== HERO SECTION - ADAPTATIVA A TEMAS ===== */
 .hero-section {
   max-width: 1200px;
   margin: 0 auto;
-  justify-content: center;
   gap: 2rem;
-  display: flex;
-  align-items: center;
   text-align: center;
   padding: 60px 20px;
   /* background-image: linear-gradient(135deg, #2a3b5f, #2a3b5f); */
-  background-size: cover;
-  background-position: center;
-  color: white;
-  position: relative;
-}
-
-/* Modo claro - Hero section */
-.v-theme--light .hero-section {
-  /* background-image: linear-gradient(135deg, #2a3b5f 0%, #2a3b5f 100%); */
-  color: white;
 }
 
 /* Modo oscuro - Hero section */
@@ -260,51 +307,62 @@ export default {
 
 .hero-title {
   font-family: "Montserrat", serif;
-  font-size: 48px;
-  margin-bottom: 20px;
+  /* font-size: 50px; */
+  margin-bottom: 10px;
   color: #29acb9;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .hero-subtitle {
   font-family: "Dm Sans", sans-serif;
-  font-size: 20px;
-  color: #333333;
-  margin-bottom: 40px;
+  font-size: 18px;
+  color: #666666;
   line-height: 1.5;
-  opacity: 0.95;
+}
+
+/* icons flotantes feature-icon-1 */
+.feature-icon-1 {
+  top: 40px;
+  left: -3px;
+  color: #ba0100;
+}
+
+.feature-icon-2 {
+  top: -50px;
+  right: -16px;
+  rotate: 120deg;
+  color: #6a0dad;
+}
+
+.feature-icon-3 {
+  top: 50%;
+}
+
+.feature-icon-4 {
+  top: 60%;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 10px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
 /* ===== BOTONES ADAPTATIVOS ===== */
 .btn {
-  display: inline-block;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 500;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  cursor: pointer;
-  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
 }
 
 .btn-primary {
   background-color: #2e8b57;
+  /* background-color: #21234a; */
   color: white;
 }
 
 .btn-primary:hover {
   background-color: #3aa870;
-  border-color: #3aa870;
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
 }
@@ -315,9 +373,9 @@ export default {
 }
 
 .btn-secondary:hover {
-  background-color: #f8b73d;
+  background-color: #ffb733;
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px #f8b73d;
+  box-shadow: 0 4px 12px #ffb733;
 }
 
 /* Alto contraste - Botones */
@@ -542,12 +600,8 @@ export default {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 36px;
-  }
-
   .hero-subtitle {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .hero-buttons {

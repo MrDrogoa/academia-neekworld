@@ -6,6 +6,37 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap";
 
+// FontAwesome imports
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+// Importar los iconos específicos
+import {
+  faSquareInstagram,
+  faInstagram,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
+
+import {
+  faEnvelope,
+  faPhone,
+  faScissors,
+  faRuler,
+  faAward,
+  faGraduationCap,
+} from "@fortawesome/free-solid-svg-icons";
+
+// Agregar los iconos a la librería
+library.add(
+  faSquareInstagram,
+  faInstagram,
+  faFacebook,
+  faEnvelope,
+  faPhone,
+  faAward,
+  faScissors,
+  faRuler,
+  faGraduationCap
+);
 // Configurar Axios para pagos
 const apiBaseURL =
   process.env.VUE_APP_API_BASE_URL ||
@@ -118,6 +149,9 @@ const app = createApp(App);
 
 // Configurar axios como propiedad global
 app.config.globalProperties.$http = axios;
+
+// Registrar FontAwesome globalmente
+app.component("FontAwesomeIcon", FontAwesomeIcon);
 
 // Use plugins
 app.use(store);
