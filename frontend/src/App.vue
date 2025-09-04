@@ -5,53 +5,54 @@
       <router-view />
     </v-main>
     <FooterComponent />
-    
+
     <!-- Shopping Cart Component - Botón flotante -->
     <ShoppingCart ref="shoppingCart" :is-floating="true" />
-    
+
     <!-- Skip to main content link for screen readers -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
   </v-app>
 </template>
 
 <script>
-import { ref } from 'vue'
-import NavigationBar from '@/components/NavigationBar.vue'
-import FooterComponent from '@/components/FooterComponent.vue'
-import ShoppingCart from '@/components/ShoppingCart.vue'
+import { ref } from "vue";
+import NavigationBar from "@/components/NavigationBar.vue";
+import FooterComponent from "@/components/FooterComponent.vue";
+import ShoppingCart from "@/components/ShoppingCart.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavigationBar,
     FooterComponent,
-    ShoppingCart
+    ShoppingCart,
   },
   setup() {
-    const shoppingCart = ref(null)
+    const shoppingCart = ref(null);
 
     const toggleCart = () => {
       if (shoppingCart.value) {
-        shoppingCart.value.showCartDialog = true
+        shoppingCart.value.showCartDialog = true;
       }
-    }
+    };
 
     return {
       shoppingCart,
-      toggleCart
-    }
-  }
-}
+      toggleCart,
+    };
+  },
+};
 </script>
 
 <style>
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;700&display=swap");
 
 /* Import global styles */
-@import './assets/styles/global.scss';
+@import "./assets/styles/global.scss";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -59,7 +60,7 @@ html, body {
 }
 
 #app {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -68,48 +69,48 @@ html, body {
 
 /* ===== TEMA CLARO - GLOBAL ===== */
 .v-theme--light {
-  --v-theme-background: #FFFFFF;
-  --v-theme-surface: #FFFFFF;
-  --v-theme-primary: #2E8B57;
+  --v-theme-background: #ffffff;
+  --v-theme-surface: #ffffff;
+  --v-theme-primary: #2e8b57;
   --v-theme-secondary: #424242;
   --v-theme-on-background: #000000;
   --v-theme-on-surface: #000000;
 }
 
 .v-theme--light body {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #000000;
 }
 
 .v-theme--light .v-application {
-  background: #FFFFFF !important;
+  background: #ffffff !important;
   color: #000000 !important;
 }
 
 /* ===== TEMA OSCURO - GLOBAL ===== */
 .v-theme--dark {
   --v-theme-background: #121212;
-  --v-theme-surface: #1E1E1E;
-  --v-theme-primary: #4CAF50;
+  --v-theme-surface: #1e1e1e;
+  --v-theme-primary: #4caf50;
   --v-theme-secondary: #616161;
-  --v-theme-on-background: #FFFFFF;
-  --v-theme-on-surface: #FFFFFF;
+  --v-theme-on-background: #ffffff;
+  --v-theme-on-surface: #ffffff;
 }
 
 .v-theme--dark body {
   background-color: #121212;
-  color: #E2E8F0;
+  color: #e2e8f0;
 }
 
 .v-theme--dark .v-application {
   background: #121212 !important;
-  color: #E2E8F0 !important;
+  color: #e2e8f0 !important;
 }
 
 /* ===== ALTO CONTRASTE - GLOBAL ===== */
 .high-contrast-mode {
-  --v-theme-background: #FFFFFF !important;
-  --v-theme-surface: #FFFFFF !important;
+  --v-theme-background: #ffffff !important;
+  --v-theme-surface: #ffffff !important;
   --v-theme-primary: #000000 !important;
   --v-theme-secondary: #000000 !important;
   --v-theme-on-background: #000000 !important;
@@ -117,12 +118,12 @@ html, body {
 }
 
 .high-contrast-mode body {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
 }
 
 .high-contrast-mode .v-application {
-  background: #FFFFFF !important;
+  background: #ffffff !important;
   color: #000000 !important;
 }
 
@@ -133,17 +134,17 @@ html, body {
 
 /* ===== CARDS RESPONSIVE A TEMAS ===== */
 .v-theme--light .v-card {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #000000;
 }
 
 .v-theme--dark .v-card {
-  background-color: #1E1E1E;
-  color: #E2E8F0;
+  background-color: #1e1e1e;
+  color: #e2e8f0;
 }
 
 .high-contrast-mode .v-card {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
   border: 2px solid #000000 !important;
 }
@@ -182,7 +183,7 @@ html, body {
   .v-btn {
     border: 2px solid currentColor !important;
   }
-  
+
   .v-card {
     border: 1px solid currentColor !important;
   }
@@ -199,7 +200,7 @@ html, body {
 
 /* Focus indicators - Solo aplicar cuando foco mejorado NO está activo */
 :not(.enhanced-focus-mode) *:focus {
-  outline: 2px solid #2E8B57;
+  outline: 2px solid #2e8b57;
   outline-offset: 2px;
 }
 
@@ -210,7 +211,8 @@ html, body {
 
 /* ===== TRANSICIONES SUAVES PARA CAMBIOS DE TEMA ===== */
 * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Mejorar transiciones para elementos Vuetify */
@@ -248,11 +250,11 @@ html, body {
 
 /* Estado vacío - Verde */
 .floating-cart-button.cart-empty {
-  background-color: #2E8B57 !important;
+  /* background-color: #2e8b57 !important; */
 }
 
 .v-theme--dark .floating-cart-button.cart-empty {
-  background-color: #4CAF50 !important;
+  /* background-color: #4caf50 !important; */
 }
 
 /* Estado con items - Rojo con animación pulsante */
@@ -269,10 +271,12 @@ html, body {
 /* Animación de pulso */
 @keyframes cartPulse {
   0% {
-    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3), 0 0 0 0 rgba(244, 67, 54, 0.7);
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3),
+      0 0 0 0 rgba(244, 67, 54, 0.7);
   }
   50% {
-    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4), 0 0 0 10px rgba(244, 67, 54, 0);
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.4),
+      0 0 0 10px rgba(244, 67, 54, 0);
   }
   100% {
     box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3), 0 0 0 0 rgba(244, 67, 54, 0);
@@ -282,10 +286,12 @@ html, body {
 /* Animación para tema oscuro */
 @keyframes cartPulseDark {
   0% {
-    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.3), 0 0 0 0 rgba(255, 82, 82, 0.7);
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.3),
+      0 0 0 0 rgba(255, 82, 82, 0.7);
   }
   50% {
-    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4), 0 0 0 10px rgba(255, 82, 82, 0);
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4),
+      0 0 0 10px rgba(255, 82, 82, 0);
   }
   100% {
     box-shadow: 0 6px 20px rgba(255, 82, 82, 0.3), 0 0 0 0 rgba(255, 82, 82, 0);
@@ -310,14 +316,14 @@ html, body {
 /* Alto contraste para botón flotante */
 .high-contrast-mode .floating-cart-button.cart-empty {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
-  border: 3px solid #FFFFFF !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
 }
 
 .high-contrast-mode .floating-cart-button.cart-has-items {
-  background-color: #FF0000 !important;
-  color: #FFFFFF !important;
-  border: 3px solid #FFFFFF !important;
+  background-color: #ff0000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
   animation: cartPulseHighContrast 2s infinite;
 }
 
@@ -354,4 +360,8 @@ html, body {
   align-items: center !important;
   justify-content: center !important;
 }
+
+/* .v-badge__wrapper {
+  margin: 0 !important;
+} */
 </style>

@@ -1463,7 +1463,8 @@ export default {
 }
 
 .high-contrast-app-bar .v-toolbar__content {
-  background-color: #000000 !important;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .high-contrast-app-bar .navbar-title {

@@ -776,6 +776,9 @@ html[class*="text-scale-"] .v-card-title {
 
 .v-theme--light .v-app-bar .v-btn {
   color: #000000 !important;
+  font-size: 24px !important;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .v-theme--light .v-app-bar .v-btn:hover {
@@ -1021,17 +1024,15 @@ footer.footer .footer-link {
 
 /* ===== BOTONES DEL CARRITO - MODO CLARO ===== */
 .v-theme--light .v-btn--variant-elevated {
-  background-color: #2e8b57 !important;
+  background-color: #2ea357 !important;
   color: white !important;
-  box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3) !important;
-  border: 2px solid transparent !important;
   font-weight: 600 !important;
 }
 
 .v-theme--light .v-btn--variant-elevated:hover {
-  background-color: #228b5a !important;
-  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.4) !important;
-  transform: translateY(-1px);
+  background-color: #3fb566 !important;
+  box-shadow: 0 4px 12px #3fb566 !important;
+  transform: translateY(-5px);
 }
 
 .v-theme--light .v-btn--variant-outlined.v-btn--disabled {
@@ -1094,11 +1095,6 @@ html.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled {
   border: 3px solid #ffff00 !important;
   opacity: 1 !important;
   font-weight: 700 !important;
-}
-
-/* ===== ICONOS EN BOTONES ===== */
-.v-btn .v-icon {
-  margin-right: 8px !important;
 }
 
 /* ===== TRANSICIONES ===== */
