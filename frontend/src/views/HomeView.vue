@@ -5,7 +5,7 @@
         <div class="row justify-content-center align-items-center">
           <!-- Imagen - En pantallas grandes a la izquierda, en móviles arriba -->
           <div
-            class="col-12 col-md-6 order-1 order-md-1 text-center mb-4 mb-md-0"
+            class="col-12 col-lg-6 order-1 order-md-1 text-center mb-4 mb-md-0"
           >
             <div class="hero-image-container">
               <img
@@ -17,10 +17,10 @@
           </div>
 
           <!-- Contenido - En pantallas grandes a la derecha, en móviles abajo -->
-          <div class="col-12 col-md-6 order-2 order-md-2">
+          <div class="col-12 col-lg-6 order-2 order-md-2">
             <div class="hero-content px-3 px-md-4 position-relative">
               <h1
-                class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 text-center text-md-start"
+                class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 mt-md-4 text-center text-md-start"
               >
                 Academia Digital de NeekWorld
               </h1>
@@ -31,24 +31,30 @@
                 cursos diseñados para adaptarse a tu estilo de vida."
               </p>
               <!-- Iconos de características -->
-              <div class="feature-icon-1 opacity-75 position-absolute">
-                <FontAwesomeIcon icon="fa-solid fa-award" class="fs-1" />
+              <div class="feature-icon-1 position-absolute">
+                <FontAwesomeIcon
+                  icon=" fa-solid fa-scissors"
+                  class="fs-2 opacity-75"
+                />
               </div>
-              <div class="feature-icon-2 opacity-75 position-absolute">
-                <FontAwesomeIcon icon=" fa-solid fa-scissors" class="fs-2" />
+              <div class="feature-icon-2 position-absolute">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-award"
+                  class="fs-1 opacity-75"
+                />
               </div>
-              <div class="feature-icon-3 opacity-75 position-absolute">
+              <!-- <div class="feature-icon-3 position-absolute">
                 <FontAwesomeIcon
                   icon="fa-solid fa-graduation-cap"
-                  class="fs-2 text-success"
+                  class="fs-2 opacity-75"
                 />
               </div>
-              <div class="feature-icon-4 opacity-75 position-absolute">
+              <div class="feature-icon-4 position-absolute">
                 <FontAwesomeIcon
                   icon="fa-solid fa-ruler"
-                  class="fs-2 text-info"
+                  class="fs-2 opacity-100"
                 />
-              </div>
+              </div> -->
               <div
                 class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start"
               >
@@ -69,75 +75,100 @@
             </div>
           </div>
         </div>
-        <!-- <div>
-          <FontAwesomeIcon icon="fa-solid fa-lightbulb" />
-        </div>
-        <div>
-          <FontAwesomeIcon icon="fa-solid fa-scissors" />
-        </div>
-        <div>
-          <FontAwesomeIcon icon="fa-solid fa-ruler" />
-        </div>
-        <div>
-          <FontAwesomeIcon icon="fa-solid fa-graduation-cap" />
-        </div> -->
       </div>
     </section>
 
     <section class="features-section">
       <div class="container">
-        <h2 class="section-title">¿Por qué elegirnos?</h2>
+        <h2 class="section-title text-center pb-5 display-5 display-lg-4">
+          ¿Por qué elegirnos?
+        </h2>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Variedad de Cursos</h3>
-            <p>Descubre cursos en numerosas áreas de conocimiento</p>
+        <div class="features-grid py-4">
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-note-sticky" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Variedad de Cursos</h3>
+            <p class="txt-main">
+              Descubre cursos en numerosas áreas de conocimiento
+            </p>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">👨‍🏫</div>
-            <h3>Instructores Expertos</h3>
-            <p>Aprende de profesionales con experiencia en la industria</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-gear" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Instructores Expertos</h3>
+            <p class="txt-main">
+              Aprende de profesionales con experiencia en la industria
+            </p>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3>Aprendizaje Flexible</h3>
-            <p>Estudia a tu propio ritmo, cuando y donde quieras</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon
+                icon="fa-solid fa-magnifying-glass"
+                class="fs-1"
+              />
+            </div>
+            <h3 class="title-main fw-bold">Aprendizaje Flexible</h3>
+            <p class="txt-main">
+              Estudia a tu propio ritmo, cuando y donde quieras
+            </p>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">🏅</div>
-            <h3>Certificaciones</h3>
-            <p>Obtén certificados que validen tus nuevas habilidades</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-medal" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Certificaciones</h3>
+            <p class="txt-main">
+              Obtén certificados que validen tus nuevas habilidades
+            </p>
           </div>
 
           <!-- Nueva feature sobre integración Moodle -->
-          <div class="feature-card">
-            <div class="feature-icon">🎓</div>
-            <h3>Integración Moodle</h3>
-            <p>Acceso directo a Moodle con sincronización automática</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-circle-check" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Integración Moodle</h3>
+            <p class="txt-main">
+              Acceso directo a Moodle con sincronización automática
+            </p>
           </div>
 
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Inscripción Automática</h3>
-            <p>Al comprar un curso, quedas inscrito automáticamente</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-bolt" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Inscripción Automática</h3>
+            <p class="txt-main">
+              Al comprar un curso, quedas inscrito automáticamente
+            </p>
           </div>
 
           <!-- Nueva feature sobre pasantías internacionales -->
-          <div class="feature-card">
-            <div class="feature-icon">🌍</div>
-            <h3>Convenio Pasantías Internacionales</h3>
-            <p>Próximamente: Oportunidades de pasantías en el extranjero</p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-earth-americas" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">
+              Convenio Pasantías Internacionales
+            </h3>
+            <p class="txt-main">
+              Próximamente: Oportunidades de pasantías en el extranjero
+            </p>
           </div>
 
           <!-- Nueva feature sobre terapias -->
-          <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h3>Convenio con Terapias</h3>
-            <p>
+          <div class="feature-card cursor-pointer">
+            <div class="icon-main mb-3">
+              <FontAwesomeIcon icon="fa-solid fa-brain" class="fs-1" />
+            </div>
+            <h3 class="title-main fw-bold">Convenio con Terapias</h3>
+            <p class="txt-main">
               Próximamente: Servicios de psicología, terapia de pareja y familia
             </p>
           </div>
@@ -146,13 +177,20 @@
     </section>
 
     <section class="cta-section">
-      <div class="container">
-        <div class="cta-content">
-          <h2>¿Listo para empezar tu viaje de aprendizaje?</h2>
-          <p>
+      <div class="container py-4">
+        <div class="cta-content text-center py-5">
+          <h2
+            class="title-action text-white w-75 display-5 display-lg-4 m-auto"
+          >
+            ¿Listo para empezar tu viaje de aprendizaje?
+          </h2>
+          <p class="txt-action text-white w-75 my-3 lh-1.5 m-auto">
             Únete hoy a nuestra comunidad de estudiantes y transforma tu futuro
           </p>
-          <button @click="openAuthDialog('register')" class="btn btn-primary">
+          <button
+            @click="openAuthDialog('register')"
+            class="btn btn-primary mt-3 border-0 btn btn-primary border-0 rounded-4 px-4 py-3 fw-medium"
+          >
             Comenzar ahora
           </button>
         </div>
@@ -290,14 +328,6 @@ export default {
   color: #e2e8f0;
 }
 
-/* Alto contraste - Hero section */
-.high-contrast-mode .hero-section {
-  background: #000000 !important;
-  background-image: none !important;
-  color: #ffffff !important;
-  border: 3px solid #ffffff !important;
-}
-
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
@@ -307,9 +337,8 @@ export default {
 
 .hero-title {
   font-family: "Montserrat", serif;
-  /* font-size: 50px; */
   margin-bottom: 10px;
-  color: #29acb9;
+  color: #373b8a;
   font-weight: 800;
 }
 
@@ -322,26 +351,37 @@ export default {
 
 /* icons flotantes feature-icon-1 */
 .feature-icon-1 {
-  top: 40px;
-  left: -3px;
-  color: #ba0100;
-}
-
-.feature-icon-2 {
-  top: -50px;
-  right: -16px;
-  rotate: 120deg;
+  top: -35px;
+  left: -7px;
+  rotate: 50deg;
   color: #6a0dad;
 }
 
+/* icons flotantes feature-icon-2 */
+.feature-icon-2 {
+  top: 40px;
+  right: -8px;
+  color: #ba0100;
+  rotate: -8deg;
+  filter: drop-shadow(1px 5px 4px #0000004d);
+}
+
+/* icons flotantes feature-icon-3 */
 .feature-icon-3 {
-  top: 50%;
+  bottom: -60px;
+  left: 100px;
+  color: #d834a4;
+  rotate: -30deg;
 }
 
+/* icons flotantes feature-icon-4 */
 .feature-icon-4 {
-  top: 60%;
+  bottom: -10px;
+  right: 80px;
+  color: #3b6bd4;
 }
 
+/* botones de hero */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -350,21 +390,64 @@ export default {
   flex-wrap: wrap;
 }
 
+/* icon-main */
+.icon-main {
+  color: #29acb9;
+}
+
+/* texto y titulo main */
+.title-main {
+  font-family: "Montserrat", serif;
+  color: #373b8a !important;
+  font-weight: 800;
+}
+
+.txt-main {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+}
+
+/* texto y titulo action */
+.title-action {
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+}
+
+.txt-action {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+}
+
+/* texto y titulo de acción */
+.cta-section {
+  background-color: #ffa500;
+}
+
+.title-action {
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+}
+
+.txt-action {
+  font-family: "Dm Sans", sans-serif;
+}
+
 /* ===== BOTONES ADAPTATIVOS ===== */
 .btn {
   font-family: "Montserrat", sans-serif;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
-  background-color: #2e8b57;
+  background-color: #29acb9;
   /* background-color: #21234a; */
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #3aa870;
+  background-color: #32c4d2;
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+  box-shadow: 0 4px 12px #32c4d2;
 }
 
 .btn-secondary {
@@ -376,6 +459,14 @@ export default {
   background-color: #ffb733;
   transform: translateY(-5px);
   box-shadow: 0 4px 12px #ffb733;
+}
+
+/* Alto contraste - Hero section */
+.high-contrast-mode .hero-section {
+  background: #000000 !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
 }
 
 /* Alto contraste - Botones */
@@ -422,18 +513,11 @@ export default {
   margin: 0 auto;
 }
 
+/* titulo section-1 */
 .section-title {
-  text-align: center;
-  font-family: "Playfair Display", serif;
-  font-size: 36px;
-  margin-bottom: 50px;
-  font-weight: 700;
-  transition: color 0.3s ease;
-}
-
-/* Modo claro - Section title */
-.v-theme--light .section-title {
-  color: #2a3b5f;
+  font-weight: 800;
+  color: #373b8a;
+  font-family: "Montserrat", serif;
 }
 
 /* Modo oscuro - Section title */
@@ -455,12 +539,11 @@ export default {
 
 /* ===== FEATURE CARDS - ADAPTATIVAS A TEMAS ===== */
 .feature-card {
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
 }
 
 /* Modo claro - Feature cards */
@@ -502,12 +585,6 @@ export default {
   transform: none !important;
 }
 
-.feature-icon {
-  font-size: 40px;
-  margin-bottom: 20px;
-  display: block;
-}
-
 .feature-card h3 {
   font-size: 20px;
   margin-bottom: 15px;
@@ -537,28 +614,6 @@ export default {
 }
 
 /* ===== CTA SECTION - ADAPTATIVA A TEMAS ===== */
-.cta-section {
-  padding: 60px 20px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-/* Modo claro - CTA */
-.v-theme--light .cta-section {
-  background-color: #ffa500;
-  color: white;
-}
-
-.v-theme--light .cta-section .btn-primary {
-  background-color: #81c784;
-  color: white;
-  border-color: #81c784;
-}
-
-.v-theme--light .cta-section .btn-primary:hover {
-  background-color: #66bb6a;
-  border-color: #66bb6a;
-}
 
 /* Modo oscuro - CTA */
 .v-theme--dark .cta-section {
@@ -578,27 +633,34 @@ export default {
   border: 3px solid #ffff00 !important;
 }
 
-.cta-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.cta-content h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: inherit;
-  font-weight: 700;
-}
-
-.cta-content p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  line-height: 1.5;
-  opacity: 0.95;
-}
-
 /* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1173px) {
+  .feature-icon-1 {
+    left: 70px;
+  }
+  .feature-icon-2 {
+    right: 40px;
+    top: 130px;
+  }
+}
+
+@media (max-width: 992px) {
+  .feature-icon-1 {
+    left: 60px;
+    top: -20px;
+  }
+  .feature-icon-2 {
+    right: 180px;
+    top: 60px;
+  }
+  .feature-icon-3 {
+    opacity: 0;
+  }
+  .feature-icon-4 {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-subtitle {
     font-size: 16px;
@@ -634,6 +696,13 @@ export default {
   .cta-content p {
     font-size: 16px;
   }
+
+  .feature-icon-1 {
+    opacity: 0;
+  }
+  .feature-icon-2 {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -644,14 +713,6 @@ export default {
   .features-section,
   .cta-section {
     padding: 40px 15px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-  }
-
-  .hero-subtitle {
-    font-size: 16px;
   }
 }
 

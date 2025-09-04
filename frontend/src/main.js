@@ -23,6 +23,14 @@ import {
   faRuler,
   faAward,
   faGraduationCap,
+  faNoteSticky,
+  faGear,
+  faMagnifyingGlass,
+  faMedal,
+  faCircleCheck,
+  faBolt,
+  faEarthAmericas,
+  faBrain,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Agregar los iconos a la librería
@@ -35,7 +43,15 @@ library.add(
   faAward,
   faScissors,
   faRuler,
-  faGraduationCap
+  faGraduationCap,
+  faNoteSticky,
+  faGear,
+  faMagnifyingGlass,
+  faMedal,
+  faCircleCheck,
+  faBolt,
+  faEarthAmericas,
+  faBrain
 );
 // Configurar Axios para pagos
 const apiBaseURL =

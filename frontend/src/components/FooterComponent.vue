@@ -118,6 +118,7 @@
           </div>
         </div>
       </div>
+      <!-- Línea divisoria -->
       <div
         class="border-top border-warning border-3 border-md-2 d-flex mt-4"
       ></div>
@@ -150,56 +151,20 @@ export default {
 </script>
 
 <style scoped>
-.footer {
-  background-color: #2a3b5f;
-  color: #ffffff;
-  padding: 20px 0;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-}
-
+/* container */
 .container-1 {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* texto footer */
 .txt-footer {
   font-family: "Dm Sans", sans-serif;
 }
 
-.footer-text {
-  margin: 0;
-  font-size: 14px;
-  color: #ffffff;
-  opacity: 1;
-  order: 1;
-}
-
-.footer-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  order: 2;
-}
-
+/* Enlaces del footer */
 .footer-link {
-  color: #ffa500;
+  color: #b8c5d6;
   text-decoration: none;
   font-size: 14px;
   transition: all 0.3s ease;
@@ -207,26 +172,15 @@ export default {
   font-weight: 500;
 }
 
+/* Enlaces del footer */
 .footer-link:hover {
-  color: #ffb84d;
+  color: #ffa500;
   opacity: 1;
-  text-decoration: underline;
 }
 
 /* color footer */
 .bg-footer {
   background-color: #21234a;
-}
-
-/* Enlaces del footer */
-.footer-link {
-  color: #b8c5d6 !important;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #ffa500 !important;
 }
 
 /* Iconos sociales */
@@ -254,28 +208,6 @@ export default {
   }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .container {
-    gap: 10px;
-  }
-
-  .footer-links {
-    gap: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 15px 0;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
 /* Tema oscuro */
 .v-theme--dark .footer {
   background-color: #1a1a1a !important;
@@ -283,7 +215,7 @@ export default {
   border-top-color: #404040 !important;
 }
 
-.v-theme--dark .footer .footer-text {
+.v-theme--dark .footer {
   color: #ffffff !important;
 }
 
@@ -302,7 +234,7 @@ export default {
   border-top: 3px solid #ffffff !important;
 }
 
-.high-contrast-mode .footer .footer-text {
+.high-contrast-mode .footer {
   color: #ffffff !important;
   opacity: 1 !important;
   font-weight: 600;

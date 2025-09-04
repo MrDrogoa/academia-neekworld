@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <v-app-bar 
-      app 
-      elevation="4" 
+  <div class="">
+    <v-app-bar
+      app
+      elevation="4"
       role="banner"
+      class="bg-nav"
       :color="appBarColor"
       :theme="appBarTheme"
       :class="appBarClasses"
     >
-      <div 
-        class="d-flex align-center" 
-        style="cursor:pointer" 
+      <div
+        class="d-flex align-center"
+        style="cursor: pointer"
         @click="navigateTo('home')"
         @keydown.enter="navigateTo('home')"
         @keydown.space="navigateTo('home')"
@@ -22,14 +23,13 @@
           alt="Logo de NeekWorld - Plataforma educativa"
           class="shrink mr-2"
           contain
-          src="/logo2.ico"
+          src="/logo.webp"
           transition="scale-transition"
           width="36"
           height="36"
-          style="border-radius: 8px; margin-right: 8px;"
+          style="border-radius: 8px; margin-right: 8px"
           role="img"
         />
-        <span class="navbar-title">NeekWorld</span>
       </div>
 
       <v-spacer></v-spacer>
@@ -38,10 +38,10 @@
       <nav class="d-none" role="navigation" aria-label="Navegación principal">
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('home')" 
+              @click="navigateTo('home')"
               class="mr-2"
               role="menuitem"
               aria-label="Ir a página de inicio"
@@ -55,15 +55,17 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('courses')" 
+              @click="navigateTo('courses')"
               class="mr-2"
               role="menuitem"
               aria-label="Ver catálogo de cursos"
             >
-              <v-icon left aria-hidden="true">mdi-book-open-page-variant</v-icon>
+              <v-icon left aria-hidden="true"
+                >mdi-book-open-page-variant</v-icon
+              >
               Cursos
             </v-btn>
           </template>
@@ -72,10 +74,10 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('about')" 
+              @click="navigateTo('about')"
               class="mr-2"
               role="menuitem"
               aria-label="Información sobre la plataforma"
@@ -199,7 +201,9 @@
               <v-divider></v-divider>
               <v-list-item disabled>
                 <template v-slot:prepend>
-                  <v-icon :color="moodleStatusColor">{{ moodleStatusIcon }}</v-icon>
+                  <v-icon :color="moodleStatusColor">{{
+                    moodleStatusIcon
+                  }}</v-icon>
                 </template>
                 <v-list-item-title class="text-caption">
                   Moodle: {{ moodleStatusText }}
@@ -207,7 +211,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          
+
           <!-- User Profile Menu -->
           <v-menu offset-y v-model="userMenuOpen">
             <template v-slot:activator="{ props }">
@@ -247,8 +251,8 @@
       <!-- Menu toggle button - Siempre visible para diseño minimalista -->
       <v-tooltip bottom>
         <template v-slot:activator="{ props }">
-          <v-btn 
-            icon 
+          <v-btn
+            icon
             v-bind="props"
             @click="toggleMobileMenu"
             aria-label="Abrir menú de navegación"
@@ -258,7 +262,9 @@
             <v-icon aria-hidden="true">mdi-menu</v-icon>
           </v-btn>
         </template>
-        <span>{{ mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú de navegación' }}</span>
+        <span>{{
+          mobileMenuOpen ? "Cerrar menú" : "Abrir menú de navegación"
+        }}</span>
       </v-tooltip>
 
       <!-- Auth Dialog -->
@@ -278,15 +284,17 @@
       >
         {{ snackbar.message }}
         <template v-slot:action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="snackbar.show = false">Cerrar</v-btn>
+          <v-btn text v-bind="attrs" @click="snackbar.show = false"
+            >Cerrar</v-btn
+          >
         </template>
       </v-snackbar>
     </v-app-bar>
 
     <!-- Navigation Drawer - Menú unificado para todos los dispositivos -->
-    <v-navigation-drawer 
-      v-model="mobileMenuOpen" 
-      temporary 
+    <v-navigation-drawer
+      v-model="mobileMenuOpen"
+      temporary
       location="right"
       id="navigation-menu-drawer"
       role="navigation"
@@ -303,18 +311,24 @@
           <v-icon :color="avatarIconColor">mdi-account-circle</v-icon>
         </v-avatar>
         <div v-if="user.isAuthenticated">
-          <div class="font-weight-bold" :class="userNameClasses">{{ user.userData?.name || userName }}</div>
-          <div class="text-caption" :class="userRoleClasses">{{ user.userData?.role || 'Usuario' }}</div>
+          <div class="font-weight-bold" :class="userNameClasses">
+            {{ user.userData?.name || userName }}
+          </div>
+          <div class="text-caption" :class="userRoleClasses">
+            {{ user.userData?.role || "Usuario" }}
+          </div>
         </div>
         <div v-else>
           <div class="font-weight-bold" :class="userNameClasses">Visitante</div>
-          <div class="text-caption" :class="userRoleClasses">No autenticado</div>
+          <div class="text-caption" :class="userRoleClasses">
+            No autenticado
+          </div>
         </div>
       </div>
 
       <v-list dense>
         <!-- Navigation Links -->
-        <v-list-item 
+        <v-list-item
           @click="navigateTo('home')"
           role="menuitem"
           tabindex="0"
@@ -325,8 +339,8 @@
           </template>
           <v-list-item-title>Inicio</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="navigateTo('courses')"
           role="menuitem"
           tabindex="0"
@@ -338,7 +352,7 @@
           <v-list-item-title>Cursos</v-list-item-title>
         </v-list-item>
 
-        <v-list-item 
+        <v-list-item
           @click="navigateTo('dashboard')"
           role="menuitem"
           tabindex="0"
@@ -349,8 +363,8 @@
           </template>
           <v-list-item-title>Dashboard</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="openMoodle"
           role="menuitem"
           tabindex="0"
@@ -361,8 +375,8 @@
           </template>
           <v-list-item-title>Aula Virtual</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="navigateTo('about')"
           role="menuitem"
           tabindex="0"
@@ -400,20 +414,23 @@
 
         <!-- Mobile Accessibility Controls - Integrado para mejor usabilidad -->
         <v-divider class="my-2"></v-divider>
-        
+
         <!-- Expansion Panel para Accesibilidad -->
         <v-expansion-panels flat>
           <v-expansion-panel>
             <v-expansion-panel-title>
               <div class="d-flex align-center">
-                <v-icon class="mr-3" :color="hasAnyAccessibilityActive ? 'primary' : 'default'">
+                <v-icon
+                  class="mr-3"
+                  :color="hasAnyAccessibilityActive ? 'primary' : 'default'"
+                >
                   mdi-eye-settings
                 </v-icon>
                 <span>Opciones de Accesibilidad</span>
-                <v-chip 
-                  v-if="hasAnyAccessibilityActive" 
-                  size="x-small" 
-                  color="primary" 
+                <v-chip
+                  v-if="hasAnyAccessibilityActive"
+                  size="x-small"
+                  color="primary"
                   class="ml-2"
                 >
                   Activo
@@ -422,30 +439,41 @@
             </v-expansion-panel-title>
             <v-expansion-panel-text>
               <div class="mobile-accessibility-controls pa-2">
-                
                 <!-- Tema Oscuro/Claro -->
                 <div class="d-flex align-center justify-space-between mb-3">
                   <div class="d-flex align-center">
-                    <v-icon class="mr-2" size="small" :color="isDarkTheme ? 'amber' : 'indigo'">
-                      {{ isDarkTheme ? 'mdi-weather-night' : 'mdi-weather-sunny' }}
+                    <v-icon
+                      class="mr-2"
+                      size="small"
+                      :color="isDarkTheme ? 'amber' : 'indigo'"
+                    >
+                      {{
+                        isDarkTheme ? "mdi-weather-night" : "mdi-weather-sunny"
+                      }}
                     </v-icon>
-                    <span class="text-body-2">Tema {{ isDarkTheme ? 'Oscuro' : 'Claro' }}</span>
+                    <span class="text-body-2"
+                      >Tema {{ isDarkTheme ? "Oscuro" : "Claro" }}</span
+                    >
                   </div>
-                  
+
                   <!-- Botón de tema con transición de icono -->
                   <v-btn
                     @click="toggleTheme"
                     :color="isDarkTheme ? 'amber' : 'indigo'"
                     :variant="isDarkTheme ? 'tonal' : 'outlined'"
                     size="small"
-                    :aria-label="isDarkTheme ? 'Activar tema claro' : 'Activar tema oscuro'"
+                    :aria-label="
+                      isDarkTheme ? 'Activar tema claro' : 'Activar tema oscuro'
+                    "
                     class="theme-toggle-btn"
                   >
                     <v-icon
                       :class="{ 'theme-icon-transition': true }"
                       size="20"
                     >
-                      {{ isDarkTheme ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
+                      {{
+                        isDarkTheme ? "mdi-weather-sunny" : "mdi-weather-night"
+                      }}
                     </v-icon>
                   </v-btn>
                 </div>
@@ -453,26 +481,34 @@
                 <!-- Alto Contraste -->
                 <div class="d-flex align-center justify-space-between mb-3">
                   <div class="d-flex align-center">
-                    <v-icon class="mr-2" size="small" :color="highContrastMode ? 'yellow' : 'default'">
+                    <v-icon
+                      class="mr-2"
+                      size="small"
+                      :color="highContrastMode ? 'yellow' : 'default'"
+                    >
                       mdi-theme-light-dark
                     </v-icon>
                     <span class="text-body-2">Alto Contraste</span>
                   </div>
-                  
+
                   <!-- Botón de alto contraste con transición -->
                   <v-btn
                     @click="toggleHighContrast"
                     :color="highContrastMode ? 'yellow' : 'grey'"
                     :variant="highContrastMode ? 'tonal' : 'outlined'"
                     size="small"
-                    :aria-label="highContrastMode ? 'Desactivar alto contraste' : 'Activar alto contraste'"
+                    :aria-label="
+                      highContrastMode
+                        ? 'Desactivar alto contraste'
+                        : 'Activar alto contraste'
+                    "
                     class="contrast-toggle-btn"
                   >
                     <v-icon
                       :class="{ 'contrast-icon-transition': true }"
                       size="20"
                     >
-                      {{ highContrastMode ? 'mdi-eye' : 'mdi-eye-outline' }}
+                      {{ highContrastMode ? "mdi-eye" : "mdi-eye-outline" }}
                     </v-icon>
                   </v-btn>
                 </div>
@@ -481,7 +517,9 @@
                 <div class="mb-3">
                   <div class="d-flex align-center mb-2">
                     <v-icon class="mr-2" size="small">mdi-format-size</v-icon>
-                    <span class="text-body-2">Tamaño de Texto: {{ textSize }}%</span>
+                    <span class="text-body-2"
+                      >Tamaño de Texto: {{ textSize }}%</span
+                    >
                   </div>
                   <div class="d-flex align-center justify-space-between">
                     <v-btn
@@ -509,26 +547,34 @@
                 <!-- Reducir Animaciones -->
                 <div class="d-flex align-center justify-space-between mb-3">
                   <div class="d-flex align-center">
-                    <v-icon class="mr-2" size="small" :color="reducedMotionMode ? 'green' : 'default'">
+                    <v-icon
+                      class="mr-2"
+                      size="small"
+                      :color="reducedMotionMode ? 'green' : 'default'"
+                    >
                       mdi-run-fast
                     </v-icon>
                     <span class="text-body-2">Reducir Animaciones</span>
                   </div>
-                  
+
                   <!-- Botón de animaciones con transición -->
                   <v-btn
                     @click="toggleReducedMotion"
                     :color="reducedMotionMode ? 'green' : 'grey'"
                     :variant="reducedMotionMode ? 'tonal' : 'outlined'"
                     size="small"
-                    :aria-label="reducedMotionMode ? 'Activar animaciones' : 'Reducir animaciones'"
+                    :aria-label="
+                      reducedMotionMode
+                        ? 'Activar animaciones'
+                        : 'Reducir animaciones'
+                    "
                     class="motion-toggle-btn"
                   >
                     <v-icon
                       :class="{ 'motion-icon-transition': true }"
                       size="20"
                     >
-                      {{ reducedMotionMode ? 'mdi-pause' : 'mdi-play' }}
+                      {{ reducedMotionMode ? "mdi-pause" : "mdi-play" }}
                     </v-icon>
                   </v-btn>
                 </div>
@@ -536,26 +582,36 @@
                 <!-- Foco Mejorado -->
                 <div class="d-flex align-center justify-space-between mb-3">
                   <div class="d-flex align-center">
-                    <v-icon class="mr-2" size="small" :color="enhancedFocusMode ? 'purple' : 'default'">
+                    <v-icon
+                      class="mr-2"
+                      size="small"
+                      :color="enhancedFocusMode ? 'purple' : 'default'"
+                    >
                       mdi-crosshairs-gps
                     </v-icon>
                     <span class="text-body-2">Foco Mejorado</span>
                   </div>
-                  
+
                   <!-- Botón de foco con transición -->
                   <v-btn
                     @click="toggleEnhancedFocus"
                     :color="enhancedFocusMode ? 'purple' : 'grey'"
                     :variant="enhancedFocusMode ? 'tonal' : 'outlined'"
                     size="small"
-                    :aria-label="enhancedFocusMode ? 'Desactivar foco mejorado' : 'Activar foco mejorado'"
+                    :aria-label="
+                      enhancedFocusMode
+                        ? 'Desactivar foco mejorado'
+                        : 'Activar foco mejorado'
+                    "
                     class="focus-toggle-btn"
                   >
                     <v-icon
                       :class="{ 'focus-icon-transition': true }"
                       size="20"
                     >
-                      {{ enhancedFocusMode ? 'mdi-target' : 'mdi-target-variant' }}
+                      {{
+                        enhancedFocusMode ? "mdi-target" : "mdi-target-variant"
+                      }}
                     </v-icon>
                   </v-btn>
                 </div>
@@ -587,14 +643,14 @@
             </template>
             <v-list-item-title>Mi Perfil</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="navigateTo('my-courses')">
             <template v-slot:prepend>
               <v-icon>mdi-book-account</v-icon>
             </template>
             <v-list-item-title>Mis Cursos</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="navigateTo('purchases')">
             <template v-slot:prepend>
               <v-icon>mdi-shopping</v-icon>
@@ -603,7 +659,7 @@
           </v-list-item>
 
           <v-divider class="my-2"></v-divider>
-          
+
           <v-list-item @click="logout">
             <template v-slot:prepend>
               <v-icon color="red">mdi-logout</v-icon>
@@ -620,7 +676,7 @@
             </template>
             <v-list-item-title>Iniciar Sesión</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="openAuthDialog('register')">
             <template v-slot:prepend>
               <v-icon>mdi-account-plus</v-icon>
@@ -634,34 +690,34 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import authService from '@/services/authService'
-import cartService from '@/services/cartService'
-import AuthDialog from './AuthDialog.vue'
-import RealTimeNotifications from './dashboard/RealTimeNotifications.vue'
-import AccessibilityControls from './AccessibilityControls.vue'
-import { useAccessibility } from '@/composables/useAccessibility'
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import authService from "@/services/authService";
+import cartService from "@/services/cartService";
+import AuthDialog from "./AuthDialog.vue";
+import RealTimeNotifications from "./dashboard/RealTimeNotifications.vue";
+import AccessibilityControls from "./AccessibilityControls.vue";
+import { useAccessibility } from "@/composables/useAccessibility";
 
 export default {
-  name: 'NavigationBar',
+  name: "NavigationBar",
   components: {
     AuthDialog,
     RealTimeNotifications,
-    AccessibilityControls
+    AccessibilityControls,
   },
-  emits: ['toggle-cart'],
+  emits: ["toggle-cart"],
   setup(props, { emit }) {
-    const router = useRouter()
+    const router = useRouter();
 
     // Reactive data
-    const user = computed(() => authService.getCurrentUser())
-    const cartItemCount = computed(() => cartService.getItemCount())
-    const mobileMenuOpen = ref(false)
-    const userMenuOpen = ref(false)
+    const user = computed(() => authService.getCurrentUser());
+    const cartItemCount = computed(() => cartService.getItemCount());
+    const mobileMenuOpen = ref(false);
+    const userMenuOpen = ref(false);
 
     // Accessibility composable for mobile controls
-    const accessibility = useAccessibility()
+    const accessibility = useAccessibility();
     const {
       // Theme
       isDarkTheme,
@@ -682,239 +738,249 @@ export default {
       // Reset
       resetAllSettings,
       // Load settings
-      loadSavedSettings
-    } = accessibility
+      loadSavedSettings,
+    } = accessibility;
 
     // Computed for accessibility status
     const hasAnyAccessibilityActive = computed(() => {
-      return isDarkTheme.value || 
-             highContrastMode.value || 
-             textSize.value !== 100 || 
-             reducedMotionMode.value || 
-             enhancedFocusMode.value
-    })
+      return (
+        isDarkTheme.value ||
+        highContrastMode.value ||
+        textSize.value !== 100 ||
+        reducedMotionMode.value ||
+        enhancedFocusMode.value
+      );
+    });
 
     const authDialog = ref({
       visible: false,
-      mode: 'login'
-    })
+      mode: "login",
+    });
 
     const snackbar = ref({
       show: false,
-      message: '',
-      color: 'success',
-      timeout: 4000
-    })
+      message: "",
+      color: "success",
+      timeout: 4000,
+    });
 
     // Computed properties for Moodle status
-    const moodleStatusColor = computed(() => 'success')
-    const moodleStatusIcon = computed(() => 'mdi-check-circle')
-    const moodleStatusText = computed(() => 'Disponible')
-    const userName = computed(() => user.value?.userData?.name || 'Usuario')
+    const moodleStatusColor = computed(() => "success");
+    const moodleStatusIcon = computed(() => "mdi-check-circle");
+    const moodleStatusText = computed(() => "Disponible");
+    const userName = computed(() => user.value?.userData?.name || "Usuario");
 
     // Navigation function
     const navigateTo = (routeName) => {
-      console.log(`🔄 Navegando a: ${routeName}`)
-      closeMenus()
-      router.push({ name: routeName }).catch(err => {
-        console.error('Error navigating:', err)
-      })
-    }
+      console.log(`🔄 Navegando a: ${routeName}`);
+      closeMenus();
+      router.push({ name: routeName }).catch((err) => {
+        console.error("Error navigating:", err);
+      });
+    };
 
     // Cart function
     const toggleCart = () => {
-      console.log('🛒 Toggling cart')
-      closeMenus()
-      emit('toggle-cart')
-    }
+      console.log("🛒 Toggling cart");
+      closeMenus();
+      emit("toggle-cart");
+    };
 
     // Auth functions
     const openAuthDialog = (mode) => {
-      console.log(`🔐 Opening auth dialog: ${mode}`)
-      closeMenus()
-      authDialog.value.visible = true
-      authDialog.value.mode = mode
-    }
+      console.log(`🔐 Opening auth dialog: ${mode}`);
+      closeMenus();
+      authDialog.value.visible = true;
+      authDialog.value.mode = mode;
+    };
 
     const handleAuthSuccess = (userData) => {
-      console.log('✅ Auth success:', userData)
-      authDialog.value.visible = false
-      showSnackbar('¡Bienvenido! Has iniciado sesión correctamente.', 'success')
-    }
+      console.log("✅ Auth success:", userData);
+      authDialog.value.visible = false;
+      showSnackbar(
+        "¡Bienvenido! Has iniciado sesión correctamente.",
+        "success"
+      );
+    };
 
     const handleAuthError = (error) => {
-      console.error('❌ Auth error:', error)
-      showSnackbar(error.message || 'Error de autenticación', 'error')
-    }
+      console.error("❌ Auth error:", error);
+      showSnackbar(error.message || "Error de autenticación", "error");
+    };
 
     const logout = async () => {
-      console.log('👋 Logging out')
-      closeMenus()
+      console.log("👋 Logging out");
+      closeMenus();
       try {
-        await authService.logout()
-        showSnackbar('Has cerrado sesión correctamente.', 'info')
-        router.push({ name: 'home' })
+        await authService.logout();
+        showSnackbar("Has cerrado sesión correctamente.", "info");
+        router.push({ name: "home" });
       } catch (error) {
-        console.error('Error during logout:', error)
-        showSnackbar('Error al cerrar sesión', 'error')
+        console.error("Error during logout:", error);
+        showSnackbar("Error al cerrar sesión", "error");
       }
-    }
+    };
 
     // Mobile menu function with extensive debugging
     const toggleMobileMenu = () => {
-      const oldValue = mobileMenuOpen.value
-      mobileMenuOpen.value = !mobileMenuOpen.value
-      console.log(`📱 Toggle menú móvil: ${oldValue} -> ${mobileMenuOpen.value}`)
-      console.log(`📱 Estado final: mobileMenuOpen=${mobileMenuOpen.value}`)
-      
+      const oldValue = mobileMenuOpen.value;
+      mobileMenuOpen.value = !mobileMenuOpen.value;
+      console.log(
+        `📱 Toggle menú móvil: ${oldValue} -> ${mobileMenuOpen.value}`
+      );
+      console.log(`📱 Estado final: mobileMenuOpen=${mobileMenuOpen.value}`);
+
       // Cerrar otros menús
-      userMenuOpen.value = false
-      
+      userMenuOpen.value = false;
+
       // Forzar actualización del DOM
       setTimeout(() => {
-        console.log(`📱 Verificación después de timeout: mobileMenuOpen=${mobileMenuOpen.value}`)
-      }, 100)
-    }
+        console.log(
+          `📱 Verificación después de timeout: mobileMenuOpen=${mobileMenuOpen.value}`
+        );
+      }, 100);
+    };
 
     const closeMenus = () => {
-      console.log('🔄 Cerrando todos los menús')
-      mobileMenuOpen.value = false
-      userMenuOpen.value = false
-    }
+      console.log("🔄 Cerrando todos los menús");
+      mobileMenuOpen.value = false;
+      userMenuOpen.value = false;
+    };
 
     // Moodle function
     const openMoodle = () => {
-      console.log('🎓 Opening Moodle')
-      closeMenus()
-      const moodleUrl = process.env.VUE_APP_MOODLE_URL || 'https://neekworld.cl/NW'
-      window.open(moodleUrl, '_blank')
-    }
+      console.log("🎓 Opening Moodle");
+      closeMenus();
+      const moodleUrl =
+        process.env.VUE_APP_MOODLE_URL || "https://neekworld.cl/NW";
+      window.open(moodleUrl, "_blank");
+    };
 
     // Notification handlers
     const handleNewNotification = (notification) => {
-      console.log('🔔 Nueva notificación:', notification)
-      showSnackbar(`Nueva notificación: ${notification.title}`, 'info')
-    }
+      console.log("🔔 Nueva notificación:", notification);
+      showSnackbar(`Nueva notificación: ${notification.title}`, "info");
+    };
 
     const handleNotificationRead = (notificationId) => {
-      console.log('📖 Notificación leída:', notificationId)
-    }
+      console.log("📖 Notificación leída:", notificationId);
+    };
 
     const handleAllNotificationsRead = () => {
-      console.log('📖 Todas las notificaciones marcadas como leídas')
-    }
+      console.log("📖 Todas las notificaciones marcadas como leídas");
+    };
 
     // Snackbar function
-    const showSnackbar = (message, color = 'success', timeout = 4000) => {
+    const showSnackbar = (message, color = "success", timeout = 4000) => {
       snackbar.value = {
         show: true,
         message,
         color,
-        timeout
-      }
-    }
+        timeout,
+      };
+    };
 
     // Lifecycle
     onMounted(() => {
-      console.log('🔧 NavigationBar mounted')
-      console.log('👤 Current user:', user.value)
-      console.log('🛒 Cart items:', cartItemCount.value)
-      
+      console.log("🔧 NavigationBar mounted");
+      console.log("👤 Current user:", user.value);
+      console.log("🛒 Cart items:", cartItemCount.value);
+
       // Initialize accessibility settings
-      console.log('🎨 Initializing accessibility settings...')
-      loadSavedSettings()
-      
+      console.log("🎨 Initializing accessibility settings...");
+      loadSavedSettings();
+
       // Log current accessibility state after initialization
       setTimeout(() => {
-        console.log('🎨 Accessibility state after init:', {
+        console.log("🎨 Accessibility state after init:", {
           isDarkTheme: isDarkTheme.value,
           highContrastMode: highContrastMode.value,
           textSize: textSize.value,
           reducedMotionMode: reducedMotionMode.value,
-          enhancedFocusMode: enhancedFocusMode.value
-        })
-      }, 500)
-    })
+          enhancedFocusMode: enhancedFocusMode.value,
+        });
+      }, 500);
+    });
 
     // Computed properties para el navigation drawer
     const drawerColor = computed(() => {
       if (highContrastMode.value) {
-        return 'black'
+        return "black";
       }
-      return isDarkTheme.value ? 'primary' : 'white'
-    })
+      return isDarkTheme.value ? "primary" : "white";
+    });
 
     const drawerTheme = computed(() => {
       if (highContrastMode.value) {
-        return 'dark'
+        return "dark";
       }
-      return isDarkTheme.value ? 'dark' : 'light'
-    })
+      return isDarkTheme.value ? "dark" : "light";
+    });
 
     const drawerClasses = computed(() => {
-      const classes = []
+      const classes = [];
       if (highContrastMode.value) {
-        classes.push('high-contrast-drawer')
+        classes.push("high-contrast-drawer");
       }
-      return classes.join(' ')
-    })
+      return classes.join(" ");
+    });
 
     const headerClasses = computed(() => {
       if (highContrastMode.value) {
-        return 'high-contrast-header'
+        return "high-contrast-header";
       }
-      return isDarkTheme.value ? 'bg-primary' : 'bg-grey-lighten-4'
-    })
+      return isDarkTheme.value ? "bg-primary" : "bg-grey-lighten-4";
+    });
 
     const avatarColor = computed(() => {
       if (highContrastMode.value) {
-        return 'yellow'
+        return "yellow";
       }
-      return isDarkTheme.value ? 'white' : 'primary'
-    })
+      return isDarkTheme.value ? "white" : "primary";
+    });
 
     const avatarIconColor = computed(() => {
       if (highContrastMode.value) {
-        return 'black'
+        return "black";
       }
-      return isDarkTheme.value ? 'primary' : 'white'
-    })
+      return isDarkTheme.value ? "primary" : "white";
+    });
 
     const userNameClasses = computed(() => {
       if (highContrastMode.value) {
-        return 'text-yellow'
+        return "text-yellow";
       }
-      return isDarkTheme.value ? 'text-white' : 'text-grey-darken-4'
-    })
+      return isDarkTheme.value ? "text-white" : "text-grey-darken-4";
+    });
 
     const userRoleClasses = computed(() => {
       if (highContrastMode.value) {
-        return 'text-white'
+        return "text-white";
       }
-      return isDarkTheme.value ? 'text-grey-lighten-1' : 'text-grey-darken-1'
-    })
+      return isDarkTheme.value ? "text-grey-lighten-1" : "text-grey-darken-1";
+    });
 
     const appBarColor = computed(() => {
       if (highContrastMode.value) {
-        return 'black'
+        return "black";
       }
-      return isDarkTheme.value ? 'primary' : 'white'
-    })
+      return isDarkTheme.value ? "primary" : "#21234A";
+    });
 
     const appBarTheme = computed(() => {
       if (highContrastMode.value) {
-        return 'dark'
+        return "dark";
       }
-      return isDarkTheme.value ? 'dark' : 'light'
-    })
+      return isDarkTheme.value ? "dark" : "light";
+    });
 
     const appBarClasses = computed(() => {
-      const classes = []
+      const classes = [];
       if (highContrastMode.value) {
-        classes.push('high-contrast-app-bar')
+        classes.push("high-contrast-app-bar");
       }
-      return classes.join(' ')
-    })
+      return classes.join(" ");
+    });
 
     return {
       // Reactive data
@@ -924,7 +990,7 @@ export default {
       userMenuOpen,
       authDialog,
       snackbar,
-      
+
       // Computed
       moodleStatusColor,
       moodleStatusIcon,
@@ -941,7 +1007,7 @@ export default {
       appBarColor,
       appBarTheme,
       appBarClasses,
-      
+
       // Accessibility Mobile Controls
       isDarkTheme,
       toggleTheme,
@@ -956,7 +1022,7 @@ export default {
       toggleEnhancedFocus,
       resetAllSettings,
       hasAnyAccessibilityActive,
-      
+
       // Methods
       navigateTo,
       toggleCart,
@@ -969,18 +1035,16 @@ export default {
       closeMenus,
       handleNewNotification,
       handleNotificationRead,
-      handleAllNotificationsRead
-    }
-  }
-}
+      handleAllNotificationsRead,
+    };
+  },
+};
 </script>
 
 <style scoped>
-/* Logo vertical alignment fix */
-.navbar-title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-left: 8px;
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Ensure proper mobile menu display */
@@ -1036,7 +1100,7 @@ export default {
 /* Focus indicators */
 .v-btn:focus,
 .v-list-item:focus {
-  outline: 2px solid #2196F3;
+  outline: 2px solid #2196f3;
   outline-offset: 2px;
 }
 
@@ -1145,9 +1209,15 @@ export default {
 
 /* Animación de pulso para indicar cambio de estado */
 @keyframes accessibility-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Aplicar pulso cuando cambia el estado */
@@ -1183,8 +1253,8 @@ export default {
 /* Drawer en alto contraste - Con mayor especificidad */
 .high-contrast-drawer.v-navigation-drawer {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
-  border: 3px solid #FFFF00 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffff00 !important;
 }
 
 .high-contrast-drawer .v-navigation-drawer__content {
@@ -1194,33 +1264,33 @@ export default {
 /* Header del drawer en alto contraste */
 .high-contrast-header {
   background-color: #000000 !important;
-  color: #FFFF00 !important;
-  border-bottom: 2px solid #FFFF00 !important;
+  color: #ffff00 !important;
+  border-bottom: 2px solid #ffff00 !important;
 }
 
 /* Lista en alto contraste - Con mayor especificidad */
 .high-contrast-drawer .v-list,
 .high-contrast-drawer .v-list.v-list {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-drawer .v-list-item,
 .high-contrast-drawer .v-list-item.v-list-item {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   border-bottom: 1px solid #333333 !important;
   background-color: transparent !important;
 }
 
 .high-contrast-drawer .v-list-item-title,
 .high-contrast-drawer .v-list-item-title.v-list-item-title {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   font-weight: 500 !important;
 }
 
 .high-contrast-drawer .v-list-item:hover,
 .high-contrast-drawer .v-list-item.v-list-item:hover {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
@@ -1231,7 +1301,7 @@ export default {
 
 .high-contrast-drawer .v-list-item .v-icon,
 .high-contrast-drawer .v-list-item.v-list-item .v-icon {
-  color: #FFFF00 !important;
+  color: #ffff00 !important;
 }
 
 .high-contrast-drawer .v-list-item:hover .v-icon,
@@ -1242,9 +1312,9 @@ export default {
 /* Focus states para alto contraste */
 .high-contrast-drawer .v-list-item:focus,
 .high-contrast-drawer .v-list-item.v-list-item:focus {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
-  outline: 3px solid #FF0000 !important;
+  outline: 3px solid #ff0000 !important;
   outline-offset: 2px !important;
 }
 
@@ -1261,7 +1331,7 @@ export default {
 /* Dividers en alto contraste */
 .high-contrast-drawer .v-divider,
 .high-contrast-drawer .v-divider.v-divider {
-  border-color: #FFFF00 !important;
+  border-color: #ffff00 !important;
   opacity: 1 !important;
   border-width: 2px !important;
 }
@@ -1275,27 +1345,27 @@ export default {
 .high-contrast-drawer .v-expansion-panel,
 .high-contrast-drawer .v-expansion-panel.v-expansion-panel {
   background-color: #000000 !important;
-  border: 2px solid #FFFF00 !important;
+  border: 2px solid #ffff00 !important;
   margin-bottom: 8px !important;
 }
 
 .high-contrast-drawer .v-expansion-panel-title,
 .high-contrast-drawer .v-expansion-panel-title.v-expansion-panel-title {
   background-color: #000000 !important;
-  color: #FFFF00 !important;
-  border-bottom: 1px solid #FFFF00 !important;
+  color: #ffff00 !important;
+  border-bottom: 1px solid #ffff00 !important;
   font-weight: bold !important;
 }
 
 .high-contrast-drawer .v-expansion-panel-text,
 .high-contrast-drawer .v-expansion-panel-text.v-expansion-panel-text {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 /* Texto dentro de expansion panels */
 .high-contrast-drawer .v-expansion-panel-text .text-body-2 {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 /* Botones en alto contraste dentro del drawer - Con mayor especificidad */
@@ -1307,9 +1377,9 @@ export default {
 .high-contrast-drawer .v-btn.contrast-toggle-btn,
 .high-contrast-drawer .v-btn.motion-toggle-btn,
 .high-contrast-drawer .v-btn.focus-toggle-btn {
-  border: 2px solid #FFFF00 !important;
+  border: 2px solid #ffff00 !important;
   background-color: #000000 !important;
-  color: #FFFF00 !important;
+  color: #ffff00 !important;
 }
 
 .high-contrast-drawer .theme-toggle-btn:hover,
@@ -1320,7 +1390,7 @@ export default {
 .high-contrast-drawer .v-btn.contrast-toggle-btn:hover,
 .high-contrast-drawer .v-btn.motion-toggle-btn:hover,
 .high-contrast-drawer .v-btn.focus-toggle-btn:hover {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
@@ -1332,9 +1402,9 @@ export default {
 .high-contrast-drawer .v-btn.contrast-toggle-btn[variant="tonal"],
 .high-contrast-drawer .v-btn.motion-toggle-btn[variant="tonal"],
 .high-contrast-drawer .v-btn.focus-toggle-btn[variant="tonal"] {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
-  border: 2px solid #FFFF00 !important;
+  border: 2px solid #ffff00 !important;
 }
 
 /* Iconos en botones de accesibilidad */
@@ -1348,33 +1418,33 @@ export default {
 /* Switches en alto contraste */
 .high-contrast-drawer .v-switch,
 .high-contrast-drawer .v-switch.v-switch {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-drawer .v-switch .v-selection-control__wrapper {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-drawer .v-switch .v-switch__track {
   background-color: #333333 !important;
-  border: 1px solid #FFFF00 !important;
+  border: 1px solid #ffff00 !important;
 }
 
 .high-contrast-drawer .v-switch .v-switch__thumb {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   border: 1px solid #000000 !important;
 }
 
 .high-contrast-drawer .v-switch--inset .v-switch__track {
   background-color: #000000 !important;
-  border: 2px solid #FFFF00 !important;
+  border: 2px solid #ffff00 !important;
 }
 
 /* Avatar en alto contraste */
 .high-contrast-drawer .v-avatar,
 .high-contrast-drawer .v-avatar.v-avatar {
-  border: 2px solid #FFFF00 !important;
-  background-color: #FFFF00 !important;
+  border: 2px solid #ffff00 !important;
+  background-color: #ffff00 !important;
 }
 
 .high-contrast-drawer .v-avatar .v-icon {
@@ -1388,8 +1458,8 @@ export default {
 /* App bar en alto contraste - Con mayor especificidad */
 .high-contrast-app-bar.v-app-bar {
   background-color: #000000 !important;
-  color: #FFFF00 !important;
-  border-bottom: 3px solid #FFFF00 !important;
+  color: #ffff00 !important;
+  border-bottom: 3px solid #ffff00 !important;
 }
 
 .high-contrast-app-bar .v-toolbar__content {
@@ -1397,26 +1467,26 @@ export default {
 }
 
 .high-contrast-app-bar .navbar-title {
-  color: #FFFF00 !important;
+  color: #ffff00 !important;
   font-weight: bold !important;
 }
 
 .high-contrast-app-bar .v-btn,
 .high-contrast-app-bar .v-btn.v-btn {
-  color: #FFFF00 !important;
-  border: 1px solid #FFFF00 !important;
+  color: #ffff00 !important;
+  border: 1px solid #ffff00 !important;
   background-color: #000000 !important;
 }
 
 .high-contrast-app-bar .v-btn:hover,
 .high-contrast-app-bar .v-btn.v-btn:hover {
-  background-color: #FFFF00 !important;
+  background-color: #ffff00 !important;
   color: #000000 !important;
 }
 
 .high-contrast-app-bar .v-icon,
 .high-contrast-app-bar .v-icon.v-icon {
-  color: #FFFF00 !important;
+  color: #ffff00 !important;
 }
 
 .high-contrast-app-bar .v-btn:hover .v-icon {
@@ -1425,20 +1495,29 @@ export default {
 
 /* Logo en alto contraste */
 .high-contrast-app-bar .v-img {
-  border: 2px solid #FFFF00 !important;
-  background-color: #FFFFFF !important;
+  border: 2px solid #ffff00 !important;
+  background-color: #ffffff !important;
 }
 
 /* Focus states para app bar */
 .high-contrast-app-bar .v-btn:focus,
 .high-contrast-app-bar .v-btn.v-btn:focus {
-  outline: 3px solid #FF0000 !important;
+  outline: 3px solid #ff0000 !important;
   outline-offset: 2px !important;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   color: #000000 !important;
 }
 
 .high-contrast-app-bar .v-btn:focus .v-icon {
   color: #000000 !important;
+}
+
+/* Custom navbar color */
+.v-app-bar {
+  background-color: #21234a !important;
+}
+
+.v-theme--light .v-app-bar {
+  background-color: #21234a !important;
 }
 </style>

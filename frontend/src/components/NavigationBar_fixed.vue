@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-app-bar app color="primary" dark elevation="4" role="banner">
-      <div 
-        class="d-flex align-center" 
-        style="cursor:pointer" 
+      <div
+        class="d-flex align-center"
+        style="cursor: pointer"
         @click="navigateTo('home')"
         @keydown.enter="navigateTo('home')"
         @keydown.space="navigateTo('home')"
@@ -19,22 +19,25 @@
           transition="scale-transition"
           width="36"
           height="36"
-          style="border-radius: 8px; margin-right: 8px;"
+          style="border-radius: 8px; margin-right: 8px"
           role="img"
         />
-        <span class="navbar-title">NeekWorld</span>
       </div>
 
       <v-spacer></v-spacer>
 
       <!-- Navigation Links (desktop) -->
-      <nav class="d-none d-md-flex" role="navigation" aria-label="Navegación principal">
+      <nav
+        class="d-none d-md-flex"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('home')" 
+              @click="navigateTo('home')"
               class="mr-2"
               role="menuitem"
               aria-label="Ir a página de inicio"
@@ -48,15 +51,17 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('courses')" 
+              @click="navigateTo('courses')"
               class="mr-2"
               role="menuitem"
               aria-label="Ver catálogo de cursos"
             >
-              <v-icon left aria-hidden="true">mdi-book-open-page-variant</v-icon>
+              <v-icon left aria-hidden="true"
+                >mdi-book-open-page-variant</v-icon
+              >
               Cursos
             </v-btn>
           </template>
@@ -65,10 +70,10 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              text 
+            <v-btn
+              text
               v-bind="props"
-              @click="navigateTo('about')" 
+              @click="navigateTo('about')"
               class="mr-2"
               role="menuitem"
               aria-label="Información sobre la plataforma"
@@ -89,18 +94,18 @@
         <!-- Shopping Cart -->
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
-            <v-btn 
-              icon 
+            <v-btn
+              icon
               v-bind="props"
-              @click="toggleCart" 
+              @click="toggleCart"
               class="mr-2"
               aria-label="Abrir carrito de compras"
               :aria-describedby="cartItemCount > 0 ? 'cart-count' : null"
             >
-              <v-badge 
-                :content="cartItemCount" 
-                :value="cartItemCount > 0" 
-                color="red" 
+              <v-badge
+                :content="cartItemCount"
+                :value="cartItemCount > 0"
+                color="red"
                 overlap
                 :aria-label="`${cartItemCount} productos en el carrito`"
               >
@@ -112,9 +117,12 @@
             </v-btn>
           </template>
           <span>
-            {{ cartItemCount > 0 
-              ? `Carrito (${cartItemCount} producto${cartItemCount > 1 ? 's' : ''})` 
-              : 'Carrito de compras vacío' 
+            {{
+              cartItemCount > 0
+                ? `Carrito (${cartItemCount} producto${
+                    cartItemCount > 1 ? "s" : ""
+                  })`
+                : "Carrito de compras vacío"
             }}
           </span>
         </v-tooltip>
@@ -190,7 +198,9 @@
               <v-divider></v-divider>
               <v-list-item disabled>
                 <template v-slot:prepend>
-                  <v-icon :color="moodleStatusColor">{{ moodleStatusIcon }}</v-icon>
+                  <v-icon :color="moodleStatusColor">{{
+                    moodleStatusIcon
+                  }}</v-icon>
                 </template>
                 <v-list-item-title class="text-caption">
                   Moodle: {{ moodleStatusText }}
@@ -198,7 +208,7 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          
+
           <!-- User Profile Menu -->
           <v-menu offset-y v-model="userMenuOpen">
             <template v-slot:activator="{ props }">
@@ -238,10 +248,10 @@
       <!-- Mobile menu button -->
       <v-tooltip bottom>
         <template v-slot:activator="{ props }">
-          <v-btn 
-            icon 
+          <v-btn
+            icon
             v-bind="props"
-            class="d-md-none" 
+            class="d-md-none"
             @click="toggleMobileMenu"
             aria-label="Abrir menú de navegación móvil"
             :aria-expanded="mobileMenuOpen"
@@ -250,7 +260,9 @@
             <v-icon aria-hidden="true">mdi-menu</v-icon>
           </v-btn>
         </template>
-        <span>{{ mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú de navegación' }}</span>
+        <span>{{
+          mobileMenuOpen ? "Cerrar menú" : "Abrir menú de navegación"
+        }}</span>
       </v-tooltip>
 
       <!-- Auth Dialog -->
@@ -270,15 +282,17 @@
       >
         {{ snackbar.message }}
         <template v-slot:action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="snackbar.show = false">Cerrar</v-btn>
+          <v-btn text v-bind="attrs" @click="snackbar.show = false"
+            >Cerrar</v-btn
+          >
         </template>
       </v-snackbar>
     </v-app-bar>
 
     <!-- Mobile Navigation Drawer - FUERA del app-bar -->
-    <v-navigation-drawer 
-      v-model="mobileMenuOpen" 
-      temporary 
+    <v-navigation-drawer
+      v-model="mobileMenuOpen"
+      temporary
       location="right"
       id="mobile-menu-drawer"
       role="navigation"
@@ -292,8 +306,10 @@
           <v-icon color="white">mdi-account-circle</v-icon>
         </v-avatar>
         <div v-if="user.isAuthenticated">
-          <div class="font-weight-bold">{{ user.userData?.name || userName }}</div>
-          <div class="text-caption">{{ user.userData?.role || 'Usuario' }}</div>
+          <div class="font-weight-bold">
+            {{ user.userData?.name || userName }}
+          </div>
+          <div class="text-caption">{{ user.userData?.role || "Usuario" }}</div>
         </div>
         <div v-else>
           <div class="font-weight-bold">Visitante</div>
@@ -303,7 +319,7 @@
 
       <v-list dense>
         <!-- Navigation Links -->
-        <v-list-item 
+        <v-list-item
           @click="navigateTo('home')"
           role="menuitem"
           tabindex="0"
@@ -314,8 +330,8 @@
           </template>
           <v-list-item-title>Inicio</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="navigateTo('courses')"
           role="menuitem"
           tabindex="0"
@@ -327,7 +343,7 @@
           <v-list-item-title>Cursos</v-list-item-title>
         </v-list-item>
 
-        <v-list-item 
+        <v-list-item
           @click="navigateTo('dashboard')"
           role="menuitem"
           tabindex="0"
@@ -338,8 +354,8 @@
           </template>
           <v-list-item-title>Dashboard</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="openMoodle"
           role="menuitem"
           tabindex="0"
@@ -350,8 +366,8 @@
           </template>
           <v-list-item-title>Aula Virtual</v-list-item-title>
         </v-list-item>
-        
-        <v-list-item 
+
+        <v-list-item
           @click="navigateTo('about')"
           role="menuitem"
           tabindex="0"
@@ -368,10 +384,10 @@
         <!-- Mobile: Cart and Accessibility -->
         <v-list-item @click="toggleCart">
           <template v-slot:prepend>
-            <v-badge 
-              :content="cartItemCount" 
-              :value="cartItemCount > 0" 
-              color="red" 
+            <v-badge
+              :content="cartItemCount"
+              :value="cartItemCount > 0"
+              color="red"
               overlap
             >
               <v-icon>mdi-cart</v-icon>
@@ -405,14 +421,14 @@
             </template>
             <v-list-item-title>Mi Perfil</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="navigateTo('my-courses')">
             <template v-slot:prepend>
               <v-icon>mdi-book-account</v-icon>
             </template>
             <v-list-item-title>Mis Cursos</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="navigateTo('purchases')">
             <template v-slot:prepend>
               <v-icon>mdi-shopping</v-icon>
@@ -421,7 +437,7 @@
           </v-list-item>
 
           <v-divider class="my-2"></v-divider>
-          
+
           <v-list-item @click="logout">
             <template v-slot:prepend>
               <v-icon color="red">mdi-logout</v-icon>
@@ -438,7 +454,7 @@
             </template>
             <v-list-item-title>Iniciar Sesión</v-list-item-title>
           </v-list-item>
-          
+
           <v-list-item @click="openAuthDialog('register')">
             <template v-slot:prepend>
               <v-icon>mdi-account-plus</v-icon>
@@ -452,157 +468,165 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import authService from '@/services/authService'
-import cartService from '@/services/cartService'
-import AuthDialog from './AuthDialog.vue'
-import RealTimeNotifications from './dashboard/RealTimeNotifications.vue'
-import AccessibilityControls from './AccessibilityControls.vue'
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import authService from "@/services/authService";
+import cartService from "@/services/cartService";
+import AuthDialog from "./AuthDialog.vue";
+import RealTimeNotifications from "./dashboard/RealTimeNotifications.vue";
+import AccessibilityControls from "./AccessibilityControls.vue";
 
 export default {
-  name: 'NavigationBar',
+  name: "NavigationBar",
   components: {
     AuthDialog,
     RealTimeNotifications,
-    AccessibilityControls
+    AccessibilityControls,
   },
-  emits: ['toggle-cart'],
+  emits: ["toggle-cart"],
   setup(props, { emit }) {
-    const router = useRouter()
+    const router = useRouter();
 
     // Reactive data
-    const user = computed(() => authService.getCurrentUser())
-    const cartItemCount = computed(() => cartService.getItemCount())
-    const mobileMenuOpen = ref(false)
-    const userMenuOpen = ref(false)
+    const user = computed(() => authService.getCurrentUser());
+    const cartItemCount = computed(() => cartService.getItemCount());
+    const mobileMenuOpen = ref(false);
+    const userMenuOpen = ref(false);
 
     const authDialog = ref({
       visible: false,
-      mode: 'login'
-    })
+      mode: "login",
+    });
 
     const snackbar = ref({
       show: false,
-      message: '',
-      color: 'success',
-      timeout: 4000
-    })
+      message: "",
+      color: "success",
+      timeout: 4000,
+    });
 
     // Computed properties for Moodle status
-    const moodleStatusColor = computed(() => 'success')
-    const moodleStatusIcon = computed(() => 'mdi-check-circle')
-    const moodleStatusText = computed(() => 'Disponible')
-    const userName = computed(() => user.value?.userData?.name || 'Usuario')
+    const moodleStatusColor = computed(() => "success");
+    const moodleStatusIcon = computed(() => "mdi-check-circle");
+    const moodleStatusText = computed(() => "Disponible");
+    const userName = computed(() => user.value?.userData?.name || "Usuario");
 
     // Navigation function
     const navigateTo = (routeName) => {
-      console.log(`🔄 Navegando a: ${routeName}`)
-      closeMenus()
-      router.push({ name: routeName }).catch(err => {
-        console.error('Error navigating:', err)
-      })
-    }
+      console.log(`🔄 Navegando a: ${routeName}`);
+      closeMenus();
+      router.push({ name: routeName }).catch((err) => {
+        console.error("Error navigating:", err);
+      });
+    };
 
     // Cart function
     const toggleCart = () => {
-      console.log('🛒 Toggling cart')
-      closeMenus()
-      emit('toggle-cart')
-    }
+      console.log("🛒 Toggling cart");
+      closeMenus();
+      emit("toggle-cart");
+    };
 
     // Auth functions
     const openAuthDialog = (mode) => {
-      console.log(`🔐 Opening auth dialog: ${mode}`)
-      closeMenus()
-      authDialog.value.visible = true
-      authDialog.value.mode = mode
-    }
+      console.log(`🔐 Opening auth dialog: ${mode}`);
+      closeMenus();
+      authDialog.value.visible = true;
+      authDialog.value.mode = mode;
+    };
 
     const handleAuthSuccess = (userData) => {
-      console.log('✅ Auth success:', userData)
-      authDialog.value.visible = false
-      showSnackbar('¡Bienvenido! Has iniciado sesión correctamente.', 'success')
-    }
+      console.log("✅ Auth success:", userData);
+      authDialog.value.visible = false;
+      showSnackbar(
+        "¡Bienvenido! Has iniciado sesión correctamente.",
+        "success"
+      );
+    };
 
     const handleAuthError = (error) => {
-      console.error('❌ Auth error:', error)
-      showSnackbar(error.message || 'Error de autenticación', 'error')
-    }
+      console.error("❌ Auth error:", error);
+      showSnackbar(error.message || "Error de autenticación", "error");
+    };
 
     const logout = async () => {
-      console.log('👋 Logging out')
-      closeMenus()
+      console.log("👋 Logging out");
+      closeMenus();
       try {
-        await authService.logout()
-        showSnackbar('Has cerrado sesión correctamente.', 'info')
-        router.push({ name: 'home' })
+        await authService.logout();
+        showSnackbar("Has cerrado sesión correctamente.", "info");
+        router.push({ name: "home" });
       } catch (error) {
-        console.error('Error during logout:', error)
-        showSnackbar('Error al cerrar sesión', 'error')
+        console.error("Error during logout:", error);
+        showSnackbar("Error al cerrar sesión", "error");
       }
-    }
+    };
 
     // Mobile menu function with extensive debugging
     const toggleMobileMenu = () => {
-      const oldValue = mobileMenuOpen.value
-      mobileMenuOpen.value = !mobileMenuOpen.value
-      console.log(`📱 Toggle menú móvil: ${oldValue} -> ${mobileMenuOpen.value}`)
-      console.log(`📱 Estado final: mobileMenuOpen=${mobileMenuOpen.value}`)
-      
+      const oldValue = mobileMenuOpen.value;
+      mobileMenuOpen.value = !mobileMenuOpen.value;
+      console.log(
+        `📱 Toggle menú móvil: ${oldValue} -> ${mobileMenuOpen.value}`
+      );
+      console.log(`📱 Estado final: mobileMenuOpen=${mobileMenuOpen.value}`);
+
       // Cerrar otros menús
-      userMenuOpen.value = false
-      
+      userMenuOpen.value = false;
+
       // Forzar actualización del DOM
       setTimeout(() => {
-        console.log(`📱 Verificación después de timeout: mobileMenuOpen=${mobileMenuOpen.value}`)
-      }, 100)
-    }
+        console.log(
+          `📱 Verificación después de timeout: mobileMenuOpen=${mobileMenuOpen.value}`
+        );
+      }, 100);
+    };
 
     const closeMenus = () => {
-      console.log('🔄 Cerrando todos los menús')
-      mobileMenuOpen.value = false
-      userMenuOpen.value = false
-    }
+      console.log("🔄 Cerrando todos los menús");
+      mobileMenuOpen.value = false;
+      userMenuOpen.value = false;
+    };
 
     // Moodle function
     const openMoodle = () => {
-      console.log('🎓 Opening Moodle')
-      closeMenus()
-      const moodleUrl = process.env.VUE_APP_MOODLE_URL || 'https://neekworld.unimayor.edu.co'
-      window.open(moodleUrl, '_blank')
-    }
+      console.log("🎓 Opening Moodle");
+      closeMenus();
+      const moodleUrl =
+        process.env.VUE_APP_MOODLE_URL || "https://neekworld.unimayor.edu.co";
+      window.open(moodleUrl, "_blank");
+    };
 
     // Notification handlers
     const handleNewNotification = (notification) => {
-      console.log('🔔 Nueva notificación:', notification)
-      showSnackbar(`Nueva notificación: ${notification.title}`, 'info')
-    }
+      console.log("🔔 Nueva notificación:", notification);
+      showSnackbar(`Nueva notificación: ${notification.title}`, "info");
+    };
 
     const handleNotificationRead = (notificationId) => {
-      console.log('📖 Notificación leída:', notificationId)
-    }
+      console.log("📖 Notificación leída:", notificationId);
+    };
 
     const handleAllNotificationsRead = () => {
-      console.log('📖 Todas las notificaciones marcadas como leídas')
-    }
+      console.log("📖 Todas las notificaciones marcadas como leídas");
+    };
 
     // Snackbar function
-    const showSnackbar = (message, color = 'success', timeout = 4000) => {
+    const showSnackbar = (message, color = "success", timeout = 4000) => {
       snackbar.value = {
         show: true,
         message,
         color,
-        timeout
-      }
-    }
+        timeout,
+      };
+    };
 
     // Lifecycle
     onMounted(() => {
-      console.log('🔧 NavigationBar mounted')
-      console.log('👤 Current user:', user.value)
-      console.log('🛒 Cart items:', cartItemCount.value)
-    })
+      console.log("🔧 NavigationBar mounted");
+      console.log("👤 Current user:", user.value);
+      console.log("🛒 Cart items:", cartItemCount.value);
+    });
 
     return {
       // Reactive data
@@ -612,13 +636,13 @@ export default {
       userMenuOpen,
       authDialog,
       snackbar,
-      
+
       // Computed
       moodleStatusColor,
       moodleStatusIcon,
       moodleStatusText,
       userName,
-      
+
       // Methods
       navigateTo,
       toggleCart,
@@ -631,10 +655,10 @@ export default {
       closeMenus,
       handleNewNotification,
       handleNotificationRead,
-      handleAllNotificationsRead
-    }
-  }
-}
+      handleAllNotificationsRead,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -674,7 +698,7 @@ export default {
 /* Focus indicators */
 .v-btn:focus,
 .v-list-item:focus {
-  outline: 2px solid #2196F3;
+  outline: 2px solid #2196f3;
   outline-offset: 2px;
 }
 
