@@ -15,36 +15,36 @@
         {{ statusLabel.text }}
       </v-chip>
     </v-img>
-    
+
     <v-card-title class="text-h6">
       {{ course.title }}
     </v-card-title>
-    
+
     <v-card-subtitle>
       <div class="d-flex align-center">
         <v-icon size="small" class="me-1">mdi-tag</v-icon>
         {{ course.category }}
       </div>
     </v-card-subtitle>
-    
+
     <v-card-text>
       <div class="text-truncate-2 mb-3">
         {{ course.description }}
       </div>
-      
+
       <div class="d-flex align-center mb-2">
         <v-icon size="small" class="me-1">mdi-account</v-icon>
-        <span>{{ course.teacher?.name || 'Instructor' }}</span>
+        <span>{{ course.teacher?.name || "Instructor" }}</span>
       </div>
-      
+
       <div class="d-flex align-center">
         <v-icon size="small" class="me-1">mdi-calendar</v-icon>
         <span>{{ courseDuration }}</span>
       </div>
     </v-card-text>
-    
+
     <v-divider></v-divider>
-    
+
     <v-card-actions>
       <div v-if="!course.isFree" class="d-flex align-center">
         <div v-if="course.hasActiveDiscount" class="d-flex flex-column">
@@ -59,12 +59,10 @@
           {{ formattedOriginalPrice }}
         </span>
       </div>
-      <div v-else class="text-success font-weight-bold">
-        Gratis
-      </div>
-      
+      <div v-else class="text-success font-weight-bold">Gratis</div>
+
       <v-spacer></v-spacer>
-      
+
       <v-btn
         v-if="showEnrollButton"
         color="primary"
@@ -73,15 +71,10 @@
       >
         {{ enrollButtonText }}
       </v-btn>
-      
+
       <v-menu v-if="canEdit">
         <template v-slot:activator="{ props }">
-          <v-btn
-            icon
-            variant="text"
-            v-bind="props"
-            @click.stop
-          >
+          <v-btn icon variant="text" v-bind="props" @click.stop>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
@@ -99,63 +92,68 @@
 </template>
 
 <script>
-import { formatPrice, getCourseStatusLabel, formatCourseDuration, canEditCourse } from '@/utils/courseUtils';
-import { mapState } from 'vuex';
-import { coursePlaceholder } from '@/assets/placeholders';
+import {
+  formatPrice,
+  getCourseStatusLabel,
+  formatCourseDuration,
+  canEditCourse,
+} from "@/utils/courseUtils";
+import { mapState } from "vuex";
+import { coursePlaceholder } from "@/assets/placeholders";
 
 export default {
-  name: 'CourseCard',
-  
+  name: "CourseCard",
+
   props: {
     course: {
       type: Object,
-      required: true
+      required: true,
     },
     showEnrollButton: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
-  
+
   computed: {
-    ...mapState('auth', ['user']),
-    
+    ...mapState("auth", ["user"]),
+
     defaultImage() {
       return coursePlaceholder;
     },
-    
+
     detailLink() {
       return `/courses/${this.course.id}`;
     },
-    
+
     statusLabel() {
       return getCourseStatusLabel(this.course);
     },
-    
+
     formattedOriginalPrice() {
       return formatPrice(this.course.totalPrice);
     },
-    
+
     formattedDiscountedPrice() {
       return formatPrice(this.course.discountedTotalPrice);
     },
-    
+
     courseDuration() {
       return formatCourseDuration(this.course);
     },
-    
+
     canEdit() {
       return canEditCourse(this.course, this.user);
     },
-    
+
     enrollButtonText() {
-      if (this.course.isFree) return 'Inscribirse';
-      return 'Comprar';
-    }
+      if (this.course.isFree) return "Inscribirse";
+      return "Comprar";
+    },
   },
-  
-  emits: ['enroll', 'edit', 'delete']
-}
+
+  emits: ["enroll", "edit", "delete"],
+};
 </script>
 
 <style scoped>
