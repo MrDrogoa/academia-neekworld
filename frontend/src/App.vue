@@ -133,10 +133,6 @@ body {
 }
 
 /* ===== CARDS RESPONSIVE A TEMAS ===== */
-.v-theme--light .v-card {
-  background-color: #ffffff;
-  color: #000000;
-}
 
 .v-theme--dark .v-card {
   background-color: #1e1e1e;

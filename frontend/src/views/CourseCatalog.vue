@@ -1,17 +1,19 @@
 <template>
   <div class="course-catalog">
-    <v-container fluid>
+    <v-container fluid class="p-0">
       <!-- Header -->
-      <header class="py-5">
-        <div>
-          <div class="py-3 py-lg-5">
-            <h2 class="txt-cursos text-center display-5 display-lg-4">
+      <header class="bg-white py-5">
+        <div class="container">
+          <div class="py-3 py-lg-5 px-3 position-relative">
+            <h2
+              class="txt-cursos text-center display-5 display-lg-4 pt-3 pt-lg-5"
+            >
               Catálogo de Cursos
             </h2>
             <p class="sub-cursos text-center py-2">
               Descubre y aprende con nuestros cursos especializados
             </p>
-            <div class="d-flex justify-center align-center mt-2">
+            <div class="d-flex justify-center align-center mt-2 pb-3 pb-lg-5">
               <v-chip
                 v-if="dataSource === 'neekworld'"
                 color="primary"
@@ -19,7 +21,7 @@
                 prepend-icon="mdi-earth"
                 aria-label="Conectado con Neekworld"
               >
-                Neekworld
+                NeekWorld
               </v-chip>
               <v-chip
                 v-else-if="dataSource === 'moodle'"
@@ -49,6 +51,26 @@
                 aria-label="Cargando cursos"
               ></v-progress-circular>
             </div>
+
+            <!-- icons-flotantes -->
+            <div class="position-absolute flot-1">
+              <img :src="svgImages.circleFill" alt="circle" />
+            </div>
+            <div class="position-absolute flot-2">
+              <img :src="svgImages.brain" alt="brain" />
+            </div>
+            <div class="position-absolute flot-3">
+              <img :src="svgImages.triangulo" alt="triangle" />
+            </div>
+            <div class="position-absolute flot-4">
+              <img :src="svgImages.notes" alt="notes" />
+            </div>
+            <div class="position-absolute flot-5">
+              <img :src="svgImages.rectangleFill" alt="rectangle" />
+            </div>
+            <div class="position-absolute flot-6">
+              <img :src="svgImages.rectangleBg" alt="rectangle background" />
+            </div>
           </div>
         </div>
 
@@ -58,14 +80,14 @@
 
       <!-- Filtros -->
       <v-card
-        class="w-75 mx-auto rounded-5"
-        elevation="1"
+        class="w-75 mx-auto py-4"
+        elevation="0"
         role="search"
         aria-label="Filtros de búsqueda de cursos"
       >
         <v-card-text>
           <v-row>
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="4" class="txt-field">
               <v-text-field
                 v-model="searchTerm"
                 label="Buscar cursos"
@@ -81,7 +103,7 @@
               </span>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="3" class="txt-field">
               <v-select
                 v-model="selectedCategory"
                 :items="categories"
@@ -93,7 +115,7 @@
               ></v-select>
             </v-col>
 
-            <v-col cols="12" md="3">
+            <v-col cols="12" md="3" class="txt-field">
               <v-select
                 v-model="selectedLevel"
                 :items="levels"
@@ -105,7 +127,7 @@
               ></v-select>
             </v-col>
 
-            <v-col cols="12" md="2">
+            <v-col cols="12" md="2" class="txt-field">
               <v-select
                 v-model="sortBy"
                 :items="sortOptions"
@@ -133,7 +155,6 @@
             <v-card
               class="course-card h-100"
               elevation="2"
-              hover
               tabindex="0"
               role="article"
               :aria-labelledby="`course-title-${course.id}`"
@@ -323,12 +344,30 @@ import moodleIntegrationService from "@/services/moodleIntegrationService";
 import neekworldService from "@/services/neekworldService";
 //import ShoppingCart from '@/components/ShoppingCart.vue'
 
+// ===== IMPORTAR IMÁGENES SVG DESDE ASSETS =====
+import circleFillSvg from "@/assets/img/circle-fill.svg";
+import group254Svg from "@/assets/img/brain.svg";
+import notesSvg from "@/assets/img/notes.svg";
+import polygon4Svg from "@/assets/img/triangulo.svg";
+import rectangle46Svg from "@/assets/img/Rectangle-fill.svg";
+import rectangleBgSvg from "@/assets/img/Rectangle-bg.svg";
+
 export default {
   name: "CourseCatalog",
   components: {
     //ShoppingCart
   },
   setup() {
+    // Objeto con todas las imágenes SVG importadas
+    const svgImages = {
+      circleFill: circleFillSvg,
+      brain: group254Svg,
+      notes: notesSvg,
+      triangulo: polygon4Svg,
+      rectangleFill: rectangle46Svg,
+      rectangleBg: rectangleBgSvg,
+    };
+
     const searchTerm = ref("");
     const selectedCategory = ref("");
     const selectedLevel = ref("");
@@ -739,6 +778,7 @@ export default {
       selectCourse,
       getLevelColor,
       formatCurrency,
+      svgImages,
     };
   },
 };
@@ -761,24 +801,59 @@ h2 {
   color: #666666;
 }
 
-.course-card {
-  transition: transform 0.2s ease-in-out;
-}
-
-.course-card:hover {
-  transform: translateY(-4px);
-}
-
 .course-image {
   position: relative;
 }
 
 .overlay {
+  border-radius: 30px;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+/* icon-flotantes */
+.flot-1 {
+  top: 45px;
+  right: -40px;
+}
+
+.flot-2 {
+  top: -50px;
+  right: -190px;
+}
+
+.flot-3 {
+  bottom: 50px;
+  left: 50px;
+}
+
+.flot-4 {
+  bottom: -20px;
+  left: -140px;
+}
+
+.flot-5 {
+  top: -10px;
+  left: -10px;
+}
+
+.flot-6 {
+  top: 140px;
+  right: -80px;
+}
+
+@media (max-width: 1024px) {
+  .flot-1,
+  .flot-2,
+  .flot-3,
+  .flot-4,
+  .flot-5,
+  .flot-6 {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -800,10 +875,14 @@ h2 {
   border: 0;
 }
 
+/* tipo de fuente de los campos */
+.txt-field {
+  font-family: "Dm Sans", sans-serif;
+}
+
 .course-card:focus {
   outline: 3px solid #2e8b57;
   outline-offset: 2px;
-  transform: translateY(-2px);
 }
 
 /* ===== ESTILOS MEJORADOS PARA BOTONES DEL CARRITO ===== */
@@ -814,12 +893,6 @@ h2 {
   color: white !important;
   box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3) !important;
   border: 2px solid transparent !important;
-}
-
-.v-theme--light .v-btn.v-btn--variant-elevated:hover {
-  background-color: #228b5a !important;
-  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.4) !important;
-  transform: translateY(-1px);
 }
 
 /* Botón "En carrito" - Modo claro */
@@ -836,12 +909,6 @@ h2 {
   color: white !important;
   box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
   border: 2px solid transparent !important;
-}
-
-.v-theme--dark .v-btn.v-btn--variant-elevated:hover {
-  background-color: #43a047 !important;
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
-  transform: translateY(-1px);
 }
 
 /* Botón "En carrito" - Modo oscuro */
@@ -861,12 +928,6 @@ h2 {
   font-weight: 700 !important;
 }
 
-.high-contrast-mode .v-btn.v-btn--variant-elevated:hover {
-  background-color: #000000 !important;
-  color: #ffff00 !important;
-  border-color: #ffff00 !important;
-}
-
 .high-contrast-mode .v-btn.v-btn--variant-outlined.v-btn--disabled {
   background-color: #000000 !important;
   color: #ffff00 !important;
@@ -875,30 +936,35 @@ h2 {
   font-weight: 700 !important;
 }
 
-/* Iconos en botones */
-.v-btn .v-icon {
-  margin-right: 8px !important;
+/* Deshabilitar hover en campos de búsqueda y filtros */
+.v-text-field:hover,
+.v-select:hover,
+.v-field:hover,
+.v-input:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
-/* Efectos de transición */
-.v-btn {
-  transition: all 0.3s ease !important;
+.v-text-field .v-field:hover,
+.v-select .v-field:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Deshabilitar hover y sombra en tarjeta de filtros */
+.v-card {
+  box-shadow: none !important;
+}
+
+.v-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .course-card {
-    transition: none;
-  }
-
-  .course-card:hover {
-    transform: none;
-  }
-
-  .v-btn {
+  /* Todas las animaciones deshabilitadas */
+  * {
     transition: none !important;
-  }
-
-  .v-btn:hover {
     transform: none !important;
   }
 }

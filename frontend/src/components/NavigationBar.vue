@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <v-app-bar
       app
       elevation="4"
@@ -9,94 +9,94 @@
       :theme="appBarTheme"
       :class="appBarClasses"
     >
-      <div
-        class="d-flex align-center"
-        style="cursor: pointer"
-        @click="navigateTo('home')"
-        @keydown.enter="navigateTo('home')"
-        @keydown.space="navigateTo('home')"
-        tabindex="0"
-        role="button"
-        aria-label="Ir a página de inicio"
-      >
-        <v-img
-          alt="Logo de NeekWorld - Plataforma educativa"
-          class="shrink mr-2"
-          contain
-          src="/logo.webp"
-          transition="scale-transition"
-          width="36"
-          height="36"
-          style="border-radius: 8px; margin-right: 8px"
-          role="img"
-        />
-      </div>
+      <!-- Wrapper para limitar el ancho del contenido -->
+      <div class="toolbar-content-wrapper">
+        <div
+          style="cursor: pointer"
+          @click="navigateTo('home')"
+          @keydown.enter="navigateTo('home')"
+          @keydown.space="navigateTo('home')"
+          tabindex="0"
+          role="button"
+          aria-label="Ir a página de inicio"
+        >
+          <v-img
+            alt="Logo de NeekWorld - Plataforma educativa"
+            class="shrink"
+            contain
+            src="/logo.webp"
+            transition="scale-transition"
+            width="45"
+            height="45"
+            role="img"
+          />
+        </div>
 
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-      <!-- Navigation Links (ahora siempre ocultas - se usan en el menú desplegable) -->
-      <nav class="d-none" role="navigation" aria-label="Navegación principal">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ props }">
-            <v-btn
-              text
-              v-bind="props"
-              @click="navigateTo('home')"
-              class="mr-2"
-              role="menuitem"
-              aria-label="Ir a página de inicio"
-            >
-              <v-icon left aria-hidden="true">mdi-home</v-icon>
-              Inicio
-            </v-btn>
-          </template>
-          <span>Ir a la página principal</span>
-        </v-tooltip>
-
-        <v-tooltip bottom>
-          <template v-slot:activator="{ props }">
-            <v-btn
-              text
-              v-bind="props"
-              @click="navigateTo('courses')"
-              class="mr-2"
-              role="menuitem"
-              aria-label="Ver catálogo de cursos"
-            >
-              <v-icon left aria-hidden="true"
-                >mdi-book-open-page-variant</v-icon
+        <!-- Navigation Links (ahora siempre ocultas - se usan en el menú desplegable) -->
+        <nav class="d-none" role="navigation" aria-label="Navegación principal">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ props }">
+              <v-btn
+                text
+                v-bind="props"
+                @click="navigateTo('home')"
+                class="mr-2"
+                role="menuitem"
+                aria-label="Ir a página de inicio"
               >
-              Cursos
-            </v-btn>
-          </template>
-          <span>Explorar cursos disponibles</span>
-        </v-tooltip>
+                <v-icon left aria-hidden="true">mdi-home</v-icon>
+                Inicio
+              </v-btn>
+            </template>
+            <span>Ir a la página principal</span>
+          </v-tooltip>
 
-        <v-tooltip bottom>
-          <template v-slot:activator="{ props }">
-            <v-btn
-              text
-              v-bind="props"
-              @click="navigateTo('about')"
-              class="mr-2"
-              role="menuitem"
-              aria-label="Información sobre la plataforma"
-            >
-              <v-icon left aria-hidden="true">mdi-information-outline</v-icon>
-              Acerca de
-            </v-btn>
-          </template>
-          <span>Información sobre la plataforma</span>
-        </v-tooltip>
-      </nav>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ props }">
+              <v-btn
+                text
+                v-bind="props"
+                @click="navigateTo('courses')"
+                class="mr-2"
+                role="menuitem"
+                aria-label="Ver catálogo de cursos"
+              >
+                <v-icon left aria-hidden="true"
+                  >mdi-book-open-page-variant</v-icon
+                >
+                Cursos
+              </v-btn>
+            </template>
+            <span>Explorar cursos disponibles</span>
+          </v-tooltip>
 
-      <!-- Desktop: Controles ahora movidos al menú desplegable -->
-      <div class="d-none align-center">
-        <!-- Accessibility Controls -->
-        <AccessibilityControls class="mr-2" />
+          <v-tooltip bottom>
+            <template v-slot:activator="{ props }">
+              <v-btn
+                text
+                v-bind="props"
+                @click="navigateTo('about')"
+                class="mr-2"
+                role="menuitem"
+                aria-label="Información sobre la plataforma"
+              >
+                <v-icon left aria-hidden="true">mdi-information-outline</v-icon>
+                Acerca de
+              </v-btn>
+            </template>
+            <span>Información sobre la plataforma</span>
+          </v-tooltip>
+        </nav>
 
-        <!-- Shopping Cart - Removido (ahora es botón flotante) -->
-        <!-- 
+        <!-- Desktop: Controles ahora movidos al menú desplegable -->
+        <div class="d-none align-center">
+          <!-- Accessibility Controls -->
+          <AccessibilityControls class="mr-2" />
+
+          <!-- Shopping Cart - Removido (ahora es botón flotante) -->
+          <!-- 
         <v-tooltip bottom>
           <template v-slot:activator="{ props }">
             <v-btn 
@@ -130,165 +130,167 @@
         </v-tooltip>
         -->
 
-        <!-- Real-time Notifications (only for logged in users) -->
-        <template v-if="user.isAuthenticated">
-          <RealTimeNotifications
-            :userRole="user.userData?.role"
-            @new-notification="handleNewNotification"
-            @notification-read="handleNotificationRead"
-            @all-notifications-read="handleAllNotificationsRead"
-            class="mr-2"
-          />
-        </template>
+          <!-- Real-time Notifications (only for logged in users) -->
+          <template v-if="user.isAuthenticated">
+            <RealTimeNotifications
+              :userRole="user.userData?.role"
+              @new-notification="handleNewNotification"
+              @notification-read="handleNotificationRead"
+              @all-notifications-read="handleAllNotificationsRead"
+              class="mr-2"
+            />
+          </template>
 
-        <!-- Desktop User Menu / Auth Buttons -->
-        <template v-if="!user.isAuthenticated">
-          <!-- Guest User Menu -->
-          <v-menu offset-y>
-            <template v-slot:activator="{ props }">
-              <v-btn text v-bind="props" class="mr-2">
-                <v-icon left>mdi-account-outline</v-icon>
-                Cuenta
-                <v-icon right>mdi-chevron-down</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="openAuthDialog('login')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-login</v-icon>
-                </template>
-                <v-list-item-title>Iniciar Sesión</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="openAuthDialog('register')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-account-plus</v-icon>
-                </template>
-                <v-list-item-title>Registrarse</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </template>
+          <!-- Desktop User Menu / Auth Buttons -->
+          <template v-if="!user.isAuthenticated">
+            <!-- Guest User Menu -->
+            <v-menu offset-y>
+              <template v-slot:activator="{ props }">
+                <v-btn text v-bind="props" class="mr-2">
+                  <v-icon left>mdi-account-outline</v-icon>
+                  Cuenta
+                  <v-icon right>mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item @click="openAuthDialog('login')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-login</v-icon>
+                  </template>
+                  <v-list-item-title>Iniciar Sesión</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="openAuthDialog('register')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-account-plus</v-icon>
+                  </template>
+                  <v-list-item-title>Registrarse</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </template>
 
-        <template v-else>
-          <!-- Academic Tools Menu -->
-          <v-menu offset-y>
-            <template v-slot:activator="{ props }">
-              <v-btn text v-bind="props" class="mr-2" color="accent">
-                <v-icon left>mdi-school</v-icon>
-                Académico
-                <v-icon right>mdi-chevron-down</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="navigateTo('dashboard')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-view-dashboard</v-icon>
-                </template>
-                <v-list-item-title>Dashboard</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="openMoodle">
-                <template v-slot:prepend>
-                  <v-icon color="accent">mdi-school</v-icon>
-                </template>
-                <v-list-item-title>Aula Virtual / Moodle</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="navigateTo('my-courses')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-book-account</v-icon>
-                </template>
-                <v-list-item-title>Mis Cursos</v-list-item-title>
-              </v-list-item>
-              <v-divider></v-divider>
-              <v-list-item disabled>
-                <template v-slot:prepend>
-                  <v-icon :color="moodleStatusColor">{{
-                    moodleStatusIcon
-                  }}</v-icon>
-                </template>
-                <v-list-item-title class="text-caption">
-                  Moodle: {{ moodleStatusText }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <template v-else>
+            <!-- Academic Tools Menu -->
+            <v-menu offset-y>
+              <template v-slot:activator="{ props }">
+                <v-btn text v-bind="props" class="mr-2" color="accent">
+                  <v-icon left>mdi-school</v-icon>
+                  Académico
+                  <v-icon right>mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item @click="navigateTo('dashboard')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                  </template>
+                  <v-list-item-title>Dashboard</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="openMoodle">
+                  <template v-slot:prepend>
+                    <v-icon color="accent">mdi-school</v-icon>
+                  </template>
+                  <v-list-item-title>Aula Virtual / Moodle</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="navigateTo('my-courses')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-book-account</v-icon>
+                  </template>
+                  <v-list-item-title>Mis Cursos</v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item disabled>
+                  <template v-slot:prepend>
+                    <v-icon :color="moodleStatusColor">{{
+                      moodleStatusIcon
+                    }}</v-icon>
+                  </template>
+                  <v-list-item-title class="text-caption">
+                    Moodle: {{ moodleStatusText }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
 
-          <!-- User Profile Menu -->
-          <v-menu offset-y v-model="userMenuOpen">
-            <template v-slot:activator="{ props }">
-              <v-btn text v-bind="props" class="text-none">
-                <v-avatar size="32" class="mr-2">
-                  <v-icon>mdi-account-circle</v-icon>
-                </v-avatar>
-                {{ user.userData?.name || userName }}
-                <v-icon right>mdi-chevron-down</v-icon>
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item @click="navigateTo('profile')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-account</v-icon>
-                </template>
-                <v-list-item-title>Mi Perfil</v-list-item-title>
-              </v-list-item>
-              <v-list-item @click="navigateTo('purchases')">
-                <template v-slot:prepend>
-                  <v-icon>mdi-shopping</v-icon>
-                </template>
-                <v-list-item-title>Mis Compras</v-list-item-title>
-              </v-list-item>
-              <v-divider></v-divider>
-              <v-list-item @click="logout">
-                <template v-slot:prepend>
-                  <v-icon color="red">mdi-logout</v-icon>
-                </template>
-                <v-list-item-title>Cerrar Sesión</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </template>
+            <!-- User Profile Menu -->
+            <v-menu offset-y v-model="userMenuOpen">
+              <template v-slot:activator="{ props }">
+                <v-btn text v-bind="props" class="text-none">
+                  <v-avatar size="32" class="mr-2">
+                    <v-icon>mdi-account-circle</v-icon>
+                  </v-avatar>
+                  {{ user.userData?.name || userName }}
+                  <v-icon right>mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item @click="navigateTo('profile')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-account</v-icon>
+                  </template>
+                  <v-list-item-title>Mi Perfil</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="navigateTo('purchases')">
+                  <template v-slot:prepend>
+                    <v-icon>mdi-shopping</v-icon>
+                  </template>
+                  <v-list-item-title>Mis Compras</v-list-item-title>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item @click="logout">
+                  <template v-slot:prepend>
+                    <v-icon color="red">mdi-logout</v-icon>
+                  </template>
+                  <v-list-item-title>Cerrar Sesión</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </template>
+        </div>
+
+        <!-- Menu toggle button - Siempre visible para diseño minimalista -->
+        <v-tooltip bottom>
+          <template v-slot:activator="{ props }">
+            <v-btn
+              icon
+              v-bind="props"
+              @click="toggleMobileMenu"
+              aria-label="Abrir menú de navegación"
+              :aria-expanded="mobileMenuOpen"
+              aria-controls="navigation-menu-drawer"
+            >
+              <v-icon aria-hidden="true" class="icon-menu">mdi-menu</v-icon>
+            </v-btn>
+          </template>
+          <span>{{
+            mobileMenuOpen ? "Cerrar menú" : "Abrir menú de navegación"
+          }}</span>
+        </v-tooltip>
+
+        <!-- Auth Dialog -->
+        <AuthDialog
+          v-model:visible="authDialog.visible"
+          :mode="authDialog.mode"
+          @auth-success="handleAuthSuccess"
+          @auth-error="handleAuthError"
+        />
+
+        <!-- Success/Error Snackbars -->
+        <v-snackbar
+          v-model="snackbar.show"
+          :color="snackbar.color"
+          :timeout="snackbar.timeout"
+          top
+        >
+          {{ snackbar.message }}
+          <template v-slot:action="{ attrs }">
+            <v-btn text v-bind="attrs" @click="snackbar.show = false"
+              >Cerrar</v-btn
+            >
+          </template>
+        </v-snackbar>
       </div>
-
-      <!-- Menu toggle button - Siempre visible para diseño minimalista -->
-      <v-tooltip bottom>
-        <template v-slot:activator="{ props }">
-          <v-btn
-            icon
-            v-bind="props"
-            @click="toggleMobileMenu"
-            aria-label="Abrir menú de navegación"
-            :aria-expanded="mobileMenuOpen"
-            aria-controls="navigation-menu-drawer"
-          >
-            <v-icon aria-hidden="true">mdi-menu</v-icon>
-          </v-btn>
-        </template>
-        <span>{{
-          mobileMenuOpen ? "Cerrar menú" : "Abrir menú de navegación"
-        }}</span>
-      </v-tooltip>
-
-      <!-- Auth Dialog -->
-      <AuthDialog
-        v-model:visible="authDialog.visible"
-        :mode="authDialog.mode"
-        @auth-success="handleAuthSuccess"
-        @auth-error="handleAuthError"
-      />
-
-      <!-- Success/Error Snackbars -->
-      <v-snackbar
-        v-model="snackbar.show"
-        :color="snackbar.color"
-        :timeout="snackbar.timeout"
-        top
-      >
-        {{ snackbar.message }}
-        <template v-slot:action="{ attrs }">
-          <v-btn text v-bind="attrs" @click="snackbar.show = false"
-            >Cerrar</v-btn
-          >
-        </template>
-      </v-snackbar>
+      <!-- Cierre del toolbar-content-wrapper -->
     </v-app-bar>
 
     <!-- Navigation Drawer - Menú unificado para todos los dispositivos -->
@@ -1047,6 +1049,11 @@ export default {
   margin: 0 auto;
 }
 
+/* icono del menu */
+.icon-menu {
+  color: #373b8a;
+}
+
 /* Ensure proper mobile menu display */
 .v-navigation-drawer {
   z-index: 9999 !important;
@@ -1462,11 +1469,6 @@ export default {
   border-bottom: 3px solid #ffff00 !important;
 }
 
-.high-contrast-app-bar .v-toolbar__content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 .high-contrast-app-bar .navbar-title {
   color: #ffff00 !important;
   font-weight: bold !important;
@@ -1516,6 +1518,17 @@ export default {
 /* Custom navbar color */
 .v-app-bar {
   background-color: #21234a !important;
+}
+
+/* Wrapper para limitar el ancho del contenido del toolbar */
+.toolbar-content-wrapper {
+  max-width: 1200px !important;
+  width: 100% !important;
+  padding: 15px 0 15px 0 !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
 }
 
 .v-theme--light .v-app-bar {

@@ -750,7 +750,7 @@ html[class*="text-scale-"] .v-card-title {
 }
 
 .v-theme--light .v-main {
-  background-color: #ffffff !important;
+  background-color: #f8f9fa !important;
   color: #000000 !important;
 }
 
@@ -1032,7 +1032,6 @@ footer.footer .footer-link {
 .v-theme--light .v-btn--variant-elevated:hover {
   background-color: #3fb566 !important;
   box-shadow: 0 4px 12px #3fb566 !important;
-  transform: translateY(-5px);
 }
 
 .v-theme--light .v-btn--variant-outlined.v-btn--disabled {
@@ -1056,7 +1055,6 @@ footer.footer .footer-link {
 .v-theme--dark .v-btn--variant-elevated:hover {
   background-color: #43a047 !important;
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
-  transform: translateY(-1px);
 }
 
 .v-theme--dark .v-btn--variant-outlined.v-btn--disabled {
