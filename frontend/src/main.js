@@ -31,6 +31,8 @@ import {
   faBolt,
   faEarthAmericas,
   faBrain,
+  faShoppingCart,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Agregar los iconos a la librería
@@ -51,7 +53,9 @@ library.add(
   faCircleCheck,
   faBolt,
   faEarthAmericas,
-  faBrain
+  faBrain,
+  faShoppingCart,
+  faCheck
 );
 // Configurar Axios para pagos
 const apiBaseURL =

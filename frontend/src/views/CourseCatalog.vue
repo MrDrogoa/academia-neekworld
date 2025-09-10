@@ -143,17 +143,17 @@
 
       <!-- Lista de cursos -->
       <main role="main" aria-label="Lista de cursos disponibles">
-        <v-row>
+        <v-row class="container">
           <v-col
             v-for="course in filteredCourses"
             :key="course.id"
             cols="12"
             sm="6"
             md="4"
-            lg="3"
+            lg="4"
           >
             <v-card
-              class="course-card h-100"
+              class="course-card h-100 bg-white rounded-xl"
               elevation="2"
               tabindex="0"
               role="article"
@@ -195,11 +195,11 @@
                 </div>
               </v-img>
 
-              <v-card-text class="pb-2">
+              <v-card-text class="px-5">
                 <!-- Título del curso -->
                 <h3
                   :id="`course-title-${course.id}`"
-                  class="text-h6 font-weight-bold mb-2"
+                  class="txt-title-card fw-bold mb-2"
                 >
                   {{ course.title }}
                 </h3>
@@ -209,20 +209,18 @@
                   <v-icon size="small" class="mr-1" aria-hidden="true"
                     >mdi-account</v-icon
                   >
-                  <span class="text-body-2 text-grey-darken-1">
+                  <span class="txt-p">
                     Instructor: {{ course.instructor }}
                   </span>
                 </div>
 
                 <!-- Duración y rating -->
                 <div class="d-flex justify-space-between align-center mb-2">
-                  <div class="d-flex align-center">
+                  <div class="d-flex align-center txt-p">
                     <v-icon size="small" class="mr-1" aria-hidden="true"
                       >mdi-clock-outline</v-icon
                     >
-                    <span class="text-body-2"
-                      >Duración: {{ course.duration }}</span
-                    >
+                    <span class="txt-p">Duración: {{ course.duration }}</span>
                   </div>
 
                   <div class="d-flex align-center">
@@ -234,17 +232,14 @@
                       half-increments
                       :aria-label="`Calificación: ${course.rating} de 5 estrellas`"
                     ></v-rating>
-                    <span class="text-body-2 ml-1" aria-hidden="true">
+                    <span class="txt-p ml-1" aria-hidden="true">
                       ({{ course.reviewCount }})
                     </span>
                   </div>
                 </div>
 
                 <!-- Descripción -->
-                <p
-                  :id="`course-desc-${course.id}`"
-                  class="text-body-2 text-grey-darken-1 mb-3"
-                >
+                <p :id="`course-desc-${course.id}`" class="txt-p mb-3">
                   {{ course.description }}
                 </p>
 
@@ -255,23 +250,23 @@
                     :key="tag"
                     size="x-small"
                     variant="outlined"
-                    class="mr-1"
+                    class="mr-1 txt-p"
                   >
                     {{ tag }}
                   </v-chip>
                 </div>
               </v-card-text>
 
-              <v-card-actions class="pt-0">
+              <v-card-actions class="px-5">
                 <!-- Precio -->
                 <div class="flex-grow-1">
                   <div
                     v-if="course.originalPrice > course.price"
-                    class="text-caption text-decoration-line-through text-grey"
+                    class="text-caption text-decoration-line-through text-grey txt-p"
                   >
                     {{ formatCurrency(course.originalPrice) }}
                   </div>
-                  <div class="text-h6 font-weight-bold text-primary">
+                  <div class="font-weight-bold text-primary txt-p">
                     {{ formatCurrency(course.price) }}
                   </div>
                 </div>
@@ -279,14 +274,13 @@
                 <!-- Botón agregar al carrito -->
                 <v-btn
                   v-if="!isInCart(course.id)"
-                  color="primary"
                   variant="elevated"
                   @click="addToCart(course)"
                   :loading="addingToCart[course.id]"
-                  size="small"
+                  class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-medium"
                 >
-                  <v-icon left>mdi-cart-plus</v-icon>
-                  Agregar
+                  <FontAwesomeIcon icon="shopping-cart" class="me-2" />
+                  <span class="txt-btn">Agregar</span>
                 </v-btn>
 
                 <v-btn
@@ -294,10 +288,10 @@
                   color="success"
                   variant="outlined"
                   disabled
-                  size="small"
+                  class="btn rounded-4 px-4 py-3 fw-medium d-flex align-center justify-center"
                 >
-                  <v-icon left>mdi-check</v-icon>
-                  En carrito
+                  <FontAwesomeIcon icon="check" class="me-2" />
+                  <span class="txt-btn">En carrito</span>
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -806,7 +800,6 @@ h2 {
 }
 
 .overlay {
-  border-radius: 30px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -845,20 +838,43 @@ h2 {
   right: -80px;
 }
 
+/* titulo de card */
+.txt-title-card {
+  font-family: "Montserrat", serif;
+  color: #373b8a !important;
+}
+
+/* btn-card y texto */
+.btn-add-to-cart {
+  background-color: #2ea357 !important;
+  font-family: "Dm Sans", sans-serif;
+}
+
+.btn-add-to-cart:hover {
+  transform: translateY(-5px) !important;
+}
+
+.txt-p {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+}
+
+/*  */
+
+@media (max-width: 1475px) {
+  /* icon-brain */
+  /* .flot-2 {
+    display: none;
+  } */
+}
+
 @media (max-width: 1024px) {
   .flot-1,
-  .flot-2,
   .flot-3,
   .flot-4,
   .flot-5,
   .flot-6 {
     display: none;
-  }
-}
-
-@media (max-width: 600px) {
-  .course-card .text-h6 {
-    font-size: 1.1rem;
   }
 }
 
@@ -887,22 +903,6 @@ h2 {
 
 /* ===== ESTILOS MEJORADOS PARA BOTONES DEL CARRITO ===== */
 
-/* Botón "Agregar" - Modo claro */
-.v-theme--light .v-btn.v-btn--variant-elevated {
-  background-color: #2e8b57 !important;
-  color: white !important;
-  box-shadow: 0 2px 8px rgba(46, 139, 87, 0.3) !important;
-  border: 2px solid transparent !important;
-}
-
-/* Botón "En carrito" - Modo claro */
-.v-theme--light .v-btn.v-btn--variant-outlined.v-btn--disabled {
-  background-color: #e8f5e8 !important;
-  color: #2e8b57 !important;
-  border-color: #2e8b57 !important;
-  opacity: 1 !important;
-}
-
 /* Botón "Agregar" - Modo oscuro */
 .v-theme--dark .v-btn.v-btn--variant-elevated {
   background-color: #4caf50 !important;
@@ -926,6 +926,38 @@ h2 {
   border: 3px solid #000000 !important;
   box-shadow: none !important;
   font-weight: 700 !important;
+}
+
+/* Estilos para mejorar la alineación del icono del carrito */
+.btn-add-to-cart {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.btn-add-to-cart .svg-inline--fa {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 0 !important;
+  font-size: 16px !important;
+  vertical-align: middle !important;
+}
+
+/* Estilos para el botón "En carrito" */
+.v-btn.v-btn--variant-outlined {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.v-btn.v-btn--variant-outlined .svg-inline--fa {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 0 !important;
+  font-size: 16px !important;
+  vertical-align: middle !important;
 }
 
 .high-contrast-mode .v-btn.v-btn--variant-outlined.v-btn--disabled {
