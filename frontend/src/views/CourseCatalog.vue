@@ -863,9 +863,9 @@ h2 {
 
 @media (max-width: 1475px) {
   /* icon-brain */
-  /* .flot-2 {
+  .flot-2 {
     display: none;
-  } */
+  }
 }
 
 @media (max-width: 1024px) {

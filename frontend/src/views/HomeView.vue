@@ -43,18 +43,6 @@
                   class="fs-1 opacity-75"
                 />
               </div>
-              <!-- <div class="feature-icon-3 position-absolute">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-graduation-cap"
-                  class="fs-2 opacity-75"
-                />
-              </div>
-              <div class="feature-icon-4 position-absolute">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-ruler"
-                  class="fs-2 opacity-100"
-                />
-              </div> -->
               <div
                 class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start"
               >
@@ -76,6 +64,10 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="container my-5">
+      <CardsAcComponents />
     </section>
 
     <section class="features-section">
@@ -213,6 +205,7 @@ import { useRoute, useRouter } from "vue-router";
 import authService from "@/services/authService";
 import AuthDialog from "@/components/AuthDialog.vue";
 import { useAccessibility } from "@/composables/useAccessibility";
+import CardsAcComponents from "@/components/CardsAcComponents.vue";
 
 const ImgHero = require("@/assets/img/hero-image.webp");
 
@@ -222,6 +215,7 @@ export default {
   name: "HomeView",
   components: {
     AuthDialog,
+    CardsAcComponents,
   },
   setup() {
     const route = useRoute();
