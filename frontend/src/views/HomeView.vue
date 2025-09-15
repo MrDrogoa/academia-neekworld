@@ -69,6 +69,9 @@
     <section class="container my-5">
       <CardsAcComponents />
     </section>
+    <section class="container my-5">
+      <CardsCursosComponents />
+    </section>
 
     <section class="features-section">
       <div class="container">
@@ -206,6 +209,7 @@ import authService from "@/services/authService";
 import AuthDialog from "@/components/AuthDialog.vue";
 import { useAccessibility } from "@/composables/useAccessibility";
 import CardsAcComponents from "@/components/CardsAcComponents.vue";
+import CardsCursosComponents from "@/components/CardsCursosComponents.vue";
 
 const ImgHero = require("@/assets/img/hero-image.webp");
 
@@ -216,6 +220,7 @@ export default {
   components: {
     AuthDialog,
     CardsAcComponents,
+    CardsCursosComponents,
   },
   setup() {
     const route = useRoute();

@@ -1524,7 +1524,7 @@ export default {
 .toolbar-content-wrapper {
   max-width: 1200px !important;
   width: 100% !important;
-  padding: 15px 0 15px 0 !important;
+  padding: 15px 8px 15px 8px !important;
   margin: 0 auto !important;
   display: flex !important;
   align-items: center !important;

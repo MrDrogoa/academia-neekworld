@@ -146,6 +146,7 @@
         <v-row class="container">
           <v-col
             v-for="course in filteredCourses"
+            class="w-full"
             :key="course.id"
             cols="12"
             sm="6"
@@ -153,7 +154,7 @@
             lg="4"
           >
             <v-card
-              class="course-card h-100 bg-white rounded-xl"
+              class="course-card h-100 bg-white rounded-xl d-flex flex-column"
               elevation="2"
               tabindex="0"
               role="article"
@@ -195,7 +196,7 @@
                 </div>
               </v-img>
 
-              <v-card-text class="px-5">
+              <v-card-text class="px-5 flex-grow-1 d-flex flex-column">
                 <!-- Título del curso -->
                 <h3
                   :id="`course-title-${course.id}`"
@@ -239,25 +240,36 @@
                 </div>
 
                 <!-- Descripción -->
-                <p :id="`course-desc-${course.id}`" class="txt-p mb-3">
+                <p
+                  :id="`course-desc-${course.id}`"
+                  class="txt-p mb-3 course-description"
+                >
                   {{ course.description }}
                 </p>
 
                 <!-- Tags de categorías -->
-                <div class="mb-3">
+                <div class="mb-3 tags-section">
                   <v-chip
-                    v-for="tag in course.tags"
+                    v-for="tag in course.tags.slice(0, 3)"
                     :key="tag"
                     size="x-small"
                     variant="outlined"
-                    class="mr-1 txt-p"
+                    class="mr-1 mb-1 txt-p"
                   >
                     {{ tag }}
+                  </v-chip>
+                  <v-chip
+                    v-if="course.tags.length > 3"
+                    size="x-small"
+                    variant="outlined"
+                    class="mr-1 mb-1 txt-p"
+                  >
+                    +{{ course.tags.length - 3 }}
                   </v-chip>
                 </div>
               </v-card-text>
 
-              <v-card-actions class="px-5">
+              <v-card-actions class="px-5 py-5">
                 <!-- Precio -->
                 <div class="flex-grow-1">
                   <div
@@ -280,7 +292,7 @@
                   class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-medium"
                 >
                   <FontAwesomeIcon icon="shopping-cart" class="me-2" />
-                  <span class="txt-btn">Agregar</span>
+                  <span>Agregar</span>
                 </v-btn>
 
                 <v-btn
@@ -797,6 +809,7 @@ h2 {
 
 .course-image {
   position: relative;
+  width: 100%;
 }
 
 .overlay {
@@ -854,6 +867,11 @@ h2 {
   transform: translateY(-5px) !important;
 }
 
+/* boton de check */
+.txt-btn {
+  font-family: "Dm Sans", sans-serif;
+}
+
 .txt-p {
   font-family: "Dm Sans", sans-serif;
   color: #666666;
@@ -862,8 +880,15 @@ h2 {
 /*  */
 
 @media (max-width: 1475px) {
-  /* icon-brain */
-  .flot-2 {
+  /* icon-brain, icon notes */
+  .flot-2,
+  .flot-4 {
+    display: none;
+  }
+}
+
+@media (max-width: 1323px) {
+  .flot-6 {
     display: none;
   }
 }
@@ -896,9 +921,46 @@ h2 {
   font-family: "Dm Sans", sans-serif;
 }
 
-.course-card:focus {
-  outline: 3px solid #2e8b57;
-  outline-offset: 2px;
+.course-card {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.course-card .v-card-text {
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Limitar líneas de título */
+.course-card h3 {
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  line-clamp: 2 !important;
+  min-height: 3rem !important;
+}
+
+/* Limitar líneas de descripción */
+.course-card .course-description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-clamp: 3 !important;
+  flex-grow: 1 !important;
+}
+
+/* Altura fija para sección de tags */
+.course-card .tags-section {
+  min-height: 2rem !important;
+  max-height: 2rem !important;
+  overflow: hidden !important;
+}
+
+/* Asegurar que el card-actions esté en la parte inferior */
+.course-card .v-card-actions {
+  margin-top: auto !important;
 }
 
 /* ===== ESTILOS MEJORADOS PARA BOTONES DEL CARRITO ===== */
@@ -993,6 +1055,10 @@ h2 {
   box-shadow: none !important;
 }
 
+.course-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
 @media (prefers-reduced-motion: reduce) {
   /* Todas las animaciones deshabilitadas */
   * {

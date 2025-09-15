@@ -2,11 +2,11 @@
 
 <template>
   <section class="py-5">
-    <div class="container">
+    <div class="container pb-5">
       <h2 class="title-card text-center pb-5 display-5 display-lg-4">
         Impulsa tu futuro
       </h2>
-      <div class="row g-4">
+      <div class="row justify-content-center g-4">
         <!-- Tarjeta 1 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card-step">
