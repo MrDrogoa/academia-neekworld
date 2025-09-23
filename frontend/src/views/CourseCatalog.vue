@@ -379,7 +379,7 @@ export default {
     const selectedLevel = ref("");
     const sortBy = ref("popularity");
     const currentPage = ref(1);
-    const coursesPerPage = ref(12);
+    const coursesPerPage = ref(9);
     const addingToCart = reactive({});
     const loading = ref(false);
     const dataSource = ref("mock"); // 'moodle' o 'mock'
@@ -864,6 +864,7 @@ h2 {
 }
 
 .btn-add-to-cart:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px) !important;
 }
 

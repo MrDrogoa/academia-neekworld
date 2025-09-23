@@ -1,8 +1,25 @@
 <template>
-  <v-dialog v-model="localVisible" max-width="400px" persistent>
-    <v-card class="pa-4">
-      <v-card-title class="text-center txt-color">
-        {{ isLogin ? "Ingresar" : "Registrate" }}
+  <v-dialog
+    v-model="localVisible"
+    max-width="400px"
+    @click:outside="closeDialog"
+  >
+    <v-card class="pa-4 card-login rounded-lg position-relative">
+      <!-- Botón de cerrar en la esquina superior derecha -->
+      <v-btn
+        icon
+        size="small"
+        class="close-btn"
+        @click="closeDialog"
+        variant="text"
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+
+      <v-card-title class="text-center">
+        <h3 class="txt-color fs-4">
+          {{ isLogin ? "Ingresar" : "Registrate" }}
+        </h3>
       </v-card-title>
 
       <v-card-text>
@@ -19,7 +36,7 @@
         <v-form ref="authForm" v-model="formValid" lazy-validation>
           <!-- Campos para registro -->
           <div v-if="!isLogin">
-            <label class="form-label">Nombre</label>
+            <label class="form-label fw-medium label-color">Nombre</label>
             <v-text-field
               v-model="formData.firstName"
               label="escribe tu nombre"
@@ -28,7 +45,7 @@
               outlined
               dense
             ></v-text-field>
-            <label class="form-label">Apellido</label>
+            <label class="form-label fw-medium label-color">Apellido</label>
 
             <v-text-field
               v-model="formData.lastName"
@@ -42,7 +59,7 @@
           </div>
 
           <!-- Email (común para login y registro) -->
-          <label class="form-label">Email</label>
+          <label class="form-label fw-medium label-color">Email</label>
           <v-text-field
             v-model="formData.email"
             label="Email"
@@ -54,7 +71,7 @@
           ></v-text-field>
 
           <!-- Password (común para login y registro) -->
-          <label class="form-label">Contraseña</label>
+          <label class="form-label fw-medium label-color">Contraseña</label>
           <v-text-field
             v-model="formData.password"
             :label="isLogin ? 'Contraseña' : 'Contraseña'"
@@ -68,19 +85,22 @@
           ></v-text-field>
 
           <!-- Confirmar password solo para registro -->
-          <label class="form-label">Confirmar Contraseña</label>
-          <v-text-field
-            v-if="!isLogin"
-            v-model="formData.confirmPassword"
-            label="Confirmar Contraseña"
-            :rules="confirmPasswordRules"
-            required
-            outlined
-            dense
-            :type="showPassword ? 'text' : 'password'"
-            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="showPassword = !showPassword"
-          ></v-text-field>
+          <div v-if="!isLogin">
+            <label class="form-label fw-medium label-color"
+              >Confirmar Contraseña</label
+            >
+            <v-text-field
+              v-model="formData.confirmPassword"
+              label="Confirmar Contraseña"
+              :rules="confirmPasswordRules"
+              required
+              outlined
+              dense
+              :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+            ></v-text-field>
+          </div>
 
           <!-- Campos adicionales para registro -->
           <div v-if="!isLogin">
@@ -398,13 +418,42 @@ export default {
 </script>
 
 <style scoped>
+.card-login {
+  margin: 0 !important;
+  position: relative;
+}
+
+.card-login {
+  transform: translateY(0);
+}
+
+/* Botón de cerrar */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  color: #666 !important;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #373b8a !important;
+  background-color: rgba(55, 59, 138, 0.1) !important;
+  transform: scale(1.1);
+}
+
 .text-caption ul {
   margin-left: 16px;
 }
 
 /* color texto */
 .txt-color {
-  color: #29acb9;
+  color: #373b8a;
+}
+
+.label-color {
+  color: #333;
 }
 
 :deep(.v-field__field) {

@@ -1,103 +1,116 @@
 <template>
   <div class="about-page">
-    <div class="container">
-      <h1>Acerca de Nosotros</h1>
-      <section class="about-section">
-        <h2>Nuestra Misión</h2>
-        <p>
-          En Academia Virtual, nos dedicamos a proporcionar educación de calidad accesible a todos. 
-          Creemos que el aprendizaje debe ser flexible, adaptable y personalizado para satisfacer 
-          las necesidades de cada estudiante.
-        </p>
+    <div class="container m-auto pt-4">
+      <div class="row">
+        <section
+          class="d-flex flex-column justify-content-center flex-lg-row align-items-center gap-4 mb-5 mb-lg-0"
+        >
+          <div class="col-12 col-lg-6">
+            <img
+              :src="imgA"
+              alt="Acerca de nosotros - Academia NeekWorld"
+              class="img-fluid rounded-3"
+            />
+          </div>
+          <div class="col-12 col-lg-6">
+            <h2
+              class="title-card text-center py-4 py-lg-5 display-5 display-lg-4"
+            >
+              Nosotros
+            </h2>
+            <div class="bg-white p-4 rounded-3 shadow-sm mb-4">
+              <h2 class="title-section">Nuestra Misión</h2>
+              <p class="paragraph-section">
+                En Academia Virtual, nos dedicamos a proporcionar educación de
+                calidad accesible a todos. Creemos que el aprendizaje debe ser
+                flexible, adaptable y personalizado para satisfacer las
+                necesidades de cada estudiante.
+              </p>
+            </div>
+            <div class="bg-white p-4 rounded-3 shadow-sm mb-4">
+              <h2 class="title-section">Nuestra Historia</h2>
+              <p class="paragraph-section">
+                Fundada en 2023, Academia Virtual surgió como respuesta a la
+                creciente necesidad de soluciones educativas en línea que fueran
+                tanto efectivas como accesibles. Desde entonces, hemos estado
+                comprometidos con la excelencia en la educación digital.
+              </p>
+            </div>
+          </div>
+        </section>
+        <article class="col-12 mb-5">
+          <div class="bg-white p-4 rounded-3 shadow-sm mb-4">
+            <h2 class="title-section">Nuestro Enfoque</h2>
+            <p class="paragraph-section">
+              Nos enfocamos en crear experiencias de aprendizaje que combinen
+              teoría con práctica. Nuestros cursos están diseñados por expertos
+              en la materia y utilizan metodologías pedagógicas comprobadas para
+              asegurar que los estudiantes no solo adquieran conocimientos, sino
+              que también desarrollen habilidades aplicables en el mundo real.
+            </p>
+          </div>
+          <div class="bg-white p-4 rounded-3 shadow-sm mb-4">
+            <h2 class="title-section">Nuestro Equipo</h2>
+            <p class="paragraph-section">
+              Contamos con un equipo diverso de educadores, desarrolladores y
+              expertos en diversas disciplinas, todos unidos por la pasión de
+              hacer que el aprendizaje sea accesible, efectivo y agradable para
+              todos.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- <section class="about-section">
       </section>
       
       <section class="about-section">
-        <h2>Nuestra Historia</h2>
-        <p>
-          Fundada en 2023, Academia Virtual surgió como respuesta a la creciente necesidad de 
-          soluciones educativas en línea que fueran tanto efectivas como accesibles. Desde 
-          entonces, hemos estado comprometidos con la excelencia en la educación digital.
-        </p>
+        
       </section>
       
       <section class="about-section">
-        <h2>Nuestro Enfoque</h2>
-        <p>
-          Nos enfocamos en crear experiencias de aprendizaje que combinen teoría con práctica. 
-          Nuestros cursos están diseñados por expertos en la materia y utilizan metodologías 
-          pedagógicas comprobadas para asegurar que los estudiantes no solo adquieran conocimientos, 
-          sino que también desarrollen habilidades aplicables en el mundo real.
-        </p>
+        
       </section>
       
       <section class="about-section">
-        <h2>Nuestro Equipo</h2>
-        <p>
-          Contamos con un equipo diverso de educadores, desarrolladores y expertos en diversas 
-          disciplinas, todos unidos por la pasión de hacer que el aprendizaje sea accesible, 
-          efectivo y agradable para todos.
-        </p>
-      </section>
+        
+      </section> -->
     </div>
   </div>
 </template>
 
 <script>
+// Importar la imagen correctamente
+import imgA from "@/assets/img/AcercaDe.webp";
+
 export default {
   name: "AboutView",
+  data() {
+    return {
+      imgA,
+    };
+  },
 };
 </script>
 
 <style scoped>
-/* ===== ESTILOS BASE ===== */
-.about-page {
-  padding: 40px 0;
-  font-family: "Roboto", sans-serif;
-  color: #2a3b5f;
-  transition: all 0.3s ease;
-  min-height: calc(100vh - 200px);
+.title-card {
+  color: #373b8a;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
+.title-section {
+  color: #29acb9;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
 }
 
-h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 2.5rem;
-  color: #2e8b57;
-  margin-bottom: 30px;
-  text-align: center;
-  transition: color 0.3s ease;
+.paragraph-section {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+  line-height: 1.5;
 }
-
-.about-section {
-  margin-bottom: 40px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 25px;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-}
-
-.about-section h2 {
-  color: #2e8b57;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  font-family: "Playfair Display", serif;
-  transition: color 0.3s ease;
-}
-
-.about-section p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #555;
-  transition: color 0.3s ease;
-}
-
 /* ===== MODO CLARO ===== */
 .v-theme--light .about-page {
   background-color: #f8f9fa;
@@ -130,7 +143,7 @@ h1 {
 }
 
 .v-theme--dark .about-page h1 {
-  color: #81C784 !important;
+  color: #81c784 !important;
 }
 
 .v-theme--dark .about-section {
@@ -141,7 +154,7 @@ h1 {
 }
 
 .v-theme--dark .about-section h2 {
-  color: #81C784 !important;
+  color: #81c784 !important;
 }
 
 .v-theme--dark .about-section p {
@@ -184,38 +197,34 @@ h1 {
   .about-page {
     padding: 20px 0;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   .about-section {
     padding: 20px;
     margin-bottom: 30px;
   }
-  
+
   .about-section h2 {
     font-size: 1.3rem;
   }
-  
+
   .about-section p {
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 15px;
-  }
-  
   h1 {
     font-size: 1.75rem;
   }
-  
+
   .about-section {
     padding: 15px;
   }
-  
+
   .about-section h2 {
     font-size: 1.2rem;
   }

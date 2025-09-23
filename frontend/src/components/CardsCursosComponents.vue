@@ -595,6 +595,11 @@ onMounted(async () => {
   flex-direction: column !important;
 }
 
+.course-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-5px);
+}
+
 .course-card:focus {
   outline: 3px solid #2e8b57;
   outline-offset: 2px;

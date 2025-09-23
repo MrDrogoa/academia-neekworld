@@ -176,53 +176,6 @@ html.text-scale-130 .content-area .v-list-item-title {
   font-size: 20.8px !important;
 }
 
-/* ===== EXCLUSIONES COMPLETAS - NO ESCALAR ===== */
-/* Todos los elementos de navegación, UI y controles mantienen su tamaño original */
-html[class*="text-scale-"] .v-app-bar,
-html[class*="text-scale-"] .v-app-bar *,
-html[class*="text-scale-"] .v-navigation-drawer,
-html[class*="text-scale-"] .v-navigation-drawer *,
-html[class*="text-scale-"] .v-toolbar,
-html[class*="text-scale-"] .v-toolbar *,
-html[class*="text-scale-"] .v-bottom-navigation,
-html[class*="text-scale-"] .v-bottom-navigation *,
-html[class*="text-scale-"] .v-tabs,
-html[class*="text-scale-"] .v-tabs *,
-html[class*="text-scale-"] .v-breadcrumbs,
-html[class*="text-scale-"] .v-breadcrumbs *,
-html[class*="text-scale-"] .v-btn,
-html[class*="text-scale-"] .v-btn *,
-html[class*="text-scale-"] .v-chip,
-html[class*="text-scale-"] .v-chip *,
-html[class*="text-scale-"] .v-badge,
-html[class*="text-scale-"] .v-badge *,
-html[class*="text-scale-"] .v-avatar,
-html[class*="text-scale-"] .v-avatar *,
-html[class*="text-scale-"] .v-menu,
-html[class*="text-scale-"] .v-menu *,
-html[class*="text-scale-"] .v-overlay,
-html[class*="text-scale-"] .v-overlay *,
-html[class*="text-scale-"] .v-dialog .v-card-actions,
-html[class*="text-scale-"] .v-dialog .v-card-actions *,
-html[class*="text-scale-"] .v-snackbar,
-html[class*="text-scale-"] .v-snackbar *,
-html[class*="text-scale-"] .v-alert .v-alert__prepend,
-html[class*="text-scale-"] .v-alert .v-alert__append,
-html[class*="text-scale-"] .v-pagination,
-html[class*="text-scale-"] .v-pagination *,
-html[class*="text-scale-"] .v-data-table-header,
-html[class*="text-scale-"] .v-data-table-header *,
-html[class*="text-scale-"] .navbar-title,
-html[class*="text-scale-"] .accessibility-menu,
-html[class*="text-scale-"] .accessibility-menu *,
-html[class*="text-scale-"] .v-icon,
-html[class*="text-scale-"] .mdi,
-html[class*="text-scale-"] .material-icons,
-html[class*="text-scale-"] [class*="icon"],
-html[class*="text-scale-"] .v-card-title {
-  font-size: inherit !important;
-}
-
 /* =========================================
    MENU DE ACCESIBILIDAD - ESTILOS MEJORADOS
    ========================================= */
@@ -776,7 +729,6 @@ html[class*="text-scale-"] .v-card-title {
 
 .v-theme--light .v-app-bar .v-btn {
   color: #000000 !important;
-  font-size: 24px !important;
   background-color: #fff;
   border-radius: 10px;
 }
@@ -1106,10 +1058,7 @@ html.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled {
 
 /* ===== V-SELECT MENU OVERLAY - MODO CLARO ===== */
 .v-theme--light .v-overlay__content {
-  background-color: #ffffff !important;
   color: #333 !important;
-  border: 1px solid #e0e0e0 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 
 .v-theme--light .v-list {

@@ -31,9 +31,9 @@
     <!-- Dialog del carrito -->
     <v-dialog v-model="showCartDialog" max-width="800px" scrollable>
       <v-card>
-        <v-card-title class="d-flex align-center">
+        <v-card-title class="d-flex align-center gap-3">
           <v-icon left>mdi-cart</v-icon>
-          Carrito de Compras
+          <h2 class="title-buy fs-4 fs-lg-5">Carrito de Compras</h2>
           <v-spacer></v-spacer>
           <v-btn
             icon="mdi-close"
@@ -53,7 +53,7 @@
               Explora nuestros cursos y agrega algunos a tu carrito
             </p>
             <v-btn
-              color="primary"
+              class="btn btn-primary border-0 rounded-4 px-4 py-3 fw-medium text-white"
               @click="
                 $router.push('/courses');
                 showCartDialog = false;
@@ -743,6 +743,11 @@ export default {
 </script>
 
 <style scoped>
+.title-buy {
+  margin: 0 !important;
+  color: #373b8a;
+}
+
 .car-pay {
   background-color: aqua !important;
 }

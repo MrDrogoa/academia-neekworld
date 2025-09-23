@@ -5,8 +5,12 @@
       <v-col cols="12" md="3">
         <v-card class="metric-card student-primary" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="primary" class="mb-2">mdi-book-multiple</v-icon>
-            <div class="metric-number">{{ studentMetrics.availableCoursesCount }}</div>
+            <v-icon size="48" color="primary" class="mb-2"
+              >mdi-book-multiple</v-icon
+            >
+            <div class="metric-number">
+              {{ studentMetrics.availableCoursesCount }}
+            </div>
             <div class="metric-label">Cursos Disponibles</div>
             <v-chip size="small" color="info" class="mt-2">
               +{{ studentMetrics.newCoursesThisWeek }} esta semana
@@ -14,29 +18,37 @@
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card student-secondary" elevation="3">
           <v-card-text class="text-center">
             <v-icon size="48" color="success" class="mb-2">mdi-school</v-icon>
-            <div class="metric-number">{{ studentMetrics.enrolledCoursesCount }}</div>
+            <div class="metric-number">
+              {{ studentMetrics.enrolledCoursesCount }}
+            </div>
             <div class="metric-label">Mis Cursos</div>
-            <v-progress-linear 
-              :model-value="studentMetrics.progressPercentage" 
-              color="success" 
-              height="4" 
+            <v-progress-linear
+              :model-value="studentMetrics.progressPercentage"
+              color="success"
+              height="4"
               class="mt-2"
             ></v-progress-linear>
-            <div class="text-caption">{{ studentMetrics.progressPercentage }}% progreso</div>
+            <div class="text-caption">
+              {{ studentMetrics.progressPercentage }}% progreso
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card student-accent" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="warning" class="mb-2">mdi-certificate</v-icon>
-            <div class="metric-number">{{ studentMetrics.completedCoursesCount }}</div>
+            <v-icon size="48" color="warning" class="mb-2"
+              >mdi-certificate</v-icon
+            >
+            <div class="metric-number">
+              {{ studentMetrics.completedCoursesCount }}
+            </div>
             <div class="metric-label">Completados</div>
             <div class="text-caption text-success">
               {{ studentMetrics.certificatesEarned }} certificados obtenidos
@@ -44,14 +56,18 @@
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card student-info" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="info" class="mb-2">mdi-clock-time-eight</v-icon>
+            <v-icon size="48" color="info" class="mb-2"
+              >mdi-clock-time-eight</v-icon
+            >
             <div class="metric-number">{{ studentMetrics.studyTimeHours }}</div>
             <div class="metric-label">Horas de Estudio</div>
-            <div class="text-caption">{{ studentMetrics.studyTimeThisWeek }}h esta semana</div>
+            <div class="text-caption">
+              {{ studentMetrics.studyTimeThisWeek }}h esta semana
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -63,7 +79,9 @@
         <v-card class="metric-card teacher-primary" elevation="3">
           <v-card-text class="text-center">
             <v-icon size="48" color="primary" class="mb-2">mdi-teach</v-icon>
-            <div class="metric-number">{{ teacherMetrics.teacherCoursesCount }}</div>
+            <div class="metric-number">
+              {{ teacherMetrics.teacherCoursesCount }}
+            </div>
             <div class="metric-label">Mis Cursos</div>
             <v-chip size="small" color="success" class="mt-2">
               {{ teacherMetrics.approvedCourses }} aprobados
@@ -71,12 +89,16 @@
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card teacher-secondary" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="success" class="mb-2">mdi-account-group</v-icon>
-            <div class="metric-number">{{ teacherMetrics.totalStudentsCount }}</div>
+            <v-icon size="48" color="success" class="mb-2"
+              >mdi-account-group</v-icon
+            >
+            <div class="metric-number">
+              {{ teacherMetrics.totalStudentsCount }}
+            </div>
             <div class="metric-label">Total Estudiantes</div>
             <div class="text-caption text-success">
               +{{ teacherMetrics.newStudentsThisMonth }} este mes
@@ -84,35 +106,40 @@
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card teacher-accent" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="warning" class="mb-2">mdi-currency-usd</v-icon>
-            <div class="metric-number">${{ formatPrice(teacherMetrics.monthlyEarnings) }}</div>
+            <v-icon size="48" color="warning" class="mb-2"
+              >mdi-currency-usd</v-icon
+            >
+            <div class="metric-number">
+              ${{ formatPrice(teacherMetrics.monthlyEarnings) }}
+            </div>
             <div class="metric-label">Ingresos del Mes</div>
-            <v-chip 
-              size="small" 
-              :color="teacherMetrics.earningsChange >= 0 ? 'success' : 'error'" 
+            <v-chip
+              size="small"
+              :color="teacherMetrics.earningsChange >= 0 ? 'success' : 'error'"
               class="mt-2"
             >
-              {{ teacherMetrics.earningsChange >= 0 ? '+' : '' }}{{ teacherMetrics.earningsChange }}%
+              {{ teacherMetrics.earningsChange >= 0 ? "+" : ""
+              }}{{ teacherMetrics.earningsChange }}%
             </v-chip>
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card teacher-info" elevation="3">
           <v-card-text class="text-center">
             <v-icon size="48" color="info" class="mb-2">mdi-star</v-icon>
             <div class="metric-number">{{ teacherMetrics.averageRating }}</div>
             <div class="metric-label">Calificación Promedio</div>
-            <v-rating 
-              :model-value="teacherMetrics.averageRating" 
-              color="amber" 
-              half-increments 
-              readonly 
+            <v-rating
+              :model-value="teacherMetrics.averageRating"
+              color="amber"
+              half-increments
+              readonly
               size="small"
             ></v-rating>
           </v-card-text>
@@ -125,23 +152,33 @@
       <v-col cols="12" md="3">
         <v-card class="metric-card admin-primary" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="primary" class="mb-2">mdi-account-multiple</v-icon>
+            <v-icon size="48" color="primary" class="mb-2"
+              >mdi-account-multiple</v-icon
+            >
             <div class="metric-number">{{ adminMetrics.totalUsersCount }}</div>
             <div class="metric-label">Total Usuarios</div>
             <div class="metric-breakdown">
-              <span class="text-caption">{{ adminMetrics.studentsCount }} estudiantes</span>
+              <span class="text-caption"
+                >{{ adminMetrics.studentsCount }} estudiantes</span
+              >
               <span class="mx-1">•</span>
-              <span class="text-caption">{{ adminMetrics.teachersCount }} profesores</span>
+              <span class="text-caption"
+                >{{ adminMetrics.teachersCount }} profesores</span
+              >
             </div>
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card admin-secondary" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="success" class="mb-2">mdi-book-multiple</v-icon>
-            <div class="metric-number">{{ adminMetrics.publishedCoursesCount }}</div>
+            <v-icon size="48" color="success" class="mb-2"
+              >mdi-book-multiple</v-icon
+            >
+            <div class="metric-number">
+              {{ adminMetrics.publishedCoursesCount }}
+            </div>
             <div class="metric-label">Cursos Publicados</div>
             <v-chip size="small" color="warning" class="mt-2">
               {{ adminMetrics.pendingApprovalCount }} pendientes
@@ -149,31 +186,40 @@
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card admin-accent" elevation="3">
           <v-card-text class="text-center">
-            <v-icon size="48" color="warning" class="mb-2">mdi-chart-line</v-icon>
-            <div class="metric-number">${{ formatPrice(adminMetrics.monthlySales) }}</div>
+            <v-icon size="48" color="warning" class="mb-2"
+              >mdi-chart-line</v-icon
+            >
+            <div class="metric-number">
+              ${{ formatPrice(adminMetrics.monthlySales) }}
+            </div>
             <div class="metric-label">Ventas del Mes</div>
-            <v-chip 
-              size="small" 
-              :color="adminMetrics.salesGrowth >= 0 ? 'success' : 'error'" 
+            <v-chip
+              size="small"
+              :color="adminMetrics.salesGrowth >= 0 ? 'success' : 'error'"
               class="mt-2"
             >
-              {{ adminMetrics.salesGrowth >= 0 ? '+' : '' }}{{ adminMetrics.salesGrowth }}%
+              {{ adminMetrics.salesGrowth >= 0 ? "+" : ""
+              }}{{ adminMetrics.salesGrowth }}%
             </v-chip>
           </v-card-text>
         </v-card>
       </v-col>
-      
+
       <v-col cols="12" md="3">
         <v-card class="metric-card admin-info" elevation="3">
           <v-card-text class="text-center">
             <v-icon size="48" color="info" class="mb-2">mdi-bell</v-icon>
-            <div class="metric-number">{{ adminMetrics.pendingNotifications }}</div>
+            <div class="metric-number">
+              {{ adminMetrics.pendingNotifications }}
+            </div>
             <div class="metric-label">Notificaciones</div>
-            <div class="text-caption">{{ adminMetrics.systemAlerts }} alertas del sistema</div>
+            <div class="text-caption">
+              {{ adminMetrics.systemAlerts }} alertas del sistema
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -182,33 +228,33 @@
 </template>
 
 <script>
-import { formatPrice } from '@/utils/courseUtils';
-import metricsService from '@/services/metricsService';
-import { mapGetters } from 'vuex';
+import { formatPrice } from "@/utils/courseUtils";
+import metricsService from "@/services/metricsService";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'RealTimeMetrics',
+  name: "RealTimeMetrics",
   props: {
     userRole: {
       type: String,
-      required: true
+      required: true,
     },
     metricsData: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
     return {
       updateInterval: null,
       lastUpdate: null,
       realTimeData: {},
-      isLoading: false
-    }
+      isLoading: false,
+    };
   },
   computed: {
-    ...mapGetters(['getUser']),
-    
+    ...mapGetters(["getUser"]),
+
     studentMetrics() {
       return {
         availableCoursesCount: this.realTimeData.availableCoursesCount || 0,
@@ -218,8 +264,8 @@ export default {
         completedCoursesCount: this.realTimeData.completedCoursesCount || 0,
         certificatesEarned: this.realTimeData.certificatesEarned || 0,
         studyTimeHours: this.realTimeData.studyTimeHours || 0,
-        studyTimeThisWeek: this.realTimeData.studyTimeThisWeek || 0
-      }
+        studyTimeThisWeek: this.realTimeData.studyTimeThisWeek || 0,
+      };
     },
     teacherMetrics() {
       return {
@@ -229,8 +275,8 @@ export default {
         newStudentsThisMonth: this.realTimeData.newStudentsThisMonth || 0,
         monthlyEarnings: this.realTimeData.monthlyEarnings || 0,
         earningsChange: this.realTimeData.earningsChange || 0,
-        averageRating: this.realTimeData.averageRating || 0
-      }
+        averageRating: this.realTimeData.averageRating || 0,
+      };
     },
     adminMetrics() {
       return {
@@ -242,9 +288,9 @@ export default {
         monthlySales: this.realTimeData.monthlySales || 0,
         salesGrowth: this.realTimeData.salesGrowth || 0,
         pendingNotifications: this.realTimeData.pendingNotifications || 0,
-        systemAlerts: this.realTimeData.systemAlerts || 0
-      }
-    }
+        systemAlerts: this.realTimeData.systemAlerts || 0,
+      };
+    },
   },
   async mounted() {
     await this.loadInitialMetrics();
@@ -255,23 +301,26 @@ export default {
   },
   methods: {
     formatPrice,
-    
+
     async loadInitialMetrics() {
       this.isLoading = true;
       try {
         const userId = this.getUser?.id || this.getUser?.uid;
-        const metrics = await metricsService.getMetricsByRole(this.userRole, userId);
+        const metrics = await metricsService.getMetricsByRole(
+          this.userRole,
+          userId
+        );
         this.realTimeData = { ...metrics };
         this.lastUpdate = new Date();
       } catch (error) {
-        console.error('Error loading initial metrics:', error);
+        console.error("Error loading initial metrics:", error);
         // Fallback a datos mockeados si hay error
         this.loadFallbackData();
       } finally {
         this.isLoading = false;
       }
     },
-    
+
     loadFallbackData() {
       const fallbackData = {
         student: {
@@ -282,7 +331,7 @@ export default {
           completedCoursesCount: 2,
           certificatesEarned: 2,
           studyTimeHours: 42,
-          studyTimeThisWeek: 8
+          studyTimeThisWeek: 8,
         },
         teacher: {
           teacherCoursesCount: 8,
@@ -291,7 +340,7 @@ export default {
           newStudentsThisMonth: 23,
           monthlyEarnings: 2450000,
           earningsChange: 15.3,
-          averageRating: 4.8
+          averageRating: 4.8,
         },
         admin: {
           totalUsersCount: 1247,
@@ -302,66 +351,81 @@ export default {
           monthlySales: 15680000,
           salesGrowth: 22.7,
           pendingNotifications: 8,
-          systemAlerts: 2
-        }
+          systemAlerts: 2,
+        },
       };
-      
+
       this.realTimeData = fallbackData[this.userRole] || {};
     },
-    
+
     startRealTimeUpdates() {
       // Actualizar métricas cada 30 segundos
       this.updateInterval = setInterval(() => {
         this.fetchLatestMetrics();
       }, 30000);
     },
-    
+
     stopRealTimeUpdates() {
       if (this.updateInterval) {
         clearInterval(this.updateInterval);
         this.updateInterval = null;
       }
     },
-    
+
     async fetchLatestMetrics() {
       try {
         const userId = this.getUser?.id || this.getUser?.uid;
-        const freshMetrics = await metricsService.getMetricsByRole(this.userRole, userId);
-        
+        const freshMetrics = await metricsService.getMetricsByRole(
+          this.userRole,
+          userId
+        );
+
         // Actualizar datos gradualmente para mostrar cambios
         this.realTimeData = { ...this.realTimeData, ...freshMetrics };
-        
-        this.$emit('metrics-updated', {
+
+        this.$emit("metrics-updated", {
           timestamp: new Date(),
           role: this.userRole,
-          data: freshMetrics
+          data: freshMetrics,
         });
       } catch (error) {
-        console.error('Error fetching latest metrics:', error);
+        console.error("Error fetching latest metrics:", error);
         // Simular pequeños cambios si hay error de conexión
         this.simulateMetricChanges();
       }
     },
-    
+
     simulateMetricChanges() {
       // Simular pequeños cambios en tiempo real para mantener la demo viva
-      if (this.userRole === 'student') {
-        this.realTimeData.studyTimeThisWeek = Math.max(0, 
-          this.realTimeData.studyTimeThisWeek + Math.floor(Math.random() * 2 - 0.5)
+      if (this.userRole === "student") {
+        this.realTimeData.studyTimeThisWeek = Math.max(
+          0,
+          this.realTimeData.studyTimeThisWeek +
+            Math.floor(Math.random() * 2 - 0.5)
         );
-        this.realTimeData.progressPercentage = Math.min(100, 
-          Math.max(0, this.realTimeData.progressPercentage + Math.random() * 2 - 1)
+        this.realTimeData.progressPercentage = Math.min(
+          100,
+          Math.max(
+            0,
+            this.realTimeData.progressPercentage + Math.random() * 2 - 1
+          )
         );
-      } else if (this.userRole === 'teacher') {
-        this.realTimeData.totalStudentsCount += Math.floor(Math.random() * 3 - 1);
-        this.realTimeData.monthlyEarnings += Math.floor(Math.random() * 10000 - 5000);
-      } else if (this.userRole === 'admin') {
+      } else if (this.userRole === "teacher") {
+        this.realTimeData.totalStudentsCount += Math.floor(
+          Math.random() * 3 - 1
+        );
+        this.realTimeData.monthlyEarnings += Math.floor(
+          Math.random() * 10000 - 5000
+        );
+      } else if (this.userRole === "admin") {
         this.realTimeData.totalUsersCount += Math.floor(Math.random() * 2);
-        this.realTimeData.monthlySales += Math.floor(Math.random() * 50000 - 25000);
+        this.realTimeData.monthlySales += Math.floor(
+          Math.random() * 50000 - 25000
+        );
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -375,11 +439,6 @@ export default {
   overflow: hidden;
 }
 
-.metric-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-}
-
 .metric-number {
   font-size: 2.5rem;
   font-weight: 700;
@@ -388,9 +447,8 @@ export default {
 }
 
 .metric-label {
-  font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -454,7 +512,7 @@ export default {
   .metric-number {
     font-size: 2rem;
   }
-  
+
   .metric-label {
     font-size: 0.75rem;
   }
