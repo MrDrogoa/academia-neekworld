@@ -184,7 +184,7 @@
           </p>
           <button
             @click="openAuthDialog('register')"
-            class="btn btn-primary mt-3 border-0 btn btn-primary border-0 rounded-4 px-4 py-3 fw-medium"
+            class="btn btn-primary mt-3 border-0 rounded-4 px-4 py-3 fw-medium"
           >
             Comenzar ahora
           </button>

@@ -1,0 +1,11 @@
+/* button de perfil para modificaciones*/
+
+.btn-profile {
+  background-color: #29acb9 !important;
+}
+
+.btn-profile:hover {
+  background-color: #32c4d2;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px #32c4d2;
+}

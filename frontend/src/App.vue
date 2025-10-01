@@ -60,7 +60,6 @@ body {
 }
 
 #app {
-  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -244,15 +243,6 @@ body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Estado vacío - Verde */
-.floating-cart-button.cart-empty {
-  /* background-color: #2e8b57 !important; */
-}
-
-.v-theme--dark .floating-cart-button.cart-empty {
-  /* background-color: #4caf50 !important; */
-}
-
 /* Estado con items - Rojo con animación pulsante */
 .floating-cart-button.cart-has-items {
   background-color: #f44336 !important;
@@ -356,8 +346,4 @@ body {
   align-items: center !important;
   justify-content: center !important;
 }
-
-/* .v-badge__wrapper {
-  margin: 0 !important;
-} */
 </style>

@@ -7,15 +7,19 @@
           <v-icon size="large" start color="primary" class="me-2">
             mdi-account-circle
           </v-icon>
-          <h1 class="text-h4">Mi Perfil</h1>
+          <h2 class="text-h4">Mi Perfil</h2>
         </v-card-title>
-        
+
         <!-- Loading state -->
         <div v-if="isLoading" class="text-center py-8">
-          <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+          <v-progress-circular
+            indeterminate
+            color="primary"
+            size="64"
+          ></v-progress-circular>
           <p class="mt-4 text-body-1">Cargando información...</p>
         </div>
-        
+
         <!-- Error message -->
         <v-alert
           v-if="errorMessage"
@@ -27,7 +31,7 @@
         >
           {{ errorMessage }}
         </v-alert>
-        
+
         <!-- Success message -->
         <v-alert
           v-if="successMessage"
@@ -39,7 +43,7 @@
         >
           {{ successMessage }}
         </v-alert>
-        
+
         <!-- Profile Content -->
         <v-card-text v-if="user && !isLoading">
           <!-- User Info Section -->
@@ -49,24 +53,30 @@
                 <span class="text-h3 text-white">{{ userInitials }}</span>
               </v-avatar>
               <h2 class="text-h5">{{ user.name }}</h2>
-              <v-chip color="primary" class="mt-2">{{ userRoleDisplay }}</v-chip>
+              <v-chip color="primary" class="mt-2">{{
+                userRoleDisplay
+              }}</v-chip>
               <p class="text-body-1 mt-2">{{ user.email }}</p>
             </v-col>
-            
+
             <v-col cols="12" md="8">
               <!-- Profile Edit Form -->
-              <v-form @submit.prevent="updateUserProfile" ref="profileForm" v-model="isFormValid">
+              <v-form
+                @submit.prevent="updateUserProfile"
+                ref="profileForm"
+                v-model="isFormValid"
+              >
                 <div class="form-section mb-6">
                   <h3 class="text-h6 mb-4">Información Personal</h3>
-                  
+
                   <v-text-field
                     v-model="form.name"
                     label="Nombre Completo"
                     variant="outlined"
-                    :rules="[v => !!v || 'El nombre es obligatorio']"
+                    :rules="[(v) => !!v || 'El nombre es obligatorio']"
                     required
                   ></v-text-field>
-                  
+
                   <v-text-field
                     v-model="form.email"
                     label="Correo Electrónico"
@@ -76,13 +86,16 @@
                     persistent-hint
                   ></v-text-field>
                 </div>
-                
+
                 <v-divider></v-divider>
-                
+
                 <div class="form-section mt-6">
                   <h3 class="text-h6 mb-2">Cambiar Contraseña</h3>
-                  <p class="text-caption mb-4">Deja estos campos en blanco si no deseas cambiar tu contraseña</p>
-                  
+                  <p class="text-caption mb-4">
+                    Deja estos campos en blanco si no deseas cambiar tu
+                    contraseña
+                  </p>
+
                   <v-text-field
                     v-model="form.currentPassword"
                     label="Contraseña Actual"
@@ -90,17 +103,21 @@
                     type="password"
                     :error-messages="formErrors.currentPassword"
                   ></v-text-field>
-                  
+
                   <v-text-field
                     v-model="form.newPassword"
                     label="Nueva Contraseña"
                     variant="outlined"
                     type="password"
                     :error-messages="formErrors.newPassword"
-                    :hint="form.newPassword ? 'La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un carácter especial' : ''"
+                    :hint="
+                      form.newPassword
+                        ? 'La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un carácter especial'
+                        : ''
+                    "
                     persistent-hint
                   ></v-text-field>
-                  
+
                   <v-text-field
                     v-model="form.confirmPassword"
                     label="Confirmar Nueva Contraseña"
@@ -109,7 +126,7 @@
                     :error-messages="formErrors.confirmPassword"
                   ></v-text-field>
                 </div>
-                
+
                 <div class="d-flex justify-end mt-6">
                   <v-btn
                     color="primary"
@@ -132,163 +149,170 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'ProfileView',
+  name: "ProfileView",
   data() {
     return {
       form: {
-        name: '',
-        email: '',
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        name: "",
+        email: "",
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
       },
       formErrors: {
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
       },
-      errorMessage: '',
-      successMessage: '',
-      isFormValid: true
+      errorMessage: "",
+      successMessage: "",
+      isFormValid: true,
     };
   },
   computed: {
-    ...mapGetters([
-      'isLoading',
-      'getUser',
-      'userRole',
-      'getError'
-    ]),
-    
+    ...mapGetters(["isLoading", "getUser", "userRole", "getError"]),
+
     user() {
       return this.getUser;
     },
-    
+
     userInitials() {
-      if (!this.user || !this.user.name) return 'U';
-      
-      return this.user.name.split(' ')
-        .map(n => n[0])
-        .join('')
+      if (!this.user || !this.user.name) return "U";
+
+      return this.user.name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
         .toUpperCase()
         .substring(0, 2);
     },
-    
+
     userRoleDisplay() {
       const roles = {
-        'student': 'Estudiante',
-        'teacher': 'Profesor',
-        'admin': 'Administrador'
+        student: "Estudiante",
+        teacher: "Profesor",
+        admin: "Administrador",
       };
-      return roles[this.userRole] || 'Usuario';
+      return roles[this.userRole] || "Usuario";
     },
-    
+
     isPasswordChange() {
-      return this.form.currentPassword || this.form.newPassword || this.form.confirmPassword;
-    }
+      return (
+        this.form.currentPassword ||
+        this.form.newPassword ||
+        this.form.confirmPassword
+      );
+    },
   },
   methods: {
-    ...mapActions(['fetchUserProfile', 'updateProfile']),
-    
+    ...mapActions(["fetchUserProfile", "updateProfile"]),
+
     loadUserData() {
-      this.errorMessage = '';
-      
+      this.errorMessage = "";
+
       if (this.user) {
-        this.form.name = this.user.name || '';
-        this.form.email = this.user.email || '';
+        this.form.name = this.user.name || "";
+        this.form.email = this.user.email || "";
       }
     },
-    
+
     validatePasswordForm() {
       let isValid = true;
       this.formErrors = {
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
       };
-      
+
       // Solo validar si se está intentando cambiar contraseña
-      if (this.form.newPassword || this.form.confirmPassword || this.form.currentPassword) {
+      if (
+        this.form.newPassword ||
+        this.form.confirmPassword ||
+        this.form.currentPassword
+      ) {
         if (!this.form.currentPassword) {
-          this.formErrors.currentPassword = 'Debes ingresar tu contraseña actual';
+          this.formErrors.currentPassword =
+            "Debes ingresar tu contraseña actual";
           isValid = false;
         }
-        
+
         if (this.form.newPassword) {
           // Validar complejidad de contraseña
-          const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+          const passwordRegex =
+            /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
           if (!passwordRegex.test(this.form.newPassword)) {
-            this.formErrors.newPassword = 'La contraseña debe cumplir los requisitos de seguridad';
+            this.formErrors.newPassword =
+              "La contraseña debe cumplir los requisitos de seguridad";
             isValid = false;
           }
-          
+
           // Validar coincidencia
           if (this.form.newPassword !== this.form.confirmPassword) {
-            this.formErrors.confirmPassword = 'Las contraseñas no coinciden';
+            this.formErrors.confirmPassword = "Las contraseñas no coinciden";
             isValid = false;
           }
         } else if (this.form.confirmPassword) {
-          this.formErrors.newPassword = 'Debes ingresar una nueva contraseña';
+          this.formErrors.newPassword = "Debes ingresar una nueva contraseña";
           isValid = false;
         }
       }
-      
+
       return isValid;
     },
-    
+
     async updateUserProfile() {
-      this.errorMessage = '';
-      this.successMessage = '';
-      
+      this.errorMessage = "";
+      this.successMessage = "";
+
       // Validar cambios de contraseña si los hay
       if (this.isPasswordChange && !this.validatePasswordForm()) {
         return;
       }
-      
+
       try {
         // Preparar datos para la actualización
         const updateData = {
-          name: this.form.name
+          name: this.form.name,
         };
-        
+
         // Incluir datos de cambio de contraseña si se proporcionaron
         if (this.form.newPassword && this.form.currentPassword) {
           updateData.currentPassword = this.form.currentPassword;
           updateData.newPassword = this.form.newPassword;
         }
-        
+
         // Llamar a la acción de Vuex
         await this.updateProfile(updateData);
-        
+
         // Limpiar campos de contraseña
-        this.form.currentPassword = '';
-        this.form.newPassword = '';
-        this.form.confirmPassword = '';
-        
+        this.form.currentPassword = "";
+        this.form.newPassword = "";
+        this.form.confirmPassword = "";
+
         // Mostrar mensaje de éxito
-        this.successMessage = 'Perfil actualizado correctamente';
-        
+        this.successMessage = "Perfil actualizado correctamente";
+
         // Volver a cargar datos de usuario
         await this.fetchUserProfile();
         this.loadUserData();
       } catch (error) {
-        console.error('Error al actualizar perfil:', error);
-        this.errorMessage = this.getError || 'Error al actualizar perfil';
+        console.error("Error al actualizar perfil:", error);
+        this.errorMessage = this.getError || "Error al actualizar perfil";
       }
-    }
+    },
   },
   created() {
     // Cargar datos de usuario
     this.fetchUserProfile()
       .then(() => this.loadUserData())
-      .catch(error => {
-        console.error('Error al cargar datos de usuario:', error);
-        this.errorMessage = this.getError || 'Error al cargar datos de usuario';
+      .catch((error) => {
+        console.error("Error al cargar datos de usuario:", error);
+        this.errorMessage = this.getError || "Error al cargar datos de usuario";
       });
-  }
+  },
 };
 </script>
 

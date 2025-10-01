@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="localVisible"
-    max-width="400px"
+    class="form-dialog"
     @click:outside="closeDialog"
   >
     <v-card class="pa-4 card-login rounded-lg position-relative">
@@ -40,6 +40,7 @@
             <v-text-field
               v-model="formData.firstName"
               label="escribe tu nombre"
+              class="input-text"
               :rules="nameRules"
               required
               outlined
@@ -51,7 +52,7 @@
               v-model="formData.lastName"
               label="escribe tu apellido"
               :rules="nameRules"
-              class="input-field"
+              class="input-text"
               required
               outlined
               dense
@@ -63,6 +64,7 @@
           <v-text-field
             v-model="formData.email"
             label="Email"
+            class="input-text"
             :rules="emailRules"
             required
             outlined
@@ -75,6 +77,7 @@
           <v-text-field
             v-model="formData.password"
             :label="isLogin ? 'Contraseña' : 'Contraseña'"
+            class="input-text"
             :rules="passwordRules"
             required
             outlined
@@ -92,6 +95,7 @@
             <v-text-field
               v-model="formData.confirmPassword"
               label="Confirmar Contraseña"
+              class="input-text"
               :rules="confirmPasswordRules"
               required
               outlined
@@ -148,12 +152,18 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn color="grey" text @click="closeDialog" :disabled="loading">
+        <v-btn
+          text
+          @click="closeDialog"
+          class="text-cancel btn btn-danger text-white"
+          :disabled="loading"
+        >
           Cancelar
         </v-btn>
 
         <v-btn
           color="primary"
+          class="text-seRe"
           @click="submitForm"
           :loading="loading"
           :disabled="!formValid || loading"
@@ -164,7 +174,7 @@
 
       <v-divider></v-divider>
 
-      <v-card-actions class="justify-center">
+      <v-card-actions class="justify-center text-cuestion">
         <v-btn text color="primary" @click="toggleMode" :disabled="loading">
           {{
             isLogin
@@ -435,6 +445,20 @@ export default {
   z-index: 10;
   color: #666 !important;
   transition: all 0.2s ease;
+}
+
+/* form */
+
+.form-dialog {
+  max-width: 500px;
+}
+
+.text-cancel,
+.text-seRe,
+.text-cuestion,
+.label-color,
+.input-text {
+  font-family: "Dm Sans", sans-serif;
 }
 
 .close-btn:hover {
