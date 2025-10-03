@@ -1,70 +1,7 @@
 <template>
   <div class="home-page home-view">
-    <section class="hero-section">
-      <div class="container-fluid px-4">
-        <div class="row justify-content-center align-items-center">
-          <!-- Imagen - En pantallas grandes a la izquierda, en móviles arriba -->
-          <div
-            class="col-12 col-lg-6 order-1 order-md-1 text-center mb-4 mb-md-0"
-          >
-            <div class="hero-image-container">
-              <img
-                :src="ImgHero"
-                alt="img-hero"
-                class="hero-image img-fluid rounded-3"
-              />
-            </div>
-          </div>
-
-          <!-- Contenido - En pantallas grandes a la derecha, en móviles abajo -->
-          <div class="col-12 col-lg-6 order-2 order-md-2">
-            <div class="hero-content px-3 px-md-4 position-relative">
-              <h1
-                class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 mt-md-4 text-center text-md-start"
-              >
-                Academia Digital de NeekWorld
-              </h1>
-              <p
-                class="hero-subtitle w-75 m-auto mb-4 text-center text-md-start"
-              >
-                "Aprende en línea, a tu ritmo y desde cualquier lugar, con
-                cursos diseñados para adaptarse a tu estilo de vida."
-              </p>
-              <!-- Iconos de características -->
-              <div class="feature-icon-1 position-absolute">
-                <FontAwesomeIcon
-                  icon=" fa-solid fa-scissors"
-                  class="fs-2 opacity-75"
-                />
-              </div>
-              <div class="feature-icon-2 position-absolute">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-award"
-                  class="fs-1 opacity-75"
-                />
-              </div>
-              <div
-                class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start"
-              >
-                <router-link
-                  to="/courses"
-                  class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-medium"
-                >
-                  Cursos
-                </router-link>
-                <button
-                  v-if="!user.isAuthenticated"
-                  @click="openAuthDialog('register')"
-                  class="btn btn-secondary border-0 rounded-4 px-4 py-3 fw-medium"
-                >
-                  Regístrate
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- hero section -->
+    <HeroComponents />
 
     <section class="container my-5">
       <CardsAcComponents />
@@ -183,7 +120,7 @@
             Únete hoy a nuestra comunidad de estudiantes y transforma tu futuro
           </p>
           <button
-            @click="openAuthDialog('register')"
+            @click="$router.push('/register')"
             class="btn btn-primary mt-3 border-0 rounded-4 px-4 py-3 fw-medium"
           >
             Comenzar ahora
@@ -191,110 +128,22 @@
         </div>
       </div>
     </section>
-
-    <!-- Auth Dialog -->
-    <AuthDialog
-      v-model:visible="authDialog.visible"
-      :mode="authDialog.mode"
-      @auth-success="handleAuthSuccess"
-      @auth-error="handleAuthError"
-    />
   </div>
 </template>
 
 <script>
-import { ref, computed, onMounted, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import authService from "@/services/authService";
-import AuthDialog from "@/components/AuthDialog.vue";
-import { useAccessibility } from "@/composables/useAccessibility";
 import CardsAcComponents from "@/components/CardsAcComponents.vue";
 import CardsCursosComponents from "@/components/CardsCursosComponents.vue";
-
-const ImgHero = require("@/assets/img/hero-image.webp");
-
-// import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import HeroComponents from "../components/hero/HeroComponents.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "HomeView",
   components: {
-    AuthDialog,
     CardsAcComponents,
     CardsCursosComponents,
-  },
-  setup() {
-    const route = useRoute();
-    const router = useRouter();
-
-    // Reactive data
-    const user = computed(() => authService.getCurrentUser());
-
-    // Accessibility composable
-    const { loadSavedSettings } = useAccessibility();
-
-    const authDialog = ref({
-      visible: false,
-      mode: "login",
-    });
-
-    // Methods
-    const openAuthDialog = (mode) => {
-      authDialog.value.mode = mode;
-      authDialog.value.visible = true;
-    };
-
-    const handleAuthSuccess = () => {
-      // Si hay una ruta de redirección, ir ahí
-      const redirectPath = route.query.redirect;
-      if (redirectPath) {
-        router.push(redirectPath);
-      }
-    };
-
-    const handleAuthError = (error) => {
-      console.error("Auth error:", error);
-    };
-
-    // Watch for query parameters to auto-open auth dialog
-    watch(
-      () => route.query.showAuth,
-      (showAuth) => {
-        if (showAuth && (showAuth === "login" || showAuth === "register")) {
-          openAuthDialog(showAuth);
-
-          // Clean query parameters
-          const query = { ...route.query };
-          delete query.showAuth;
-          router.replace({ query });
-        }
-      },
-      { immediate: true }
-    );
-
-    // Lifecycle
-    onMounted(() => {
-      // Cargar configuraciones de accesibilidad guardadas
-      loadSavedSettings();
-
-      // Check if auth dialog should be opened based on query params
-      if (route.query.showAuth) {
-        openAuthDialog(route.query.showAuth);
-      }
-    });
-
-    return {
-      // Computed
-      user,
-      ImgHero,
-
-      // Reactive data
-      authDialog,
-
-      // Methods
-      openAuthDialog,
-      handleAuthSuccess,
-      handleAuthError,
-    };
+    HeroComponents,
+    FontAwesomeIcon,
   },
 };
 </script>
@@ -305,90 +154,14 @@ export default {
   font-family: "Montserrat", sans-serif;
   background-color: #f8f9fa;
 }
-
-/* ===== HERO SECTION - ADAPTATIVA A TEMAS ===== */
-.hero-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 2rem;
-  text-align: center;
-  padding: 60px 20px;
-  /* background-image: linear-gradient(135deg, #2a3b5f, #2a3b5f); */
+/* modo alto contraste */
+.high-contrast-mode .home-page {
+  background: #000000 !important;
 }
-
-/* Modo oscuro - Hero section */
-.v-theme--dark .hero-section {
-  background-image: linear-gradient(
-    135deg,
-    #1a202c 0%,
-    #2d3748 50%,
-    #4a5568 100%
-  );
-  color: #e2e8f0;
+/* modo oscuro */
+.v-theme--dark .home-page {
+  background-color: #2d3748;
 }
-
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-title {
-  font-family: "Montserrat", serif;
-  margin-bottom: 10px;
-  color: #373b8a;
-  font-weight: 800;
-}
-
-.hero-subtitle {
-  font-family: "Dm Sans", sans-serif;
-  font-size: 18px;
-  color: #666666;
-  line-height: 1.5;
-}
-
-/* icons flotantes feature-icon-1 */
-.feature-icon-1 {
-  top: -35px;
-  left: -7px;
-  rotate: 50deg;
-  color: #6a0dad;
-}
-
-/* icons flotantes feature-icon-2 */
-.feature-icon-2 {
-  top: 40px;
-  right: -8px;
-  color: #ba0100;
-  rotate: -8deg;
-  filter: drop-shadow(1px 5px 4px #0000004d);
-}
-
-/* icons flotantes feature-icon-3 */
-.feature-icon-3 {
-  bottom: -60px;
-  left: 100px;
-  color: #d834a4;
-  rotate: -30deg;
-}
-
-/* icons flotantes feature-icon-4 */
-.feature-icon-4 {
-  bottom: -10px;
-  right: 80px;
-  color: #3b6bd4;
-}
-
-/* botones de hero */
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
-
 /* icon-main */
 .icon-main {
   color: #29acb9;
@@ -458,14 +231,6 @@ export default {
   background-color: #ffb733;
   transform: translateY(-5px);
   box-shadow: 0 4px 12px #ffb733;
-}
-
-/* Alto contraste - Hero section */
-.high-contrast-mode .hero-section {
-  background: #000000 !important;
-  background-image: none !important;
-  color: #ffffff !important;
-  border: 3px solid #ffffff !important;
 }
 
 /* Alto contraste - Botones */
@@ -633,43 +398,7 @@ export default {
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1173px) {
-  .feature-icon-1 {
-    left: 70px;
-  }
-  .feature-icon-2 {
-    right: 40px;
-    top: 130px;
-  }
-}
-
-@media (max-width: 992px) {
-  .feature-icon-1 {
-    left: 60px;
-    top: -20px;
-  }
-  .feature-icon-2 {
-    right: 180px;
-    top: 60px;
-  }
-  .feature-icon-3 {
-    opacity: 0;
-  }
-  .feature-icon-4 {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 768px) {
-  .hero-subtitle {
-    font-size: 16px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .btn {
     width: 100%;
     max-width: 300px;
@@ -695,20 +424,9 @@ export default {
   .cta-content p {
     font-size: 16px;
   }
-
-  .feature-icon-1 {
-    opacity: 0;
-  }
-  .feature-icon-2 {
-    opacity: 0;
-  }
 }
 
 @media (max-width: 480px) {
-  .hero-section {
-    padding: 60px 15px;
-  }
-
   .features-section,
   .cta-section {
     padding: 40px 15px;
@@ -719,7 +437,6 @@ export default {
 @media (prefers-reduced-motion: reduce) {
   .feature-card,
   .btn,
-  .hero-section,
   .features-section,
   .cta-section {
     transition: none !important;
