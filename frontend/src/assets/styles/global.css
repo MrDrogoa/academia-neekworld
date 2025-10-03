@@ -177,26 +177,6 @@ a:hover {
   border: 1px solid transparent;
 }
 
-.btn-primary {
-  background-color: #2e8b57;
-  color: #ffffff;
-  border-color: #2e8b57;
-}
-.btn-primary:hover {
-  background-color: rgb(33.3189189189, 100.6810810811, 63.0162162162);
-  border-color: rgb(33.3189189189, 100.6810810811, 63.0162162162);
-}
-
-.btn-secondary {
-  background-color: #2a3b5f;
-  color: #ffffff;
-  border-color: #2a3b5f;
-}
-.btn-secondary:hover {
-  background-color: rgb(26.3649635036, 37.0364963504, 59.6350364964);
-  border-color: rgb(26.3649635036, 37.0364963504, 59.6350364964);
-}
-
 /* Forms */
 .form-group {
   margin-bottom: 1rem;
@@ -213,11 +193,6 @@ a:hover {
   border: 1px solid #dddddd;
   border-radius: 5px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-.form-control:focus {
-  border-color: #2e8b57;
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(46, 139, 87, 0.25);
 }
 
 /* Alerts */
@@ -262,4 +237,4 @@ a:hover {
 /* Make sure buttons have proper spacing */
 .v-btn {
   text-transform: none !important; /* Prevents all-caps button text */
-}/*# sourceMappingURL=global.css.map */
+} /*# sourceMappingURL=global.css.map */

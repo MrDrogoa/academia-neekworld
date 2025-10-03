@@ -236,4 +236,95 @@ frontend/
 
 ---
 
+## 🔍 **11. INVESTIGACIÓN Y ANÁLISIS DE NAVIGATIONBAR - 3 Octubre 2025**
+
+### 📁 **Archivos analizados:**
+- `src/components/NavigationBar.vue`
+- `src/assets/styles/navbar.css`
+- `src/assets/css/accessibility.css`
+
+### 🔎 **Investigación realizada:**
+
+#### **Análisis de estructura del NavigationBar:**
+- **Ubicación:** NavigationBar se renderiza globalmente en `App.vue` línea 3
+- **Arquitectura:** Layout global que aparece en todas las páginas vía `<router-view />`
+- **Jerarquía:** `App.vue` → `NavigationBar.vue` → `HomeView.vue` (y otras vistas)
+
+#### **Clases CSS investigadas:**
+
+1. **`.v-theme--light .v-app-bar`** (línea 492 en `navbar.css`):
+   ```css
+   .v-theme--light .v-app-bar {
+     background-color: #21234a !important;
+   }
+   ```
+
+2. **`.v-theme--light .v-app-bar .v-btn`** (línea 724 en `accessibility.css`):
+   ```css
+   .v-theme--light .v-app-bar .v-btn {
+     color: #000000 !important;
+     background-color: #fff;
+     border-radius: 10px;
+   }
+   ```
+
+3. **`.toolbar-content-wrapper`** (línea 1524 en `NavigationBar.vue`):
+   ```css
+   .toolbar-content-wrapper {
+     max-width: 1200px !important;
+     width: 100% !important;
+     padding: 15px 8px 15px 8px !important;
+     margin: 0 auto !important;
+     display: flex !important;
+     align-items: center !important;
+     height: 100% !important;
+   }
+   ```
+
+#### **Análisis del botón de menú móvil:**
+- **HTML generado:** `<button class="v-btn v-btn--icon v-theme--light v-btn--density-default v-btn--size-default v-btn--variant-text">`
+- **Icono:** `mdi-menu` con clase personalizada `.icon-menu`
+- **Estilo actual:** `color: #373b8a` (línea 7-9 en `navbar.css`)
+
+#### **Análisis del logo:**
+- **Componente:** `<v-img>` en NavigationBar.vue (líneas 23-31)
+- **Propiedades:** `src="/logo.webp"`, `width="45"`, `height="45"`, `class="shrink"`
+- **Estilos alto contraste existentes:** 
+   ```css
+   .high-contrast-app-bar .v-img {
+     border: 2px solid #ffff00 !important;
+     background-color: #ffffff !important;
+   }
+   ```
+
+### 🎯 **Clases Vuetify identificadas:**
+- `v-toolbar--density-default` - Clase interna de Vuetify (no en CSS personalizado)
+- `bg-nav` - Aplicada pero sin estilos específicos definidos
+- `toolbar-content-wrapper` - Clase personalizada para contenedor responsivo
+
+### 📊 **Ubicaciones de archivos CSS:**
+- **navbar.css:** Estilos principales del navbar (493 líneas)
+- **accessibility.css:** Estilos de temas y accesibilidad (1408 líneas)  
+- **NavigationBar.vue:** Estilos scoped del componente (líneas 1500+)
+
+### 🔧 **Análisis de sistema de temas:**
+- **Modo claro:** Fondo azul oscuro `#21234a`, botones blancos
+- **Modo oscuro:** Definido en accessibility.css con variantes
+- **Alto contraste:** Logo con borde amarillo, fondo blanco
+
+### 📝 **Conclusiones del análisis:**
+- NavigationBar utiliza arquitectura de componente global
+- Sistema de temas bien estructurado con especificidad CSS
+- Clases Vuetify combinadas con CSS personalizado
+- Logo y botones preparados para modificaciones de contraste
+- Estructura responsiva centrada con max-width de 1200px
+
+### 🎯 **Preparado para modificaciones:**
+- Estilos de contraste del logo identificados
+- Estructura del botón de menú localizada
+- Sistema de temas mapeado completamente
+- Archivos CSS organizados y documentados
+
+---
+
 *Documentación actualizada - Academia Virtual NeekWorld*
