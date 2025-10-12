@@ -1,46 +1,52 @@
-<script setup></script>
+<script setup>
+import { ref, reactive } from "vue";
+
+// Datos reactivos para el título principal
+const mainTitle = ref("Impulsa tu futuro");
+
+// Datos reactivos para las tarjetas
+const cards = reactive([
+  {
+    id: 1,
+    number: "01",
+    title:
+      "Descubre cursos desde cero y construye tu carrera profesional con bases sólidas.",
+  },
+  {
+    id: 2,
+    number: "02",
+    title:
+      "Perfecciona tus habilidades con cursos especializados y destácate en el mercado laboral.",
+  },
+  {
+    id: 3,
+    number: "03",
+    title:
+      "Transforma tu carrera con cursos de tecnología y accede a mejores oportunidades laborales.",
+  },
+]);
+</script>
 
 <template>
   <section class="py-5">
     <div class="container pb-5">
       <h2 class="title-card text-center pb-5 display-5 display-lg-4">
-        Impulsa tu futuro
+        {{ mainTitle }}
       </h2>
       <div class="row justify-content-center g-4">
-        <!-- Tarjeta 1 -->
-        <div class="col-12 col-md-6 col-lg-4">
+        <!-- Tarjetas dinámicas -->
+        <div
+          v-for="card in cards"
+          :key="card.id"
+          class="col-12 col-md-6 col-lg-4"
+        >
           <div class="card-step">
-            <div class="step-number text-white">01</div>
-            <div class="step-content">
-              <h3 class="step-title text-white">
-                Descubre cursos desde cero y construye tu carrera profesional
-                con bases sólidas.
-              </h3>
+            <div class="step-number text-white">
+              {{ card.number }}
             </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card-step">
-            <div class="step-number text-white">02</div>
             <div class="step-content">
               <h3 class="step-title text-white">
-                Perfecciona tus habilidades con cursos especializados y
-                destácate en el mercado laboral.
-              </h3>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card-step">
-            <div class="step-number text-white">03</div>
-            <div class="step-content">
-              <h3 class="step-title text-white">
-                Transforma tu carrera con cursos de tecnología y accede a
-                mejores oportunidades laborales.
+                {{ card.title }}
               </h3>
             </div>
           </div>
@@ -70,20 +76,6 @@
   justify-content: space-between;
   transition: all 0.3s ease;
   overflow: hidden;
-
-  //   &::before {
-  //     content: "";
-  //     position: absolute;
-  //     top: -2px;
-  //     left: -2px;
-  //     right: -2px;
-  //     bottom: -2px;
-  //     background: linear-gradient(45deg, #00d9ff, #0099cc, #00d9ff);
-  //     border-radius: 16px;
-  //     z-index: -1;
-  //     opacity: 0;
-  //     transition: opacity 0.3s ease;
-  //   }
 
   &:hover {
     transform: translateY(-10px);

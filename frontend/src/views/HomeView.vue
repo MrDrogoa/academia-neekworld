@@ -260,8 +260,7 @@ export default {
 
 /* Modo oscuro - Features */
 .v-theme--dark .features-section {
-  background-color: #1e1e1e;
-  color: #e2e8f0;
+  background-color: none !important;
 }
 
 /* Alto contraste - Features */
@@ -286,13 +285,12 @@ export default {
 
 /* Modo oscuro - Section title */
 .v-theme--dark .section-title {
-  color: #81c784;
+  color: #fff;
 }
 
 /* Alto contraste - Section title */
 .high-contrast-mode .section-title {
   color: #000000 !important;
-  text-decoration: underline !important;
 }
 
 .features-grid {
@@ -324,31 +322,37 @@ export default {
 
 /* Modo oscuro - Feature cards */
 .v-theme--dark .feature-card {
-  background-color: #2d2d2d;
-  color: #e2e8f0;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-color: #404040;
+  background-color: #252d3a;
 }
 
 .v-theme--dark .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  border-color: #4caf50;
+}
+
+.v-theme--dark .feature-card h3 {
+  color: #fff !important;
 }
 
 /* Alto contraste - Feature cards */
 .high-contrast-mode .feature-card {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 3px solid #000000 !important;
-  box-shadow: none !important;
+  color: #fff !important;
+  background-color: #000 !important;
+  border: 3px solid #fff !important;
+}
+
+.high-contrast-mode .features-section {
+  background-color: #000000 !important;
+}
+
+.high-contrast-mode .section-title {
+  color: #fff !important;
 }
 
 .high-contrast-mode .feature-card:hover {
-  background-color: #ffff00 !important;
-  transform: none !important;
+  border-color: #ffff00 !important;
+  box-shadow: 0 0 20px #ffff00 !important;
 }
-
 .feature-card h3 {
   font-size: 20px;
   margin-bottom: 15px;
@@ -368,8 +372,7 @@ export default {
 
 /* Alto contraste - Feature card titles */
 .high-contrast-mode .feature-card h3 {
-  color: #000000 !important;
-  text-decoration: underline !important;
+  color: #fff !important;
 }
 
 .feature-card p {

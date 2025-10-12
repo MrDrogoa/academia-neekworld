@@ -652,12 +652,11 @@ html.text-scale-130 .content-area .v-list-item-title {
    TEMAS OSCUROS MEJORADOS
    ========================================= */
 .v-theme--dark {
-  --v-theme-background: #121212 !important;
+  --v-theme-background: #252d3a !important;
   --v-theme-surface: #1e1e1e !important;
-  --v-theme-primary: #4caf50 !important;
-  --v-theme-secondary: #616161 !important;
-  --v-theme-on-background: #ffffff !important;
-  --v-theme-on-surface: #ffffff !important;
+  --v-theme-primary: #252d3a !important;
+  --v-theme-secondary: #2d3748 !important;
+  --v-theme-text: #ffffff !important;
 }
 
 .v-theme--dark .v-application {
@@ -1003,17 +1002,17 @@ body.high-contrast-mode .v-btn--variant-elevated,
 html.high-contrast-mode .v-btn--variant-elevated {
   background-color: #ffff00 !important;
   color: #000000 !important;
-  border: 3px solid #000000 !important;
-  box-shadow: none !important;
+  border: none !important;
   font-weight: 700 !important;
 }
 
 .high-contrast-mode .v-btn--variant-elevated:hover,
 body.high-contrast-mode .v-btn--variant-elevated:hover,
 html.high-contrast-mode .v-btn--variant-elevated:hover {
-  background-color: #000000 !important;
-  color: #ffff00 !important;
-  border-color: #ffff00 !important;
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+  box-shadow: 0 0 10px #ffff00 !important;
 }
 
 .high-contrast-mode .v-btn--variant-outlined.v-btn--disabled,
@@ -1369,4 +1368,184 @@ body.high-contrast-mode .about-section:focus,
 html.high-contrast-mode .about-section:focus {
   outline: 3px solid #000000 !important;
   outline-offset: 2px !important;
+}
+
+/* =========================================
+   CARDS COMPONENTS - MODO OSCURO Y ALTO CONTRASTE
+   ========================================= */
+
+/* ===== CARDS AC COMPONENTS - MODO OSCURO ===== */
+.v-theme--dark .title-card {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .card-step {
+  background-color: var(--v-theme-primary) !important;
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .card-step:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: none !important;
+}
+
+.v-theme--dark .step-number {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .step-title {
+  color: var(--v-theme-text) !important;
+}
+
+/* ===== CARDS AC COMPONENTS - ALTO CONTRASTE ===== */
+.high-contrast-mode .card-step,
+body.high-contrast-mode .card-step,
+html.high-contrast-mode .card-step {
+  background-color: #000000 !important;
+  border: 3px solid #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.high-contrast-mode .card-step:hover,
+body.high-contrast-mode .card-step:hover,
+html.high-contrast-mode .card-step:hover {
+  border-color: #ffff00 !important;
+  text-shadow: 0 0 20px #ffff00;
+}
+
+.high-contrast-mode .step-title:hover {
+  text-shadow: 0 0 20px #ffff00;
+}
+
+.high-contrast-mode .step-number,
+body.high-contrast-mode .step-number,
+html.high-contrast-mode .step-number {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.high-contrast-mode .step-title,
+body.high-contrast-mode .step-title,
+html.high-contrast-mode .step-title {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .title-card,
+body.high-contrast-mode .title-card,
+html.high-contrast-mode .title-card {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* ===== MOVIMIENTO REDUCIDO - CARDS ===== */
+
+/* =========================================
+   CARDSCURSOSCOMPONENTS - ACCESSIBILITY STYLING
+   ========================================= */
+
+/* ===== CARDSCURSOSCOMPONENTS - MODO OSCURO ===== */
+.v-theme--dark .title-card {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .course-card {
+  background-color: var(--v-theme-primary) !important;
+  color: var(--v-theme-text) !important;
+  border: 1px solid var(--v-theme-surface) !important;
+}
+
+.v-theme--dark .txt-title-card {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .txt-p {
+  color: var(--v-theme-text) !important;
+  opacity: 0.8 !important;
+}
+
+.v-theme--dark .course-description {
+  color: var(--v-theme-text) !important;
+  opacity: 0.7 !important;
+}
+
+.v-theme--dark .icon-main,
+.v-theme--dark .txt-main {
+  color: #fff !important;
+}
+
+/* ===== CARDSCURSOSCOMPONENTS - ALTO CONTRASTE ===== */
+.high-contrast-mode .title-card,
+body.high-contrast-mode .title-card,
+html.high-contrast-mode .title-card {
+  color: #ffffff !important;
+  background-color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+.high-contrast-mode .course-card,
+body.high-contrast-mode .course-card,
+html.high-contrast-mode .course-card {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #ffffff !important;
+}
+
+.high-contrast-mode .course-card:hover,
+body.high-contrast-mode .course-card:hover,
+html.high-contrast-mode .course-card:hover {
+  border-color: #ffff00 !important;
+  box-shadow: 0 0 20px #ffff00 !important;
+}
+
+.high-contrast-mode .txt-title-card,
+body.high-contrast-mode .txt-title-card,
+html.high-contrast-mode .txt-title-card {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .icon-main,
+.high-contrast-mode .txt-main {
+  color: #fff !important;
+}
+
+.high-contrast-mode .txt-p,
+body.high-contrast-mode .txt-p,
+html.high-contrast-mode .txt-p {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.high-contrast-mode .course-description,
+body.high-contrast-mode .course-description,
+html.high-contrast-mode .course-description {
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+/* ===== CARDSCURSOSCOMPONENTS - MOVIMIENTO REDUCIDO ===== */
+.reduced-motion-mode .course-card,
+.reduced-motion-mode .course-card *,
+body.reduced-motion-mode .course-card,
+body.reduced-motion-mode .course-card * {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.reduced-motion-mode .course-card:hover,
+body.reduced-motion-mode .course-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== CARDSCURSOSCOMPONENTS - ENFOQUE MEJORADO ===== */
+.enhanced-focus-mode .course-card:focus,
+body.enhanced-focus-mode .course-card:focus {
+  outline: 4px solid #2196f3 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
+  transform: scale(1.02) !important;
 }

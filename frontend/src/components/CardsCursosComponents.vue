@@ -702,4 +702,17 @@ onMounted(async () => {
 .course-card .v-card-actions {
   margin-top: auto !important;
 }
+
+.v-theme--dark .txt-title-card {
+  color: #fff !important;
+}
+
+.v-theme--dark .btn-add-to-cart {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .btn-add-to-cart:hover {
+  background-color: #fff !important;
+}
 </style>
