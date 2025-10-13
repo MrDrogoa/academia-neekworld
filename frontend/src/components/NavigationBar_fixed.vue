@@ -695,13 +695,6 @@ export default {
   border: 0;
 }
 
-/* Focus indicators */
-.v-btn:focus,
-.v-list-item:focus {
-  outline: 2px solid #2196f3;
-  outline-offset: 2px;
-}
-
 /* High contrast support */
 @media (prefers-contrast: high) {
   .v-app-bar {

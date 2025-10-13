@@ -59,13 +59,6 @@
   border: 0;
 }
 
-/* Focus indicators */
-.v-btn:focus,
-.v-list-item:focus {
-  outline: 2px solid #2196f3;
-  outline-offset: 2px;
-}
-
 /* High contrast support */
 @media (prefers-contrast: high) {
   .v-app-bar {
@@ -290,25 +283,6 @@
   color: #000000 !important;
 }
 
-/* Focus states para alto contraste */
-.high-contrast-drawer .v-list-item:focus,
-.high-contrast-drawer .v-list-item.v-list-item:focus {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  outline: 3px solid #ff0000 !important;
-  outline-offset: 2px !important;
-}
-
-.high-contrast-drawer .v-list-item:focus .v-list-item-title,
-.high-contrast-drawer .v-list-item.v-list-item:focus .v-list-item-title {
-  color: #000000 !important;
-}
-
-.high-contrast-drawer .v-list-item:focus .v-icon,
-.high-contrast-drawer .v-list-item.v-list-item:focus .v-icon {
-  color: #000000 !important;
-}
-
 /* Dividers en alto contraste */
 .high-contrast-drawer .v-divider,
 .high-contrast-drawer .v-divider.v-divider {
@@ -471,19 +445,6 @@
 }
 
 /* Logo en alto contraste */
-
-/* Focus states para app bar */
-.high-contrast-app-bar .v-btn:focus,
-.high-contrast-app-bar .v-btn.v-btn:focus {
-  outline: 3px solid #ff0000 !important;
-  outline-offset: 2px !important;
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-.high-contrast-app-bar .v-btn:focus .v-icon {
-  color: #000000 !important;
-}
 
 /* Wrapper para limitar el ancho del contenido del toolbar */
 .toolbar-content-wrapper {

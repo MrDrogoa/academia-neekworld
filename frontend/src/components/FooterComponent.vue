@@ -75,44 +75,32 @@
               <a
                 href="https://instagram.com"
                 target="_blank"
-                class="social-icon rounded-3 d-flex align-items-center justify-content-center"
+                class="social-icon text-white rounded-3 d-flex align-items-center justify-content-center"
                 aria-label="Instagram"
               >
-                <FontAwesomeIcon
-                  icon="fa-brands fa-instagram"
-                  class="text-white fs-4"
-                />
+                <FontAwesomeIcon icon="fa-brands fa-instagram" class="fs-4" />
               </a>
               <a
                 href="https://facebook.com"
                 target="_blank"
-                class="social-icon rounded-3 d-flex align-items-center justify-content-center"
+                class="social-icon rounded-3 text-white d-flex align-items-center justify-content-center"
                 aria-label="Facebook"
               >
-                <FontAwesomeIcon
-                  icon="fa-brands fa-facebook"
-                  class="text-white fs-4"
-                />
+                <FontAwesomeIcon icon="fa-brands fa-facebook" class="fs-4" />
               </a>
               <a
                 href="tel:+1234567890"
-                class="social-icon rounded-3 d-flex align-items-center justify-content-center"
+                class="social-icon rounded-3 text-white d-flex align-items-center justify-content-center"
                 aria-label="Teléfono"
               >
-                <FontAwesomeIcon
-                  icon="fa-solid fa-phone"
-                  class="text-white fs-4"
-                />
+                <FontAwesomeIcon icon="fa-solid fa-phone" class="fs-4" />
               </a>
               <a
                 href="mailto:info@academia.com"
-                class="social-icon rounded-3 d-flex align-items-center justify-content-center"
+                class="social-icon text-white rounded-3 d-flex align-items-center justify-content-center"
                 aria-label="Email"
               >
-                <FontAwesomeIcon
-                  icon="fa-solid fa-envelope"
-                  class="text-white fs-4"
-                />
+                <FontAwesomeIcon icon="fa-solid fa-envelope" class="fs-4" />
               </a>
             </div>
           </div>
@@ -190,11 +178,12 @@ export default {
   text-decoration: none !important;
   transition: all 0.3s ease;
   font-size: 1.2rem;
+  border: 1px solid #1b1e56;
 }
 
 .social-icon:hover {
   background-color: #ffa500 !important;
-  color: white !important;
+  color: white;
   transform: translateY(-3px);
   box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
 }
@@ -225,36 +214,5 @@ export default {
 
 .v-theme--dark .footer .footer-link:hover {
   color: #90caf9 !important;
-}
-
-/* Alto contraste */
-.high-contrast-mode .footer {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-top: 3px solid #ffffff !important;
-}
-
-.high-contrast-mode .footer {
-  color: #ffffff !important;
-  opacity: 1 !important;
-  font-weight: 600;
-}
-
-.high-contrast-mode .footer .footer-link {
-  color: #ffff00 !important;
-  opacity: 1 !important;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.high-contrast-mode .footer .footer-link:hover,
-.high-contrast-mode .footer .footer-link:focus {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-  padding: 4px 8px;
-  border-radius: 3px;
-  outline: 3px solid #ffff00;
-  outline-offset: 2px;
-  text-decoration: none;
 }
 </style>

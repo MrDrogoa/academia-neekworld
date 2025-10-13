@@ -314,14 +314,3 @@
     transition: none !important;
   }
 }
-
-/* ===== FOCUS ACCESSIBILITY ===== */
-.about-section:focus {
-  outline: 3px solid #2e8b57;
-  outline-offset: 2px;
-}
-
-.high-contrast-mode .about-section:focus {
-  outline: 3px solid #000000 !important;
-  outline-offset: 2px;
-}

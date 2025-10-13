@@ -6,8 +6,6 @@
 /* Variables CSS para accesibilidad */
 :root {
   --accessibility-text-scale: 1;
-  --focus-color: #2196f3;
-  --focus-width: 3px;
 }
 
 /* =========================================
@@ -593,50 +591,6 @@ html.text-scale-130 .content-area .v-list-item-title {
 }
 
 /* =========================================
-   ENFOQUE MEJORADO
-   ========================================= */
-.enhanced-focus-mode *:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-.enhanced-focus-mode .v-btn:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  transform: scale(1.05) !important;
-}
-
-.enhanced-focus-mode .v-text-field:focus-within {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-.enhanced-focus-mode .v-list-item:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  background-color: rgba(33, 150, 243, 0.1) !important;
-}
-
-.enhanced-focus-mode .v-card:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  transform: scale(1.02) !important;
-}
-
-.enhanced-focus-mode input:focus,
-.enhanced-focus-mode textarea:focus,
-.enhanced-focus-mode select:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-/* =========================================
    TOOLTIPS MEJORADOS
    ========================================= */
 .v-tooltip .v-overlay__content {
@@ -657,6 +611,7 @@ html.text-scale-130 .content-area .v-list-item-title {
   --v-theme-primary: #252d3a !important;
   --v-theme-secondary: #2d3748 !important;
   --v-theme-text: #ffffff !important;
+  --v-theme-footer: #1b212c !important;
 }
 
 .v-theme--dark .v-application {
@@ -793,11 +748,8 @@ html.high-contrast-mode footer.footer .footer-link {
 }
 
 .high-contrast-mode footer.footer .footer-link:hover,
-.high-contrast-mode footer.footer .footer-link:focus,
 body.high-contrast-mode footer.footer .footer-link:hover,
-body.high-contrast-mode footer.footer .footer-link:focus,
-html.high-contrast-mode footer.footer .footer-link:hover,
-html.high-contrast-mode footer.footer .footer-link:focus {
+html.high-contrast-mode footer.footer .footer-link:hover {
   background-color: #ffff00 !important;
   color: #000000 !important;
   padding: 4px 8px !important;
@@ -1244,9 +1196,6 @@ html.high-contrast-mode .shopping-cart .v-dialog .v-card-title {
 }
 
 /* ===== DIALOG BUTTONS ===== */
-.v-theme--light .v-dialog .v-btn {
-  color: #333 !important;
-}
 
 .v-theme--dark .v-dialog .v-btn {
   color: #e0e0e0 !important;
@@ -1361,13 +1310,6 @@ body.high-contrast-mode .about-section p,
 html.high-contrast-mode .about-section p {
   color: #000000 !important;
   font-weight: 500 !important;
-}
-
-.high-contrast-mode .about-section:focus,
-body.high-contrast-mode .about-section:focus,
-html.high-contrast-mode .about-section:focus {
-  outline: 3px solid #000000 !important;
-  outline-offset: 2px !important;
 }
 
 /* =========================================
@@ -1541,11 +1483,105 @@ body.reduced-motion-mode .course-card:hover {
   box-shadow: none !important;
 }
 
-/* ===== CARDSCURSOSCOMPONENTS - ENFOQUE MEJORADO ===== */
-.enhanced-focus-mode .course-card:focus,
-body.enhanced-focus-mode .course-card:focus {
-  outline: 4px solid #2196f3 !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  transform: scale(1.02) !important;
+/* color footer */
+.v-theme--dark .bg-footer {
+  background-color: var(--v-theme-footer);
+}
+
+.v-theme--dark .border-warning {
+  border-color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .footer-link:hover {
+  color: var(--v-theme-text);
+}
+
+.v-theme--dark .social-icon:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* boton carrito */
+.v-theme--dark .v-btn--variant-elevated {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .v-btn--variant-elevated:hover {
+  background-color: var(--v-theme-text) !important;
+  box-shadow: 2px 4px 12px #fff !important;
+}
+
+/* titulo del carrito */
+.v-theme--dark .title-buy {
+  color: var(--v-theme-text);
+}
+
+.v-theme--dark .v-dialog .v-btn {
+  color: #000 !important;
+}
+
+.v-theme--dark .v-dialog .v-btn:hover {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+/* icono del carrito */
+.v-theme--dark .icon-x {
+  background-color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .btn-carModal {
+  background-color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .btn-deCard {
+  color: var(--v-theme-text) !important;
+}
+
+/* Alto contraste - Fondo blanco, texto negro */
+.high-contrast-mode .footer,
+.high-contrast-mode .bg-footer {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-top: 3px solid #000000 !important;
+}
+
+.high-contrast-mode .footer .txt-footer,
+.high-contrast-mode .footer h5,
+.high-contrast-mode .footer p {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .txt-footer {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .footer-link {
+  color: #000000 !important;
+}
+
+.high-contrast-mode .footer-link:hover {
+  color: #424242 !important;
+}
+
+/* Iconos sociales en alto contraste */
+.high-contrast-mode .social-icon {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #000000 !important;
+}
+
+.high-contrast-mode .social-icon:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 4px 12px rgba(255, 255, 0, 0.8) !important;
+}
+
+/* Línea divisoria en alto contraste */
+.high-contrast-mode .border-warning {
+  border-color: #000000 !important;
+  border-width: 3px !important;
 }

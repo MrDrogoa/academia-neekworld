@@ -384,12 +384,7 @@ export default {
 
 /* Modo oscuro - CTA */
 .v-theme--dark .cta-section {
-  background-image: linear-gradient(
-    135deg,
-    #1a202c 0%,
-    #2d3748 50%,
-    #4a5568 100%
-  );
+  background-color: #252d3a;
   color: #000000;
 }
 

@@ -157,10 +157,6 @@ body {
   border-radius: 4px;
 }
 
-.skip-link:focus {
-  top: 6px;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -191,17 +187,6 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Focus indicators - Solo aplicar cuando foco mejorado NO está activo */
-:not(.enhanced-focus-mode) *:focus {
-  outline: 2px solid #2e8b57;
-  outline-offset: 2px;
-}
-
-:not(.enhanced-focus-mode) button:focus,
-:not(.enhanced-focus-mode) .v-btn:focus {
-  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.3);
 }
 
 /* ===== TRANSICIONES SUAVES PARA CAMBIOS DE TEMA ===== */

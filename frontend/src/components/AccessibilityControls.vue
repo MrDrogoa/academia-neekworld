@@ -1,9 +1,9 @@
 <template>
   <div class="accessibility-controls">
     <!-- Menú de Accesibilidad -->
-    <v-menu 
-      offset-y 
-      :close-on-content-click="false" 
+    <v-menu
+      offset-y
+      :close-on-content-click="false"
       max-width="400"
       :attach="true"
       transition="scale-transition"
@@ -19,18 +19,38 @@
               v-bind="{ ...props, ...tooltipProps }"
               :class="{ 'accessibility-active': hasAnySettingActive }"
               aria-label="Abrir menú de opciones de accesibilidad"
-              :style="{ backgroundColor: hasAnySettingActive ? 'rgba(33, 150, 243, 0.1)' : 'transparent' }"
+              :style="{
+                backgroundColor: hasAnySettingActive
+                  ? 'rgba(33, 150, 243, 0.1)'
+                  : 'transparent',
+              }"
             >
-              <v-icon :color="hasAnySettingActive ? 'primary' : (isDarkTheme ? 'white' : 'default')">
+              <v-icon
+                :color="
+                  hasAnySettingActive
+                    ? 'primary'
+                    : isDarkTheme
+                    ? 'white'
+                    : 'default'
+                "
+              >
                 mdi-account-cog
               </v-icon>
             </v-btn>
           </template>
-          <span>Opciones de Accesibilidad {{ hasAnySettingActive ? '(Configuradas)' : '' }}</span>
+          <span
+            >Opciones de Accesibilidad
+            {{ hasAnySettingActive ? "(Configuradas)" : "" }}</span
+          >
         </v-tooltip>
       </template>
 
-      <v-card class="accessibility-menu pa-4" min-width="380" elevation="8" :style="menuCardStyles">
+      <v-card
+        class="accessibility-menu pa-4"
+        min-width="380"
+        elevation="8"
+        :style="menuCardStyles"
+      >
         <v-card-title class="text-h6 pb-3" :style="titleStyles">
           <v-icon left :color="iconColor">mdi-account-cog</v-icon>
           Opciones de Accesibilidad
@@ -43,30 +63,33 @@
           <div class="d-flex align-center justify-space-between mb-2">
             <div class="d-flex align-center">
               <v-icon class="mr-2" :color="isDarkTheme ? 'amber' : 'indigo'">
-                {{ isDarkTheme ? 'mdi-weather-night' : 'mdi-weather-sunny' }}
+                {{ isDarkTheme ? "mdi-weather-night" : "mdi-weather-sunny" }}
               </v-icon>
               <span class="font-weight-medium" :style="textStyles">Tema</span>
             </div>
-            
+
             <!-- Botón de tema con transición de icono -->
             <v-btn
               @click="toggleTheme"
               :color="isDarkTheme ? 'amber' : 'indigo'"
               :variant="isDarkTheme ? 'tonal' : 'outlined'"
               size="small"
-              :aria-label="isDarkTheme ? 'Activar tema claro' : 'Activar tema oscuro'"
+              :aria-label="
+                isDarkTheme ? 'Activar tema claro' : 'Activar tema oscuro'
+              "
               class="theme-toggle-btn"
             >
-              <v-icon
-                :class="{ 'theme-icon-transition': true }"
-                size="20"
-              >
-                {{ isDarkTheme ? 'mdi-weather-sunny' : 'mdi-weather-night' }}
+              <v-icon :class="{ 'theme-icon-transition': true }" size="20">
+                {{ isDarkTheme ? "mdi-weather-sunny" : "mdi-weather-night" }}
               </v-icon>
             </v-btn>
           </div>
           <div class="text-caption ml-8" :style="captionStyles">
-            {{ isDarkTheme ? 'Modo oscuro activo - Reduce fatiga visual' : 'Modo claro activo - Máxima legibilidad' }}
+            {{
+              isDarkTheme
+                ? "Modo oscuro activo - Reduce fatiga visual"
+                : "Modo claro activo - Máxima legibilidad"
+            }}
           </div>
         </div>
 
@@ -74,26 +97,32 @@
         <div class="accessibility-section mb-4">
           <div class="d-flex align-center justify-space-between mb-2">
             <div class="d-flex align-center">
-              <v-icon class="mr-2" :color="highContrastMode ? 'yellow' : iconColor">
+              <v-icon
+                class="mr-2"
+                :color="highContrastMode ? 'yellow' : iconColor"
+              >
                 mdi-theme-light-dark
               </v-icon>
-              <span class="font-weight-medium" :style="textStyles">Alto Contraste</span>
+              <span class="font-weight-medium" :style="textStyles"
+                >Alto Contraste</span
+              >
             </div>
-            
+
             <!-- Botón de alto contraste con transición -->
             <v-btn
               @click="toggleHighContrast"
               :color="highContrastMode ? 'yellow' : 'grey'"
               :variant="highContrastMode ? 'tonal' : 'outlined'"
               size="small"
-              :aria-label="highContrastMode ? 'Desactivar alto contraste' : 'Activar alto contraste'"
+              :aria-label="
+                highContrastMode
+                  ? 'Desactivar alto contraste'
+                  : 'Activar alto contraste'
+              "
               class="contrast-toggle-btn"
             >
-              <v-icon
-                :class="{ 'contrast-icon-transition': true }"
-                size="20"
-              >
-                {{ highContrastMode ? 'mdi-eye' : 'mdi-eye-outline' }}
+              <v-icon :class="{ 'contrast-icon-transition': true }" size="20">
+                {{ highContrastMode ? "mdi-eye" : "mdi-eye-outline" }}
               </v-icon>
             </v-btn>
           </div>
@@ -106,10 +135,15 @@
         <div class="accessibility-section mb-4">
           <div class="d-flex align-center justify-space-between mb-2">
             <div class="d-flex align-center">
-              <v-icon class="mr-2" :color="textSize !== 100 ? 'green' : iconColor">
+              <v-icon
+                class="mr-2"
+                :color="textSize !== 100 ? 'green' : iconColor"
+              >
                 mdi-format-size
               </v-icon>
-              <span class="font-weight-medium" :style="textStyles">Tamaño de Texto</span>
+              <span class="font-weight-medium" :style="textStyles"
+                >Tamaño de Texto</span
+              >
             </div>
             <div class="d-flex align-center">
               <v-btn
@@ -122,7 +156,11 @@
               >
                 <v-icon size="18" :color="buttonIconColor">mdi-minus</v-icon>
               </v-btn>
-              <span class="mx-2 text-body-2 font-weight-medium" style="min-width: 50px; text-align: center;" :style="textStyles">
+              <span
+                class="mx-2 text-body-2 font-weight-medium"
+                style="min-width: 50px; text-align: center"
+                :style="textStyles"
+              >
                 {{ textSize }}%
               </span>
               <v-btn
@@ -157,26 +195,32 @@
         <div class="accessibility-section mb-4">
           <div class="d-flex align-center justify-space-between mb-2">
             <div class="d-flex align-center">
-              <v-icon class="mr-2" :color="reducedMotionMode ? 'orange' : iconColor">
-                {{ reducedMotionMode ? 'mdi-motion-pause' : 'mdi-motion-play' }}
+              <v-icon
+                class="mr-2"
+                :color="reducedMotionMode ? 'orange' : iconColor"
+              >
+                {{ reducedMotionMode ? "mdi-motion-pause" : "mdi-motion-play" }}
               </v-icon>
-              <span class="font-weight-medium" :style="textStyles">Reducir Animaciones</span>
+              <span class="font-weight-medium" :style="textStyles"
+                >Reducir Animaciones</span
+              >
             </div>
-            
+
             <!-- Botón de animaciones con transición -->
             <v-btn
               @click="toggleReducedMotion"
               :color="reducedMotionMode ? 'orange' : 'grey'"
               :variant="reducedMotionMode ? 'tonal' : 'outlined'"
               size="small"
-              :aria-label="reducedMotionMode ? 'Activar animaciones' : 'Reducir animaciones'"
+              :aria-label="
+                reducedMotionMode
+                  ? 'Activar animaciones'
+                  : 'Reducir animaciones'
+              "
               class="motion-toggle-btn"
             >
-              <v-icon
-                :class="{ 'motion-icon-transition': true }"
-                size="20"
-              >
-                {{ reducedMotionMode ? 'mdi-pause' : 'mdi-play' }}
+              <v-icon :class="{ 'motion-icon-transition': true }" size="20">
+                {{ reducedMotionMode ? "mdi-pause" : "mdi-play" }}
               </v-icon>
             </v-btn>
           </div>
@@ -189,32 +233,43 @@
         <div class="accessibility-section mb-4">
           <div class="d-flex align-center justify-space-between mb-2">
             <div class="d-flex align-center">
-              <v-icon class="mr-2" :color="enhancedFocusMode ? 'purple' : iconColor">
-                {{ enhancedFocusMode ? 'mdi-keyboard-outline' : 'mdi-keyboard' }}
+              <v-icon
+                class="mr-2"
+                :color="enhancedFocusMode ? 'purple' : iconColor"
+              >
+                {{
+                  enhancedFocusMode ? "mdi-keyboard-outline" : "mdi-keyboard"
+                }}
               </v-icon>
-              <span class="font-weight-medium" :style="textStyles">Enfoque Mejorado</span>
+              <span class="font-weight-medium" :style="textStyles"
+                >Enfoque Mejorado</span
+              >
             </div>
-            
+
             <!-- Botón de foco con transición -->
             <v-btn
               @click="toggleEnhancedFocus"
               :color="enhancedFocusMode ? 'purple' : 'grey'"
               :variant="enhancedFocusMode ? 'tonal' : 'outlined'"
               size="small"
-              :aria-label="enhancedFocusMode ? 'Desactivar foco mejorado' : 'Activar foco mejorado'"
+              :aria-label="
+                enhancedFocusMode
+                  ? 'Desactivar foco mejorado'
+                  : 'Activar foco mejorado'
+              "
               class="focus-toggle-btn"
             >
-              <v-icon
-                :class="{ 'focus-icon-transition': true }"
-                size="20"
-              >
-                {{ enhancedFocusMode ? 'mdi-target' : 'mdi-target-variant' }}
+              <v-icon :class="{ 'focus-icon-transition': true }" size="20">
+                {{ enhancedFocusMode ? "mdi-target" : "mdi-target-variant" }}
               </v-icon>
             </v-btn>
           </div>
           <div class="text-caption ml-8" :style="captionStyles">
-            <strong>Navegación por teclado:</strong> Resalta mejor los elementos al usar Tab. 
-            <br><small>Prueba: Presiona Tab repetidamente para ver bordes más gruesos y coloridos.</small>
+            <strong>Navegación por teclado:</strong> Resalta mejor los elementos
+            al usar Tab. <br /><small
+              >Prueba: Presiona Tab repetidamente para ver bordes más gruesos y
+              coloridos.</small
+            >
           </div>
         </div>
 
@@ -229,11 +284,13 @@
             :style="chipStyles"
           >
             <v-icon left size="16" :color="chipIconColor">
-              {{ hasAnySettingActive ? 'mdi-check-circle' : 'mdi-circle-outline' }}
+              {{
+                hasAnySettingActive ? "mdi-check-circle" : "mdi-circle-outline"
+              }}
             </v-icon>
-            {{ hasAnySettingActive ? 'Configurado' : 'Por defecto' }}
+            {{ hasAnySettingActive ? "Configurado" : "Por defecto" }}
           </v-chip>
-          
+
           <v-btn
             size="small"
             color="grey"
@@ -252,15 +309,15 @@
 </template>
 
 <script>
-import { onMounted, computed } from 'vue'
-import { useTheme } from 'vuetify'
-import { useAccessibility } from '@/composables/useAccessibility'
+import { onMounted, computed } from "vue";
+import { useTheme } from "vuetify";
+import { useAccessibility } from "@/composables/useAccessibility";
 
 export default {
-  name: 'AccessibilityControls',
+  name: "AccessibilityControls",
   setup() {
-    const vuetifyTheme = useTheme()
-    
+    const vuetifyTheme = useTheme();
+
     const {
       // Estado
       isDarkTheme,
@@ -268,11 +325,11 @@ export default {
       textSize,
       reducedMotionMode,
       enhancedFocusMode,
-      
+
       // Computed
       hasAnySettingActive,
       textSizeLabel,
-      
+
       // Funciones
       toggleTheme,
       toggleHighContrast,
@@ -282,168 +339,168 @@ export default {
       toggleReducedMotion,
       toggleEnhancedFocus,
       resetAllSettings,
-      loadSavedSettings
-    } = useAccessibility()
+      loadSavedSettings,
+    } = useAccessibility();
 
     // Cargar configuraciones al montar
     onMounted(() => {
-      console.log('🚀 Inicializando AccessibilityControls...')
-      loadSavedSettings()
-    })
+      console.log("🚀 Inicializando AccessibilityControls...");
+      loadSavedSettings();
+    });
 
     // Estilos dinámicos basados en el tema actual
     const menuCardStyles = computed(() => {
       if (highContrastMode.value) {
         return {
-          backgroundColor: '#000000 !important',
-          color: '#FFFFFF !important',
-          border: '3px solid #FFFFFF !important'
-        }
+          backgroundColor: "#000000 !important",
+          color: "#FFFFFF !important",
+          border: "3px solid #FFFFFF !important",
+        };
       } else if (isDarkTheme.value) {
         return {
-          backgroundColor: '#1E1E1E !important',
-          color: '#ffffff !important',
-          border: '1px solid #444444 !important'
-        }
+          backgroundColor: "#1E1E1E !important",
+          color: "#ffffff !important",
+          border: "1px solid #444444 !important",
+        };
       } else {
         return {
-          backgroundColor: '#ffffff !important',
-          color: '#333333 !important',
-          border: '1px solid #e0e0e0 !important'
-        }
+          backgroundColor: "#ffffff !important",
+          color: "#333333 !important",
+          border: "1px solid #e0e0e0 !important",
+        };
       }
-    })
+    });
 
     const titleStyles = computed(() => {
       if (highContrastMode.value) {
-        return { color: '#FFFF00 !important' }
+        return { color: "#FFFF00 !important" };
       } else if (isDarkTheme.value) {
-        return { color: '#4CAF50 !important' }
+        return { color: "#4CAF50 !important" };
       } else {
-        return { color: '#2E8B57 !important' }
+        return { color: "#2E8B57 !important" };
       }
-    })
+    });
 
     const textStyles = computed(() => {
       if (highContrastMode.value) {
-        return { color: '#FFFFFF !important' }
+        return { color: "#FFFFFF !important" };
       } else if (isDarkTheme.value) {
-        return { color: '#ffffff !important' }
+        return { color: "#ffffff !important" };
       } else {
-        return { color: '#333333 !important' }
+        return { color: "#333333 !important" };
       }
-    })
+    });
 
     const captionStyles = computed(() => {
       if (highContrastMode.value) {
-        return { color: '#FFFFFF !important' }
+        return { color: "#FFFFFF !important" };
       } else if (isDarkTheme.value) {
-        return { color: '#cccccc !important' }
+        return { color: "#cccccc !important" };
       } else {
-        return { color: '#666666 !important' }
+        return { color: "#666666 !important" };
       }
-    })
+    });
 
     const iconColor = computed(() => {
       if (highContrastMode.value) {
-        return '#FFFF00'
+        return "#FFFF00";
       } else if (isDarkTheme.value) {
-        return '#ffffff'
+        return "#ffffff";
       } else {
-        return '#333333'
+        return "#333333";
       }
-    })
+    });
 
     const buttonIconColor = computed(() => {
       if (highContrastMode.value) {
-        return '#000000'
+        return "#000000";
       } else if (isDarkTheme.value) {
-        return '#ffffff'
+        return "#ffffff";
       } else {
-        return '#333333'
+        return "#333333";
       }
-    })
+    });
 
     const buttonStyles = computed(() => {
       if (highContrastMode.value) {
         return {
-          backgroundColor: '#000000 !important',
-          color: '#FFFF00 !important',
-          border: '2px solid #FFFF00 !important'
-        }
+          backgroundColor: "#000000 !important",
+          color: "#FFFF00 !important",
+          border: "2px solid #FFFF00 !important",
+        };
       } else if (isDarkTheme.value) {
         return {
-          backgroundColor: '#2D2D2D !important',
-          color: '#ffffff !important',
-          border: '1px solid #444444 !important'
-        }
+          backgroundColor: "#2D2D2D !important",
+          color: "#ffffff !important",
+          border: "1px solid #444444 !important",
+        };
       } else {
         return {
-          backgroundColor: '#f8f9fa !important',
-          color: '#333333 !important',
-          border: '1px solid #e0e0e0 !important'
-        }
+          backgroundColor: "#f8f9fa !important",
+          color: "#333333 !important",
+          border: "1px solid #e0e0e0 !important",
+        };
       }
-    })
+    });
 
     const switchStyles = computed(() => {
       if (highContrastMode.value) {
-        return { color: '#FFFF00 !important' }
+        return { color: "#FFFF00 !important" };
       } else {
-        return { color: '#2E8B57 !important' }
+        return { color: "#2E8B57 !important" };
       }
-    })
+    });
 
     const chipStyles = computed(() => {
       if (highContrastMode.value) {
         return {
-          backgroundColor: '#000000 !important',
-          color: '#FFFF00 !important',
-          border: '2px solid #FFFF00 !important'
-        }
+          backgroundColor: "#000000 !important",
+          color: "#FFFF00 !important",
+          border: "2px solid #FFFF00 !important",
+        };
       } else if (isDarkTheme.value) {
         return {
-          backgroundColor: '#2D2D2D !important',
-          color: '#ffffff !important',
-          border: '1px solid #444444 !important'
-        }
+          backgroundColor: "#2D2D2D !important",
+          color: "#ffffff !important",
+          border: "1px solid #444444 !important",
+        };
       } else {
         return {
-          backgroundColor: '#ffffff !important',
-          color: '#333333 !important',
-          border: '1px solid #e0e0e0 !important'
-        }
+          backgroundColor: "#ffffff !important",
+          color: "#333333 !important",
+          border: "1px solid #e0e0e0 !important",
+        };
       }
-    })
+    });
 
     const chipIconColor = computed(() => {
       if (highContrastMode.value) {
-        return '#FFFF00'
+        return "#FFFF00";
       } else {
-        return 'inherit'
+        return "inherit";
       }
-    })
+    });
 
     const dividerColor = computed(() => {
       if (highContrastMode.value) {
-        return '#FFFFFF'
+        return "#FFFFFF";
       } else if (isDarkTheme.value) {
-        return '#444444'
+        return "#444444";
       } else {
-        return '#e0e0e0'
+        return "#e0e0e0";
       }
-    })
+    });
 
     // Wrapper functions para pasar el tema
     const handleToggleTheme = () => {
-      console.log('🌗 Ejecutando toggleTheme desde componente')
-      toggleTheme(vuetifyTheme)
-    }
+      console.log("🌗 Ejecutando toggleTheme desde componente");
+      toggleTheme(vuetifyTheme);
+    };
 
     const handleResetAllSettings = () => {
-      console.log('🔄 Ejecutando resetAllSettings desde componente')
-      resetAllSettings(vuetifyTheme)
-    }
+      console.log("🔄 Ejecutando resetAllSettings desde componente");
+      resetAllSettings(vuetifyTheme);
+    };
 
     return {
       // Estado
@@ -452,11 +509,11 @@ export default {
       textSize,
       reducedMotionMode,
       enhancedFocusMode,
-      
+
       // Computed
       hasAnySettingActive,
       textSizeLabel,
-      
+
       // Estilos dinámicos
       menuCardStyles,
       titleStyles,
@@ -469,7 +526,7 @@ export default {
       chipStyles,
       chipIconColor,
       dividerColor,
-      
+
       // Funciones
       toggleTheme: handleToggleTheme,
       toggleHighContrast,
@@ -478,10 +535,10 @@ export default {
       resetTextSize,
       toggleReducedMotion,
       toggleEnhancedFocus,
-      resetAllSettings: handleResetAllSettings
-    }
-  }
-}
+      resetAllSettings: handleResetAllSettings,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -497,17 +554,17 @@ export default {
 .reduced-motion-active,
 .enhanced-focus-active {
   background-color: rgba(46, 139, 87, 0.2) !important;
-  border: 2px solid #2E8B57 !important;
+  border: 2px solid #2e8b57 !important;
   transform: scale(1.05);
 }
 
 .theme-active {
-  border-color: #FFA726 !important;
+  border-color: #ffa726 !important;
   background-color: rgba(255, 167, 38, 0.2) !important;
 }
 
 .enhanced-focus-active {
-  border-color: #9C27B0 !important;
+  border-color: #9c27b0 !important;
   background-color: rgba(156, 39, 176, 0.2) !important;
 }
 </style>
@@ -517,17 +574,17 @@ export default {
 .high-contrast-mode {
   --v-theme-background: #000000 !important;
   --v-theme-surface: #000000 !important;
-  --v-theme-primary: #FFFF00 !important;
-  --v-theme-secondary: #00FFFF !important;
-  --v-theme-on-background: #FFFFFF !important;
-  --v-theme-on-surface: #FFFFFF !important;
+  --v-theme-primary: #ffff00 !important;
+  --v-theme-secondary: #00ffff !important;
+  --v-theme-on-background: #ffffff !important;
+  --v-theme-on-surface: #ffffff !important;
   --v-theme-on-primary: #000000 !important;
 }
 
 .high-contrast-mode .v-card {
   background-color: #000000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #FFFFFF !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
 }
 
 .high-contrast-mode .v-btn {
@@ -536,11 +593,11 @@ export default {
 
 .high-contrast-mode .v-text-field input,
 .high-contrast-mode .v-select__selection {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-mode .v-app-bar {
-  border-bottom: 3px solid #FFFFFF !important;
+  border-bottom: 3px solid #ffffff !important;
 }
 
 /* Estilos para texto grande */
@@ -548,16 +605,36 @@ export default {
   font-size: 120% !important;
 }
 
-.large-text-mode .text-h1 { font-size: 7.2rem !important; }
-.large-text-mode .text-h2 { font-size: 4.8rem !important; }
-.large-text-mode .text-h3 { font-size: 3.6rem !important; }
-.large-text-mode .text-h4 { font-size: 2.4rem !important; }
-.large-text-mode .text-h5 { font-size: 1.8rem !important; }
-.large-text-mode .text-h6 { font-size: 1.5rem !important; }
-.large-text-mode .text-body-1 { font-size: 1.2rem !important; }
-.large-text-mode .text-body-2 { font-size: 1.05rem !important; }
-.large-text-mode .v-btn { font-size: 1.1rem !important; }
-.large-text-mode .v-list-item-title { font-size: 1.1rem !important; }
+.large-text-mode .text-h1 {
+  font-size: 7.2rem !important;
+}
+.large-text-mode .text-h2 {
+  font-size: 4.8rem !important;
+}
+.large-text-mode .text-h3 {
+  font-size: 3.6rem !important;
+}
+.large-text-mode .text-h4 {
+  font-size: 2.4rem !important;
+}
+.large-text-mode .text-h5 {
+  font-size: 1.8rem !important;
+}
+.large-text-mode .text-h6 {
+  font-size: 1.5rem !important;
+}
+.large-text-mode .text-body-1 {
+  font-size: 1.2rem !important;
+}
+.large-text-mode .text-body-2 {
+  font-size: 1.05rem !important;
+}
+.large-text-mode .v-btn {
+  font-size: 1.1rem !important;
+}
+.large-text-mode .v-list-item-title {
+  font-size: 1.1rem !important;
+}
 
 /* Estilos para movimiento reducido */
 .reduced-motion-mode * {
@@ -573,40 +650,6 @@ export default {
 
 .reduced-motion-mode .v-card {
   transition: none !important;
-}
-
-/* Estilos para enfoque mejorado */
-.enhanced-focus-mode *:focus {
-  outline: 4px solid #FF5722 !important;
-  outline-offset: 3px !important;
-  box-shadow: 0 0 0 7px rgba(255, 87, 34, 0.4) !important;
-  z-index: 1000 !important;
-  position: relative !important;
-}
-
-.enhanced-focus-mode .v-btn:focus {
-  outline: 4px solid #FF5722 !important;
-  outline-offset: 3px !important;
-  transform: scale(1.05) !important;
-  z-index: 1000 !important;
-}
-
-.enhanced-focus-mode .v-text-field:focus-within {
-  outline: 4px solid #FF5722 !important;
-  outline-offset: 3px !important;
-}
-
-.enhanced-focus-mode .v-list-item:focus {
-  background-color: rgba(255, 87, 34, 0.3) !important;
-  outline: 4px solid #FF5722 !important;
-  outline-offset: 3px !important;
-  z-index: 1000 !important;
-}
-
-.enhanced-focus-mode .v-switch:focus-within {
-  outline: 4px solid #FF5722 !important;
-  outline-offset: 3px !important;
-  border-radius: 8px !important;
 }
 
 /* Tooltips más accesibles */
@@ -746,9 +789,15 @@ export default {
 
 /* Animación de pulso para indicar cambio de estado */
 @keyframes accessibility-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Aplicar pulso cuando cambia el estado */

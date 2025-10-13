@@ -50,19 +50,20 @@
               placeholder="Cree una contraseña"
               :class="{ 'is-invalid': formErrors.password }"
             />
-            <button 
-              type="button" 
+            <button
+              type="button"
               class="toggle-password"
               @click="showPassword = !showPassword"
             >
-              {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+              {{ showPassword ? "Ocultar" : "Mostrar" }}
             </button>
           </div>
           <div v-if="formErrors.password" class="invalid-feedback">
             {{ formErrors.password }}
           </div>
           <div class="password-hint">
-            La contraseña debe tener al menos 8 caracteres e incluir una mayúscula, una minúscula, un número y un símbolo especial.
+            La contraseña debe tener al menos 8 caracteres e incluir una
+            mayúscula, una minúscula, un número y un símbolo especial.
           </div>
         </div>
 
@@ -88,12 +89,7 @@
         <!-- Rol del Usuario -->
         <div class="form-group">
           <label for="role">Tipo de Usuario</label>
-          <select
-            id="role"
-            class="form-control"
-            v-model="form.role"
-            required
-          >
+          <select id="role" class="form-control" v-model="form.role" required>
             <option value="student">Estudiante</option>
             <option value="teacher">Profesor</option>
           </select>
@@ -108,25 +104,23 @@
         </div>
 
         <!-- Botón de registro -->
-        <button
-          type="submit"
-          class="btn btn-primary"
-          :disabled="isLoading"
-        >
+        <button type="submit" class="btn btn-primary" :disabled="isLoading">
           {{ isLoading ? "Registrando..." : "Registrarse" }}
         </button>
       </form>
 
       <!-- Enlaces adicionales -->
       <div class="links">
-        <router-link to="/login">¿Ya tienes una cuenta? Inicia sesión</router-link>
+        <router-link to="/login"
+          >¿Ya tienes una cuenta? Inicia sesión</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "RegisterView",
@@ -137,109 +131,118 @@ export default {
         email: "",
         password: "",
         confirmPassword: "",
-        role: "student"
+        role: "student",
       },
       formErrors: {
         name: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
       },
       errorMessage: "",
-      showPassword: false
+      showPassword: false,
     };
   },
   computed: {
-    ...mapGetters(['isLoading', 'getError', 'isAuthenticated']),
+    ...mapGetters(["isLoading", "getError", "isAuthenticated"]),
     passwordsMatch() {
       return this.form.password === this.form.confirmPassword;
     },
   },
   methods: {
-    ...mapActions(['register']),
+    ...mapActions(["register"]),
     validateForm() {
       let isValid = true;
       this.formErrors = {
         name: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
       };
-      
+
       // Validar nombre
       if (!this.form.name) {
         this.formErrors.name = "El nombre completo es obligatorio";
         isValid = false;
       }
-      
+
       // Validar email
       if (!this.form.email) {
         this.formErrors.email = "El correo electrónico es obligatorio";
         isValid = false;
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) {
-        this.formErrors.email = "Por favor ingrese un correo electrónico válido";
+        this.formErrors.email =
+          "Por favor ingrese un correo electrónico válido";
         isValid = false;
       }
-      
+
       // Validar contraseña
       if (!this.form.password) {
         this.formErrors.password = "La contraseña es obligatoria";
         isValid = false;
       } else if (this.form.password.length < 8) {
-        this.formErrors.password = "La contraseña debe tener al menos 8 caracteres";
+        this.formErrors.password =
+          "La contraseña debe tener al menos 8 caracteres";
         isValid = false;
-      } else if (!/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]+$/.test(this.form.password)) {
-        this.formErrors.password = "La contraseña debe incluir mayúsculas, minúsculas, números y símbolos especiales";
+      } else if (
+        !/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]+$/.test(
+          this.form.password
+        )
+      ) {
+        this.formErrors.password =
+          "La contraseña debe incluir mayúsculas, minúsculas, números y símbolos especiales";
         isValid = false;
       }
-      
+
       // Validar confirmación de contraseña
       if (!this.form.confirmPassword) {
-        this.formErrors.confirmPassword = "La confirmación de contraseña es obligatoria";
+        this.formErrors.confirmPassword =
+          "La confirmación de contraseña es obligatoria";
         isValid = false;
       } else if (this.form.password !== this.form.confirmPassword) {
         this.formErrors.confirmPassword = "Las contraseñas no coinciden";
         isValid = false;
       }
-      
+
       return isValid;
     },
     async handleRegister() {
       if (!this.validateForm()) {
         return;
       }
-      
+
       this.errorMessage = "";
-      
+
       const userData = {
         name: this.form.name,
         email: this.form.email,
         password: this.form.password,
         confirmPassword: this.form.confirmPassword,
-        role: this.form.role
+        role: this.form.role,
       };
-      
-      console.log('📝 Datos a enviar al backend:', userData);
-      
+
+      console.log("📝 Datos a enviar al backend:", userData);
+
       try {
         // Call to Vuex action
         await this.register(userData);
-        
+
         // Redirect to dashboard on success
-        this.$router.push('/dashboard');
+        this.$router.push("/dashboard");
       } catch (error) {
         console.error("Error en el registro:", error);
         console.error("Error response:", error.response);
-        this.errorMessage = this.getError || "Error al registrarse. Inténtalo nuevamente.";
+        this.errorMessage =
+          this.getError || "Error al registrarse. Inténtalo nuevamente.";
       }
     },
   },
   // If already authenticated, redirect to dashboard
   created() {
     if (this.isAuthenticated) {
-      this.$router.push('/dashboard');
+      this.$router.push("/dashboard");
     }
-  }
+  },
 };
 </script>
 
@@ -291,12 +294,6 @@ label {
   transition: border-color 0.3s;
 }
 
-.form-control:focus {
-  border-color: #2e8b57;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
-}
-
 .is-invalid {
   border-color: #dc3545 !important;
 }
@@ -325,7 +322,7 @@ label {
   padding: 0 15px;
   background: none;
   border: none;
-  color: #2E8B57;
+  color: #2e8b57;
   cursor: pointer;
   font-size: 14px;
 }
@@ -381,7 +378,7 @@ label {
 }
 
 .links a {
-  color: #2E8B57;
+  color: #2e8b57;
   text-decoration: none;
 }
 

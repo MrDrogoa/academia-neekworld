@@ -600,11 +600,6 @@ onMounted(async () => {
   transform: translateY(-5px);
 }
 
-.course-card:focus {
-  outline: 3px solid #2e8b57;
-  outline-offset: 2px;
-}
-
 /* Imagen del curso */
 .course-image {
   position: relative;

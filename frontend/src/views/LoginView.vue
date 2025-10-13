@@ -162,12 +162,6 @@ label {
   transition: border-color 0.3s;
 }
 
-.form-control:focus {
-  border-color: #2e8b57;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
-}
-
 .password-input {
   position: relative;
   display: flex;

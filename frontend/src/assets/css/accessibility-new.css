@@ -329,50 +329,6 @@ html[class*="text-scale-"] [class*="icon"] {
 }
 
 /* =========================================
-   ENFOQUE MEJORADO
-   ========================================= */
-.enhanced-focus-mode *:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-.enhanced-focus-mode .v-btn:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  transform: scale(1.05) !important;
-}
-
-.enhanced-focus-mode .v-text-field:focus-within {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-.enhanced-focus-mode .v-list-item:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  background-color: rgba(33, 150, 243, 0.1) !important;
-}
-
-.enhanced-focus-mode .v-card:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-  transform: scale(1.02) !important;
-}
-
-.enhanced-focus-mode input:focus,
-.enhanced-focus-mode textarea:focus,
-.enhanced-focus-mode select:focus {
-  outline: 4px solid var(--focus-color) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3) !important;
-}
-
-/* =========================================
    TOOLTIPS MEJORADOS
    ========================================= */
 .v-tooltip .v-overlay__content {

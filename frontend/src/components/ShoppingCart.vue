@@ -21,7 +21,7 @@
       >
         <v-icon
           :size="isFloating ? 'large' : 'default'"
-          :color="isFloating ? 'white' : 'default'"
+          :color="isFloating ? 'default' : 'default'"
         >
           mdi-cart
         </v-icon>
@@ -29,8 +29,12 @@
     </v-btn>
 
     <!-- Dialog del carrito -->
-    <v-dialog v-model="showCartDialog" max-width="800px" scrollable>
-      <v-card>
+    <v-dialog
+      v-model="showCartDialog"
+      class="max-modal-car rounded-4"
+      scrollable
+    >
+      <v-card class="modal-car rounded-4">
         <v-card-title class="d-flex align-center gap-3">
           <v-icon left>mdi-cart</v-icon>
           <h2 class="title-buy fs-4 fs-lg-5">Carrito de Compras</h2>
@@ -38,13 +42,14 @@
           <v-btn
             icon="mdi-close"
             variant="text"
+            class="icon-x"
             @click="showCartDialog = false"
           ></v-btn>
         </v-card-title>
 
         <v-divider></v-divider>
 
-        <v-card-text style="max-height: 600px">
+        <v-card-text>
           <!-- Carrito vacío -->
           <div v-if="cartItems.length === 0" class="text-center py-8">
             <v-icon size="80" color="grey">mdi-cart-off</v-icon>
@@ -52,15 +57,17 @@
             <p class="text-grey">
               Explora nuestros cursos y agrega algunos a tu carrito
             </p>
-            <v-btn
-              class="btn btn-primary border-0 rounded-4 px-4 py-3 fw-medium text-white"
-              @click="
-                $router.push('/courses');
-                showCartDialog = false;
-              "
-            >
-              Ver Cursos
-            </v-btn>
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <v-btn
+                class="btn d-flex text-white justify-content-center align-items-center btn-primary border-0 rounded-4 px-4 py-3 fw-medium text-center"
+                @click="
+                  $router.push('/courses');
+                  showCartDialog = false;
+                "
+              >
+                Explorar Cursos
+              </v-btn>
+            </div>
           </div>
 
           <!-- Items del carrito -->
@@ -129,6 +136,7 @@
                 <v-col cols="4">
                   <v-btn
                     color="primary"
+                    class="btn-carModal"
                     variant="outlined"
                     block
                     @click="applyCoupon"
@@ -755,6 +763,16 @@ export default {
 .cart-button {
   background-color: blanchedalmond;
   position: relative;
+}
+
+/* modal carrito */
+.max-modal-car {
+  max-width: 800px;
+  width: 90%;
+}
+
+.modal-car {
+  margin-bottom: 0px !important;
 }
 
 .cart-item {
