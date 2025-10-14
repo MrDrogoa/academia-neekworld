@@ -581,12 +581,6 @@ export default {
   --v-theme-on-primary: #000000 !important;
 }
 
-.high-contrast-mode .v-card {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-}
-
 .high-contrast-mode .v-btn {
   border: 2px solid currentColor !important;
 }

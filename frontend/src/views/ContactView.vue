@@ -101,7 +101,7 @@
                   <v-btn
                     color="success"
                     size="large"
-                    class="send-button px-4 py-2"
+                    class="send-button px-4 py-2 text-white"
                     @click="submit"
                     :disabled="!valid"
                   >
@@ -116,14 +116,18 @@
         <!-- Columna derecha - Información de contacto -->
         <div class="col-lg-6 col-12 d-flex">
           <div class="info-container">
-            <div class="contact-info-card bg-light p-5 rounded-3 shadow-sm">
+            <div
+              class="contact-info-card bg-light bg-contactForm p-5 rounded-3 shadow-sm"
+            >
               <h2 class="info-title text-center">Información de contacto</h2>
 
               <div class="contact-item mb-4">
                 <v-icon class="contact-icon" color="primary">mdi-email</v-icon>
                 <div class="contact-details">
                   <p>Email:</p>
-                  <span class="text-muted">contacto@academia.com</span>
+                  <span class="text-muted text-contact"
+                    >contacto@academia.com</span
+                  >
                 </div>
               </div>
 
@@ -131,7 +135,7 @@
                 <v-icon class="contact-icon" color="primary">mdi-phone</v-icon>
                 <div class="contact-details">
                   <p>Teléfono:</p>
-                  <span class="text-muted">+56 2 1234 5678</span>
+                  <span class="text-muted text-contact">+56 2 1234 5678</span>
                 </div>
               </div>
 
@@ -141,7 +145,7 @@
                 >
                 <div class="contact-details">
                   <p>Dirección:</p>
-                  <span class="text-muted"
+                  <span class="text-muted text-contact"
                     >Avenida Ejemplo 123, Santiago, Chile</span
                   >
                 </div>
@@ -160,11 +164,7 @@ export default {
   data: () => ({
     valid: true,
     name: "",
-    nameRules: [
-      (v) => !!v || "Nombre es requerido",
-      (v) =>
-        (v && v.length >= 2) || "El nombre debe tener al menos 2 caracteres",
-    ],
+    nameRules: [(v) => !!v || "Nombre es requerido"],
     email: "",
     emailRules: [
       (v) => !!v || "E-mail es requerido",
@@ -233,21 +233,80 @@ export default {
 /* Wrapper de inputs */
 .input-wrapper {
   margin-bottom: 5px;
+  position: relative;
+}
+
+/* Altura específica solo para inputs de texto, no para textarea */
+.input-wrapper:has(.custom-input) {
+  height: 56px; /* Altura fija solo para inputs de texto */
+}
+
+/* Textarea mantiene altura automática */
+.input-wrapper:has(.custom-textarea) {
+  height: auto; /* Altura automática para textarea */
+}
+
+/* Asegurar que los iconos se mantengan centrados en todos los estados */
+:deep(.custom-input .v-field) {
+  position: relative;
+  height: 56px !important;
+  min-height: 56px !important;
+}
+
+:deep(.custom-input .v-field__field) {
+  position: relative;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+:deep(.custom-input .v-field__input) {
+  position: relative;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Textarea mantiene altura natural */
+:deep(.custom-textarea .v-field) {
+  position: relative;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+:deep(.custom-textarea .v-field__field) {
+  position: relative;
+  height: auto !important;
+}
+
+:deep(.custom-textarea .v-field__input) {
+  position: relative;
+  height: auto !important;
 }
 
 .input-icon {
   left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
   color: #999;
+  pointer-events: none;
+  position: absolute !important;
+  height: 20px !important;
+  width: 20px !important;
+  line-height: 1 !important;
 }
 
 .check-icon {
   right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 3;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  pointer-events: none;
+  position: absolute !important;
+  height: 20px !important;
+  width: 20px !important;
+  line-height: 1 !important;
 }
 
 /* Estilos personalizados para inputs */
@@ -260,6 +319,23 @@ export default {
   padding-left: 45px;
   font-size: 0.95rem;
   color: #333;
+}
+
+/* Evitar que los iconos se muevan durante las transiciones */
+:deep(.custom-input .v-field__overlay),
+:deep(.custom-input .v-field__outline),
+:deep(.custom-input .v-field__loader) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+:deep(.custom-input.v-field--focused),
+:deep(.custom-input.v-field--active),
+:deep(.custom-input.v-field--dirty) {
+  transform: none !important;
 }
 
 :deep(.custom-input .v-field__outline) {
@@ -278,8 +354,16 @@ export default {
 
 :deep(.custom-textarea .v-field__input) {
   font-size: 0.95rem;
-  min-height: 100px;
+  min-height: 120px !important; /* Altura más natural para textarea */
   color: #333;
+  resize: none !important; /* Deshabilitar el resize del textarea */
+  padding: 12px !important; /* Padding interno adecuado */
+}
+
+:deep(.custom-textarea textarea) {
+  resize: none !important; /* Asegurar que el textarea no sea redimensionable */
+  min-height: 120px !important;
+  padding: 12px !important;
 }
 
 :deep(.custom-textarea .v-field__outline) {
@@ -299,20 +383,42 @@ export default {
 
 /* Botón de envío */
 .send-button {
-  color: white !important;
   border-radius: 25px !important;
   font-weight: 600 !important;
   font-family: "Dm Sans", sans-serif;
   min-width: 120px !important;
   height: 48px !important;
   text-transform: none !important;
-  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.25) !important;
+
   transition: all 0.3s ease !important;
 }
 
 .send-button:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(40, 167, 69, 0.35) !important;
+}
+
+.v-theme--dark .send-button {
+  color: #000 !important;
+}
+
+.v-theme--dark .send-button:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+}
+
+.v-theme--dark .bg-contactForm {
+  background-color: var(--v-theme-primary-1) !important;
+}
+
+.v-theme--dark .info-title,
+.v-theme--dark .text-contact {
+  color: var(--v-theme-text) !important;
+}
+
+.high-contrast-mode .bg-contactForm {
+  background-color: #000 !important;
+  border: 3px solid #fff !important;
+  color: #fff !important;
 }
 
 /* Contenedor de información */
@@ -400,5 +506,42 @@ export default {
   color: #dc3545 !important;
   font-size: 0.85rem;
   margin-top: 5px;
+  text-align: right !important; /* Alinear mensajes de error a la derecha */
+  padding-right: 8px !important;
+}
+
+:deep(.v-messages__message) {
+  text-align: right !important;
+}
+
+/* Estabilizar posición de iconos - Solución completa */
+.input-wrapper .v-icon {
+  transition: none !important;
+  will-change: auto !important;
+}
+
+/* Mantener iconos centrados en todos los estados */
+.input-wrapper .input-icon,
+.input-wrapper .check-icon {
+  position: absolute !important;
+  top: 28px !important; /* Mitad de 56px altura del campo */
+  transform: translateY(-50%) !important;
+}
+
+/* Forzar posición estable durante estados del campo */
+:deep(.input-wrapper .v-field--focused) .input-icon,
+:deep(.input-wrapper .v-field--active) .input-icon,
+:deep(.input-wrapper .v-field--dirty) .input-icon,
+:deep(.input-wrapper .v-field--error) .input-icon {
+  top: 28px !important;
+  transform: translateY(-50%) !important;
+}
+
+:deep(.input-wrapper .v-field--focused) .check-icon,
+:deep(.input-wrapper .v-field--active) .check-icon,
+:deep(.input-wrapper .v-field--dirty) .check-icon,
+:deep(.input-wrapper .v-field--error) .check-icon {
+  top: 28px !important;
+  transform: translateY(-50%) !important;
 }
 </style>

@@ -96,16 +96,6 @@ body {
   --v-theme-on-surface: #ffffff;
 }
 
-.v-theme--dark body {
-  background-color: #121212;
-  color: #e2e8f0;
-}
-
-.v-theme--dark .v-application {
-  background: #121212 !important;
-  color: #e2e8f0 !important;
-}
-
 /* ===== ALTO CONTRASTE - GLOBAL ===== */
 .high-contrast-mode {
   --v-theme-background: #ffffff !important;
@@ -116,16 +106,6 @@ body {
   --v-theme-on-surface: #000000 !important;
 }
 
-.high-contrast-mode body {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-.high-contrast-mode .v-application {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
 .v-card {
   margin-bottom: 16px;
   transition: all 0.3s ease;
@@ -133,23 +113,12 @@ body {
 
 /* ===== CARDS RESPONSIVE A TEMAS ===== */
 
-.v-theme--dark .v-card {
-  background-color: #1e1e1e;
-  color: #e2e8f0;
-}
-
-.high-contrast-mode .v-card {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #000000 !important;
-}
-
 /* Accessibility improvements */
 .skip-link {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: #000;
+
   color: #fff;
   padding: 8px;
   text-decoration: none;

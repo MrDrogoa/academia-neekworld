@@ -69,8 +69,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="hero-section">
-    <div class="container-fluid px-4">
+  <section class="hero-section py-5">
+    <div class="container-fluid px-4 py-4">
       <div class="row justify-content-center align-items-center">
         <!-- Imagen - En pantallas grandes a la izquierda, en móviles arriba -->
         <div

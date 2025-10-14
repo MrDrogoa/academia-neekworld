@@ -2,7 +2,7 @@
   <div class="course-catalog">
     <v-container fluid class="p-0">
       <!-- Header -->
-      <header class="bg-white py-5">
+      <header class="bg-white bg-course py-5">
         <div class="container">
           <div class="py-3 py-lg-5 px-3 position-relative">
             <h2
@@ -13,13 +13,14 @@
             <p class="sub-cursos text-center py-2">
               Descubre y aprende con nuestros cursos especializados
             </p>
-            <div class="d-flex justify-center align-center mt-2 pb-3 pb-lg-5">
+            <div
+              class="d-flex justify-center align-center mt-2 pb-3 pb-lg-5 neek-text"
+            >
               <v-chip
                 v-if="dataSource === 'neekworld'"
-                color="primary"
                 size="small"
                 prepend-icon="mdi-earth"
-                aria-label="Conectado con Neekworld"
+                aria-label="Conectado con Neekworld "
               >
                 NeekWorld
               </v-chip>
@@ -79,70 +80,83 @@
       </header>
 
       <!-- Filtros -->
-      <v-card
-        class="w-75 mx-auto py-4"
-        elevation="0"
-        role="search"
-        aria-label="Filtros de búsqueda de cursos"
-      >
-        <v-card-text>
-          <v-row>
-            <v-col cols="12" md="4" class="txt-field">
-              <v-text-field
-                v-model="searchTerm"
-                label="Buscar cursos"
-                prepend-inner-icon="mdi-magnify"
-                clearable
-                density="compact"
-                variant="outlined"
-                aria-label="Campo de búsqueda de cursos"
-                aria-describedby="search-help"
-              ></v-text-field>
-              <span id="search-help" class="sr-only">
-                Escriba términos para buscar cursos por título o descripción
-              </span>
-            </v-col>
+      <section class="bg-filtros">
+        <v-card
+          class="w-75 mx-auto py-4"
+          elevation="0"
+          role="search"
+          aria-label="Filtros de búsqueda de cursos"
+        >
+          <v-card-text>
+            <v-row>
+              <v-col cols="12" md="4" class="txt-field">
+                <label for="text" class="fw-semibold text-laFi"
+                  >Buscar Cursos</label
+                >
+                <v-text-field
+                  v-model="searchTerm"
+                  prepend-inner-icon="mdi-magnify"
+                  clearable
+                  density="compact"
+                  variant="outlined"
+                  aria-label="Campo de búsqueda de cursos"
+                  aria-describedby="search-help"
+                ></v-text-field>
+                <span id="search-help" class="sr-only">
+                  Escriba términos para buscar cursos por título o descripción
+                </span>
+              </v-col>
 
-            <v-col cols="12" md="3" class="txt-field">
-              <v-select
-                v-model="selectedCategory"
-                :items="categories"
-                label="Categoría"
-                clearable
-                density="compact"
-                variant="outlined"
-                aria-label="Filtrar por categoría"
-              ></v-select>
-            </v-col>
+              <v-col cols="12" md="3" class="txt-field">
+                <label for="text" class="fw-semibold text-laFi"
+                  >Categoría</label
+                >
+                <v-select
+                  v-model="selectedCategory"
+                  :items="categories"
+                  :clearable="!!selectedCategory"
+                  density="compact"
+                  variant="outlined"
+                  aria-label="Filtrar por categoría"
+                ></v-select>
+              </v-col>
 
-            <v-col cols="12" md="3" class="txt-field">
-              <v-select
-                v-model="selectedLevel"
-                :items="levels"
-                label="Nivel"
-                clearable
-                density="compact"
-                variant="outlined"
-                aria-label="Filtrar por nivel de dificultad"
-              ></v-select>
-            </v-col>
+              <v-col cols="12" md="3" class="txt-field">
+                <label for="text" class="fw-semibold text-laFi">Nivel</label>
+                <v-select
+                  v-model="selectedLevel"
+                  :items="levels"
+                  :clearable="!!selectedLevel"
+                  density="compact"
+                  variant="outlined"
+                  aria-label="Filtrar por nivel de dificultad"
+                ></v-select>
+              </v-col>
 
-            <v-col cols="12" md="2" class="txt-field">
-              <v-select
-                v-model="sortBy"
-                :items="sortOptions"
-                label="Ordenar por"
-                density="compact"
-                variant="outlined"
-                aria-label="Ordenar resultados"
-              ></v-select>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-card>
+              <v-col cols="12" md="2" class="txt-field">
+                <label for="text" class="fw-semibold text-laFi"
+                  >Ordenar Por:</label
+                >
+                <v-select
+                  v-model="sortBy"
+                  :items="sortOptions"
+                  :clearable="sortBy !== 'popularity'"
+                  density="compact"
+                  variant="outlined"
+                  aria-label="Ordenar resultados"
+                ></v-select>
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </section>
 
       <!-- Lista de cursos -->
-      <main role="main" aria-label="Lista de cursos disponibles">
+      <main
+        role="main"
+        class="main-course"
+        aria-label="Lista de cursos disponibles"
+      >
         <v-row class="container">
           <v-col
             v-for="course in filteredCourses"
@@ -300,7 +314,7 @@
                   color="success"
                   variant="outlined"
                   disabled
-                  class="btn rounded-4 px-4 py-3 fw-medium d-flex align-center justify-center"
+                  class="btn rounded-4 btn-carBuy px-4 py-3 fw-medium d-flex align-center justify-center"
                 >
                   <FontAwesomeIcon icon="check" class="me-2" />
                   <span class="txt-btn">En carrito</span>
@@ -317,13 +331,97 @@
           <p class="text-grey">Intenta ajustar los filtros de búsqueda</p>
         </div>
 
-        <!-- Paginación -->
+        <!-- Paginación HTML Nativa -->
         <div v-if="totalPages > 1" class="d-flex justify-center mt-8">
-          <v-pagination
-            v-model="currentPage"
-            :length="totalPages"
-            :total-visible="5"
-          ></v-pagination>
+          <nav aria-label="Navegación de páginas" class="custom-pagination">
+            <ul class="pagination-list d-flex align-center gap-2">
+              <!-- Botón Primera Página -->
+              <li class="pagination-item">
+                <button
+                  @click="goToPage(1)"
+                  :disabled="currentPage === 1"
+                  class="pagination-btn pagination-btn-first"
+                  :class="{ disabled: currentPage === 1 }"
+                  aria-label="Ir a la primera página"
+                  title="Primera página"
+                >
+                  <FontAwesomeIcon icon="angles-left" />
+                </button>
+              </li>
+
+              <!-- Botón Página Anterior -->
+              <li class="pagination-item">
+                <button
+                  @click="goToPage(currentPage - 1)"
+                  :disabled="currentPage === 1"
+                  class="pagination-btn pagination-btn-prev"
+                  :class="{ disabled: currentPage === 1 }"
+                  aria-label="Ir a la página anterior"
+                  title="Página anterior"
+                >
+                  <FontAwesomeIcon icon="chevron-left" />
+                </button>
+              </li>
+
+              <!-- Páginas Numeradas -->
+              <li
+                v-for="page in visiblePages"
+                :key="page"
+                class="pagination-item"
+              >
+                <button
+                  v-if="page !== '...'"
+                  @click="goToPage(page)"
+                  class="pagination-btn pagination-btn-number"
+                  :class="{
+                    active: currentPage === page,
+                    current: currentPage === page,
+                  }"
+                  :aria-label="`Ir a la página ${page}`"
+                  :aria-current="currentPage === page ? 'page' : false"
+                  :title="`Página ${page}`"
+                >
+                  {{ page }}
+                </button>
+                <span v-else class="pagination-ellipsis" aria-hidden="true">
+                  ...
+                </span>
+              </li>
+
+              <!-- Botón Página Siguiente -->
+              <li class="pagination-item">
+                <button
+                  @click="goToPage(currentPage + 1)"
+                  :disabled="currentPage === totalPages"
+                  class="pagination-btn pagination-btn-next"
+                  :class="{ disabled: currentPage === totalPages }"
+                  aria-label="Ir a la página siguiente"
+                  title="Página siguiente"
+                >
+                  <FontAwesomeIcon icon="chevron-right" />
+                </button>
+              </li>
+
+              <!-- Botón Última Página -->
+              <li class="pagination-item">
+                <button
+                  @click="goToPage(totalPages)"
+                  :disabled="currentPage === totalPages"
+                  class="pagination-btn pagination-btn-last"
+                  :class="{ disabled: currentPage === totalPages }"
+                  aria-label="Ir a la última página"
+                  :title="`Última página (${totalPages})`"
+                >
+                  <FontAwesomeIcon icon="angles-right" />
+                </button>
+              </li>
+            </ul>
+
+            <!-- Información de página actual -->
+            <div class="pagination-info mt-2 text-center text-caption">
+              Página {{ currentPage }} de {{ totalPages }}
+            </div>
+          </nav>
         </div>
       </main>
     </v-container>
@@ -575,6 +673,65 @@ export default {
       };
     };
 
+    // ===== FUNCIONES DE PAGINACIÓN =====
+    const goToPage = (page) => {
+      if (page >= 1 && page <= totalPages.value && page !== currentPage.value) {
+        currentPage.value = page;
+        // Scroll suave hacia arriba cuando se cambia de página
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    // Computed para calcular las páginas visibles (similar a total-visible="5")
+    const visiblePages = computed(() => {
+      const totalVisible = 5;
+      const pages = [];
+      const total = totalPages.value;
+      const current = currentPage.value;
+
+      if (total <= totalVisible) {
+        // Si hay pocas páginas, mostrar todas
+        for (let i = 1; i <= total; i++) {
+          pages.push(i);
+        }
+      } else {
+        // Lógica para mostrar páginas con elipsis
+        if (current <= 3) {
+          // Mostrar primeras páginas
+          for (let i = 1; i <= 4; i++) {
+            pages.push(i);
+          }
+          if (total > 5) {
+            pages.push("...");
+            pages.push(total);
+          }
+        } else if (current >= total - 2) {
+          // Mostrar últimas páginas
+          pages.push(1);
+          if (total > 5) {
+            pages.push("...");
+          }
+          for (let i = total - 3; i <= total; i++) {
+            if (i > 1) pages.push(i);
+          }
+        } else {
+          // Mostrar páginas del medio
+          pages.push(1);
+          pages.push("...");
+          for (let i = current - 1; i <= current + 1; i++) {
+            pages.push(i);
+          }
+          pages.push("...");
+          pages.push(total);
+        }
+      }
+
+      return pages;
+    });
+
     // Función para convertir curso de Moodle a formato de la plataforma
     const convertMoodleCourse = (moodleCourse) => {
       return {
@@ -785,12 +942,18 @@ export default {
       getLevelColor,
       formatCurrency,
       svgImages,
+      // Funciones de paginación
+      goToPage,
+      visiblePages,
     };
   },
 };
 </script>
 
 <style scoped>
+.v-card {
+  margin-bottom: 0 !important;
+}
 h2 {
   margin: 0;
 }
@@ -857,6 +1020,10 @@ h2 {
   color: #373b8a !important;
 }
 
+.v-theme--dark .txt-title-card {
+  color: #fff !important;
+}
+
 /* btn-card y texto */
 .btn-add-to-cart {
   background-color: #2ea357 !important;
@@ -866,6 +1033,15 @@ h2 {
 .btn-add-to-cart:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px) !important;
+}
+
+.v-theme--dark .btn-add-to-cart {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .btn-add-to-cart:hover {
+  background-color: #fff !important;
 }
 
 /* boton de check */
@@ -917,6 +1093,10 @@ h2 {
   border: 0;
 }
 
+.high-contrast-mode .v-btn {
+  background-color: #fff !important;
+}
+
 /* tipo de fuente de los campos */
 .txt-field {
   font-family: "Dm Sans", sans-serif;
@@ -966,28 +1146,10 @@ h2 {
 
 /* ===== ESTILOS MEJORADOS PARA BOTONES DEL CARRITO ===== */
 
-/* Botón "Agregar" - Modo oscuro */
-.v-theme--dark .v-btn.v-btn--variant-elevated {
-  background-color: #4caf50 !important;
-  color: white !important;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
-  border: 2px solid transparent !important;
-}
-
-/* Botón "En carrito" - Modo oscuro */
-.v-theme--dark .v-btn.v-btn--variant-outlined.v-btn--disabled {
-  background-color: #2d2d2d !important;
-  color: #81c784 !important;
-  border-color: #81c784 !important;
-  opacity: 1 !important;
-}
-
 /* Alto contraste */
 .high-contrast-mode .v-btn.v-btn--variant-elevated {
   background-color: #ffff00 !important;
   color: #000000 !important;
-  border: 3px solid #000000 !important;
-  box-shadow: none !important;
   font-weight: 700 !important;
 }
 
@@ -1065,6 +1227,194 @@ h2 {
   * {
     transition: none !important;
     transform: none !important;
+  }
+}
+
+/* ===== ESTILOS DE PAGINACIÓN HTML NATIVA ===== */
+.custom-pagination {
+  margin: 20px 0;
+}
+
+.pagination-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-item {
+  display: inline-flex;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Dm Sans", sans-serif;
+}
+
+.pagination-btn:hover:not(.disabled) {
+  background-color: #2ea357;
+  color: white;
+  border-color: #2ea357;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 163, 87, 0.3);
+}
+
+.pagination-btn.active,
+.pagination-btn.current {
+  background-color: #2ea357;
+  color: white;
+  border-color: #2ea357;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(46, 163, 87, 0.3);
+}
+
+.pagination-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #f5f5f5;
+  color: #cccccc;
+}
+
+.pagination-btn-first,
+.pagination-btn-last,
+.pagination-btn-prev,
+.pagination-btn-next {
+  min-width: 40px;
+  padding: 8px;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 8px;
+  color: #666666;
+  font-weight: 500;
+}
+
+.pagination-info {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Estilos para modo oscuro */
+.v-theme--dark .pagination-btn {
+  background-color: #252d3a;
+  border-color: #444444;
+  color: #ffffff;
+}
+
+.v-theme--dark .pagination-btn:hover:not(.disabled) {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000;
+  box-shadow: 0 2px 8px #ffffff;
+}
+
+.v-theme--dark .pagination-btn.active,
+.v-theme--dark .pagination-btn.current {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000;
+  box-shadow: 0 2px 8px #ffffff;
+}
+
+.v-theme--dark .pagination-btn.disabled {
+  background-color: #1a1a1a;
+  border-color: #333333;
+  color: #666666;
+}
+
+.v-theme--dark .pagination-ellipsis {
+  color: #cccccc;
+}
+
+.v-theme--dark .pagination-info {
+  color: #cccccc;
+}
+
+/* Estilos para modo alto contraste */
+.high-contrast-mode .pagination-btn {
+  background-color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .pagination-btn:hover:not(.disabled) {
+  background-color: #ffff00 !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+.high-contrast-mode .pagination-btn.active,
+.high-contrast-mode .pagination-btn.current {
+  background-color: #ffff00 !important;
+  border-color: #000000 !important;
+  color: #000 !important;
+}
+
+.high-contrast-mode .pagination-btn.disabled {
+  background-color: #f0f0f0 !important;
+  border-color: #cccccc !important;
+  color: #999999 !important;
+}
+
+.high-contrast-mode .pagination-ellipsis {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .pagination-info {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .pagination-list {
+    gap: 4px;
+  }
+
+  .pagination-btn {
+    min-width: 36px;
+    height: 36px;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .pagination-btn-first,
+  .pagination-btn-last,
+  .pagination-btn-prev,
+  .pagination-btn-next {
+    min-width: 36px;
+    padding: 6px;
+  }
+
+  .pagination-info {
+    font-size: 11px;
   }
 }
 </style>

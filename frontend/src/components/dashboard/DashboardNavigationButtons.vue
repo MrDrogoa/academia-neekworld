@@ -20,7 +20,7 @@
             color="primary"
             variant="tonal"
             block
-            class="text-none mb-2"
+            class="text-none text-decoration-none mb-2"
           >
             <template v-slot:prepend>
               <v-icon :icon="button.icon"></v-icon>
@@ -44,7 +44,7 @@
             color="primary"
             variant="tonal"
             block
-            class="text-none mb-2"
+            class="text-none text-decoration-none mb-2"
           >
             <template v-slot:prepend>
               <v-icon :icon="button.icon"></v-icon>
@@ -68,7 +68,7 @@
             color="primary"
             variant="tonal"
             block
-            class="text-none mb-2"
+            class="text-none text-decoration-none mb-2"
           >
             <template v-slot:prepend>
               <v-icon :icon="button.icon"></v-icon>

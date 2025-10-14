@@ -67,6 +67,28 @@
   color: #555;
 }
 
+/* boton de contacto */
+.v-theme--dark .btn-link {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--dark .btn-link:hover {
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .btn-link {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+.high-contrast-mode .btn-link:hover {
+  box-shadow: 0 4px 12px #ffff00 !important;
+}
+
 /* ===== MODO OSCURO - TARJETAS ===== */
 .v-theme--dark .info-card {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
@@ -80,8 +102,6 @@
 .high-contrast-mode .info-card {
   background: #000000 !important;
   border: 3px solid #ffffff !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 .high-contrast-mode .info-card:hover {
@@ -91,11 +111,6 @@
 
 .high-contrast-mode .card-icon {
   color: #ffff00 !important;
-}
-
-.high-contrast-mode .card-title {
-  color: #ffffff !important;
-  text-decoration: underline !important;
 }
 
 .high-contrast-mode .card-text {
@@ -116,8 +131,7 @@
   }
 }
 .v-theme--dark .about-page {
-  background-color: #1e1e1e !important;
-  color: #e0e0e0 !important;
+  background-color: #2d3748 !important;
 }
 
 .v-theme--dark .about-page h1 {
@@ -140,11 +154,6 @@
 }
 
 /* ===== ALTO CONTRASTE ===== */
-.high-contrast-mode .about-page {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
 .high-contrast-mode .about-page h1 {
   color: #000000 !important;
   text-decoration: underline !important;

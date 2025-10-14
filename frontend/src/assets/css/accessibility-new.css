@@ -239,22 +239,6 @@ html[class*="text-scale-"] [class*="icon"] {
   color: #ffffff !important;
 }
 
-.high-contrast-mode .v-application {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .v-main {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .v-card {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-}
-
 .high-contrast-mode .v-btn {
   border: 2px solid currentColor !important;
   background-color: #000000 !important;
@@ -357,16 +341,6 @@ html[class*="text-scale-"] [class*="icon"] {
   color: #ffffff !important;
 }
 
-.v-theme--dark .v-main {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-}
-
-.v-theme--dark .v-card {
-  background-color: #1e1e1e !important;
-  color: #ffffff !important;
-}
-
 .v-theme--dark .v-app-bar {
   background-color: #1e1e1e !important;
   color: #ffffff !important;
@@ -387,16 +361,6 @@ html[class*="text-scale-"] [class*="icon"] {
   --v-theme-secondary: #424242 !important;
   --v-theme-on-background: #000000 !important;
   --v-theme-on-surface: #000000 !important;
-}
-
-.v-theme--light .v-application {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-.v-theme--light .v-main {
-  background-color: #ffffff !important;
-  color: #000000 !important;
 }
 
 /* =========================================

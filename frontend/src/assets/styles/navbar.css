@@ -239,7 +239,6 @@
 .high-contrast-header {
   background-color: #000000 !important;
   color: #ffff00 !important;
-  border-bottom: 2px solid #ffff00 !important;
 }
 
 /* Lista en alto contraste - Con mayor especificidad */
@@ -281,14 +280,6 @@
 .high-contrast-drawer .v-list-item:hover .v-icon,
 .high-contrast-drawer .v-list-item.v-list-item:hover .v-icon {
   color: #000000 !important;
-}
-
-/* Dividers en alto contraste */
-.high-contrast-drawer .v-divider,
-.high-contrast-drawer .v-divider.v-divider {
-  border-color: #ffff00 !important;
-  opacity: 1 !important;
-  border-width: 2px !important;
 }
 
 /* Expansion panels en alto contraste */

@@ -23,22 +23,10 @@
 }
 
 /* Fondo y texto para modo claro */
-.v-theme--light .v-main {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
 
 /* Fondo y texto para modo oscuro */
-.v-theme--dark .v-main {
-  background-color: #121212 !important;
-  color: #e2e8f0 !important;
-}
 
 /* Fondo y texto para alto contraste */
-.high-contrast-mode .v-main {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
 
 /* =========================================
    SISTEMA DE ESCALADO DE TEXTO - SIMPLIFICADO
@@ -496,44 +484,10 @@ html.text-scale-130 .content-area .v-list-item-title {
   --v-theme-info: #00ffff !important;
 }
 
-.high-contrast-mode {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .v-application {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .v-main {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-.high-contrast-mode .v-card {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-}
-
-.high-contrast-mode .v-btn {
-  border: 2px solid currentColor !important;
-  background-color: #000000 !important;
-  color: #ffff00 !important;
-}
-
-.high-contrast-mode .v-btn:hover {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-}
-
 .high-contrast-mode .v-text-field input,
 .high-contrast-mode .v-select__selection,
 .high-contrast-mode .v-textarea textarea {
-  color: #ffffff !important;
-  background-color: #000000 !important;
-  border: 2px solid #ffffff !important;
+  color: #000 !important;
 }
 
 .high-contrast-mode .v-app-bar {
@@ -608,24 +562,14 @@ html.text-scale-130 .content-area .v-list-item-title {
 .v-theme--dark {
   --v-theme-background: #252d3a !important;
   --v-theme-surface: #1e1e1e !important;
-  --v-theme-primary: #252d3a !important;
-  --v-theme-secondary: #2d3748 !important;
+  --v-theme-primary-1: #252d3a !important;
+  --v-theme-primary-2: #2d3748 !important;
   --v-theme-text: #ffffff !important;
   --v-theme-footer: #1b212c !important;
 }
 
 .v-theme--dark .v-application {
   background-color: #121212 !important;
-  color: #ffffff !important;
-}
-
-.v-theme--dark .v-main {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-}
-
-.v-theme--dark .v-card {
-  background-color: #1e1e1e !important;
   color: #ffffff !important;
 }
 
@@ -926,18 +870,6 @@ footer.footer .footer-link {
 }
 
 /* ===== BOTONES DEL CARRITO - MODO OSCURO ===== */
-.v-theme--dark .v-btn--variant-elevated {
-  background-color: #4caf50 !important;
-  color: white !important;
-  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
-  border: 2px solid transparent !important;
-  font-weight: 600 !important;
-}
-
-.v-theme--dark .v-btn--variant-elevated:hover {
-  background-color: #43a047 !important;
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
-}
 
 .v-theme--dark .v-btn--variant-outlined.v-btn--disabled {
   background-color: #1e1e1e !important;
@@ -1001,35 +933,14 @@ html.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled {
   color: #333 !important;
 }
 
-.v-theme--light .v-list-item:hover {
-  background-color: #f5f5f5 !important;
-  color: #333 !important;
-}
-
 .v-theme--light .v-list-item--active {
   background-color: rgba(25, 118, 210, 0.12) !important;
   color: #1976d2 !important;
 }
 
 /* ===== V-SELECT MENU OVERLAY - MODO OSCURO ===== */
-.v-theme--dark .v-overlay__content {
-  background-color: #2d2d2d !important;
-  color: #e0e0e0 !important;
-  border: 1px solid #404040 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-}
 
 /* ===== V-SELECT MENU OVERLAY - ALTO CONTRASTE ===== */
-.high-contrast-mode .v-overlay__content,
-body.high-contrast-mode .v-overlay__content,
-html.high-contrast-mode .v-overlay__content {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 3px solid #000000 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
 .high-contrast-mode .v-list,
 body.high-contrast-mode .v-list,
 html.high-contrast-mode .v-list {
@@ -1044,14 +955,6 @@ html.high-contrast-mode .v-list-item {
   color: #000000 !important;
   border-bottom: 1px solid #000000 !important;
   font-weight: 500 !important;
-}
-
-.high-contrast-mode .v-list-item:hover,
-body.high-contrast-mode .v-list-item:hover,
-html.high-contrast-mode .v-list-item:hover {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  font-weight: 700 !important;
 }
 
 .high-contrast-mode .v-list-item--active,
@@ -1105,17 +1008,8 @@ html.high-contrast-mode .v-select .v-icon {
 }
 
 .v-theme--dark .v-text-field .v-field {
-  background-color: #2d2d2d !important;
+  background-color: var(--v-theme-primary-1) !important;
   color: #e0e0e0 !important;
-}
-
-.high-contrast-mode .v-text-field .v-field,
-body.high-contrast-mode .v-text-field .v-field,
-html.high-contrast-mode .v-text-field .v-field {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #000000 !important;
-  border-radius: 0 !important;
 }
 
 /* ===== FORM LABELS ===== */
@@ -1164,15 +1058,6 @@ html.high-contrast-mode .v-overlay__scrim {
   color: #e0e0e0 !important;
 }
 
-.high-contrast-mode .v-dialog .v-card,
-body.high-contrast-mode .v-dialog .v-card,
-html.high-contrast-mode .v-dialog .v-card {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 3px solid #000000 !important;
-  border-radius: 0 !important;
-}
-
 /* ===== SHOPPING CART DIALOG STYLING ===== */
 .v-theme--light .shopping-cart .v-dialog .v-card-title {
   background-color: #f5f5f5 !important;
@@ -1197,17 +1082,12 @@ html.high-contrast-mode .shopping-cart .v-dialog .v-card-title {
 
 /* ===== DIALOG BUTTONS ===== */
 
-.v-theme--dark .v-dialog .v-btn {
-  color: #e0e0e0 !important;
-}
-
 .high-contrast-mode .v-dialog .v-btn,
 body.high-contrast-mode .v-dialog .v-btn,
 html.high-contrast-mode .v-dialog .v-btn {
   background-color: #ffffff !important;
   color: #000000 !important;
   border: 2px solid #000000 !important;
-  border-radius: 0 !important;
   font-weight: 700 !important;
 }
 
@@ -1272,19 +1152,9 @@ html.high-contrast-mode .v-dialog .v-btn:hover {
 }
 
 /* ===== ABOUT PAGE - ALTO CONTRASTE ===== */
-.high-contrast-mode .about-page,
-body.high-contrast-mode .about-page,
-html.high-contrast-mode .about-page {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-}
-
-.high-contrast-mode .about-page h1,
-body.high-contrast-mode .about-page h1,
-html.high-contrast-mode .about-page h1 {
-  color: #000000 !important;
-  text-decoration: underline !important;
-  font-weight: 700 !important;
+.high-contrast-mode .about-page {
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 .high-contrast-mode .about-section,
@@ -1322,7 +1192,7 @@ html.high-contrast-mode .about-section p {
 }
 
 .v-theme--dark .card-step {
-  background-color: var(--v-theme-primary) !important;
+  background-color: var(--v-theme-primary-1) !important;
   color: var(--v-theme-text) !important;
 }
 
@@ -1393,7 +1263,7 @@ html.high-contrast-mode .title-card {
 }
 
 .v-theme--dark .course-card {
-  background-color: var(--v-theme-primary) !important;
+  background-color: var(--v-theme-primary-1) !important;
   color: var(--v-theme-text) !important;
   border: 1px solid var(--v-theme-surface) !important;
 }
@@ -1418,13 +1288,6 @@ html.high-contrast-mode .title-card {
 }
 
 /* ===== CARDSCURSOSCOMPONENTS - ALTO CONTRASTE ===== */
-.high-contrast-mode .title-card,
-body.high-contrast-mode .title-card,
-html.high-contrast-mode .title-card {
-  color: #ffffff !important;
-  background-color: #000000 !important;
-  font-weight: 800 !important;
-}
 
 .high-contrast-mode .course-card,
 body.high-contrast-mode .course-card,
@@ -1483,6 +1346,12 @@ body.reduced-motion-mode .course-card:hover {
   box-shadow: none !important;
 }
 
+/* modo claro */
+/* boton delete */
+.v-theme--light .btn-deIcon:hover {
+  color: red;
+}
+
 /* color footer */
 .v-theme--dark .bg-footer {
   background-color: var(--v-theme-footer);
@@ -1510,15 +1379,12 @@ body.reduced-motion-mode .course-card:hover {
 .v-theme--dark .v-btn--variant-elevated:hover {
   background-color: var(--v-theme-text) !important;
   box-shadow: 2px 4px 12px #fff !important;
+  text-decoration: none !important;
 }
 
 /* titulo del carrito */
 .v-theme--dark .title-buy {
   color: var(--v-theme-text);
-}
-
-.v-theme--dark .v-dialog .v-btn {
-  color: #000 !important;
 }
 
 .v-theme--dark .v-dialog .v-btn:hover {
@@ -1529,16 +1395,248 @@ body.reduced-motion-mode .course-card:hover {
 /* icono del carrito */
 .v-theme--dark .icon-x {
   background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+.v-theme--dark .icon-x:hover {
+  transform: scale(1.1);
 }
 
 .v-theme--dark .btn-carModal {
   background-color: var(--v-theme-text) !important;
+  color: #000 !important;
 }
 
 .v-theme--dark .btn-deCard {
   color: var(--v-theme-text) !important;
 }
 
+/* boton carrito card */
+.v-theme--dark .v-btn--variant-outlined.v-btn--disabled {
+  border: 2px solid var(--v-theme-text) !important;
+  color: var(--v-theme-text) !important;
+}
+
+/* boton delete */
+.v-theme--dark .btn-iconDelete {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .btn-iconDelete:hover {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+/* btn vaciar carrito */
+.v-theme--dark .btn-vaciar {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .text-btn {
+  color: var(--v-theme-text) !important;
+}
+
+/* section course */
+.v-theme--dark .bg-course {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--dark .txt-cursos,
+.v-theme--dark .sub-cursos,
+.v-theme--dark .neek-text {
+  color: var(--v-theme-text) !important;
+}
+
+/* alto contraste cursos */
+.high-contrast-mode .bg-course {
+  background-color: #000 !important;
+}
+.high-contrast-mode .txt-cursos,
+.high-contrast-mode .sub-cursos {
+  color: #ffffff !important;
+}
+
+.high-contrast-mode .neek-text {
+  color: #ffff00 !important;
+}
+/* =========================================
+   SHOPCART HIGH CONTRAST MODE STYLING
+   ========================================= */
+.high-contrast-mode .title-buy {
+  color: #000 !important;
+}
+
+.high-contrast-mode .modal-car {
+  border: 3px solid #000000 !important;
+}
+
+.high-contrast-mode .v-list:hover {
+  background-color: none !important;
+}
+
+.high-contrast-mode .v-list-item:hover {
+  background-color: var(--v-theme-text) !important;
+}
+
+.high-contrast-mode .btn-iconDelete:hover {
+  background-color: #ffff00 !important;
+}
+
+/* =========================================
+   filtros HIGH CONTRAST MODE STYLING
+   ========================================= */
+
+.high-contrast-mode .bg-filtros {
+  background-color: #000 !important;
+}
+.high-contrast-mode .text-laFi {
+  color: #ffff00 !important;
+}
+
+/* =========================================
+   filtros dark MODE STYLING
+   ========================================= */
+
+.v-theme--dark .bg-filtros {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--dark .main-course {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+/* =========================================
+   aboutcomponents dark MODE STYLING
+   ========================================= */
+
+.v-theme--dark .card-history,
+.v-theme--dark .card-mission,
+.v-theme--dark .card-approach,
+.v-theme--dark .card-team {
+  background: var(--v-theme-primary-1) !important;
+}
+
+/* =========================================
+   cards course HIGH CONTRAST MODE STYLING
+   ========================================= */
+.high-contrast-mode .main-course {
+  background-color: #000 !important;
+}
+
+/* =========================================
+   contacto DARK MODE MODE STYLING
+   ========================================= */
+
+.v-theme--dark .contact-page {
+  background: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--dark .form-title {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .contact-form-card {
+  background: var(--v-theme-primary-1) !important;
+}
+
+.v-theme--dark .contact-form-card .form-label,
+.v-theme--dark .custom-input .v-field__input,
+.v-theme--dark .custom-textarea .v-field__input {
+  color: var(--v-theme-text) !important;
+}
+
+/* =========================================
+   contacto HIGH CONTRAST MODE STYLING
+   ========================================= */
+
+.high-contrast-mode .contact-page {
+  background: #000 !important;
+}
+
+.high-contrast-mode .form-title,
+.high-contrast-mode .contact-form-card .form-label {
+  color: #fff !important;
+}
+
+.high-contrast-mode .contact-form-card {
+  background: #000 !important;
+  border: 3px solid #fff !important;
+}
+
+.high-contrast-mode .info-title,
+.high-contrast-mode .text-contact {
+  color: var(--v-theme-text) !important;
+}
+
+/* =========================================
+   FORM INICIO DARK MODE STYLING
+   ========================================= */
+.v-theme--dark .txt-color,
+.v-theme--dark .label-color {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .close-btn {
+  background-color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .text-cancel,
+.v-theme--dark .text-seRe {
+  border: none !important;
+}
+
+/* =========================================
+   FORM HIGH CONTRAST MODE STYLING
+   ========================================= */
+.high-contrast-mode .txt-color,
+.high-contrast-mode .label-color {
+  color: #000 !important;
+}
+
+/* =========================================
+   DASHBOARD DARK MODE STYLING
+   ========================================= */
+
+.v-theme--dark .bg-dash,
+.v-theme--dark .dashboard {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--dark .dashboard-sidebar,
+.v-theme--dark .dash-1,
+.v-theme--dark .dashboard-card-wrapper {
+  background-color: var(--v-theme-primary-1) !important;
+}
+
+.v-theme--dark .txt-dash,
+.v-theme--dark .txt-card-course {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .text-none {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .text-none:hover {
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* =========================================
+   DASHBOARD HIGH CONTRAST MODE STYLING
+   ========================================= */
+
+.high-contrast-mode .bg-dash,
+.high-contrast-mode .dashboard {
+  background-color: #000 !important;
+}
+
+/* =========================================
+   FOOTER HIGH CONTRAST MODE STYLING
+   ========================================= */
 /* Alto contraste - Fondo blanco, texto negro */
 .high-contrast-mode .footer,
 .high-contrast-mode .bg-footer {

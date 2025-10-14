@@ -29,12 +29,8 @@
     </v-btn>
 
     <!-- Dialog del carrito -->
-    <v-dialog
-      v-model="showCartDialog"
-      class="max-modal-car rounded-4"
-      scrollable
-    >
-      <v-card class="modal-car rounded-4">
+    <v-dialog v-model="showCartDialog" class="max-modal-car" scrollable>
+      <v-card class="modal-car rounded-4 p-4">
         <v-card-title class="d-flex align-center gap-3">
           <v-icon left>mdi-cart</v-icon>
           <h2 class="title-buy fs-4 fs-lg-5">Carrito de Compras</h2>
@@ -72,11 +68,11 @@
 
           <!-- Items del carrito -->
           <div v-else>
-            <v-list>
+            <v-list class="car-imgText">
               <v-list-item
                 v-for="item in cartItems"
                 :key="item.id"
-                class="cart-item"
+                class="cart-item gap-3"
               >
                 <template #prepend>
                   <v-img
@@ -107,14 +103,16 @@
                     <div class="font-weight-bold text-primary">
                       {{ formatCurrency(item.price) }}
                     </div>
-                    <v-btn
-                      icon="mdi-delete"
-                      size="small"
-                      variant="text"
-                      color="error"
+                    <button
+                      type="button"
                       @click="removeFromCart(item.id)"
-                      class="mt-1"
-                    ></v-btn>
+                      class="btn-deIcon btn"
+                    >
+                      <FontAwesomeIcon
+                        icon="trash"
+                        class="btn-iconDelete px-2 py-1 rounded-3"
+                      />
+                    </button>
                   </div>
                 </template>
               </v-list-item>
@@ -194,14 +192,18 @@
         <v-divider></v-divider>
 
         <v-card-actions v-if="cartItems.length > 0">
-          <v-btn variant="text" @click="clearCart" color="error">
+          <v-btn
+            variant="text"
+            @click="clearCart"
+            class="btn-vaciar border-1 border-black"
+          >
             Vaciar Carrito
           </v-btn>
 
           <v-spacer></v-spacer>
 
           <v-btn
-            color="primary"
+            class="text-btn"
             size="large"
             @click="proceedToCheckout"
             :loading="processingCheckout"
@@ -777,10 +779,6 @@ export default {
 
 .cart-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.cart-item:last-child {
-  border-bottom: none;
 }
 
 @media (max-width: 600px) {

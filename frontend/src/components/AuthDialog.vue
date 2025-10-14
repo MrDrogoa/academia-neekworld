@@ -4,7 +4,7 @@
     class="form-dialog"
     @click:outside="closeDialog"
   >
-    <v-card class="pa-4 card-login rounded-lg position-relative">
+    <v-card class="p-4 card-login rounded-lg position-relative">
       <!-- Botón de cerrar en la esquina superior derecha -->
       <v-btn
         icon
@@ -33,7 +33,12 @@
           {{ alertMessage }}
         </v-alert>
 
-        <v-form ref="authForm" v-model="formValid" lazy-validation>
+        <v-form
+          ref="authForm"
+          v-model="formValid"
+          lazy-validation
+          @keyup.enter="submitForm"
+        >
           <!-- Campos para registro -->
           <div v-if="!isLogin">
             <label class="form-label fw-medium label-color">Nombre</label>
@@ -45,6 +50,7 @@
               required
               outlined
               dense
+              @keyup.enter="submitForm"
             ></v-text-field>
             <label class="form-label fw-medium label-color">Apellido</label>
 
@@ -56,6 +62,7 @@
               required
               outlined
               dense
+              @keyup.enter="submitForm"
             ></v-text-field>
           </div>
 
@@ -70,6 +77,7 @@
             outlined
             dense
             type="email"
+            @keyup.enter="submitForm"
           ></v-text-field>
 
           <!-- Password (común para login y registro) -->
@@ -85,6 +93,7 @@
             :type="showPassword ? 'text' : 'password'"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="showPassword = !showPassword"
+            @keyup.enter="submitForm"
           ></v-text-field>
 
           <!-- Confirmar password solo para registro -->
@@ -103,6 +112,7 @@
               :type="showPassword ? 'text' : 'password'"
               :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append="showPassword = !showPassword"
+              @keyup.enter="submitForm"
             ></v-text-field>
           </div>
 
@@ -155,7 +165,7 @@
         <v-btn
           text
           @click="closeDialog"
-          class="text-cancel btn btn-danger text-white"
+          class="text-cancel border-1 border-black rounded-4"
           :disabled="loading"
         >
           Cancelar
@@ -163,7 +173,7 @@
 
         <v-btn
           color="primary"
-          class="text-seRe"
+          class="text-seRe border-1 border-black rounded-4"
           @click="submitForm"
           :loading="loading"
           :disabled="!formValid || loading"
@@ -175,7 +185,13 @@
       <v-divider></v-divider>
 
       <v-card-actions class="justify-center text-cuestion">
-        <v-btn text color="primary" @click="toggleMode" :disabled="loading">
+        <v-btn
+          text
+          color="primary"
+          @click="toggleMode"
+          :disabled="loading"
+          class="border-1 border-black rounded-4 text-seRe"
+        >
           {{
             isLogin
               ? "¿No tienes cuenta? Regístrate"
@@ -332,7 +348,8 @@ export default {
     };
 
     const submitForm = async () => {
-      if (!formValid.value) return;
+      // Verificar que el formulario es válido y no está cargando
+      if (!formValid.value || loading.value) return;
 
       loading.value = true;
 
@@ -440,8 +457,8 @@ export default {
 /* Botón de cerrar */
 .close-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 15px;
+  right: 20px;
   z-index: 10;
   color: #666 !important;
   transition: all 0.2s ease;

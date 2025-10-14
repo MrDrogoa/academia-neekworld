@@ -1,245 +1,249 @@
 <template>
-  <v-container class="dashboard pa-4">
-    <!-- Encabezado del Dashboard -->
-    <header class="dashboard-header mb-6">
-      <h2
-        id="dashboard-title"
-        class="title-card text-center py-5 display-5 display-lg-4"
+  <section class="bg-dash">
+    <v-container class="dashboard pa-4">
+      <!-- Encabezado del Dashboard -->
+      <header class="dashboard-header mb-6">
+        <h2
+          id="dashboard-title"
+          class="title-card text-center py-5 display-5 display-lg-4"
+        >
+          Dashboard
+        </h2>
+        <p class="text-body-1 text-center" aria-describedby="dashboard-title">
+          {{ welcomeMessage }}
+        </p>
+      </header>
+
+      <!-- Loading state -->
+      <div
+        v-if="isLoading"
+        role="status"
+        aria-live="polite"
+        aria-label="Cargando información"
       >
-        Dashboard
-      </h2>
-      <p class="text-body-1 text-center" aria-describedby="dashboard-title">
-        {{ welcomeMessage }}
-      </p>
-    </header>
-
-    <!-- Loading state -->
-    <div
-      v-if="isLoading"
-      role="status"
-      aria-live="polite"
-      aria-label="Cargando información"
-    >
-      <v-row justify="center">
-        <v-col cols="12" class="text-center">
-          <v-progress-circular
-            indeterminate
-            color="primary"
-            size="64"
-            aria-label="Indicador de carga"
-          ></v-progress-circular>
-          <p class="mt-4">Cargando tu información...</p>
-        </v-col>
-      </v-row>
-    </div>
-
-    <!-- Error state -->
-    <div v-else-if="errorMessage" role="alert" aria-live="assertive">
-      <v-row justify="center">
-        <v-col cols="12" md="6" class="text-center">
-          <v-alert type="error" class="mb-4">{{ errorMessage }}</v-alert>
-          <v-btn
-            color="primary"
-            @click="fetchData"
-            aria-label="Reintentar carga de datos"
-          >
-            Reintentar
-          </v-btn>
-        </v-col>
-      </v-row>
-    </div>
-
-    <!-- Dashboard content -->
-    <template v-else>
-      <!-- Layout principal con sidebar y contenido -->
-      <div class="row dashboard-main">
-        <!-- Sidebar izquierdo con perfil -->
-        <div class="col-md-3 col-12 mb-4">
-          <div class="dashboard-sidebar">
-            <!-- Imagen/Avatar del usuario -->
-            <div class="user-avatar-section text-center mb-3">
-              <div class="user-avatar">
-                <i
-                  class="mdi mdi-account-circle"
-                  style="font-size: 80px; color: #6c757d"
-                ></i>
-              </div>
-              <h4 class="mt-2">{{ userName }}</h4>
-              <p class="text-muted">
-                {{
-                  userRole === "student"
-                    ? "Estudiante"
-                    : userRole === "teacher"
-                    ? "Profesor"
-                    : "Administrador"
-                }}
-              </p>
-            </div>
-
-            <!-- Perfil Card -->
-            <DashboardProfileCard :user="user" :role="userRole" />
-
-            <!-- Acciones rápidas -->
-            <DashboardQuickActionsCard :actions="quickActions" />
-          </div>
-        </div>
-
-        <!-- Contenido principal -->
-        <div class="col-md-9 col-12">
-          <!-- Navigation Buttons Grid -->
-          <DashboardNavigationButtons :userRole="userRole" />
-
-          <!-- Real-time Metrics Component -->
-          <RealTimeMetrics
-            :userRole="userRole"
-            @metrics-updated="handleMetricsUpdate"
-          />
-
-          <!-- Grid de tarjetas principales -->
-          <div class="row mb-4">
-            <div class="col-lg-6 col-md-6 col-12 mb-3">
-              <div class="dashboard-card-wrapper">
-                <div class="card-header bg-primary text-white text-center">
-                  <h5 class="mb-0">Cursos</h5>
-                </div>
-                <div class="card-body">
-                  <h6>Subtitle</h6>
-                  <p class="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum porta id metus non pellentesque.
-                  </p>
-                  <!-- Componente de cursos según rol -->
-                  <div v-if="userRole === 'student'">
-                    <DashboardStudentCourses
-                      :inProgressCourses="inProgressCourses"
-                      :enrolledCourses="enrolledCourses"
-                    />
-                  </div>
-                  <div v-else-if="userRole === 'teacher'">
-                    <DashboardTeacherCourses :courses="teacherCourses" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-12 mb-3">
-              <div class="dashboard-card-wrapper">
-                <div class="card-header bg-primary text-white text-center">
-                  <h5 class="mb-0">Facturas</h5>
-                </div>
-                <div class="card-body">
-                  <h6>Subtitle</h6>
-                  <p class="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum porta id metus non pellentesque.
-                  </p>
-                  <!-- Componente de actividad -->
-                  <DashboardActivityCard :activities="recentActivity" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Segunda fila de tarjetas -->
-          <div class="row mb-4">
-            <div class="col-lg-6 col-md-6 col-12 mb-3">
-              <div class="dashboard-card-wrapper">
-                <div class="card-header bg-primary text-white text-center">
-                  <h5 class="mb-0">Becas</h5>
-                </div>
-                <div class="card-body">
-                  <h6>Subtitle</h6>
-                  <p class="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum porta id metus non pellentesque.
-                  </p>
-                  <!-- Métricas específicas según rol -->
-                  <div v-if="userRole === 'student'">
-                    <DashboardStudentMetrics
-                      :completedCoursesCount="completedCoursesCount"
-                      :completedCoursesPercentage="completedCoursesPercentage"
-                      :passedEvaluationsCount="passedEvaluationsCount"
-                      :passedEvaluationsPercentage="passedEvaluationsPercentage"
-                      :certificatesCount="certificatesCount"
-                    />
-                  </div>
-                  <div v-else-if="userRole === 'teacher'">
-                    <DashboardTeacherStats
-                      :teacherCourses="teacherCourses"
-                      :totalStudentsCount="totalStudentsCount"
-                      :pendingEvaluationsCount="pendingEvaluationsCount"
-                    />
-                  </div>
-                  <div v-else-if="userRole === 'admin'">
-                    <DashboardSalesSummary
-                      :stats="adminStats"
-                      :formatPrice="formatPrice"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-12 mb-3">
-              <div class="dashboard-card-wrapper">
-                <div class="card-header bg-primary text-white text-center">
-                  <h5 class="mb-0">Certificados</h5>
-                </div>
-                <div class="card-body">
-                  <h6>Subtitle</h6>
-                  <p class="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum porta id metus non pellentesque.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta de preferencias centrada -->
-          <div class="row justify-content-center mb-4">
-            <div class="col-lg-8 col-md-10 col-12">
-              <div class="dashboard-card-wrapper">
-                <div class="card-header bg-primary text-white text-center">
-                  <h5 class="mb-0">Preferencias</h5>
-                </div>
-                <div class="card-body text-center">
-                  <h6>Subtitle</h6>
-                  <p class="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum porta id metus non pellentesque.
-                  </p>
-
-                  <!-- Componentes adicionales según rol -->
-                  <div
-                    v-if="
-                      userRole === 'student' && recommendedCourses.length > 0
-                    "
-                  >
-                    <DashboardRecommendedCourses
-                      :courses="recommendedCourses"
-                    />
-                  </div>
-                  <div v-else-if="userRole === 'teacher'">
-                    <DashboardStudentActivity
-                      :activities="recentStudentActivity"
-                    />
-                  </div>
-                  <div v-else-if="userRole === 'admin'">
-                    <DashboardAdminMetrics :stats="adminStats" />
-                    <DashboardCampaigns
-                      :campaigns="adminStats.activeCampaigns"
-                      :formatDate="formatDate"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <v-row justify="center">
+          <v-col cols="12" class="text-center">
+            <v-progress-circular
+              indeterminate
+              color="primary"
+              size="64"
+              aria-label="Indicador de carga"
+            ></v-progress-circular>
+            <p class="mt-4">Cargando tu información...</p>
+          </v-col>
+        </v-row>
       </div>
-    </template>
-  </v-container>
+
+      <!-- Error state -->
+      <div v-else-if="errorMessage" role="alert" aria-live="assertive">
+        <v-row justify="center">
+          <v-col cols="12" md="6" class="text-center">
+            <v-alert type="error" class="mb-4">{{ errorMessage }}</v-alert>
+            <v-btn
+              color="primary"
+              @click="fetchData"
+              aria-label="Reintentar carga de datos"
+            >
+              Reintentar
+            </v-btn>
+          </v-col>
+        </v-row>
+      </div>
+
+      <!-- Dashboard content -->
+      <template v-else>
+        <!-- Layout principal con sidebar y contenido -->
+        <div class="row dashboard-main">
+          <!-- Sidebar izquierdo con perfil -->
+          <div class="col-md-3 col-12 mb-4">
+            <div class="dashboard-sidebar">
+              <!-- Imagen/Avatar del usuario -->
+              <div class="user-avatar-section text-center mb-3">
+                <div class="user-avatar">
+                  <i
+                    class="mdi mdi-account-circle"
+                    style="font-size: 80px; color: #6c757d"
+                  ></i>
+                </div>
+                <h4 class="mt-2">{{ userName }}</h4>
+                <p class="text-muted txt-dash">
+                  {{
+                    userRole === "student"
+                      ? "Estudiante"
+                      : userRole === "teacher"
+                      ? "Profesor"
+                      : "Administrador"
+                  }}
+                </p>
+              </div>
+
+              <!-- Perfil Card -->
+              <DashboardProfileCard :user="user" :role="userRole" />
+
+              <!-- Acciones rápidas -->
+              <DashboardQuickActionsCard :actions="quickActions" />
+            </div>
+          </div>
+
+          <!-- Contenido principal -->
+          <div class="col-md-9 col-12">
+            <!-- Navigation Buttons Grid -->
+            <DashboardNavigationButtons :userRole="userRole" class="dash-1" />
+
+            <!-- Real-time Metrics Component -->
+            <RealTimeMetrics
+              :userRole="userRole"
+              @metrics-updated="handleMetricsUpdate"
+            />
+
+            <!-- Grid de tarjetas principales -->
+            <div class="row mb-4">
+              <div class="col-lg-6 col-md-6 col-12 mb-3">
+                <div class="dashboard-card-wrapper">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0 txt-card-course">Cursos</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="txt-card-course">Subtitle</h6>
+                    <p class="text-muted txt-card-course">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum porta id metus non pellentesque.
+                    </p>
+                    <!-- Componente de cursos según rol -->
+                    <div v-if="userRole === 'student'">
+                      <DashboardStudentCourses
+                        :inProgressCourses="inProgressCourses"
+                        :enrolledCourses="enrolledCourses"
+                      />
+                    </div>
+                    <div v-else-if="userRole === 'teacher'">
+                      <DashboardTeacherCourses :courses="teacherCourses" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-12 mb-3">
+                <div class="dashboard-card-wrapper">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0 txt-card-course">Facturas</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="txt-card-course">Subtitle</h6>
+                    <p class="text-muted txt-card-course">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum porta id metus non pellentesque.
+                    </p>
+                    <!-- Componente de actividad -->
+                    <DashboardActivityCard :activities="recentActivity" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Segunda fila de tarjetas -->
+            <div class="row mb-4">
+              <div class="col-lg-6 col-md-6 col-12 mb-3">
+                <div class="dashboard-card-wrapper">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0 txt-card-course">Becas</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="txt-card-course">Subtitle</h6>
+                    <p class="text-muted txt-card-course">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum porta id metus non pellentesque.
+                    </p>
+                    <!-- Métricas específicas según rol -->
+                    <div v-if="userRole === 'student'">
+                      <DashboardStudentMetrics
+                        :completedCoursesCount="completedCoursesCount"
+                        :completedCoursesPercentage="completedCoursesPercentage"
+                        :passedEvaluationsCount="passedEvaluationsCount"
+                        :passedEvaluationsPercentage="
+                          passedEvaluationsPercentage
+                        "
+                        :certificatesCount="certificatesCount"
+                      />
+                    </div>
+                    <div v-else-if="userRole === 'teacher'">
+                      <DashboardTeacherStats
+                        :teacherCourses="teacherCourses"
+                        :totalStudentsCount="totalStudentsCount"
+                        :pendingEvaluationsCount="pendingEvaluationsCount"
+                      />
+                    </div>
+                    <div v-else-if="userRole === 'admin'">
+                      <DashboardSalesSummary
+                        :stats="adminStats"
+                        :formatPrice="formatPrice"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-12 mb-3">
+                <div class="dashboard-card-wrapper">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0 txt-card-course">Certificados</h5>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="txt-card-course">Subtitle</h6>
+                    <p class="text-muted txt-card-course">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum porta id metus non pellentesque.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta de preferencias centrada -->
+            <div class="row justify-content-center mb-4">
+              <div class="col-lg-8 col-md-10 col-12">
+                <div class="dashboard-card-wrapper">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0 txt-card-course">Preferencias</h5>
+                  </div>
+                  <div class="card-body text-center">
+                    <h6 class="txt-card-course">Subtitle</h6>
+                    <p class="text-muted txt-card-course">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Vestibulum porta id metus non pellentesque.
+                    </p>
+
+                    <!-- Componentes adicionales según rol -->
+                    <div
+                      v-if="
+                        userRole === 'student' && recommendedCourses.length > 0
+                      "
+                    >
+                      <DashboardRecommendedCourses
+                        :courses="recommendedCourses"
+                      />
+                    </div>
+                    <div v-else-if="userRole === 'teacher'">
+                      <DashboardStudentActivity
+                        :activities="recentStudentActivity"
+                      />
+                    </div>
+                    <div v-else-if="userRole === 'admin'">
+                      <DashboardAdminMetrics :stats="adminStats" />
+                      <DashboardCampaigns
+                        :campaigns="adminStats.activeCampaigns"
+                        :formatDate="formatDate"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </v-container>
+  </section>
 </template>
 
 <script>

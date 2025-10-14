@@ -933,7 +933,7 @@ export default {
       if (highContrastMode.value) {
         return "high-contrast-header";
       }
-      return isDarkTheme.value ? "bg-primary" : "bg-grey-lighten-4";
+      return isDarkTheme.value;
     });
 
     const avatarColor = computed(() => {
@@ -947,7 +947,7 @@ export default {
       if (highContrastMode.value) {
         return "black";
       }
-      return isDarkTheme.value ? "primary" : "white";
+      return isDarkTheme.value ? "primary" : "blue";
     });
 
     const userNameClasses = computed(() => {
