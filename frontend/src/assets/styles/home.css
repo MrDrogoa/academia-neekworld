@@ -41,6 +41,14 @@
   color: #666666;
 }
 
+.btn-primary {
+  transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-5px) !important;
+}
+
 /* -------------------------------------- */
 
 /* texto y titulo de acción */

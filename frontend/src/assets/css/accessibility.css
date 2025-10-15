@@ -3,11 +3,6 @@
    Academia Virtual - Sistema Simplificado
    ========================================= */
 
-/* Variables CSS para accesibilidad */
-:root {
-  --accessibility-text-scale: 1;
-}
-
 /* =========================================
    ESTILOS GLOBALES PARA TODAS LAS VISTAS
    ========================================= */
@@ -40,12 +35,6 @@
   --v-theme-primary: #ffff00 !important;
   --v-theme-on-background: #ffffff !important;
 }
-
-/* Fondo y texto para modo claro */
-
-/* Fondo y texto para modo oscuro */
-
-/* Fondo y texto para alto contraste */
 
 /* =========================================
    SISTEMA DE ESCALADO DE TEXTO - SIMPLIFICADO
@@ -250,20 +239,6 @@ html.text-scale-130 .content-area .v-list-item-title {
 .accessibility-menu .v-switch--active .v-switch__thumb {
   background-color: #ffffff !important;
   border: 2px solid #2e8b57 !important;
-  box-shadow: 0 2px 6px rgba(46, 139, 87, 0.3) !important;
-}
-
-.accessibility-menu .v-switch__thumb {
-  background-color: #ffffff !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
-  border: 1px solid #cccccc !important;
-  width: 18px !important;
-  height: 18px !important;
-}
-
-.accessibility-menu .v-switch--active .v-switch__thumb {
-  background-color: #ffffff !important;
-  border: 1px solid #2e8b57 !important;
   box-shadow: 0 2px 6px rgba(46, 139, 87, 0.3) !important;
 }
 
@@ -817,66 +792,6 @@ footer.footer .footer-link {
    ========================================= */
 
 /* ===== BOTONES DEL CARRITO - MODO CLARO ===== */
-.v-theme--light .v-btn--variant-elevated {
-  background-color: #2ea357 !important;
-  color: white !important;
-  font-weight: 600 !important;
-}
-
-.v-theme--light .v-btn--variant-elevated:hover {
-  background-color: #3fb566 !important;
-  text-decoration: none !important;
-  box-shadow: 0 4px 12px #3fb566 !important;
-}
-
-.v-theme--light .v-btn--variant-outlined.v-btn--disabled {
-  background-color: #e8f5e8 !important;
-  color: #2e8b57 !important;
-  border-color: #2e8b57 !important;
-  border-width: 2px !important;
-  opacity: 1 !important;
-  font-weight: 600 !important;
-}
-
-/* ===== BOTONES DEL CARRITO - MODO OSCURO ===== */
-
-.v-theme--dark .v-btn--variant-outlined.v-btn--disabled {
-  background-color: #1e1e1e !important;
-  color: #81c784 !important;
-  border-color: #81c784 !important;
-  border-width: 2px !important;
-  opacity: 1 !important;
-  font-weight: 600 !important;
-}
-
-/* ===== BOTONES DEL CARRITO - ALTO CONTRASTE ===== */
-.high-contrast-mode .v-btn--variant-elevated,
-body.high-contrast-mode .v-btn--variant-elevated,
-html.high-contrast-mode .v-btn--variant-elevated {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-  border: none !important;
-  font-weight: 700 !important;
-}
-
-.high-contrast-mode .v-btn--variant-elevated:hover,
-body.high-contrast-mode .v-btn--variant-elevated:hover,
-html.high-contrast-mode .v-btn--variant-elevated:hover {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-  border: none !important;
-  box-shadow: 0 0 10px #ffff00 !important;
-}
-
-.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled,
-body.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled,
-html.high-contrast-mode .v-btn--variant-outlined.v-btn--disabled {
-  background-color: #000000 !important;
-  color: #ffff00 !important;
-  border: 3px solid #ffff00 !important;
-  opacity: 1 !important;
-  font-weight: 700 !important;
-}
 
 /* ===== TRANSICIONES ===== */
 .v-btn {
@@ -1225,9 +1140,7 @@ html.high-contrast-mode .title-card {
    ========================================= */
 
 /* ===== CARDSCURSOSCOMPONENTS - MODO OSCURO ===== */
-.v-theme--dark .title-card {
-  color: var(--v-theme-text) !important;
-}
+/* .title-card ya está definido en CARDS AC COMPONENTS */
 
 .v-theme--dark .course-card {
   background-color: var(--v-theme-primary-1) !important;
@@ -1588,6 +1501,10 @@ body.reduced-motion-mode .course-card:hover {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
 }
 
+.high-contrast-mode .btn-action-1:hover {
+  text-decoration: none !important;
+}
+
 /* =========================================
    DASHBOARD HIGH CONTRAST MODE STYLING
    ========================================= */
@@ -1819,4 +1736,86 @@ body.reduced-motion-mode .course-card:hover {
 .high-contrast-mode .border-warning {
   border-color: var(--v-theme-background) !important;
   border-width: 3px !important;
+}
+
+/* =========================================
+   V-CARD VARIANT ELEVATED - THEME INTEGRATION
+   ========================================= */
+
+/* Modo claro - Cards con elevation */
+.v-theme--light .bg-filtros {
+  background-color: #f8f9fa !important;
+  color: #333333 !important;
+}
+
+/* Modo oscuro - Cards con elevation */
+.v-theme--dark .bg-filtros,
+.v-theme--dark .bg-filtros-generales {
+  background-color: var(--v-theme-primary-2) !important;
+  color: #e0e0e0 !important;
+}
+
+/* Alto contraste - Cards con elevation */
+.high-contrast-mode .bg-filtros,
+.high-contrast-mode .bg-filtros-generales {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* =========================================
+   BOTONES DEL PROFILE - THEME INTEGRATION
+   ========================================= */
+.v-theme--dark .profile-bt:hover {
+  box-shadow: 0 4px 5px rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .profile-bt {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+.high-contrast-mode .profile-bt:hover {
+  box-shadow: 0 4px 5px #ffff0087 !important;
+}
+
+.high-contrast-mode .btn-pencil {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+.high-contrast-mode .btn-pencil:hover {
+  background-color: #ffff00 !important;
+
+  box-shadow: 0 4px 12px #ffff00 !important;
+}
+
+.high-contrast-mode .btn-profile {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: 3px solid #ffff00 !important;
+}
+
+.high-contrast-mode .btn-profile:hover {
+  background-color: #ffff00 !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px #ffff00 !important;
+}
+
+.high-contrast-mode .btn-add-to-cart:hover {
+  background-color: #ffff00 !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px #ffff00 !important;
+}
+
+.high-contrast-mode .txt-pdash,
+.high-contrast-mode .txt-dash {
+  color: #ffffff !important;
+}
+.high-contrast-mode .txt-profile {
+  color: #000 !important;
+}
+.v-theme--dark .txt-profile {
+  color: #000 !important;
 }

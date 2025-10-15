@@ -70,7 +70,6 @@
   background-color: #ffff00 !important;
   color: #000000 !important;
   font-weight: 700 !important;
-  border: none !important;
 }
 
 /* texto de botones */
@@ -80,7 +79,6 @@
 
 .btn-add-to-cart:hover {
   transform: translateY(-5px) !important;
-  box-shadow: 0 4px 12px #2ea357;
 }
 
 .btn-add-to-cart .svg-inline--fa {

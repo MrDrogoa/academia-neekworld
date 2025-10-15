@@ -42,11 +42,142 @@
   color: #666666;
   line-height: 1.5;
 }
+/* ===== MODO CLARO ===== */
+.v-theme--light .about-page {
+  background-color: #f8f9fa;
+  color: #2a3b5f;
+}
 
-/* =========================================
-   NOTA: Estilos de temas (light/dark/high-contrast)
-   movidos a accessibility.css para evitar duplicación
-   ========================================= */
+.v-theme--light .about-page h1 {
+  color: #2e8b57;
+}
+
+.v-theme--light .about-section {
+  background-color: white;
+  color: #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-color: #e0e0e0;
+}
+
+.v-theme--light .about-section h2 {
+  color: #2e8b57;
+}
+
+.v-theme--light .about-section p {
+  color: #555;
+}
+
+/* boton de contacto */
+.v-theme--dark .btn-link {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.v-theme--dark .btn-link:hover {
+  background-color: #f0f0f0 !important;
+  color: #000000 !important;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .btn-link {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+
+.high-contrast-mode .btn-link:hover {
+  box-shadow: 0 4px 12px #ffff00 !important;
+}
+
+/* ===== MODO OSCURO - TARJETAS ===== */
+.v-theme--dark .info-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.v-theme--dark .info-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ===== ALTO CONTRASTE - TARJETAS ===== */
+.high-contrast-mode .info-card {
+  background: #000000 !important;
+  border: 3px solid #ffffff !important;
+}
+
+.high-contrast-mode .info-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.high-contrast-mode .card-icon {
+  color: #ffff00 !important;
+}
+
+.high-contrast-mode .card-text {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.high-contrast-mode .card-decoration {
+  display: none !important;
+}
+
+/* ===== MOTION REDUCIDO - TARJETAS ===== */
+@media (prefers-reduced-motion: reduce) {
+  .info-card,
+  .info-card:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+.v-theme--dark .about-page {
+  background-color: #2d3748 !important;
+}
+
+.v-theme--dark .about-page h1 {
+  color: #81c784 !important;
+}
+
+.v-theme--dark .about-section {
+  background-color: #2d2d2d !important;
+  color: #e0e0e0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+  border-color: #404040 !important;
+}
+
+.v-theme--dark .about-section h2 {
+  color: #81c784 !important;
+}
+
+.v-theme--dark .about-section p {
+  color: #e0e0e0 !important;
+}
+
+/* ===== ALTO CONTRASTE ===== */
+.high-contrast-mode .about-page h1 {
+  color: #000000 !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .about-section {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.high-contrast-mode .about-section h2 {
+  color: #000000 !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
+
+.high-contrast-mode .about-section p {
+  color: #000000 !important;
+  font-weight: 500 !important;
+}
 
 /* ===== ESTILOS PARA LAS TARJETAS DE INFORMACIÓN ===== */
 .info-card {

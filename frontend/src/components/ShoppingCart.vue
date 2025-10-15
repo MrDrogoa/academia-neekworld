@@ -19,12 +19,7 @@
         :offset-x="isFloating ? 10 : 0"
         :offset-y="isFloating ? 10 : 0"
       >
-        <v-icon
-          :size="isFloating ? 'large' : 'default'"
-          :color="isFloating ? 'default' : 'default'"
-        >
-          mdi-cart
-        </v-icon>
+        <v-icon :size="isFloating ? 'large' : 'default'"> mdi-cart </v-icon>
       </v-badge>
     </v-btn>
 

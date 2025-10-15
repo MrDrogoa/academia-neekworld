@@ -1,6 +1,6 @@
 <template>
   <v-card class="mb-4">
-    <v-card-title>
+    <v-card-title class="txt-pdash">
       <v-icon icon="mdi-navigation" class="me-2"></v-icon>
       Navegación Rápida
     </v-card-title>

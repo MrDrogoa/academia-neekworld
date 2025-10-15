@@ -1,5 +1,7 @@
 <script setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { nextTick } from "vue";
+import ScrollReveal from "scrollreveal";
 
 // Datos reactivos para las características
 const features = [
@@ -45,13 +47,30 @@ const features = [
       "Próximamente: Servicios de psicología, terapia de pareja y familia",
   },
 ];
+// Inicializar animaciones ScrollReveal después de que el DOM esté listo
+nextTick(() => {
+  // Pequeño delay para asegurar que el DOM está completamente renderizado
+  setTimeout(() => {
+    const sr = ScrollReveal();
+
+    sr.reveal(".sr-bottom", {
+      origin: "bottom",
+      distance: "80px",
+      duration: 700,
+      delay: 50,
+      opacity: 0,
+    });
+  }, 100);
+});
 </script>
 
 <template>
   <section class="features-section">
     <div class="container">
       <!-- Título de la sección -->
-      <h2 class="section-title text-center pb-5 display-5 display-lg-4">
+      <h2
+        class="section-title text-center pb-5 display-5 display-lg-4 sr-bottom"
+      >
         ¿Por qué elegirnos?
       </h2>
 

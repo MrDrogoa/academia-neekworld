@@ -9,7 +9,10 @@
         >
           Dashboard
         </h2>
-        <p class="text-body-1 text-center" aria-describedby="dashboard-title">
+        <p
+          class="text-body-1 text-center txt-pdash"
+          aria-describedby="dashboard-title"
+        >
           {{ welcomeMessage }}
         </p>
       </header>
@@ -65,7 +68,7 @@
                     style="font-size: 80px; color: #6c757d"
                   ></i>
                 </div>
-                <h4 class="mt-2">{{ userName }}</h4>
+                <h4 class="mt-2 txt-dash">{{ userName }}</h4>
                 <p class="text-muted txt-dash">
                   {{
                     userRole === "student"

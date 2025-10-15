@@ -1,8 +1,9 @@
 <script setup>
-import { ref, computed, onMounted, reactive } from "vue";
+import { ref, computed, onMounted, reactive, nextTick } from "vue";
 import cartService from "@/services/cartService";
 import moodleIntegrationService from "@/services/moodleIntegrationService";
 import neekworldService from "@/services/neekworldService";
+import ScrollReveal from "scrollreveal";
 
 // Variables reactivas
 const searchTerm = ref("");
@@ -353,10 +354,26 @@ onMounted(async () => {
   // Intentar cargar cursos desde Neekworld primero, luego Moodle como fallback
   await loadCoursesFromNeekworld();
 });
+
+// Inicializar animaciones ScrollReveal después de que el DOM esté listo
+nextTick(() => {
+  // Pequeño delay para asegurar que el DOM está completamente renderizado
+  setTimeout(() => {
+    const sr = ScrollReveal();
+
+    sr.reveal(".sr-left", {
+      origin: "left",
+      distance: "80px",
+      duration: 700,
+      delay: 50,
+      opacity: 0,
+    });
+  }, 100);
+});
 </script>
 <template>
   <section class="pt-5">
-    <h2 class="title-card text-center py-5 display-5 display-lg-4">
+    <h2 class="title-card text-center py-5 display-5 display-lg-4 sr-left">
       Elige tu próximo curso
     </h2>
     <v-row class="container justify-content-center g-4">
@@ -533,7 +550,7 @@ onMounted(async () => {
               variant="elevated"
               @click="addToCart(course)"
               :loading="addingToCart[course.id]"
-              class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-semibold"
+              class="btn btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
             >
               <FontAwesomeIcon icon="shopping-cart" class="me-2" />
               <span class="card-home">Agregar</span>

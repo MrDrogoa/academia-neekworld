@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import NavigationBar from "@/components/NavigationBar.vue";
 import FooterComponent from "@/components/FooterComponent.vue";
 import ShoppingCart from "@/components/ShoppingCart.vue";
+import { initScrollRevealWithClasses } from "@/utils/scrollReveal";
 
 export default {
   name: "App",
@@ -35,6 +36,11 @@ export default {
         shoppingCart.value.showCartDialog = true;
       }
     };
+
+    // Inicializar ScrollReveal con todas las clases CSS
+    onMounted(() => {
+      initScrollRevealWithClasses();
+    });
 
     return {
       shoppingCart,
@@ -64,46 +70,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   transition: all 0.3s ease;
-}
-
-/* ===== TEMA CLARO - GLOBAL ===== */
-.v-theme--light {
-  --v-theme-background: #ffffff;
-  --v-theme-surface: #ffffff;
-  --v-theme-primary: #2e8b57;
-  --v-theme-secondary: #424242;
-  --v-theme-on-background: #000000;
-  --v-theme-on-surface: #000000;
-}
-
-.v-theme--light body {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.v-theme--light .v-application {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* ===== TEMA OSCURO - GLOBAL ===== */
-.v-theme--dark {
-  --v-theme-background: #121212;
-  --v-theme-surface: #1e1e1e;
-  --v-theme-primary: #4caf50;
-  --v-theme-secondary: #616161;
-  --v-theme-on-background: #ffffff;
-  --v-theme-on-surface: #ffffff;
-}
-
-/* ===== ALTO CONTRASTE - GLOBAL ===== */
-.high-contrast-mode {
-  --v-theme-background: #ffffff !important;
-  --v-theme-surface: #ffffff !important;
-  --v-theme-primary: #000000 !important;
-  --v-theme-secondary: #000000 !important;
-  --v-theme-on-background: #000000 !important;
-  --v-theme-on-surface: #000000 !important;
 }
 
 .v-card {

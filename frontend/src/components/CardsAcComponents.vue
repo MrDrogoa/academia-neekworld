@@ -1,5 +1,6 @@
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, nextTick } from "vue";
+import ScrollReveal from "scrollreveal";
 
 // Datos reactivos para el título principal
 const mainTitle = ref("Impulsa tu futuro");
@@ -25,12 +26,28 @@ const cards = reactive([
       "Transforma tu carrera con cursos de tecnología y accede a mejores oportunidades laborales.",
   },
 ]);
+
+// Inicializar animaciones ScrollReveal después de que el DOM esté listo
+nextTick(() => {
+  // Pequeño delay para asegurar que el DOM está completamente renderizado
+  setTimeout(() => {
+    const sr = ScrollReveal();
+
+    sr.reveal(".sr-right", {
+      origin: "right",
+      distance: "80px",
+      duration: 700,
+      delay: 50,
+      opacity: 0,
+    });
+  }, 100);
+});
 </script>
 
 <template>
   <section class="py-5">
     <div class="container pb-5">
-      <h2 class="title-card text-center pb-5 display-5 display-lg-4">
+      <h2 class="title-card text-center pb-5 display-5 display-lg-4 sr-right">
         {{ mainTitle }}
       </h2>
       <div class="row justify-content-center g-4">

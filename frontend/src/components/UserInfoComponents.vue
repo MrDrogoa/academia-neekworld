@@ -158,7 +158,7 @@ onMounted(() => {
             <v-btn
               icon
               @click="editMode = !editMode"
-              :color="editMode ? 'primary' : 'grey'"
+              class="fw-semibold bg-primary text-white btn-pencil"
             >
               <v-icon>{{ editMode ? "mdi-check" : "mdi-pencil" }}</v-icon>
             </v-btn>
@@ -221,11 +221,14 @@ onMounted(() => {
                     @click="saveProfile"
                     :loading="saving"
                     :disabled="!formValid"
-                    class="btn btn-profile mr-2 text-white"
+                    class="btn btn-profile mr-2 text-white fw-semibold"
                   >
                     Guardar Cambios
                   </v-btn>
-                  <v-btn class="btn btn-profile" text @click="cancelEdit">
+                  <v-btn
+                    class="btn btn-profile text-white fw-semibold"
+                    @click="cancelEdit"
+                  >
                     Cancelar
                   </v-btn>
                 </v-col>
@@ -266,6 +269,7 @@ onMounted(() => {
                 color="primary"
                 block
                 @click="openMoodle"
+                class="profile-bt text-white fw-semibold"
                 :disabled="!user.isAuthenticated"
               >
                 <v-icon left>mdi-open-in-new</v-icon>
@@ -278,7 +282,7 @@ onMounted(() => {
                 text
                 @click="syncWithMoodle"
                 :loading="syncing"
-                class="mt-2"
+                class="mt-2 profile-bt text-white fw-semibold"
               >
                 <v-icon left>mdi-sync</v-icon>
                 Sincronizar datos

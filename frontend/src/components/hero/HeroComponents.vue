@@ -2,11 +2,12 @@
 import "@/assets/styles/hero.css";
 import ImgHero from "@/assets/img/hero-image.webp";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, nextTick } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import authService from "@/services/authService";
 import AuthDialog from "@/components/AuthDialog.vue";
 import { useAccessibility } from "@/composables/useAccessibility";
+import ScrollReveal from "scrollreveal";
 
 const route = useRoute();
 const router = useRouter();
@@ -65,6 +66,55 @@ onMounted(() => {
   if (route.query.showAuth) {
     openAuthDialog(route.query.showAuth);
   }
+
+  // Inicializar animaciones ScrollReveal después de que el DOM esté listo
+  nextTick(() => {
+    // Pequeño delay para asegurar que el DOM está completamente renderizado
+    setTimeout(() => {
+      const sr = ScrollReveal();
+
+      // Reinicializar las animaciones para este componente
+      sr.reveal(".sr-zoom", {
+        distance: "0px",
+        duration: 1000,
+        delay: 200,
+        scale: 0.85,
+        opacity: 0,
+      });
+
+      // Fade in (sin dirección)
+      sr.reveal(".sr-fade", {
+        distance: "0px",
+        duration: 1000,
+        delay: 200,
+        opacity: 0,
+      });
+
+      sr.reveal(".sr-left", {
+        origin: "left",
+        distance: "80px",
+        duration: 1000,
+        delay: 300,
+        opacity: 0,
+      });
+
+      sr.reveal(".sr-right", {
+        origin: "right",
+        distance: "80px",
+        duration: 1000,
+        delay: 200,
+        opacity: 0,
+      });
+
+      sr.reveal(".sr-bottom", {
+        origin: "bottom",
+        distance: "60px",
+        duration: 1000,
+        delay: 400,
+        opacity: 0,
+      });
+    }, 100);
+  });
 });
 </script>
 
@@ -76,7 +126,7 @@ onMounted(() => {
         <div
           class="col-12 col-lg-6 order-1 order-md-1 text-center mb-4 mb-md-0"
         >
-          <div class="hero-image-container">
+          <div class="hero-image-container sr-zoom">
             <img
               :src="ImgHero"
               alt="img-hero"
@@ -89,29 +139,31 @@ onMounted(() => {
         <div class="col-12 col-lg-6 order-2 order-md-2">
           <div class="hero-content px-3 px-md-4 position-relative m-auto">
             <h1
-              class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 mt-md-4 text-center text-md-start"
+              class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 mt-md-4 text-center text-md-start sr-left"
             >
               Academia Digital de NeekWorld
             </h1>
-            <p class="hero-subtitle w-75 m-auto mb-4 text-center text-md-start">
+            <p
+              class="hero-subtitle w-75 m-auto mb-4 text-center text-md-start sr-left"
+            >
               "Aprende en línea, a tu ritmo y desde cualquier lugar, con cursos
               diseñados para adaptarse a tu estilo de vida."
             </p>
             <!-- Iconos de características -->
-            <div class="feature-icon-1 position-absolute">
+            <div class="feature-icon-1 position-absolute sr-fade">
               <FontAwesomeIcon
                 icon=" fa-solid fa-scissors"
                 class="fs-2 opacity-75"
               />
             </div>
-            <div class="feature-icon-2 position-absolute">
+            <div class="feature-icon-2 position-absolute sr-fade">
               <FontAwesomeIcon
                 icon="fa-solid fa-award"
                 class="fs-1 opacity-75"
               />
             </div>
             <div
-              class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start"
+              class="hero-buttons d-flex flex-column flex-sm-row gap-3 justify-content-md-center justify-content-md-start sr-bottom"
             >
               <router-link
                 to="/courses"

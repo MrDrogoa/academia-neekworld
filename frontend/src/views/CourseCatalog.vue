@@ -80,9 +80,9 @@
       </header>
 
       <!-- Filtros -->
-      <section class="bg-filtros">
+      <section class="bg-filtros-generales">
         <v-card
-          class="w-75 mx-auto py-4"
+          class="w-75 mx-auto py-4 bg-filtros"
           elevation="0"
           role="search"
           aria-label="Filtros de búsqueda de cursos"
@@ -303,7 +303,7 @@
                   variant="elevated"
                   @click="addToCart(course)"
                   :loading="addingToCart[course.id]"
-                  class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-semibold"
+                  class="btn btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
                 >
                   <FontAwesomeIcon icon="shopping-cart" class="me-2" />
                   <span>Agregar</span>
@@ -1031,8 +1031,14 @@ h2 {
 }
 
 .btn-add-to-cart:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px #2ea357;
+  transform: translateY(-5px);
+}
+
+.high-contrast-mode .btn-add-to-cart:hover {
+  background-color: #ffff00 !important;
   transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px #ffff00 !important;
 }
 
 .v-theme--dark .btn-add-to-cart {
@@ -1209,7 +1215,7 @@ h2 {
 }
 
 /* Deshabilitar hover y sombra en tarjeta de filtros */
-.v-card {
+.bg-filtros {
   box-shadow: none !important;
 }
 

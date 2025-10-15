@@ -20,7 +20,7 @@
       <div class="container py-4">
         <div class="text-center py-5">
           <h2
-            class="title-action text-white w-75 display-5 display-lg-4 m-auto"
+            class="title-action text-white w-75 display-5 display-lg-4 m-auto sr-left"
           >
             ¿Listo para empezar tu viaje de aprendizaje?
           </h2>
@@ -30,7 +30,7 @@
           <button
             v-if="!user.isAuthenticated"
             @click="openAuthDialog('register')"
-            class="btn btn-primary mt-3 border-0 rounded-4 px-4 py-3 fw-semibold"
+            class="btn btn-primary mt-3 border-0 rounded-4 px-4 py-3 fw-semibold sr-right"
           >
             Comenzar ahora
           </button>

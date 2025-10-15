@@ -21,68 +21,48 @@
             color="primary"
             variant="elevated"
             @click="$router.push('/catalog')"
-            class="btn-add-to-cart"
+            class="btn-add-to-cart fw-semibold rounded-4 text-white"
           >
             <v-icon left>mdi-plus</v-icon>
             Explorar Más Cursos
           </v-btn>
         </div>
 
-        <!-- Estadísticas rápidas -->
+        <!-- Estadísticas rápidas - Dinámicas -->
         <v-row class="mb-6">
-          <v-col cols="12" sm="6" md="3">
-            <v-card class="stat-card text-center">
+          <v-col
+            v-for="stat in statistics"
+            :key="stat.id"
+            cols="12"
+            sm="6"
+            md="3"
+          >
+            <v-card
+              class="stat-card text-center"
+              :class="{ 'stat-card-hover': stat.clickable }"
+              @click="stat.clickable ? handleStatClick(stat.id) : null"
+            >
               <v-card-text>
-                <v-icon size="40" color="primary" class="mb-2"
-                  >mdi-book-open</v-icon
-                >
-                <h3 class="text-h4 font-weight-bold">
-                  {{ enrolledCourses.length }}
+                <v-icon size="40" :color="stat.color" class="mb-2">
+                  {{ stat.icon }}
+                </v-icon>
+                <h3 class="text-h4 font-weight-bold txt-p">
+                  {{ stat.value }}
                 </h3>
-                <p class="text-body-2 text-grey txt-p">Cursos Inscritos</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-card class="stat-card text-center">
-              <v-card-text>
-                <v-icon size="40" color="success" class="mb-2"
-                  >mdi-check-circle</v-icon
+                <p class="text-body-2 text-grey txt-p">{{ stat.label }}</p>
+                <p
+                  v-if="stat.subtitle"
+                  class="text-caption text-grey-lighten-1 mt-1"
                 >
-                <h3 class="text-h4 font-weight-bold">{{ completedCount }}</h3>
-                <p class="text-body-2 text-grey txt-p">Completados</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-card class="stat-card text-center">
-              <v-card-text>
-                <v-icon size="40" color="info" class="mb-2">mdi-clock</v-icon>
-                <h3 class="text-h4 font-weight-bold">{{ totalHours }}</h3>
-                <p class="text-body-2 text-grey txt-p">Horas Totales</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-
-          <v-col cols="12" sm="6" md="3">
-            <v-card class="stat-card text-center">
-              <v-card-text>
-                <v-icon size="40" color="warning" class="mb-2"
-                  >mdi-trophy</v-icon
-                >
-                <h3 class="text-h4 font-weight-bold">
-                  {{ certificatesCount }}
-                </h3>
-                <p class="text-body-2 text-grey txt-p">Certificados</p>
+                  {{ stat.subtitle }}
+                </p>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
 
         <!-- Filtros y búsqueda -->
-        <v-card class="mb-6 card-fil" elevation="1">
+        <v-card class="mb-6 card-fil bg-filtros" elevation="1">
           <v-card-text>
             <v-row>
               <v-col cols="12" md="6">
@@ -238,7 +218,7 @@
                   variant="elevated"
                   block
                   @click="continueCourse(course)"
-                  class="btn-add-to-cart"
+                  class="btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
                 >
                   <v-icon left>mdi-play</v-icon>
                   Continuar Curso
@@ -250,7 +230,7 @@
                   variant="elevated"
                   block
                   @click="startCourse(course)"
-                  class="btn-add-to-cart"
+                  class="btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
                 >
                   <v-icon left>mdi-play-circle</v-icon>
                   Iniciar Curso
@@ -258,8 +238,8 @@
 
                 <v-btn
                   v-else-if="course.status === 'Completado'"
-                  color="info"
                   variant="outlined"
+                  class="btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
                   block
                   @click="reviewCourse(course)"
                 >
@@ -274,6 +254,7 @@
                       icon="mdi-dots-vertical"
                       variant="text"
                       size="small"
+                      class="btn-add-to-cart rounded-4 text-white px-4 py-3 fw-semibold"
                       v-bind="props"
                     ></v-btn>
                   </template>
@@ -324,7 +305,7 @@
                 ></v-img>
 
                 <v-card-text>
-                  <h4 class="txt-title-card fw-bold mb-2">
+                  <h4 class="txt-title-card fw-bold mb-2 txt-p">
                     {{ course.title }}
                   </h4>
                   <p class="text-body-2 text-grey-darken-1 mb-2 txt-p">
@@ -542,6 +523,72 @@ export default {
       ).length;
     });
 
+    const inProgressCount = computed(() => {
+      return enrolledCourses.value.filter(
+        (course) => course.status === "En Progreso"
+      ).length;
+    });
+
+    const notStartedCount = computed(() => {
+      return enrolledCourses.value.filter(
+        (course) => course.status === "No Iniciado"
+      ).length;
+    });
+
+    const averageProgress = computed(() => {
+      if (enrolledCourses.value.length === 0) return 0;
+      const totalProgress = enrolledCourses.value.reduce(
+        (sum, course) => sum + course.progress,
+        0
+      );
+      return Math.round(totalProgress / enrolledCourses.value.length);
+    });
+
+    // Estadísticas dinámicas configurables
+    const statistics = computed(() => [
+      {
+        id: "enrolled",
+        label: "Cursos Inscritos",
+        value: enrolledCourses.value.length,
+        icon: "mdi-book-open",
+        color: "primary",
+        subtitle: `${inProgressCount.value} en progreso`,
+        clickable: true,
+      },
+      {
+        id: "completed",
+        label: "Completados",
+        value: completedCount.value,
+        icon: "mdi-check-circle",
+        color: "success",
+        subtitle: `${averageProgress.value}% progreso promedio`,
+        clickable: true,
+      },
+      {
+        id: "hours",
+        label: "Horas Totales",
+        value: totalHours.value,
+        icon: "mdi-clock",
+        color: "info",
+        subtitle: `${Math.round(
+          totalHours.value / enrolledCourses.value.length || 0
+        )}h por curso`,
+        clickable: false,
+      },
+      {
+        id: "certificates",
+        label: "Certificados",
+        value: certificatesCount.value,
+        icon: "mdi-trophy",
+        color: "warning",
+        subtitle:
+          notStartedCount.value > 0
+            ? `${notStartedCount.value} por iniciar`
+            : "¡Felicidades!",
+        clickable: true,
+      },
+    ]);
+
     // Métodos
     const getStatusColor = (status) => {
       switch (status) {
@@ -660,6 +707,31 @@ export default {
       };
     };
 
+    const handleStatClick = (statId) => {
+      switch (statId) {
+        case "enrolled":
+          // Mostrar solo cursos inscritos (todos)
+          filterStatus.value = "";
+          showSnackbar("Mostrando todos los cursos inscritos", "info");
+          break;
+        case "completed":
+          // Filtrar por completados
+          filterStatus.value = "Completado";
+          showSnackbar("Mostrando cursos completados", "success");
+          break;
+        case "certificates":
+          // Filtrar por completados (con certificado)
+          filterStatus.value = "Completado";
+          showSnackbar(
+            "Mostrando cursos con certificado disponible",
+            "warning"
+          );
+          break;
+        default:
+          break;
+      }
+    };
+
     onMounted(async () => {
       // Cargar cursos base
       await loadEnrolledCourses();
@@ -723,6 +795,10 @@ export default {
       completedCount,
       totalHours,
       certificatesCount,
+      inProgressCount,
+      notStartedCount,
+      averageProgress,
+      statistics,
       loading,
       loadEnrolledCourses,
       getStatusColor,
@@ -736,6 +812,7 @@ export default {
       downloadCertificate,
       shareCourse,
       viewCourse,
+      handleStatClick,
     };
   },
 };
@@ -760,6 +837,12 @@ export default {
   box-shadow: none !important;
 }
 
+.btn-add-to-cart:hover {
+  box-shadow: 0 4px 8px #2ea357 !important;
+  transform: translateY(-5px) !important;
+  border: none !important;
+}
+
 /* titulo de card */
 .txt-title-card {
   font-family: "Montserrat", serif;
@@ -776,17 +859,35 @@ export default {
 }
 
 .stat-card {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stat-card-hover {
+  cursor: pointer;
+}
+
+.stat-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
 }
 
 .v-theme--dark .stat-card {
   background-color: #252d3a !important;
 }
 
+.v-theme--dark .stat-card-hover:hover {
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1) !important;
+}
+
 .high-contrast-mode .stat-card {
   background-color: #000 !important;
-  border: 3px solid #fff !important;
   color: #fff !important;
+  border: 3px solid #fff !important;
+}
+
+.high-contrast-mode .stat-card-hover:hover {
+  border-color: #ffff00 !important;
+  box-shadow: 0 8px 16px rgba(255, 255, 0, 0.5) !important;
 }
 
 .v-theme--dark .btn-add-to-cart {
@@ -799,6 +900,12 @@ export default {
   color: #000000 !important;
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
+}
+
+.high-contrast-mode .btn-add-to-cart {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
 }
 
 .high-contrast-mode .btn-add-to-cart:hover {

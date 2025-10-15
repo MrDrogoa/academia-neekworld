@@ -1,6 +1,6 @@
 <template>
   <v-card class="dashboard-card">
-    <v-card-title class="text-h6">
+    <v-card-title class="text-h6 txt-profile">
       <v-icon class="me-2">mdi-lightning-bolt</v-icon>
       Acciones Rápidas
     </v-card-title>

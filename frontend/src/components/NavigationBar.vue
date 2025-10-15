@@ -947,7 +947,7 @@ export default {
       if (highContrastMode.value) {
         return "black";
       }
-      return isDarkTheme.value ? "primary" : "blue";
+      return isDarkTheme.value ? "primary" : "white";
     });
 
     const userNameClasses = computed(() => {

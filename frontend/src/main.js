@@ -101,15 +101,18 @@ if (process.env.NODE_ENV === "development") {
   );
 }
 
+// ========================================
+// ESTILOS CSS/SCSS CENTRALIZADOS
+// ========================================
+// Importar todos los estilos desde maincss.js
+import "./assets/maincss.js";
+
 // Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import "@mdi/font/css/materialdesignicons.css";
-
-// Accessibility CSS - Global styles for accessibility features
-import "@/assets/css/accessibility.css";
 
 // Create Vuetify instance with all components
 const vuetify = createVuetify({
