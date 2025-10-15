@@ -55,7 +55,7 @@
             </p>
             <div class="d-flex justify-content-center align-items-center mt-4">
               <v-btn
-                class="btn d-flex text-white justify-content-center align-items-center btn-primary border-0 rounded-4 px-4 py-3 fw-medium text-center"
+                class="btn d-flex text-white justify-content-center align-items-center btn-primary border-0 rounded-4 px-4 py-3 fw-semibold text-center"
                 @click="
                   $router.push('/courses');
                   showCartDialog = false;

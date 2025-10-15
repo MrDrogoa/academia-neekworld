@@ -18,7 +18,7 @@ const dataSource = ref("mock");
 const snackbar = ref({
   show: false,
   message: "",
-  color: "success",
+  color: "info",
 });
 
 // Cursos dinámicos (se cargan desde las APIs o mock data)
@@ -111,7 +111,7 @@ const addToCart = async (course) => {
     const result = cartService.addCourse(course);
 
     if (result.success) {
-      showSnackbar(result.message, "success");
+      showSnackbar(result.message, "info");
     } else {
       showSnackbar(result.message, "warning");
     }
@@ -131,7 +131,7 @@ const selectCourse = (course) => {
   }
 };
 
-const showSnackbar = (message, color = "success") => {
+const showSnackbar = (message, color = "info") => {
   snackbar.value = {
     show: true,
     message,
@@ -179,7 +179,7 @@ const loadCoursesFromNeekworld = async () => {
 
       showSnackbar(
         `${result.courses.length} cursos cargados desde Neekworld`,
-        "success"
+        "info"
       );
     } else {
       throw new Error("No se encontraron cursos en Neekworld");
@@ -388,7 +388,9 @@ onMounted(async () => {
             class="course-image"
             role="img"
           >
-            <div class="overlay d-flex align-end justify-space-between">
+            <div
+              class="overlay position-absolute left-0 right-0 bottom-0 d-flex align-end justify-space-between"
+            >
               <div class="d-flex flex-wrap ga-1">
                 <v-chip
                   :color="getLevelColor(course.level)"
@@ -531,10 +533,10 @@ onMounted(async () => {
               variant="elevated"
               @click="addToCart(course)"
               :loading="addingToCart[course.id]"
-              class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-medium"
+              class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-semibold"
             >
               <FontAwesomeIcon icon="shopping-cart" class="me-2" />
-              <span>Agregar</span>
+              <span class="card-home">Agregar</span>
             </v-btn>
 
             <v-btn
@@ -542,7 +544,7 @@ onMounted(async () => {
               color="success"
               variant="outlined"
               disabled
-              class="btn rounded-4 btn-carBuy px-4 py-3 fw-medium d-flex align-center justify-center"
+              class="btn rounded-4 btn-carBuy px-4 py-3 fw-semibold d-flex align-center justify-center"
             >
               <FontAwesomeIcon icon="check" class="me-2" />
               <span class="txt-btn">En carrito</span>
@@ -554,7 +556,7 @@ onMounted(async () => {
     <div class="d-flex justify-content-center pt-4 pt-lg-5">
       <router-link
         to="/courses"
-        class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-medium"
+        class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-semibold"
       >
         Cursos
       </router-link>
@@ -576,138 +578,5 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-// title card
-.title-card {
-  color: #373b8a;
-  font-weight: 800;
-  font-family: "Montserrat", sans-serif;
-}
-
-/* Estilos para las tarjetas de cursos */
-.course-card {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.course-card .v-card-text {
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.course-card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
-  transform: translateY(-5px);
-}
-
-/* Imagen del curso */
-.course-image {
-  position: relative;
-  width: 100%;
-}
-
-// boton curso
-.btn-primary {
-  background-color: #29acb9;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #32c4d2;
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px #32c4d2;
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-}
-
-/* Título de tarjetas */
-.txt-title-card {
-  font-family: "Montserrat", sans-serif;
-  color: #373b8a !important;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  line-clamp: 2 !important;
-  min-height: 3rem !important;
-}
-
-/* Texto de párrafos */
-.txt-p {
-  font-family: "DM Sans", sans-serif;
-  color: #666666;
-}
-
-/* Descripción del curso */
-.course-description {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  line-clamp: 3 !important;
-  flex-grow: 1 !important;
-}
-
-/* Botón agregar al carrito */
-.btn-add-to-cart {
-  background-color: #2ea357 !important;
-  font-family: "DM Sans", sans-serif;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-}
-
-.btn-add-to-cart:hover {
-  transform: translateY(-5px) !important;
-}
-
-.btn-add-to-cart .svg-inline--fa {
-  display: inline-flex !important;
-  align-items: center !important;
-  margin-right: 0 !important;
-  font-size: 16px !important;
-  vertical-align: middle !important;
-}
-
-/* Botón "En carrito" */
-.v-btn.v-btn--variant-outlined {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 8px !important;
-}
-
-.v-btn.v-btn--variant-outlined .svg-inline--fa {
-  display: inline-flex !important;
-  align-items: center !important;
-  margin-right: 0 !important;
-  font-size: 16px !important;
-  vertical-align: middle !important;
-}
-
-/* Asegurar que el card-actions esté en la parte inferior */
-.course-card .v-card-actions {
-  margin-top: auto !important;
-}
-
-.v-theme--dark .txt-title-card {
-  color: #fff !important;
-}
-
-.v-theme--dark .btn-add-to-cart {
-  background-color: #fff !important;
-  color: #000 !important;
-}
-
-.v-theme--dark .btn-add-to-cart:hover {
-  background-color: #fff !important;
-}
+@import "../assets/styles/cardshome.css";
 </style>

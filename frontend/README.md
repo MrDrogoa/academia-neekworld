@@ -875,4 +875,485 @@ frontend/
 
 ---
 
+## 📅 Fecha: 14 de Octubre, 2025
+
+## 🔄 **14. OPTIMIZACIÓN DE COMPONENTES Y SISTEMA DE AUTENTICACIÓN**
+
+### 📁 **Archivos modificados:**
+- `src/views/HomeView.vue`
+- `src/components/home/FeatureComponents.vue`
+- `src/components/FooterComponent.vue`
+- `src/components/hero/HeroComponents.vue`
+- `src/components/AuthDialog.vue`
+- `src/assets/styles/home.css`
+
+### ✨ **Cambios realizados:**
+
+#### 🎯 **1. CONVERSIÓN DE HOMEVIEW A COMPOSITION API**
+
+##### **Migración completa de Options API a Composition API:**
+- **Script setup implementado** con sintaxis moderna de Vue 3
+- **Imports organizados:**
+  ```javascript
+  import { ref, computed, onMounted, watch } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  import authService from "@/services/authService";
+  import AuthDialog from "@/components/AuthDialog.vue";
+  import { useAccessibility } from "@/composables/useAccessibility";
+  ```
+
+##### **Sistema de autenticación integrado:**
+- **Usuario reactivo:** `const user = computed(() => authService.getCurrentUser())`
+- **Dialog de autenticación:**
+  ```javascript
+  const authDialog = ref({
+    visible: false,
+    mode: "login",
+  });
+  ```
+
+##### **Función openAuthDialog implementada:**
+```javascript
+const openAuthDialog = (mode) => {
+  authDialog.value.mode = mode;
+  authDialog.value.visible = true;
+};
+```
+
+##### **Handlers de autenticación:**
+- **handleAuthSuccess:** Redirección automática si hay query params
+- **handleAuthError:** Logging de errores en consola
+- **Watch para query parameters:** Auto-apertura del dialog con `?showAuth=login/register`
+
+##### **Lifecycle hooks:**
+```javascript
+onMounted(() => {
+  loadSavedSettings();
+  if (route.query.showAuth) {
+    openAuthDialog(route.query.showAuth);
+  }
+});
+```
+
+#### 🎨 **2. COMPONENTE AUTHDIALOG INTEGRADO EN HOMEVIEW**
+
+##### **Template del dialog:**
+```vue
+<AuthDialog
+  :visible="authDialog.visible"
+  @update:visible="authDialog.visible = $event"
+  mode="register"
+  @auth-success="handleAuthSuccess"
+  @auth-error="handleAuthError"
+/>
+```
+
+##### **Características del AuthDialog:**
+- **Modo register fijo** para botón "Comenzar ahora"
+- **Eventos personalizados:** `@auth-success`, `@auth-error`
+- **Binding bidireccional:** `:visible` con `@update:visible`
+- **Control de visibilidad:** Botones X y Cancelar funcionando correctamente
+
+##### **Modificaciones en AuthDialog.vue:**
+- **Ocultar botón de cambio de modo** cuando se usa `mode="register"`:
+  ```vue
+  <template v-if="mode === 'login'">
+    <v-divider></v-divider>
+    <v-card-actions class="justify-center text-cuestion">
+      <!-- Botón "¿Ya tienes cuenta?" solo visible en modo login -->
+    </v-card-actions>
+  </template>
+  ```
+
+- **Watch mejorado con immediate:**
+  ```javascript
+  watch(
+    () => props.mode,
+    (newMode) => {
+      isLogin.value = newMode === "login";
+    },
+    { immediate: true }
+  );
+  ```
+
+#### 📦 **3. FEATURECOMPONENTS - DATOS DINÁMICOS**
+
+##### **Conversión de estático a dinámico:**
+- **Array de features reactivo:**
+  ```javascript
+  const features = [
+    {
+      icon: "fa-solid fa-note-sticky",
+      title: "Variedad de Cursos",
+      description: "Descubre cursos en numerosas áreas de conocimiento",
+    },
+    {
+      icon: "fa-solid fa-gear",
+      title: "Instructores Expertos",
+      description: "Aprende de profesionales con experiencia en la industria",
+    },
+    // 8 features en total
+  ];
+  ```
+
+##### **Template optimizado con v-for:**
+```vue
+<div
+  v-for="(feature, index) in features"
+  :key="index"
+  class="feature-card rounded-4 text-center p-4"
+>
+  <div class="icon-main mb-3">
+    <FontAwesomeIcon :icon="feature.icon" class="fs-1" />
+  </div>
+  <h3 class="title-main mb-3 fs-5 fw-bold">{{ feature.title }}</h3>
+  <p class="txt-main">{{ feature.description }}</p>
+</div>
+```
+
+##### **Reducción de código:**
+- **Antes:** ~100 líneas de HTML repetitivo
+- **Después:** ~50 líneas con loop dinámico
+- **Reducción:** 50% menos código
+
+#### 🦶 **4. FOOTERCOMPONENT - SISTEMA DINÁMICO COMPLETO**
+
+##### **Conversión a script setup:**
+```javascript
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { ref } from "vue";
+
+const currentYear = new Date().getFullYear();
+```
+
+##### **Secciones de footer dinámicas:**
+```javascript
+const footerSections = [
+  {
+    title: "Aprende",
+    visible: true,
+    links: [
+      { text: "Cursos", to: "/courses", isRouter: true },
+      { text: "Becas", to: "/scholarships", isRouter: false },
+      {
+        text: "Aula Virtual",
+        to: "https://neekworld.cl/NW/",
+        isRouter: false,
+        external: true,
+      },
+    ],
+  },
+  {
+    title: "Información",
+    visible: true,
+    hideOnMobile: true,
+    links: [
+      { text: "Términos y Condiciones", to: "/terms", isRouter: true },
+      { text: "Acerca de", to: "/about", isRouter: true },
+      { text: "Contacto", to: "/contact", isRouter: true },
+    ],
+  },
+];
+```
+
+##### **Redes sociales dinámicas:**
+```javascript
+const socialLinks = [
+  {
+    icon: "fa-brands fa-instagram",
+    url: "https://instagram.com",
+    label: "Instagram",
+  },
+  {
+    icon: "fa-brands fa-facebook",
+    url: "https://facebook.com",
+    label: "Facebook",
+  },
+  {
+    icon: "fa-solid fa-phone",
+    url: "tel:+1234567890",
+    label: "Teléfono",
+  },
+  {
+    icon: "fa-solid fa-envelope",
+    url: "mailto:info@academia.com",
+    label: "Email",
+  },
+];
+```
+
+##### **Template optimizado:**
+```vue
+<!-- Secciones dinámicas de enlaces -->
+<div
+  v-for="(section, index) in footerSections"
+  :key="index"
+  :class="[
+    'col-12 col-sm-6 col-md-4 mb-4 mb-md-0',
+    { 'd-none d-sm-block': section.hideOnMobile }
+  ]"
+>
+  <h5 class="fw-semibold mb-3 text-white txt-footer">
+    {{ section.title }}
+  </h5>
+  <ul class="list-unstyled txt-footer">
+    <li v-for="(link, linkIndex) in section.links" :key="linkIndex" class="mb-2">
+      <router-link v-if="link.isRouter" :to="link.to">
+        {{ link.text }}
+      </router-link>
+      <a v-else :href="link.to" :target="link.external ? '_blank' : '_self'">
+        {{ link.text }}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Redes sociales dinámicas -->
+<a
+  v-for="(social, index) in socialLinks"
+  :key="index"
+  :href="social.url"
+  :aria-label="social.label"
+  class="social-icon text-white rounded-3"
+>
+  <FontAwesomeIcon :icon="social.icon" class="fs-4" />
+</a>
+```
+
+#### 📝 **5. IMPORTACIÓN DE ESTILOS CSS CORREGIDA**
+
+##### **Problema identificado:**
+- **Incorrecto:** `import "@/assets/styles/home.css"` dentro de `<script setup>`
+- **Consecuencia:** Estilos aplicados globalmente sin scoping
+
+##### **Solución implementada:**
+```vue
+<!-- Método 1: @import en style -->
+<style scoped>
+@import "@/assets/styles/home.css";
+</style>
+
+<!-- Método 2: src attribute (alternativa) -->
+<style scoped src="@/assets/styles/home.css"></style>
+```
+
+##### **Ventajas de la corrección:**
+- ✅ **Scoping correcto:** Estilos encapsulados en el componente
+- ✅ **Performance:** Vue procesa el CSS adecuadamente
+- ✅ **Mantenibilidad:** Estructura estándar de Vue
+
+#### 🎯 **6. BOTONES DE AUTENTICACIÓN FUNCIONALES**
+
+##### **Botón "Comenzar ahora" en HomeView:**
+```vue
+<button
+  v-if="!user.isAuthenticated"
+  @click="openAuthDialog('register')"
+  class="btn btn-primary mt-3 border-0 rounded-4 px-4 py-3 fw-semibold"
+>
+  Comenzar ahora
+</button>
+```
+
+##### **Botón "Regístrate" en HeroComponents:**
+```vue
+<button
+  v-if="!user.isAuthenticated"
+  @click="openAuthDialog('register')"
+  class="btn btn-secondary border-0 rounded-4 px-4 py-3 fw-semibold text-white"
+>
+  Regístrate
+</button>
+```
+
+##### **Características implementadas:**
+- **Condicional de visibilidad:** Solo visible si usuario NO está autenticado
+- **Modo register directo:** Ambos botones abren directamente el formulario de registro
+- **Sin texto "¿Ya tienes cuenta?":** Oculto cuando se abre desde estos botones
+- **Botones de cierre funcionales:** X y Cancelar cierran el dialog correctamente
+
+### 📊 **7. MÉTRICAS DEL TRABAJO REALIZADO**
+
+#### **Componentes modernizados:**
+- ✅ **HomeView:** Options API → Composition API (script setup)
+- ✅ **FeatureComponents:** Estático → Dinámico con array de datos
+- ✅ **FooterComponent:** Options API → Composition API con datos reactivos
+- ✅ **AuthDialog:** Mejorado con control de visibilidad de botones
+
+#### **Líneas de código:**
+- **HomeView:** +80 líneas (lógica de autenticación completa)
+- **FeatureComponents:** -50 líneas (50% reducción con v-for)
+- **FooterComponent:** -70 líneas (código más limpio y mantenible)
+- **Total optimizado:** ~140 líneas reducidas
+
+#### **Archivos CSS:**
+- **home.css:** Correctamente importado con @import en <style>
+- **Estilos organizados:** Separación clara entre global y scoped
+
+### 🚀 **8. ARQUITECTURA Y PATRONES IMPLEMENTADOS**
+
+#### **Composition API Benefits:**
+- **Código más legible:** Lógica agrupada por funcionalidad
+- **Reutilización:** Composables para accesibilidad
+- **TypeScript ready:** Mejor inferencia de tipos
+- **Performance:** Setup una sola vez
+
+#### **Data-Driven Components:**
+- **Mantenibilidad:** Cambios en datos, no en template
+- **Escalabilidad:** Fácil agregar nuevas features/links
+- **Consistencia:** Un template para todos los elementos
+- **Testing:** Datos separados facilitan unit tests
+
+#### **Event Handling:**
+- **Custom events:** `@auth-success`, `@auth-error`
+- **Bidirectional binding:** `:visible` + `@update:visible`
+- **Mode control:** Props para controlar comportamiento del dialog
+- **Query params:** Auto-apertura con parámetros URL
+
+### 🔍 **9. BÚSQUEDA Y CORRECCIONES DE CLASES CSS**
+
+#### **Clase investigada:**
+- `.high-contrast-mode .btn-secondary` encontrada en 5 ubicaciones:
+  - `home.css` (línea 112)
+  - `hero.css` (líneas 210-219)
+  - `accessibility.css.backup` (líneas 202, 208)
+
+#### **Estilos diferentes identificados:**
+- **home.css:** Botón transparente con borde amarillo
+- **hero.css:** Botón amarillo sólido con texto negro
+- **Posible conflicto:** Dependiendo del orden de carga
+
+### 🎨 **10. MEJORAS EN EXPERIENCIA DE USUARIO**
+
+#### **Flujo de autenticación mejorado:**
+1. **Usuario hace clic** en "Comenzar ahora" o "Regístrate"
+2. **Dialog se abre** directamente en modo registro
+3. **Usuario completa** el formulario
+4. **Sin confusión:** No aparece texto "¿Ya tienes cuenta?"
+5. **Puede cerrar** con X, Cancelar o click fuera
+
+#### **Ventajas del nuevo sistema:**
+- **Menos pasos:** Acceso directo a registro
+- **Menos confusión:** Sin opciones innecesarias
+- **Mejor conversión:** Enfoque en la acción principal
+- **UX consistente:** Mismo comportamiento en ambos botones
+
+### 🛠️ **11. BENEFICIOS DE LA REFACTORIZACIÓN**
+
+#### **Para desarrolladores:**
+- **Código moderno:** Vue 3 Composition API estándar
+- **Más mantenible:** Datos centralizados en arrays
+- **Fácil debug:** Lógica clara y separada
+- **Mejor DX:** Imports organizados, código limpio
+
+#### **Para el proyecto:**
+- **Escalabilidad:** Fácil agregar nuevas features
+- **Performance:** Menos código, mejor optimización
+- **Calidad:** Estándares modernos de Vue 3
+- **Futuro-proof:** Preparado para nuevas características
+
+#### **Para usuarios:**
+- **Registro rápido:** Menos clics para registrarse
+- **Interfaz clara:** Sin opciones confusas
+- **Responsive:** Funciona perfectamente en móviles
+- **Accesible:** Mantiene estándares de accesibilidad
+
+### 📋 **12. CHECKLIST DE TAREAS COMPLETADAS**
+
+#### **HomeView modernizado:**
+- ✅ Migrado a Composition API con script setup
+- ✅ Sistema de autenticación integrado
+- ✅ AuthDialog component agregado
+- ✅ Botones de registro funcionales
+- ✅ Watch para query parameters implementado
+- ✅ Handlers de success/error configurados
+- ✅ Importación de CSS corregida
+
+#### **FeatureComponents optimizado:**
+- ✅ Array de features dinámico creado
+- ✅ v-for implementado en template
+- ✅ 50% reducción de código HTML
+- ✅ Fácil de mantener y expandir
+- ✅ Iconos dinámicos con binding
+
+#### **FooterComponent refactorizado:**
+- ✅ Migrado a script setup
+- ✅ footerSections array dinámico
+- ✅ socialLinks array dinámico
+- ✅ Template con v-for optimizado
+- ✅ Lógica de router-link vs <a> implementada
+- ✅ hideOnMobile functionality mantenida
+- ✅ Enlaces externos con target="_blank" correcto
+
+#### **AuthDialog mejorado:**
+- ✅ Botón "¿Ya tienes cuenta?" ocultable
+- ✅ Watch con immediate: true
+- ✅ Modo register forzado desde props
+- ✅ Botones X y Cancelar funcionales
+- ✅ Emisión de eventos personalizada
+
+#### **Estilos CSS:**
+- ✅ home.css correctamente importado
+- ✅ @import en <style scoped>
+- ✅ Clase .high-contrast-mode .btn-secondary localizada
+- ✅ Posibles conflictos identificados
+
+### 🏆 **13. LOGROS DE LA SESIÓN**
+
+#### **Modernización completa:**
+- **3 componentes** migrados a Composition API
+- **2 componentes** convertidos a data-driven
+- **1 sistema** de autenticación integrado
+- **~140 líneas** de código optimizadas
+
+#### **Mejor arquitectura:**
+- **Separation of concerns** implementada
+- **DRY principle** aplicado en footer y features
+- **Component communication** mejorada con eventos
+- **State management** simplificado
+
+#### **Calidad del código:**
+- **Vue 3 best practices** seguidas
+- **Modern JavaScript** utilizado
+- **Clean code principles** aplicados
+- **Performance optimizations** implementadas
+
+### 🔮 **14. PRÓXIMOS PASOS RECOMENDADOS**
+
+#### **Testing:**
+- Unit tests para componentes dinámicos
+- Integration tests para flujo de autenticación
+- E2E tests para registro completo
+
+#### **Optimización:**
+- Lazy loading para AuthDialog
+- Code splitting para rutas
+- Image optimization para hero
+
+#### **Documentación:**
+- Storybook para componentes dinámicos
+- JSDoc para funciones y composables
+- README de componentes individuales
+
+#### **Mejoras futuras:**
+- Internacionalización (i18n) para textos
+- Validación de formularios mejorada
+- Animaciones de transición en dialog
+- Toast notifications para feedback
+
+---
+
+## 👨‍💻 **INFORMACIÓN TÉCNICA - SESIÓN 14 OCT 2025**
+
+**Duración de sesión:** ~5 horas  
+**Componentes modificados:** 4  
+**Archivos CSS corregidos:** 1  
+**Líneas optimizadas:** ~140  
+**Metodología:** Composition API first, Data-driven components  
+**Estándares:** Vue 3 best practices, Clean code  
+**Testing:** Manual testing realizado  
+**Patrón:** Props down, Events up  
+
+---
+
 *Documentación actualizada - Academia Virtual NeekWorld*

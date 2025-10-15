@@ -75,7 +75,7 @@ const infoCards = [
 
             <router-link
               :to="aboutSection.buttonLink"
-              class="btn btn-link text-decoration-none border-0 rounded-4 px-4 py-3 fw-medium"
+              class="btn btn-link text-decoration-none border-0 rounded-4 px-4 py-3 fw-semibold"
             >
               {{ aboutSection.buttonText }}
             </router-link>

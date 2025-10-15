@@ -439,13 +439,11 @@ export default {
           title: "Completar perfil",
           icon: "mdi-account-edit",
           to: "/profile",
-          color: "primary",
         },
         {
           title: "Explorar cursos",
           icon: "mdi-magnify",
           to: "/courses",
-          color: "secondary",
         },
       ];
     },

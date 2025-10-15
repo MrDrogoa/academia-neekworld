@@ -1,0 +1,124 @@
+/* titulo de cards home */
+.title-card {
+  color: #373b8a;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Estilos para las tarjetas de cursos */
+.course-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-5px);
+}
+
+/* boton cursos catalogos */
+.btn-primary {
+  background-color: #29acb9;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #32c4d2;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px #32c4d2;
+}
+
+/* Overlay pie de imagen */
+.overlay {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+/* Título de tarjetas */
+.txt-title-card {
+  font-family: "Montserrat", sans-serif;
+  color: #373b8a !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  line-clamp: 2 !important;
+  min-height: 3rem !important;
+}
+
+/* Texto de párrafos */
+.txt-p {
+  font-family: "DM Sans", sans-serif;
+  color: #666666;
+}
+
+/* Descripción del curso */
+.course-description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-clamp: 3 !important;
+  flex-grow: 1 !important;
+}
+
+/* Botón agregar al carrito */
+.btn-add-to-cart {
+  background-color: #2ea357 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+/* texto de botones */
+.card-home {
+  font-family: "DM Sans", sans-serif;
+}
+
+.btn-add-to-cart:hover {
+  transform: translateY(-5px) !important;
+}
+
+.btn-add-to-cart .svg-inline--fa {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 0 !important;
+  font-size: 16px !important;
+  vertical-align: middle !important;
+}
+
+/* Botón "En carrito" */
+.v-btn.v-btn--variant-outlined {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.v-btn.v-btn--variant-outlined .svg-inline--fa {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-right: 0 !important;
+  font-size: 16px !important;
+  vertical-align: middle !important;
+}
+
+/* Asegurar que el card-actions esté en la parte inferior */
+.course-card .v-card-actions {
+  margin-top: auto !important;
+}
+
+/* snackbar */
+.snackbar-cart {
+  background-color: #2ea357 !important;
+  color: white !important;
+}
+
+.v-theme--dark .txt-title-card {
+  color: #fff !important;
+}
+
+.v-theme--dark .btn-add-to-cart {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .btn-add-to-cart:hover {
+  background-color: #fff !important;
+}

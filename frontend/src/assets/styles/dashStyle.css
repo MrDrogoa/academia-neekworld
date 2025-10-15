@@ -53,15 +53,6 @@ h1 {
   text-decoration: none;
 }
 
-.btn-primary {
-  background-color: #2e8b57;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #3aa870;
-}
-
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1fr;

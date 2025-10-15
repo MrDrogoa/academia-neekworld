@@ -101,7 +101,7 @@
                   <v-btn
                     color="success"
                     size="large"
-                    class="send-button px-4 py-2 text-white"
+                    class="send-button px-4 py-2 text-white fw-semibold"
                     @click="submit"
                     :disabled="!valid"
                   >
@@ -389,7 +389,6 @@ export default {
   min-width: 120px !important;
   height: 48px !important;
   text-transform: none !important;
-
   transition: all 0.3s ease !important;
 }
 

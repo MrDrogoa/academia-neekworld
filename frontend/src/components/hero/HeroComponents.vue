@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="hero-section py-5">
+  <section class="hero-section m-auto py-5">
     <div class="container-fluid px-4 py-4">
       <div class="row justify-content-center align-items-center">
         <!-- Imagen - En pantallas grandes a la izquierda, en móviles arriba -->
@@ -87,7 +87,7 @@ onMounted(() => {
 
         <!-- Contenido - En pantallas grandes a la derecha, en móviles abajo -->
         <div class="col-12 col-lg-6 order-2 order-md-2">
-          <div class="hero-content px-3 px-md-4 position-relative">
+          <div class="hero-content px-3 px-md-4 position-relative m-auto">
             <h1
               class="hero-title display-4 display-lg-3 display-xl-2 lh-1 mb-3 mt-md-4 text-center text-md-start"
             >
@@ -115,14 +115,14 @@ onMounted(() => {
             >
               <router-link
                 to="/courses"
-                class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-medium"
+                class="btn btn-primary text-decoration-none border-0 rounded-4 px-4 py-3 fw-semibold text-white"
               >
                 Cursos
               </router-link>
               <button
                 v-if="!user.isAuthenticated"
                 @click="openAuthDialog('register')"
-                class="btn btn-secondary border-0 rounded-4 px-4 py-3 fw-medium"
+                class="btn btn-secondary border-0 rounded-4 px-4 py-3 fw-semibold text-white"
               >
                 Regístrate
               </button>

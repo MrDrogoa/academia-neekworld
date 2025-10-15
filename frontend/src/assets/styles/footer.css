@@ -1,0 +1,47 @@
+/* color de fondo de footer */
+.bg-footer {
+  background-color: #21234a;
+}
+
+/* texto footer */
+.txt-footer {
+  font-family: "Dm Sans", sans-serif;
+}
+
+/* Enlaces del footer */
+.footer-link {
+  color: #b8c5d6;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+/* Enlaces del footer */
+.footer-link:hover {
+  color: #ffa500;
+  opacity: 1;
+}
+
+/* Iconos sociales */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #ffa500 !important;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
+}
+
+/* Responsive para iconos sociales en móviles */
+@media (max-width: 575px) {
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}

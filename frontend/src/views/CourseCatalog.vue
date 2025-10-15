@@ -303,7 +303,7 @@
                   variant="elevated"
                   @click="addToCart(course)"
                   :loading="addingToCart[course.id]"
-                  class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-medium"
+                  class="btn btn-add-to-cart rounded-4 px-4 py-3 fw-semibold"
                 >
                   <FontAwesomeIcon icon="shopping-cart" class="me-2" />
                   <span>Agregar</span>
@@ -314,7 +314,7 @@
                   color="success"
                   variant="outlined"
                   disabled
-                  class="btn rounded-4 btn-carBuy px-4 py-3 fw-medium d-flex align-center justify-center"
+                  class="btn rounded-4 btn-carBuy px-4 py-3 fw-semibold d-flex align-center justify-center"
                 >
                   <FontAwesomeIcon icon="check" class="me-2" />
                   <span class="txt-btn">En carrito</span>

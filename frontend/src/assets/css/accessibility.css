@@ -22,6 +22,25 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* =========================================
+   TEMAS OSCUROS MEJORADOS
+   ========================================= */
+.v-theme--dark {
+  --v-theme-background-1: #1b212c !important;
+  --v-theme-primary-1: #252d3a !important;
+  --v-theme-primary-2: #2d3748 !important;
+  --v-theme-text: #ffffff !important;
+}
+
+/* =========================================
+   MODO ALTO CONTRASTE
+   ========================================= */
+.high-contrast-mode {
+  --v-theme-background: #000000 !important;
+  --v-theme-primary: #ffff00 !important;
+  --v-theme-on-background: #ffffff !important;
+}
+
 /* Fondo y texto para modo claro */
 
 /* Fondo y texto para modo oscuro */
@@ -467,23 +486,6 @@ html.text-scale-130 .content-area .v-list-item-title {
   }
 }
 
-/* =========================================
-   MODO ALTO CONTRASTE
-   ========================================= */
-.high-contrast-mode {
-  --v-theme-background: #000000 !important;
-  --v-theme-surface: #000000 !important;
-  --v-theme-primary: #ffff00 !important;
-  --v-theme-secondary: #00ffff !important;
-  --v-theme-on-background: #ffffff !important;
-  --v-theme-on-surface: #ffffff !important;
-  --v-theme-on-primary: #000000 !important;
-  --v-theme-error: #ff0000 !important;
-  --v-theme-success: #00ff00 !important;
-  --v-theme-warning: #ffff00 !important;
-  --v-theme-info: #00ffff !important;
-}
-
 .high-contrast-mode .v-text-field input,
 .high-contrast-mode .v-select__selection,
 .high-contrast-mode .v-textarea textarea {
@@ -554,40 +556,6 @@ html.text-scale-130 .content-area .v-list-item-title {
   padding: 8px 12px !important;
   border-radius: 4px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* =========================================
-   TEMAS OSCUROS MEJORADOS
-   ========================================= */
-.v-theme--dark {
-  --v-theme-background: #252d3a !important;
-  --v-theme-surface: #1e1e1e !important;
-  --v-theme-primary-1: #252d3a !important;
-  --v-theme-primary-2: #2d3748 !important;
-  --v-theme-text: #ffffff !important;
-  --v-theme-footer: #1b212c !important;
-}
-
-.v-theme--dark .v-application {
-  background-color: #121212 !important;
-  color: #ffffff !important;
-}
-
-.v-theme--dark .v-navigation-drawer {
-  background-color: #1e1e1e !important;
-  color: #ffffff !important;
-}
-
-/* =========================================
-   MODO CLARO MEJORADO
-   ========================================= */
-.v-theme--light {
-  --v-theme-background: #ffffff !important;
-  --v-theme-surface: #ffffff !important;
-  --v-theme-primary: #2e8b57 !important;
-  --v-theme-secondary: #424242 !important;
-  --v-theme-on-background: #000000 !important;
-  --v-theme-on-surface: #000000 !important;
 }
 
 .v-theme--light .v-application {
@@ -857,6 +825,7 @@ footer.footer .footer-link {
 
 .v-theme--light .v-btn--variant-elevated:hover {
   background-color: #3fb566 !important;
+  text-decoration: none !important;
   box-shadow: 0 4px 12px #3fb566 !important;
 }
 
@@ -982,8 +951,6 @@ body.high-contrast-mode .v-select .v-field,
 html.high-contrast-mode .v-select .v-field {
   background-color: #ffffff !important;
   color: #000000 !important;
-  border: 2px solid #000000 !important;
-  border-radius: 0 !important;
 }
 
 /* ===== V-SELECT ICONS ===== */
@@ -1054,7 +1021,7 @@ html.high-contrast-mode .v-overlay__scrim {
 }
 
 .v-theme--dark .v-dialog .v-card {
-  background-color: #1e1e1e !important;
+  background-color: var(--v-theme-primary-1) !important;
   color: #e0e0e0 !important;
 }
 
@@ -1352,11 +1319,6 @@ body.reduced-motion-mode .course-card:hover {
   color: red;
 }
 
-/* color footer */
-.v-theme--dark .bg-footer {
-  background-color: var(--v-theme-footer);
-}
-
 .v-theme--dark .border-warning {
   border-color: var(--v-theme-text) !important;
 }
@@ -1475,7 +1437,7 @@ body.reduced-motion-mode .course-card:hover {
 }
 
 .high-contrast-mode .v-list-item:hover {
-  background-color: var(--v-theme-text) !important;
+  background-color: var(--v-theme-on-background) !important;
 }
 
 .high-contrast-mode .btn-iconDelete:hover {
@@ -1618,7 +1580,8 @@ body.reduced-motion-mode .course-card:hover {
   color: #000 !important;
 }
 
-.v-theme--dark .text-none:hover {
+.v-theme--dark .text-none:hover,
+.v-theme--dark .btn-action-1:hover {
   background-color: #f0f0f0 !important;
   color: #000000 !important;
   transform: translateY(-5px);
@@ -1634,6 +1597,183 @@ body.reduced-motion-mode .course-card:hover {
   background-color: #000 !important;
 }
 
+.high-contrast-mode .dashboard-sidebar,
+.high-contrast-mode .dash-1,
+.high-contrast-mode .dashboard-card-wrapper {
+  background-color: #000 !important;
+  border: 3px solid #fff !important;
+}
+
+.high-contrast-mode .text-none {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+.high-contrast-mode .text-none:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+  box-shadow: 0 0 10px #ffff00 !important;
+}
+.high-contrast-mode .dashboard-card-wrapper .card-header {
+  background: #ffff00 !important;
+  border-bottom: 3px solid #fff !important;
+}
+
+.high-contrast-mode .bg-primary h5 {
+  color: #000 !important;
+}
+
+.high-contrast-mode .txt-card-course,
+.high-contrast-mode .dashboard-card-wrapper .card-body p.text-muted {
+  color: #fff !important;
+}
+
+/* =========================================
+   PROFILE DARK MODE STYLING
+   ========================================= */
+
+.v-theme--dark .title-profile {
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .container-profile {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--dark .card-profile {
+  background-color: var(--v-theme-primary-1) !important;
+}
+
+/* =========================================
+   PROFILE HIGH CONTRAST MODE STYLING
+   ========================================= */
+.high-contrast-mode .title-profile {
+  color: #fff !important;
+}
+
+.high-contrast-mode .container-profile {
+  background-color: #000 !important;
+}
+
+.high-contrast-mode .card-profile {
+  background-color: #000 !important;
+  border: 3px solid #fff !important;
+  color: #fff !important;
+}
+
+/* =========================================
+   HOME DARK MODE STYLING
+   ========================================= */
+
+.v-theme--dark .home-page {
+  background-color: var(--v-theme-primary-2) !important;
+}
+
+.v-theme--light .features-section {
+  background-color: #f8f9fa !important;
+  color: #333333 !important;
+}
+
+/* Modo oscuro - Section title */
+.v-theme--dark .section-title {
+  color: var(--v-theme-text) !important;
+}
+
+/* Modo oscuro - Features */
+.v-theme--dark .features-section {
+  background-color: none !important;
+}
+
+/* Modo claro - Feature cards */
+.v-theme--light .feature-card {
+  background-color: var(--v-theme-text);
+  color: #333333 !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.v-theme--light .feature-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Modo oscuro - Feature cards */
+.v-theme--dark .feature-card {
+  background-color: var(--v-theme-primary-1) !important;
+}
+
+.v-theme--dark .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+.v-theme--dark .title-main {
+  color: var(--v-theme-text) !important;
+}
+
+/* Modo oscuro - CTA */
+.v-theme--dark .cta-section {
+  background-color: var(--v-theme-primary-1) !important;
+  color: var(--v-theme-background) !important;
+}
+
+/* =========================================
+   HOME HIGH CONTRAST MODE STYLING
+   ========================================= */
+
+.high-contrast-mode .home-page {
+  background: var(--v-theme-background) !important;
+}
+
+/* Alto contraste - Features */
+.high-contrast-mode .features-section {
+  background-color: var(--v-theme-text) !important;
+  color: var(--v-theme-background) !important;
+}
+
+/* Alto contraste - Section title */
+.high-contrast-mode .section-title {
+  color: var(--v-theme-background) !important;
+}
+
+/* Alto contraste - Feature cards */
+.high-contrast-mode .feature-card {
+  color: var(--v-theme-on-background) !important;
+  background-color: var(--v-theme-background) !important;
+  border: 3px solid var(--v-theme-on-background) !important;
+}
+
+.high-contrast-mode .features-section {
+  background-color: var(--v-theme-background) !important;
+}
+
+.high-contrast-mode .section-title,
+.high-contrast-mode .title-main {
+  color: var(--v-theme-on-background) !important;
+}
+
+.high-contrast-mode .feature-card:hover {
+  border-color: var(--v-theme-primary) !important;
+  box-shadow: 0 0 20px var(--v-theme-primary) !important;
+}
+
+/* Alto contraste - CTA */
+.high-contrast-mode .cta-section {
+  background-color: var(--v-theme-background) !important;
+  color: var(--v-theme-primary) !important;
+  border: 3px solid var(--v-theme-primary) !important;
+}
+
+/* =========================================
+   FOOTER DARK MODE STYLING
+   ========================================= */
+
+/* color footer */
+.v-theme--dark .bg-footer {
+  background-color: var(--v-theme-background-1);
+}
+
 /* =========================================
    FOOTER HIGH CONTRAST MODE STYLING
    ========================================= */
@@ -1641,22 +1781,19 @@ body.reduced-motion-mode .course-card:hover {
 .high-contrast-mode .footer,
 .high-contrast-mode .bg-footer {
   background-color: #ffffff !important;
-  color: #000000 !important;
-  border-top: 3px solid #000000 !important;
+  color: var(--v-theme-background) !important;
+  border-top: 3px solid var(--v-theme-background) !important;
 }
 
 .high-contrast-mode .footer .txt-footer,
 .high-contrast-mode .footer h5,
 .high-contrast-mode .footer p {
-  color: #000000 !important;
+  color: var(--v-theme-background) !important;
 }
 
-.high-contrast-mode .txt-footer {
-  color: #000000 !important;
-}
-
+.high-contrast-mode .txt-footer,
 .high-contrast-mode .footer-link {
-  color: #000000 !important;
+  color: var(--v-theme-background) !important;
 }
 
 .high-contrast-mode .footer-link:hover {
@@ -1665,21 +1802,21 @@ body.reduced-motion-mode .course-card:hover {
 
 /* Iconos sociales en alto contraste */
 .high-contrast-mode .social-icon {
-  background-color: #000000 !important;
+  background-color: var(--v-theme-background) !important;
   color: #ffffff !important;
-  border: 3px solid #000000 !important;
+  border: 3px solid var(--v-theme-background) !important;
 }
 
 .high-contrast-mode .social-icon:hover {
   background-color: #ffff00 !important;
-  color: #000000 !important;
-  border: 3px solid #000000 !important;
+  color: var(--v-theme-background) !important;
+  border: 3px solid var(--v-theme-background) !important;
   transform: translateY(-3px) !important;
-  box-shadow: 0 4px 12px rgba(255, 255, 0, 0.8) !important;
+  box-shadow: 0 4px 12px #ffff00cc !important;
 }
 
 /* Línea divisoria en alto contraste */
 .high-contrast-mode .border-warning {
-  border-color: #000000 !important;
+  border-color: var(--v-theme-background) !important;
   border-width: 3px !important;
 }

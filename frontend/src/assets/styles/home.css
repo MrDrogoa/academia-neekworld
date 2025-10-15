@@ -1,0 +1,108 @@
+/* =====estilos generales===== */
+.home-page {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* ===== FEATURES SECTION - ADAPTATIVA A TEMAS ===== */
+.features-section {
+  padding: 80px 20px;
+  transition: all 0.3s ease;
+}
+
+/* titulo section-1 */
+.section-title {
+  font-weight: 800;
+  color: #373b8a;
+  font-family: "Montserrat", serif;
+}
+
+/* cards generales */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ===== FEATURE CARDS - ADAPTATIVAS A TEMAS ===== */
+.feature-card {
+  transition: all 0.3s ease;
+}
+
+/* titulo feature-card */
+.title-main {
+  font-family: "Montserrat", serif;
+  color: #373b8a !important;
+  font-weight: 800;
+}
+
+/* texto feature-card */
+.txt-main {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+}
+
+/* -------------------------------------- */
+
+/* texto y titulo de acción */
+.cta-section {
+  background-color: #ffa500;
+}
+
+/* Título de acción */
+.title-action {
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+}
+
+/* Texto de acción */
+.txt-action {
+  font-family: "Dm Sans", sans-serif;
+  color: #666666;
+}
+
+/* icon-main */
+.icon-main {
+  color: #29acb9;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .btn {
+    max-width: 300px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .feature-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-section,
+  .cta-section {
+    padding: 40px 15px;
+  }
+}
+
+/* ===== MODO MOTION REDUCIDO ===== */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card,
+  .btn,
+  .features-section,
+  .cta-section {
+    transition: none !important;
+  }
+
+  .feature-card:hover,
+  .btn:hover {
+    transform: none !important;
+  }
+}

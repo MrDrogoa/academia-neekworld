@@ -1,72 +1,75 @@
 <template>
-  <v-container class="pa-6">
-    <v-row>
-      <v-col cols="12">
-        <h2 class="title-profile text-center pb-5 display-5 display-lg-4">
-          Mi Perfil
-        </h2>
-      </v-col>
-    </v-row>
+  <section class="container-profile">
+    <v-container class="pa-6">
+      <v-row>
+        <v-col cols="12">
+          <h2 class="title-profile text-center pb-5 display-5 display-lg-4">
+            Mi Perfil
+          </h2>
+        </v-col>
+      </v-row>
 
-    <UserInfoComponents />
+      <!-- User Information -->
+      <UserInfoComponents />
 
-    <!-- Recent Activity -->
-    <v-row>
-      <v-col cols="12">
-        <v-card>
-          <v-card-title class="d-flex align-center">
-            <v-icon left color="primary">mdi-history</v-icon>
-            Actividad Reciente
-          </v-card-title>
+      <!-- Recent Activity -->
+      <v-row>
+        <v-col cols="12">
+          <v-card class="card-profile">
+            <v-card-title class="d-flex align-center gap-2">
+              <v-icon left color="primary">mdi-history</v-icon>
+              Actividad Reciente
+            </v-card-title>
 
-          <v-card-text>
-            <v-list v-if="recentActivity.length > 0">
-              <v-list-item
-                v-for="(activity, index) in recentActivity"
-                :key="index"
-              >
-                <v-list-item-avatar>
-                  <v-icon :color="activity.color">{{ activity.icon }}</v-icon>
-                </v-list-item-avatar>
+            <v-card-text>
+              <v-list v-if="recentActivity.length > 0" class="rounded-3">
+                <v-list-item
+                  v-for="(activity, index) in recentActivity"
+                  :key="index"
+                >
+                  <v-list-item-avatar>
+                    <v-icon :color="activity.color">{{ activity.icon }}</v-icon>
+                  </v-list-item-avatar>
 
-                <v-list-item-content>
-                  <v-list-item-title>{{ activity.title }}</v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    activity.description
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
+                  <v-list-item-content>
+                    <v-list-item-title>{{ activity.title }}</v-list-item-title>
+                    <v-list-item-subtitle>{{
+                      activity.description
+                    }}</v-list-item-subtitle>
+                  </v-list-item-content>
 
-                <v-list-item-action>
-                  <v-list-item-action-text>{{
-                    activity.date
-                  }}</v-list-item-action-text>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
+                  <v-list-item-action>
+                    <v-list-item-action-text>{{
+                      activity.date
+                    }}</v-list-item-action-text>
+                  </v-list-item-action>
+                </v-list-item>
+              </v-list>
 
-            <div v-else class="text-center py-8">
-              <v-icon size="64" color="grey lighten-2">mdi-history</v-icon>
-              <p class="text-grey mt-4">No hay actividad reciente</p>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+              <div v-else class="text-center py-8">
+                <v-icon size="64" color="grey lighten-2">mdi-history</v-icon>
+                <p class="text-grey mt-4">No hay actividad reciente</p>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
 
-    <!-- Success/Error Snackbar -->
-    <v-snackbar
-      v-model="snackbar.show"
-      :color="snackbar.color"
-      :timeout="snackbar.timeout"
-    >
-      {{ snackbar.message }}
-      <template v-slot:action="{ attrs }">
-        <v-btn text v-bind="attrs" @click="snackbar.show = false">
-          Cerrar
-        </v-btn>
-      </template>
-    </v-snackbar>
-  </v-container>
+      <!-- Success/Error Snackbar -->
+      <v-snackbar
+        v-model="snackbar.show"
+        :color="snackbar.color"
+        :timeout="snackbar.timeout"
+      >
+        {{ snackbar.message }}
+        <template v-slot:action="{ attrs }">
+          <v-btn text v-bind="attrs" @click="snackbar.show = false">
+            Cerrar
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </v-container>
+  </section>
 </template>
 
 <script>

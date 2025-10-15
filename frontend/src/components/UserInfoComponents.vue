@@ -150,8 +150,8 @@ onMounted(() => {
     <!-- User Information Card -->
     <v-row>
       <v-col cols="12" md="8">
-        <v-card class="mb-6">
-          <v-card-title class="d-flex align-center">
+        <v-card class="mb-6 card-profile">
+          <v-card-title class="d-flex align-center gap-2">
             <v-icon left color="primary">mdi-account</v-icon>
             Información Personal
             <v-spacer></v-spacer>
@@ -237,8 +237,8 @@ onMounted(() => {
 
       <!-- Moodle Integration Card -->
       <v-col cols="12" md="4">
-        <v-card class="mb-6">
-          <v-card-title class="d-flex align-center">
+        <v-card class="mb-6 card-profile">
+          <v-card-title class="d-flex align-center gap-2">
             <v-icon left color="primary">mdi-school</v-icon>
             Integración Moodle
           </v-card-title>
@@ -288,8 +288,8 @@ onMounted(() => {
         </v-card>
 
         <!-- Account Statistics -->
-        <v-card>
-          <v-card-title class="d-flex align-center">
+        <v-card class="card-profile">
+          <v-card-title class="d-flex align-center gap-2">
             <v-icon left color="primary">mdi-chart-line</v-icon>
             Estadísticas
           </v-card-title>

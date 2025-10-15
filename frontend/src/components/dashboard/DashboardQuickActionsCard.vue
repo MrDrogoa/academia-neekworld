@@ -6,8 +6,13 @@
     </v-card-title>
     <v-card-text>
       <div class="d-grid gap-2">
-        <v-btn v-for="(action, i) in actions" :key="i" 
-          :to="action.to" :color="action.color" block class="mb-2">
+        <v-btn
+          v-for="(action, i) in actions"
+          :key="i"
+          :to="action.to"
+          block
+          class="mb-2 btn-action-1"
+        >
           <v-icon start>{{ action.icon }}</v-icon>
           {{ action.title }}
         </v-btn>
@@ -18,15 +23,15 @@
 
 <script>
 export default {
-  name: 'DashboardQuickActionsCard',
-  
+  name: "DashboardQuickActionsCard",
+
   props: {
     actions: {
       type: Array,
-      default: () => []
-    }
-  }
-}
+      default: () => [],
+    },
+  },
+};
 </script>
 
 <style scoped>
