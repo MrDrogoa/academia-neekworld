@@ -72,6 +72,9 @@
                 <FontAwesomeIcon :icon="social.icon" class="fs-4" />
               </a>
             </div>
+            <div class="text-center">
+              <p class="mt-3 txt-footer">Correo: contacto@arventis.cl</p>
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +90,8 @@
         <div class="row">
           <div class="col-12 text-center">
             <p class="mb-0 small txt-footer text-white">
-              © {{ currentYear }} Derechos reservados - Academia Virtual
+              © {{ currentYear }} Derechos reservados - Arventis Digital
+              Solutions
             </p>
           </div>
         </div>
@@ -135,19 +139,20 @@ const socialLinks = [
     label: "Instagram",
   },
   {
-    icon: "fa-brands fa-facebook",
-    url: "https://facebook.com",
-    label: "Facebook",
+    icon: "fa-brands fa-linkedin",
+    url: "https://www.linkedin.com/company/arventis-digital-solutions/",
+    label: "LinkedIn",
   },
   {
-    icon: "fa-solid fa-phone",
-    url: "tel:+1234567890",
-    label: "Teléfono",
+    icon: "fa-brands fa-youtube",
+    url: "https://www.youtube.com/@NeekWorldAcademy",
+    label: "YouTube",
   },
   {
-    icon: "fa-solid fa-envelope",
-    url: "mailto:info@academia.com",
-    label: "Email",
+    icon: "fa-brands fa-whatsapp",
+    url: "https://wa.me/56930779204",
+    label: "WhatsApp",
+    external: true,
   },
 ];
 </script>

@@ -66,5 +66,12 @@ export default {
 <style scoped>
 .profile-card {
   height: 100%;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+.profile-card:hover {
+  transform: none !important;
 }
 </style>

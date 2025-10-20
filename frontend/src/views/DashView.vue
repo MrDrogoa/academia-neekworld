@@ -103,8 +103,8 @@
             <div class="row mb-4">
               <div class="col-lg-6 col-md-6 col-12 mb-3">
                 <div class="dashboard-card-wrapper">
-                  <div class="card-header bg-primary text-white text-center">
-                    <h5 class="mb-0 txt-card-course">Cursos</h5>
+                  <div class="card-header bg-primary text-center">
+                    <h5 class="mb-0 txt-card-course text-white">Cursos</h5>
                   </div>
                   <div class="card-body">
                     <h6 class="txt-card-course">Subtitle</h6>
@@ -128,8 +128,8 @@
 
               <div class="col-lg-6 col-md-6 col-12 mb-3">
                 <div class="dashboard-card-wrapper">
-                  <div class="card-header bg-primary text-white text-center">
-                    <h5 class="mb-0 txt-card-course">Facturas</h5>
+                  <div class="card-header bg-primary text-center">
+                    <h5 class="mb-0 txt-card-course text-white">Facturas</h5>
                   </div>
                   <div class="card-body">
                     <h6 class="txt-card-course">Subtitle</h6>
@@ -148,8 +148,8 @@
             <div class="row mb-4">
               <div class="col-lg-6 col-md-6 col-12 mb-3">
                 <div class="dashboard-card-wrapper">
-                  <div class="card-header bg-primary text-white text-center">
-                    <h5 class="mb-0 txt-card-course">Becas</h5>
+                  <div class="card-header bg-primary text-center">
+                    <h5 class="mb-0 txt-card-course text-white">Becas</h5>
                   </div>
                   <div class="card-body">
                     <h6 class="txt-card-course">Subtitle</h6>
@@ -188,8 +188,10 @@
 
               <div class="col-lg-6 col-md-6 col-12 mb-3">
                 <div class="dashboard-card-wrapper">
-                  <div class="card-header bg-primary text-white text-center">
-                    <h5 class="mb-0 txt-card-course">Certificados</h5>
+                  <div class="card-header bg-primary text-center">
+                    <h5 class="mb-0 txt-card-course text-white">
+                      Certificados
+                    </h5>
                   </div>
                   <div class="card-body">
                     <h6 class="txt-card-course">Subtitle</h6>
@@ -206,8 +208,10 @@
             <div class="row justify-content-center mb-4">
               <div class="col-lg-8 col-md-10 col-12">
                 <div class="dashboard-card-wrapper">
-                  <div class="card-header bg-primary text-white text-center">
-                    <h5 class="mb-0 txt-card-course">Preferencias</h5>
+                  <div class="card-header bg-primary text-center">
+                    <h5 class="mb-0 txt-card-course text-white">
+                      Preferencias
+                    </h5>
                   </div>
                   <div class="card-body text-center">
                     <h6 class="txt-card-course">Subtitle</h6>
@@ -622,7 +626,6 @@ export default {
 }
 
 .dashboard-card-wrapper:hover {
-  transform: translateY(-5px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 

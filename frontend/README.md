@@ -331,6 +331,35 @@ frontend/
 
 ---
 
+## 📅 Fecha: 20 de Octubre, 2025
+
+## 🔧 **ACTUALIZACIONES REALIZADAS HOY (Resumen de trabajo)**
+
+### 📁 Archivos modificados / creados hoy
+- `src/views/TermsView.vue` — Contenido completo de Términos y Condiciones (español) insertado.
+- `src/components/FooterComponent.vue` — Footer reescrito / dinámico; enlaces actualizados (Aula Virtual y WhatsApp).
+- `src/views/HomeView.vue` — Hero reestructurado para coincidir con diseño en Figma y colocación de iconos.
+- `src/main.js` — Integración de Font Awesome: importación de paquetes, adición de iconos a la librería y registro de `FontAwesomeIcon`.
+- `src/components/dashboard/DashboardQuickActionsCard.vue` — Corrección CSS para eliminar salto en hover.
+
+### ✨ Cambios y motivos
+- Hero rediseñado para reproducir el layout de Figma: grid responsive (imagen + contenido), uso de utilidades Bootstrap para reducir CSS personalizado y agregado de iconos Font Awesome dentro del hero.
+- Font Awesome correctamente integrado en `main.js` (se añadió la librería y los iconos usados) para resolver el problema de iconos que no se mostraban.
+- Footer convertido a un componente dinámico con tres columnas ("Aprende", "Información", "Contáctanos"). Se agregó enlace a Aula Virtual (`https://neekworld.cl/NW/`) y se actualizó el enlace de contacto telefónico para abrir WhatsApp (`https://wa.me/56930779204`).
+- Se sustituyó el contenido de `TermsView.vue` por un documento completo de Términos y Condiciones en español (secciones legales y de uso básicas). Esto facilita cumplimiento básico y referencia legal en la plataforma.
+- Se corrigió la tarjeta de acciones rápidas del dashboard para evitar transform/transition que provocaban un salto visual al hacer hover.
+- Se actualizó el control de versiones remoto: el repo fue apuntado y push al repositorio del usuario (origin configurado y cambios subidos).
+
+### ✅ Estado y notas
+- Documentos y componentes desplegables: insertados/actualizados y listos para revisión visual.
+- Quedan pendientes pruebas en entorno de desarrollo (build / serve) y revisión en navegador para validar estilos y renderizado de iconos.
+- Si necesitas que ejecute la comprobación de compilación y un arranque en modo desarrollo (y te devuelva los mensajes de la consola), puedo hacerlo ahora.
+
+---
+
+*Registro actualizado automáticamente.*
+
+
 ## 📅 Fecha: 12 de Octubre, 2025
 
 ## 🎨 **12. IMPLEMENTACIÓN COMPLETA DE SISTEMAS DE ACCESIBILIDAD Y TEMAS**

@@ -13,6 +13,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faSquareInstagram,
   faInstagram,
+  faYoutube,
+  faLinkedin,
+  faWhatsapp,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -48,7 +51,10 @@ library.add(
   faEnvelope,
   faPhone,
   faAward,
+  faWhatsapp,
+  faLinkedin,
   faScissors,
+  faYoutube,
   faRuler,
   faGraduationCap,
   faNoteSticky,

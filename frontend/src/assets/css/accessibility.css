@@ -32,7 +32,7 @@
    ========================================= */
 .high-contrast-mode {
   --v-theme-background: #000000 !important;
-  --v-theme-primary: #ffff00 !important;
+  --v-theme-primary-h: #ffff00 !important;
   --v-theme-on-background: #ffffff !important;
 }
 
@@ -1010,8 +1010,7 @@ html.high-contrast-mode .v-dialog .v-btn:hover {
 
 /* ===== ABOUT PAGE - MODO OSCURO ===== */
 .v-theme--dark .about-page {
-  background-color: #1e1e1e !important;
-  color: #e0e0e0 !important;
+  background-color: var(--v-theme-primary-2) !important;
 }
 
 .v-theme--dark .about-page h1 {
@@ -1031,6 +1030,17 @@ html.high-contrast-mode .v-dialog .v-btn:hover {
 
 .v-theme--dark .about-section p {
   color: #e0e0e0 !important;
+}
+
+.v-theme--dark .btn-link {
+  background-color: var(--v-theme-text) !important;
+  color: #000 !important;
+}
+
+.v-theme--dark .btn-link:hover {
+  background-color: var(--v-theme-text) !important;
+  box-shadow: 2px 4px 12px #fff !important;
+  text-decoration: none !important;
 }
 
 /* ===== ABOUT PAGE - ALTO CONTRASTE ===== */
@@ -1062,6 +1072,18 @@ body.high-contrast-mode .about-section p,
 html.high-contrast-mode .about-section p {
   color: #000000 !important;
   font-weight: 500 !important;
+}
+
+.high-contrast-mode .btn-link {
+  background-color: var(--v-theme-primary-h) !important;
+  color: var(--v-theme-background) !important;
+  border: 2px solid var(--v-theme-primary-h) !important;
+}
+
+.high-contrast-mode .btn-link:hover {
+  background-color: var(--v-theme-primary-h) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px var(--v-theme-primary-h) !important;
 }
 
 /* =========================================
@@ -1443,6 +1465,18 @@ body.reduced-motion-mode .course-card:hover {
   color: var(--v-theme-text) !important;
 }
 
+.high-contrast-mode .send-button {
+  background-color: var(--v-theme-primary-h) !important;
+  color: var(--v-theme-background) !important;
+  border: 2px solid var(--v-theme-primary-h) !important;
+}
+
+.high-contrast-mode .send-buttonk:hover {
+  background-color: var(--v-theme-primary-h) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 12px var(--v-theme-primary-h) !important;
+}
+
 /* =========================================
    FORM INICIO DARK MODE STYLING
    ========================================= */
@@ -1501,8 +1535,18 @@ body.reduced-motion-mode .course-card:hover {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3) !important;
 }
 
-.high-contrast-mode .btn-action-1:hover {
+.high-contrast-mode .btn-action-1 {
   text-decoration: none !important;
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+.high-contrast-mode .btn-action-1:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  border: none !important;
+  box-shadow: 0 0 10px #ffff00 !important;
 }
 
 /* =========================================
@@ -1818,4 +1862,42 @@ body.reduced-motion-mode .course-card:hover {
 }
 .v-theme--dark .txt-profile {
   color: #000 !important;
+}
+
+/* =========================================
+   Términos y Condiciones - THEME INTEGRATION
+   ========================================= */
+.v-theme--dark .terms-container-all {
+  background-color: var(--v-theme-primary-2);
+  color: var(--v-theme-text);
+}
+
+.v-theme--dark .card-terms {
+  background-color: var(--v-theme-primary-1) !important;
+  color: var(--v-theme-text) !important;
+}
+
+.v-theme--dark .title-terms,
+.v-theme--dark .text-terms {
+  color: var(--v-theme-text) !important;
+}
+
+.high-contrast-mode .terms-container-all {
+  background-color: var(--v-theme-background) !important;
+}
+
+.high-contrast-mode .card-terms {
+  background-color: var(--v-theme-background) !important;
+  color: var(--v-theme-on-background) !important;
+  border: 3px solid #ffff00 !important;
+}
+
+.high-contrast-mode .title-terms,
+.high-contrast-mode .text-terms,
+.high-contrast-mode .txt-term {
+  color: var(--v-theme-on-background) !important;
+}
+
+.high-contrast-mode .link-term {
+  color: var(--v-theme-primary-h) !important;
 }

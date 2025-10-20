@@ -11,7 +11,7 @@
           :key="i"
           :to="action.to"
           block
-          class="mb-2 btn-action-1"
+          class="mb-2 btn-action-1 text-decoration-none text-white fw-semibold"
         >
           <v-icon start>{{ action.icon }}</v-icon>
           {{ action.title }}
@@ -37,6 +37,28 @@ export default {
 <style scoped>
 .dashboard-card {
   height: 100%;
+}
+
+/* Prevent visual jump on hover: remove transform/translation and shadow changes */
+.dashboard-card {
+  height: 100%;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+.dashboard-card:hover {
+  transform: none !important;
+}
+
+.btn-action-1 {
+  background-color: #29acb9;
+}
+
+.btn-action-1:hover {
+  background-color: #32c4d2;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px #32c4d2;
 }
 
 .d-grid {
